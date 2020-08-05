@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ZHXILIN&#39;S BLOG</title>
-    <link>https://zhxilin.github.io/</link>
-    <description>Recent content on ZHXILIN&#39;S BLOG</description>
+    <title>C&#43;&#43; on ZHXILIN&#39;S BLOG</title>
+    <link>https://zhxilin.github.io/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
     <lastBuildDate>Wed, 05 Aug 2020 10:45:18 +0800</lastBuildDate>
     
-	<atom:link href="https://zhxilin.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhxilin.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,24 +19,6 @@
       <guid>https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/</guid>
       <description>You may often see the following calls std::ios::sync_with_stdio(false) and std::cin.tie(nullptr) in some online judge system, such as leetcode, poj, etc. Someone would tell you that these codes are usually used to speed up the execution time. But what is the exact meanings for these codes?
 1static auto _ = []() { 2 std::ios::sync_with_stdio(false); 3 std::cin.tie(nullptr); 4 std::cout.tie(nullptr); 5 return nullptr; 6}(); These two calls have different meanings that have nonthing to do with performance.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://zhxilin.github.io/about/</link>
-      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhxilin.github.io/about/</guid>
-      <description>XILIN ZHENG (zhxilin)  Email: zhxilin@live.com Working: 7 years Education: Sun Yat-sen University (CS 2009-2013) Major: Software Engineering GitHub: https://github.com/zhxilin Blog: https://zhxilin.github.io  SKILLS  Game Server Dev: C++, C#, Golang, Python, NodeJS App Dev: UWP, WPF, Xamarin, Unity, Qt4(Basic) Database: Redis, MySQL Dev Tools: Vim, Git, VSCode Dev flow: Pull requests, Code review, Tests, Deploy IaaS: AliCloud, Google Cloud  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://zhxilin.github.io/archives/</link>
-      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://zhxilin.github.io/archives/</guid>
-      <description></description>
     </item>
     
   </channel>

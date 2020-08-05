@@ -18,7 +18,7 @@
       
       <guid>https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/</guid>
       <description>You may often see the following calls std::ios::sync_with_stdio(false) and std::cin.tie(nullptr) in some online judge system, such as leetcode, poj, etc. Someone would tell you that these codes are usually used to speed up the execution time. But what is the exact meanings for these codes?
-1static auto _ = []() { 2 std::ios::sync_with_stdio(false); 3 std::cin.tie(nullptr); 4 std::cout.tie(nullptr); 5 return nullptr; 6}(); These two calls have different meanings that have nonthing to do with performance.</description>
+1static auto _ = []() { 2 std::ios::sync_with_stdio(false); 3 std::cin.tie(nullptr); 4 return nullptr; 5}(); These two calls have different meanings that have nonthing to do with performance.</description>
     </item>
     
     <item>

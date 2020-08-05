@@ -2,7 +2,7 @@
 <html lang="en" data-figures="true" class="page">
   <head>  <title>What&#39;s std::ios::sync_with_stdio(false) and std::cin.tie(nullptr)? | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.75.0-DEV" />
+  <meta name="generator" content="Hugo 0.74.3" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
@@ -25,6 +25,7 @@
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
+<link rel='shortcut icon' type='image/x-icon' sizes='16x16' href='https://zhxilin.github.io/icons/favicon.ico'>
 <link rel='manifest' href='https://zhxilin.github.io/icons/site.webmanifest'>
 <link rel="mask-icon" href= 'https://zhxilin.github.io/safari-pinned-tab.svg' color="#002538">
 <meta name="msapplication-TileColor" content="#002538">
@@ -170,9 +171,8 @@
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">static</span> <span class="k">auto</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[]()</span> <span class="p">{</span>
 <span class="ln">2</span>  <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 <span class="ln">3</span>  <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
-<span class="ln">4</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
-<span class="ln">5</span>  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
-<span class="ln">6</span><span class="p">}();</span>
+<span class="ln">4</span>  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="ln">5</span><span class="p">}();</span>
 </code></pre></div><p>These two calls have different meanings that have nonthing to do with performance. The fact that it speeds up code execution time is just a side effect.</p>
 <h2 id="decoupling-c-and-c-streams">Decoupling C and C++ streams</h2>
 <h3 id="function">Function</h3>
@@ -219,7 +219,7 @@
 <span class="ln">3</span>c
 </code></pre></div><p>Woops! The output result is no longer abc.</p>
 <p>After set <code>false</code> to <code>sync_with_stdio</code>, the C streams and C++ streams are no longer synchronized. In fact, they will maintain indepedent buffers for their own, each I/O operation on C++ streams will not be applied to the corresponding C stream buffer now, which may be considerably faster than in some cases.</p>
-<p>In addition, I&rsquo;m not using <code>std::endl</code> to break line for <code>std::cout</code>, beacuse <code>std::cout</code> will flush the I/O buffer immediately which you won&rsquo;t see what happen between the C and C++ streams synchronization.</p>
+<p>In addition, I&rsquo;m not using <code>std::endl</code> to break line for <code>std::cout</code>, beacuse <code>std::endl</code> will flush the I/O buffer immediately which you won&rsquo;t see what happen between the C and C++ streams synchronization.</p>
 <h2 id="decoupling-input-and-output-streams">Decoupling input and output streams</h2>
 <h3 id="function-1">Function</h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">ostream</span><span class="o">*</span> <span class="nf">tie</span> <span class="p">(</span><span class="n">ostream</span><span class="o">*</span> <span class="n">tiestr</span><span class="p">);</span>

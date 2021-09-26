@@ -6,11 +6,22 @@
     <description>Recent content in Technology on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Sep 2021 10:21:46 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Sep 2021 20:20:23 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>WSL2 Networkd Forwarding</title>
+      <title>Solve Slow Access To Gitlab via ssh</title>
+      <link>https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/</link>
+      <pubDate>Sun, 26 Sep 2021 20:20:23 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/</guid>
+      <description>I&amp;rsquo;ve deployed a custom gitlab server for my team. I found that it&amp;rsquo;s weired that when clone, pull, push or fetch codes from the gitlab server via SSH, it performs slow response times for each access. But it works perfectly via HTTPS.
+After seaching sort of posts, it&amp;rsquo;s pointed that the SSH service of gitlab server enables UseDNS feature by default, which makes it slow to access via SSH.
+ While it is possible to run a GitLab instance using only IP addresses, it is often beneficial to use DNS as it is easier for users and is required for HTTPS.</description>
+    </item>
+    
+    <item>
+      <title>WSL2 Network Forwarding</title>
       <link>https://zhxilin.github.io/post/wsl2_network_forwarding/</link>
-      <pubDate>Sun, 26 Sep 2021 10:21:46 +0800</pubDate>
+      <pubDate>Fri, 20 Aug 2021 10:21:46 +0800</pubDate>
       
       <guid>https://zhxilin.github.io/post/wsl2_network_forwarding/</guid>
       <description>With the WSL2 Released, Microsoft has made a big change on the system architecture, including changing from the default bridged network adapter to a hyper-v virtual network adapter.

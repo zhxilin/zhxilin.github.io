@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>WSL2 Network Forwarding | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>Solve Slow Access To Gitlab via ssh | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.88.1" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -17,9 +17,9 @@
 <meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "WSL2 Network Forwarding" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/wsl2_network_forwarding/" />
-<meta property = "og:title" content = "WSL2 Network Forwarding" />
+<meta name = "twitter:title" content = "Solve Slow Access To Gitlab via ssh" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/" />
+<meta property = "og:title" content = "Solve Slow Access To Gitlab via ssh" />
 <meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/wsl2_network_forwarding/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -101,34 +101,34 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>WSL2 Network Forwarding</h1><div class = 'post_meta'>
+    <h1 class='post_title'>Solve Slow Access To Gitlab via ssh</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Aug 20, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/wsl2' class = 'post_tag button button_translucent'>WSL2
-  </a>
+    Sep 26, 2021</span>
   <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
+  </a>
+  <a href = 'https://zhxilin.github.io/tags/gitlab' class = 'post_tag button button_translucent'>Gitlab
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://twitter.com/intent/tweet?text=WSL2%20Network%20Forwarding&url=https%3a%2f%2fzhxilin.github.io%2fpost%2fwsl2_network_forwarding%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=Solve%20Slow%20Access%20To%20Gitlab%20via%20ssh&url=https%3a%2f%2fzhxilin.github.io%2fpost%2fsolve_slow_access_to_gitlab_via_ssh%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
   
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2fwsl2_network_forwarding%2f&t=WSL2%20Network%20Forwarding" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2fsolve_slow_access_to_gitlab_via_ssh%2f&t=Solve%20Slow%20Access%20To%20Gitlab%20via%20ssh" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/wsl2_network_forwarding/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -136,7 +136,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/wsl2_network_forwarding/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -144,101 +144,24 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">700 Words | Read in about 3 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
-    
-    <h2>Overview</h2>
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#tcp-ports-forwarding">TCP ports forwarding</a></li>
-    <li><a href="#update-forwarding-ports-during-reboot">Update forwarding ports during reboot</a></li>
-  </ul>
-</nav>
-    <p>With the WSL2 Released, Microsoft has made a big change on the system architecture, including changing from the default bridged network adapter to a hyper-v virtual network adapter.</p>
-<p>The new version of WSL is built on Hyper-V, which provides independent virtual network adapter for the virtual matchine. Therefore, WSL2 cannot share the network with host directly. The work around is to forward the TCP ports of WSL2 to the host OS.</p>
-<p>In addition, the virtual adapter on WSL2 changes it&rsquo;s ip address during reboot, which makes it tough to implement a run once solution. So we need a solution to auto update the forwarding TCP ports during host OS reboot.</p>
-<h2 id="tcp-ports-forwarding">TCP ports forwarding</h2>
-<p>If we had installed multiple version of WSL on Windows 10, we need to set the WSL2 as the default distribution:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>// Query versions of different WSL distribution
-<span class="ln">2</span>&gt; wsl -l -v
-<span class="ln">3</span>  NAME            STATE           VERSION
-<span class="ln">4</span>* Ubuntu-20.04    Running         <span class="m">2</span>
-<span class="ln">5</span>  Ubuntu-16.04    Stopped         <span class="m">1</span>
-<span class="ln">6</span>
-<span class="ln">7</span>// <span class="nb">set</span> your own default distribution
-<span class="ln">8</span>&gt; wsl --set-default Ubuntu-20.04 <span class="m">2</span>
-</code></pre></div><p>We will open the right version of WSL, Ubuntu20.04 for example, when executing <code>wsl.exe</code> in powershell or command line only if we had set the Ubuntu20.04 as the default distribution.</p>
-<p>Now we create a powershell script <code>wslbridge.ps1</code> to implement TCP ports forwarding:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Run as administrator</span>
-<span class="ln"> 2</span><span class="k">if</span> <span class="p">(!(</span><span class="no">[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]</span><span class="p">::</span><span class="n">GetCurrent</span><span class="p">()).</span><span class="n">IsInRole</span><span class="p">(</span><span class="no">[Security.Principal.WindowsBuiltInRole]</span><span class="p">::</span><span class="n">Administrator</span><span class="p">))</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="nb">Start-Process</span> <span class="n">PowerShell</span> <span class="n">-Verb</span> <span class="n">RunAs</span> <span class="s2">&#34;-NoProfile -ExecutionPolicy Bypass -Command </span><span class="se">`&#34;</span><span class="s2">cd &#39;$pwd&#39;; &amp; &#39;$PSCommandPath&#39;;</span><span class="se">`&#34;</span><span class="s2">&#34;</span><span class="p">;</span>
-<span class="ln"> 4</span>    <span class="n">exit</span><span class="p">;</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="c"># Read ip address of WSL2</span>
-<span class="ln"> 8</span><span class="nv">$remoteport</span> <span class="p">=</span> <span class="n">wsl</span> <span class="n">ifconfig</span> <span class="n">eth0</span> <span class="p">|</span> <span class="n">wsl</span> <span class="n">grep</span> <span class="s1">&#39;inet &#39;</span>
-<span class="ln"> 9</span><span class="nv">$found</span> <span class="p">=</span> <span class="nv">$remoteport</span> <span class="o">-match</span> <span class="s1">&#39;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&#39;</span><span class="p">;</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="k">if</span><span class="p">(</span> <span class="nv">$found</span> <span class="p">){</span>
-<span class="ln">12</span>  <span class="nv">$remoteport</span> <span class="p">=</span> <span class="nv">$matches</span><span class="p">[</span><span class="n">0</span><span class="p">];</span>
-<span class="ln">13</span><span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-<span class="ln">14</span>  <span class="nb">echo </span><span class="s2">&#34;The Script Exited, the ip address of WSL 2 cannot be found&#34;</span><span class="p">;</span>
-<span class="ln">15</span>  <span class="n">exit</span><span class="p">;</span>
-<span class="ln">16</span><span class="p">}</span>
-<span class="ln">17</span>
-<span class="ln">18</span><span class="c">#[Ports]</span>
-<span class="ln">19</span><span class="c"># Modify the forwarding ports here, seperated with comma mark</span>
-<span class="ln">20</span><span class="nv">$ports</span><span class="p">=@(</span><span class="n">80</span><span class="p">,</span><span class="n">443</span><span class="p">,</span><span class="n">3633</span><span class="p">,</span><span class="n">4101</span><span class="p">,</span><span class="n">4102</span><span class="p">,</span><span class="n">10501</span><span class="p">);</span>
-<span class="ln">21</span>
-<span class="ln">22</span><span class="c">#[Static ip]</span>
-<span class="ln">23</span><span class="nv">$addr</span><span class="p">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">;</span>
-<span class="ln">24</span><span class="nv">$ports_a</span> <span class="p">=</span> <span class="nv">$ports</span> <span class="n">-join</span> <span class="s2">&#34;,&#34;</span><span class="p">;</span>
-<span class="ln">25</span>
-<span class="ln">26</span><span class="c"># Remove old Windows firewall rule</span>
-<span class="ln">27</span><span class="nb">iex </span><span class="s2">&#34;Remove-NetFireWallRule -DisplayName &#39;WSL 2 Firewall Unlock&#39; &#34;</span><span class="p">;</span>
-<span class="ln">28</span>
-<span class="ln">29</span><span class="c"># Add new Windows firewall rule for inbound and outbound</span>
-<span class="ln">30</span><span class="nb">iex </span><span class="s2">&#34;New-NetFireWallRule -DisplayName &#39;WSL 2 Firewall Unlock&#39; -Direction Outbound -LocalPort $ports_a -Action Allow -Protocol TCP&#34;</span><span class="p">;</span>
-<span class="ln">31</span><span class="nb">iex </span><span class="s2">&#34;New-NetFireWallRule -DisplayName &#39;WSL 2 Firewall Unlock&#39; -Direction Inbound -LocalPort $ports_a -Action Allow -Protocol TCP&#34;</span><span class="p">;</span>
-<span class="ln">32</span>
-<span class="ln">33</span><span class="k">for</span><span class="p">(</span> <span class="nv">$i</span> <span class="p">=</span> <span class="n">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">-lt</span> <span class="nv">$ports</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="nv">$i</span><span class="p">++</span> <span class="p">){</span>
-<span class="ln">34</span>  <span class="nv">$port</span> <span class="p">=</span> <span class="nv">$ports</span><span class="p">[</span><span class="nv">$i</span><span class="p">];</span>
-<span class="ln">35</span>  <span class="nb">iex </span><span class="s2">&#34;netsh interface portproxy delete v4tov4 listenport=$port listenaddress=$addr&#34;</span><span class="p">;</span>
-<span class="ln">36</span>  <span class="nb">iex </span><span class="s2">&#34;netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport&#34;</span><span class="p">;</span>
-<span class="ln">37</span><span class="p">}</span>
-</code></pre></div><p>After executing the <code>wslbridge.ps1</code> script, we can check whether the TCP ports forwarding takes effect. Execute the following command in powershell:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">&gt;</span> <span class="n">netsh</span> <span class="n">interface</span> <span class="n">portproxy</span> <span class="n">show</span> <span class="n">all</span>
-<span class="ln"> 2</span><span class="n">Listen</span> <span class="n">on</span> <span class="n">ipv4</span><span class="err">:</span>                 <span class="n">Connect</span> <span class="n">to</span> <span class="n">ipv4</span><span class="err">:</span>
-<span class="ln"> 3</span>
-<span class="ln"> 4</span><span class="n">Address</span>         <span class="n">Port</span>        <span class="n">Address</span>         <span class="n">Port</span>
-<span class="ln"> 5</span><span class="p">---------------</span> <span class="p">----------</span>  <span class="p">---------------</span> <span class="p">----------</span>
-<span class="ln"> 6</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>         <span class="n">80</span>          <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">151</span>   <span class="n">80</span>
-<span class="ln"> 7</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>         <span class="n">443</span>         <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">151</span>   <span class="n">443</span>
-<span class="ln"> 8</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>         <span class="n">3633</span>        <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">151</span>   <span class="n">3633</span>
-<span class="ln"> 9</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>         <span class="n">4101</span>        <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">151</span>   <span class="n">4101</span>
-<span class="ln">10</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>         <span class="n">4102</span>        <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">151</span>   <span class="n">4102</span>
-<span class="ln">11</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span><span class="p">.</span><span class="n">0</span>         <span class="n">10501</span>       <span class="n">172</span><span class="p">.</span><span class="n">18</span><span class="p">.</span><span class="n">48</span><span class="p">.</span><span class="n">151</span>   <span class="n">10501</span>
-</code></pre></div><h2 id="update-forwarding-ports-during-reboot">Update forwarding ports during reboot</h2>
-<p>Press <code>Win + R</code> and input <code>shell:startup</code>, open the Windows startup directory <code>C:\Users\[Your-User-Name]\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code>.</p>
-<p>We can place some vbs scripts here and Windows will auto execute these them during reboot.</p>
-<p>Now we can write a vbs script, <code>wsl2autostart.vbs</code> for example, to auto update the forwarding ports on the initialization for WSL2 startup, and update the Windows firewall rules in the meanwhile.</p>
-<p>WSL2 will not run the init services on Windows reboot, so manually execution is required. We can put it into the vbs script.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>&#39; run the Linux custom init script as root
-<span class="ln">2</span>Set ws = WScript.CreateObject(&#34;WScript.Shell&#34;)
-<span class="ln">3</span>ws.run &#34;wsl -d Ubuntu-20.04 -u root /etc/init.wsl&#34;
-<span class="ln">4</span>
-<span class="ln">5</span>&#39; start the Windows firewall forwarding rules
-<span class="ln">6</span>Set app = CreateObject(&#34;Wscript.Shell&#34;)
-<span class="ln">7</span>app.run &#34;powershell -ExecutionPolicy Unrestricted -file wslbridge.ps1&#34;
-</code></pre></div><p>The content of <code>/etc/init.wsl</code> depends on your own requirements. For example,</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="cp">#! /bin/bash
-</span><span class="ln">2</span><span class="cp"></span>
-<span class="ln">3</span><span class="nb">cd</span> /home/zhxilin/dev/script
-<span class="ln">4</span>
-<span class="ln">5</span>./runrendis.sh
-<span class="ln">6</span>./runmysql.sh
-<span class="ln">7</span>./runnginx.sh
-<span class="ln">8</span>./rundistccd.sh
-</code></pre></div>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <p>I&rsquo;ve deployed a custom gitlab server for my team. I found that it&rsquo;s weired that when clone, pull, push or fetch codes from the gitlab server via SSH, it performs slow response times for each access. But it works perfectly via HTTPS.</p>
+<p>After seaching sort of posts, it&rsquo;s pointed that the SSH service of gitlab server enables <code>UseDNS</code> feature by default, which makes it slow to access via SSH.</p>
+<blockquote>
+<p>While it is possible to run a GitLab instance using only IP addresses, it is often beneficial to use DNS as it is easier for users and is required for HTTPS. Depending on the features you want to take advantage of, multiple DNS entries may be necessary. Any of these DNS entries should be of type A, AAAA, or CNAME. This depends on the underlying architecture of the instance you are using.</p>
+</blockquote>
+<p>When enable this feature, gitlab server will first perform DNS PTR reverse query according to the client&rsquo;s IP address to obtain the client&rsquo;s host name. Then perform DNS forward query by the host name, the IP address obtained is compared with the client&rsquo;s IP address to check whether it&rsquo;s consistant to prevent client deception.</p>
+<h2 id="workaround">Workaround</h2>
+<ul>
+<li>Login gitlab server via SSH as root.</li>
+<li>Edit the file <code>/etc/ssh/sshd_config</code>.</li>
+<li>Modify &ldquo;#UseDNS yes&rdquo; as &ldquo;UseDNS no&rdquo;.</li>
+<li>Save the config and restart the sshd service:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo service sshd restart
+</code></pre></div></li>
+</ul>
+<p>After doing this, the slow access to gitlab server is gone!</p>
+
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
@@ -255,7 +178,7 @@
     <ul class="flex-column">
       
       <li>
-        <a href="https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/" class="nav-link">Solve Slow Access To Gitlab via ssh</a>
+        <a href="https://zhxilin.github.io/post/wsl2_network_forwarding/" class="nav-link">WSL2 Network Forwarding</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/" class="nav-link">What&#39;s std::ios::sync_with_stdio(false) and std::cin.tie(nullptr)?</a>

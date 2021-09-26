@@ -1,60 +1,47 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://zhxilin.github.io/</loc>
-    <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zhxilin.github.io/categories/</loc>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zhxilin.github.io/tags/linux/</loc>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zhxilin.github.io/tags/</loc>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zhxilin.github.io/categories/technology/</loc>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zhxilin.github.io/tags/wsl2/</loc>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
+    <loc>https://zhxilin.github.io/post/wsl2_network_forwarding/</loc>
+    <lastmod>2021-09-26T10:21:46+08:00</lastmod>
+  </url><url>
     <loc>https://zhxilin.github.io/tags/algorithm/</loc>
     <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zhxilin.github.io/tags/c&#43;&#43;/</loc>
     <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/categories/</loc>
-    <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/</loc>
-    <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/categories/technology/</loc>
-    <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/</loc>
     <lastmod>2020-08-05T10:45:18+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zhxilin.github.io/about/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zhxilin.github.io/tags/index/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zhxilin.github.io/post/</loc>
     <lastmod>2020-08-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://zhxilin.github.io/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
   </url>
-  
 </urlset>

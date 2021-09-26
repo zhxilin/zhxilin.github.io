@@ -6,10 +6,16 @@
     <description>Recent content in Technology on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 05 Aug 2020 10:45:18 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhxilin.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sun, 26 Sep 2021 10:21:46 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WSL2 Networkd Forwarding</title>
+      <link>https://zhxilin.github.io/post/wsl2_network_forwarding/</link>
+      <pubDate>Sun, 26 Sep 2021 10:21:46 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/wsl2_network_forwarding/</guid>
+      <description>With the WSL2 Released, Microsoft has made a big change on the system architecture, including changing from the default bridged network adapter to a hyper-v virtual network adapter.
+The new version of WSL is built on Hyper-V, which provides independent virtual network adapter for the virtual matchine. Therefore, WSL2 cannot share the network with host directly. The work around is to forward the TCP ports of WSL2 to the host OS.</description>
+    </item>
     
     <item>
       <title>What&#39;s std::ios::sync_with_stdio(false) and std::cin.tie(nullptr)?</title>

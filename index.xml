@@ -6,7 +6,18 @@
     <description>Recent content on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 26 Sep 2021 20:20:23 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Sep 2021 10:12:30 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Update multiple versions of dev tools under Ubuntu</title>
+      <link>https://zhxilin.github.io/post/ubuntu_update_alternatives/</link>
+      <pubDate>Mon, 27 Sep 2021 10:12:30 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/ubuntu_update_alternatives/</guid>
+      <description>Since different projects may require different versions of the same dev tool, we have to install multiple versions of them and provide a way for quick switch. This post introduces how to use update-alternatives command to switch dev tool versions under Ubuntu.
+I will take protoc for example.
+ ProjectA requires protoc 3.6.1 ProjectB requires protoc 3.17.0  Install multiple versions of protoc  Download different releases for Protocol Buffers  3.</description>
+    </item>
+    
     <item>
       <title>Solve Slow Access To Gitlab via ssh</title>
       <link>https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/</link>

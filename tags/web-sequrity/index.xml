@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web Sequrity on ZHXILIN&#39;S BLOG</title>
+    <link>https://zhxilin.github.io/tags/web-sequrity/</link>
+    <description>Recent content in Web Sequrity on ZHXILIN&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 28 Sep 2021 14:03:54 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/tags/web-sequrity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SSL certificate and nginx config</title>
+      <link>https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/</link>
+      <pubDate>Tue, 28 Sep 2021 14:03:54 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/</guid>
+      <description>HTTP, as an application layer protocol, remains focused on presenting information, but cares less about the way this information travels from one place to another. Unfortunaly, this means that HTTP can be intercepted and potentially altered, making both the information and the information receiver vulnerable.
+HTTPS protocol is an extension for HTTP. That &amp;ldquo;S&amp;rdquo; stands for Secure and it is powered by Transport Layer Secrurity(TLS), the succesor to Secure Sockets Layer(SSL).</description>
+    </item>
+    
+  </channel>
+</rss>

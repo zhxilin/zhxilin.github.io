@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="Article description.">
+<meta name="description" content="This post is about to introduce how to create a SSL cetificate by yourself and apply it in nginx.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
 <meta name = "twitter:title" content = "SSL certificate and nginx config" />
 <meta property = "og:url" content = "https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/" />
 <meta property = "og:title" content = "SSL certificate and nginx config" />
-<meta property = "og:description" content = "Article description." />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
+<meta property = "og:description" content = "This post is about to introduce how to create a SSL cetificate by yourself and apply it in nginx." />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/certificate_issue_process.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -144,7 +144,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">1300 Words | Read in about 6 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     <p>HTTP, as an application layer protocol, remains focused on presenting information, but cares less about the way this information travels from one place to another. Unfortunaly, this means that HTTP can be intercepted and potentially altered, making both the information and the information receiver vulnerable.</p>
 <p>HTTPS protocol is an extension for HTTP. That &ldquo;S&rdquo; stands for Secure and it is powered by Transport Layer Secrurity(TLS), the succesor to Secure Sockets Layer(SSL). The standard security technology that established and ecrypted connection between a web server and a browser.</p>
 <p>This post is about to introduce how to create a SSL cetificate by yourself and apply it in nginx.</p>
@@ -166,16 +166,157 @@
 <p>maintains certificate revocation lists.</p>
 </li>
 </ul>
-<p>Each CA provides a root certificate which is unconditionally trusted by the OS or browsers. When a digital certificate is issued by CA, the OS or browsers will automatically trust the identity presented by the digital certificate.</p>
+<p>CA issue trusted root certificates who are included in trust stores. The digital certificates that are signed with the root private key are trusted by all devices and applications whose trust store includes the root certificates. Thus, a chain of trust is created which is used to authenticate organizations.</p>
 <p>A digital certificate contains information about the entity to which it has been issued. Typically, that includes its name, contact information, organization, domain name, public key, certificate issue and expiry date, and more. The name of the issuing CA and its digital signature are also normally included in the digital certificate.</p>
 <p>In the digital certificate, the digital signature proves that a trusted CA issued the certificate and it was not modified by any other party.</p>
 <h2 id="how-a-ca-issues-a-digital-certificate">How a CA issues a digital certificate?</h2>
-<h2 id="self-signed-root-ca-certificate">Self signed root CA certificate</h2>
+<p>There are 3 steps to issuse a digital certificate by CA:</p>
+<ul>
+<li>
+<p>Applicant generates a key pair consisting of a private key and a public key</p>
+</li>
+<li>
+<p>Applicant generates a Certificate Secure Request(CSR) file, send it to CA</p>
+</li>
+<li>
+<p>CA verifies information contains in CSR, and digitally signs the certificate with an issuing private key, send it back to the applicant.</p>
+</li>
+</ul>
+<p>A CSR is an encoded text file that includes the public key and other information that will be included in the certificate (e.g. domain name, organization, email address, etc.). Key pair and CSR generation are usually done on the applicant server where the certificate will be installed. The applicant&rsquo;s private key is kept secure and should never shown to the CA or anyone else.</p>
+<p>When the signed certificate is presented to a third party, the recipient can cryptographically confirm the CA&rsquo;s digital signature via the CA&rsquo;s public key. Additionally, the recipient can use the certificate to confirm that signed content was sent by someone in possession of the corresponding private key, and the information has not been altered since it was signed.</p>
+<p><img src="/images/certificate_issue_process.png" alt="Digital certificate issue process"></p>
+<h2 id="self-signed-root-ca-certificate">Self-signed root CA certificate</h2>
+<p>A self-signed certificate is one that is not signed by a CA at all – neither private nor public. In this case, the certificate is signed with its own private key, instead of requesting it from a public or a private CA.</p>
+<p>As the fact that a self-signed certificate with the corresponding private key can be used to simulate a CA. Once this certificate is included in trust stores, all digital certificate issued by this self-signed certificate will be trusted in this system. This is why a client is asked to install a CA certificate in its system but not the digital certificate itself.</p>
 <h3 id="install-ca-certificate-under-windows">Install CA certificate under Windows</h3>
+<p>Double click the digital certificate -&gt; Install -&gt; Local matchine -&gt; Next -&gt; Place all certificates in the following store -&gt; Trusted Root Certificate Authorities</p>
+<p><img src="/images/install_certificate_windows.png" alt="Install CA certificate under Windows"></p>
 <h3 id="install-ca-certificate-under-linux">Install CA certificate under Linux</h3>
+<ul>
+<li>Copy the CA certificate to <code>/usr/share/ca-certificates/extra</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo mkdir /usr/share/ca-certificates/extra
+<span class="ln">2</span>$ sudo cp ca.crt /usr/share/ca-certificates/extra
+</code></pre></div><ul>
+<li>Add path to config file</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo vim /etc/ca-certificates.conf
+<span class="ln">2</span>
+<span class="ln">3</span><span class="c1"># Add this line at the end of conf</span>
+<span class="ln">4</span>extra/ca.crt
+</code></pre></div><ul>
+<li>Update CA list</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo update-ca-certificates
+</code></pre></div><p>After install the CA certificate, it can issue digital certificate with CSR now. And the digital certificate can be used in the applicant servers.</p>
 <h2 id="create-a-custom-ca-certificate">Create a custom CA certificate</h2>
+<ul>
+<li>Create a CA private key</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl genrsa -out ca.key <span class="m">2048</span>
+</code></pre></div><ul>
+<li>Generate self-signed CA certificate</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl req -new -x509 -days <span class="m">3650</span> -key ca.key -subj <span class="s2">&#34;/C=CN/ST=BJ/L=BJ/O=MyCA/CN=CA&#34;</span> -out ca.crt
+</code></pre></div><p>It means the CA organization name is MyCA and it will expire in 10 years.</p>
 <h2 id="issues-a-server-digital-certificate-by-custom-ca">Issues a server digital certificate by custom CA</h2>
+<ul>
+<li>Create a server private key</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl genrsa -out server.key <span class="m">2048</span>
+</code></pre></div><ul>
+<li>Create a CSR file</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl req -newkey rsa:2048 -nodes -keyout server.key -subj <span class="s2">&#34;/C=CN/ST=BJ/L=BJ/O=Kiwifruit Studio/CN=&lt;YOUR_IP or YOUR_DOMAIN&gt;&#34;</span> -out server.csr
+</code></pre></div><blockquote>
+<p>Notice: Replace the Ip address or domain name for your own</p>
+</blockquote>
+<ul>
+<li>CA issue a digital certificate with SAN</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl x509 -req -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;subjectAltName=IP:&lt;YOUR_IP&gt;[,DNS:&lt;YOUR_DOMAIN&gt;,...]&#34;</span><span class="o">)</span> -days <span class="m">3650</span> -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
+</code></pre></div><p>Subject Alternative Name(SAN) is an extension for SSL standard X509. A SAN or subject alternative name is a structured way to indicate all of the domain names and IP addresses that are secured by the certificate. Included on the short list of items that are considered a SAN are subdomains and IP addresses.</p>
+<p>Modern web browsers and operating system supports X509 standard. If the certifcate does not contain SAN information, an error &ldquo;x509: certificate signed by unknown authority&rdquo; will be shown.</p>
+<ul>
+<li>Display certificate information</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl x509 -text -noout -in server.crt
+</code></pre></div><p>After that, the server digital certificate <code>server.crt</code> is available to be used.</p>
 <h2 id="apply-digital-certificate-in-nginx">Apply digital certificate in nginx</h2>
+<p><a href="https://www.nginx.com/">NGINX</a> is open source software for web serving, reverse proxying, caching, load balancing, media streaming, and more.</p>
+<p>We can apply the digital certificate in the nginx to support HTTPS.</p>
+<h3 id="config-reverse-proxying">Config reverse proxying</h3>
+<ul>
+<li>Create a custom config <code>login.conf</code> in <code>/etc/nginx/config.d</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>upstream mylogin <span class="o">{</span>
+<span class="ln"> 2</span>        server 127.0.0.1:6679<span class="p">;</span>
+<span class="ln"> 3</span>        server 127.0.0.1:6680<span class="p">;</span>
+<span class="ln"> 4</span><span class="o">}</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>server <span class="o">{</span>
+<span class="ln"> 7</span>        listen 8888<span class="p">;</span>
+<span class="ln"> 8</span>        server_name localhost<span class="p">;</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>        location / <span class="o">{</span>
+<span class="ln">11</span>                proxy_pass http://mylogin<span class="p">;</span>
+<span class="ln">12</span>                proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+<span class="ln">13</span>                proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="ln">14</span>                proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="ln">15</span>        <span class="o">}</span>
+<span class="ln">16</span><span class="o">}</span>
+<span class="ln">17</span>
+</code></pre></div><p>The server is listening on port 8888, which proxying between 127.0.0.1:6679 and 127.0.0.1:6680 for load balance.</p>
+<h3 id="config-certificate">Config certificate</h3>
+<ul>
+<li>Edit the <code>login.conf</code></li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>upstream mylogin <span class="o">{</span>
+<span class="ln"> 2</span>        server 127.0.0.1:6679<span class="p">;</span>
+<span class="ln"> 3</span>        server 127.0.0.1:6680<span class="p">;</span>
+<span class="ln"> 4</span><span class="o">}</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>server <span class="o">{</span>
+<span class="ln"> 7</span>        listen 8888<span class="p">;</span>
+<span class="ln"> 8</span>        listen <span class="m">443</span> ssl<span class="p">;</span>
+<span class="ln"> 9</span>        server_name localhost<span class="p">;</span>
+<span class="ln">10</span>
+<span class="ln">11</span>        ssl_certificate /home/zhxilin/dev/mycert/server.crt<span class="p">;</span>
+<span class="ln">12</span>        ssl_certificate_key /home/zhxilin/dev/mycert/server.key<span class="p">;</span>
+<span class="ln">13</span>
+<span class="ln">14</span>        ssl_session_cache shared:SSL:10m<span class="p">;</span>
+<span class="ln">15</span>        ssl_session_timeout 10m<span class="p">;</span>
+<span class="ln">16</span>
+<span class="ln">17</span>        ssl_protocols TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+<span class="ln">18</span>        ssl_ciphers HIGH:!aNULL:!MD5<span class="p">;</span>
+<span class="ln">19</span>        ssl_prefer_server_ciphers on<span class="p">;</span>
+<span class="ln">20</span>
+<span class="ln">21</span>        <span class="k">if</span> <span class="o">(</span><span class="nv">$scheme</span> <span class="o">=</span> http<span class="o">)</span> <span class="o">{</span>
+<span class="ln">22</span>                <span class="k">return</span> <span class="m">308</span> https://<span class="nv">$host$request_uri</span><span class="p">;</span>
+<span class="ln">23</span>        <span class="o">}</span>
+<span class="ln">24</span>
+<span class="ln">25</span>        location / <span class="o">{</span>
+<span class="ln">26</span>                proxy_pass http://mylogin<span class="p">;</span>
+<span class="ln">27</span>                proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+<span class="ln">28</span>                proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+<span class="ln">29</span>                proxy_set_header X-Forwarded-For <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="ln">30</span>        <span class="o">}</span>
+<span class="ln">31</span><span class="o">}</span>
+</code></pre></div><p>The 443 port is used for HTTPS now. Additionally, the origin request on the port 8888 will auto redirect to port 443.</p>
+<p>See more for HTTP redirection <a href="https://www.drlinkcheck.com/blog/http-redirects-301-302-303-307-308">301, 302, 303, 307, and 308: Which HTTP Redirect Status Code is for What?</a></p>
+<h3 id="restart-nginx-server">Restart nginx server</h3>
+<ul>
+<li>First check the config</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo nginx -t
+</code></pre></div><ul>
+<li>Then reload the config without restart</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo nginx -s reload
+</code></pre></div><p>Now we can access to <code>https://&lt;YOUR_DOMAIN&gt;/login</code> in HTTPS.</p>
+<blockquote>
+<p>Notice: Since the digital certificate is issued by a custom CA, the CA certificate <code>ca.crt</code> is required to install on that client device.</p>
+</blockquote>
 
   </article>
 <aside class="sidebar">

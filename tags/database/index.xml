@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on ZHXILIN&#39;S BLOG</title>
+    <link>https://zhxilin.github.io/tags/database/</link>
+    <description>Recent content in Database on ZHXILIN&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 13 Dec 2021 10:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhxilin.github.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>服务端技术栈大纲</title>
+      <link>https://zhxilin.github.io/post/backend_tech_stack_summary/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/backend_tech_stack_summary/</guid>
+      <description>本文总结了C++服务端开发常用的技术栈大纲，也是面试中高频出现的技术要点。这个系列的文章对这些技术点进行划分，每个系列讲单独展开。个人觉得这些问题如果全部掌握，就能秒杀大部分C++服务端开发领域的面试。不过想彻底理解所有内容也不容易，这里面涉及C++语言、数据结构、操作系统、网络、数据库、编译原理、软件工程等知识领域。
+C++语言基础 C++11  auto、初始化列表、vector等容器 类内初值 nullptr vs NULL thread shared_ptr、weak_ptr、unique_ptr 右值引用、 移动语义、 转发语义、 引用折叠 lambda函数  现代C++  C++14: 读写锁、 通用lambda、 constexpr C++17: fold namespaces、 if/switch可初始化变量 C++20: coroutines、 modules、 ranges、 views/actions、 三路比较符  多态的实现原理  虚表、虚表指针 多继承 内存布局 RTTI  STL容器与算法  迭代器、指针、引用 sort的实现：快排+插入排序+堆排序 hashtable的实现：开链法 STL内存分配管理  数据结构与算法 数据结构  数组、链表 栈、堆、队列 字典 树：BST、AVL、RB、B/B+、Tie 图  排序算法  选择排序 插入排序 冒泡排序 快速排序 归并排序 堆排序 希尔排序  算法  分治法 二分查找 DFS、BFS 贪心算法 动态规划 滑动窗口: 双指针、快慢指针  操作系统 Linux常见命令  ss、ifconfig、netstat、traceroute、telnet vim、cat、touch、more、less、head、tail top、vmstat、sar、mpstat、iostat、dstat  文件与文件系统  文件结构、文件类型 文件权限 VFS  内存与虚拟内存  虚拟内存、虚拟地址空间 内存分段 内存分页 段页式管理 内存交换、页面置换算法 空闲内存管理  进程、线程、协程  进程、线程、协程的比较 进程通信方式：信号、信号量、管道/命名管道、Socket、共享内存、消息队列 线程同步方式：锁机制（互斥体、条件变量、读写锁）、信号量、信号  内核空间与用户空间  内核空间、用户空间的比较 进程用户态、内核态  CPU调度算法  FIFO 最短作业优先 最短剩余时间优先  死锁  资源 死锁、死锁检测、死锁恢复、死锁避免  网络 OSI七层模型、TCP/IP四层模型  应用层 表示层 会话层 传输层 网络层 数据链路层 物理层  网络协议  TCP三握四挥 TCP状态机：CLOSE_WAIT、TIME_WAIT 连接的含义 TCP可靠性保证：校验和、确认机制、重传机制、拥塞控制、流量控制 TCP、UDP的比较 TCP、KCP的比较 HTTPS TLS握手过程 CA、证书、证书链  I/O模型  同步I/O、异步I/O 阻塞I/O、非阻塞I/O I/O多路复用  select、poll、epoll  select、poll、epoll的比较 epoll水平触发、边缘触发  reactor模型、proactor模型  libevent分析 netty分析  网络字节序  大端、小端  数据库 关系型数据库的判定依据  三范式  MySQL存储引擎与底层数据结构  B+树 InnoDB、MyISAM存储方式的区别  MySQL索引  聚簇索引 非聚簇索引  MySQL事务特性  ACID 原子性的实现原理：Undo Log 持久性的实现原理：Redo Log 隔离性的实现原理：事务的隔离级别、MVCC 一致性的实现原理：原子性+持久性+隔离性  MySQL锁机制  表锁、行锁、页锁、间隙锁 死锁  SQL内外连接  内连接：左右都匹配 左外连接：左全体+右匹配 右外连接：右全体+左匹配 全外连接：左全体+右全体 交叉连接：笛卡尔积  Redis数据结构与底层实现  String：int、embstr、raw List：ziplist、linked list Hash: ziplist、hashtable Set: hashtable、intset ZSet：ziplist、skiplist  Redis持久化与原理  RDB AOF  Redis单线程实现的优势 Redis集群与主从复制  集群 Gossip协议：MEET、PING、PONG、FAIL、PUBLISH 哨兵机制: Raft一致性算法  RESP协议 应用技术 protobuf  pb协议的优缺点 pb协议的实现：T-L-V  JWT  JWT结构 JWT适用范围  Cron表达式 MVC与MVVM unicode与utf-8  unicode编码 utf-8实现原理  分布式系统设计 高可用方案  Zookeeper 哨兵机制  消息队列  Kafka：Broker、Topic、Partition  悲观锁  互斥锁 自旋锁 读写锁：读优先锁、写优先锁、公平读写锁  乐观锁 无锁机制  CAS CAS的缺点：ABA问题  分布式锁  Redlock  缓存穿透、缓存击穿、缓存雪崩  缓存穿透、缓存击穿、缓存雪崩的区别 解决方法  一致性哈希算法 编译原理 gcc工作流程  预编译/预处理、编译、汇编、链接、装入  静态库与动态库 静态链接与动态链接 内部链接与外部链接 软件工程 设计模式  六大原则：单一职责原则、开闭原则、里氏替换法则、依赖倒置原则、接口隔离原则、迪米特原则 23种设计模式  </description>
+    </item>
+    
+  </channel>
+</rss>

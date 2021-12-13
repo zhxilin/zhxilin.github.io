@@ -6,7 +6,92 @@
     <description>Recent content in Tags on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 28 Sep 2021 14:03:54 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Dec 2021 10:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhxilin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Algorigthm</title>
+      <link>https://zhxilin.github.io/tags/algorigthm/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/algorigthm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://zhxilin.github.io/tags/c&#43;&#43;/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compilation Principle</title>
+      <link>https://zhxilin.github.io/tags/compilation-principle/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/compilation-principle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Structure</title>
+      <link>https://zhxilin.github.io/tags/data-structure/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/data-structure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://zhxilin.github.io/tags/database/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distributed System Design</title>
+      <link>https://zhxilin.github.io/tags/distributed-system-design/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/distributed-system-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://zhxilin.github.io/tags/network/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operating System</title>
+      <link>https://zhxilin.github.io/tags/operating-system/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/operating-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Software Engineer</title>
+      <link>https://zhxilin.github.io/tags/software-engineer/</link>
+      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/software-engineer/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Linux</title>
       <link>https://zhxilin.github.io/tags/linux/</link>
@@ -49,15 +134,6 @@
       <pubDate>Wed, 05 Aug 2020 10:45:18 +0800</pubDate>
       
       <guid>https://zhxilin.github.io/tags/algorithm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>https://zhxilin.github.io/tags/c&#43;&#43;/</link>
-      <pubDate>Wed, 05 Aug 2020 10:45:18 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     

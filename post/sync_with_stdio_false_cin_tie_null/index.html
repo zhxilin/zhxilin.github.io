@@ -2,7 +2,7 @@
 <html lang="en" data-figures="true" class="page">
   <head>  <title>What&#39;s std::ios::sync_with_stdio(false) and std::cin.tie(nullptr)? | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.88.1" />
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
@@ -168,7 +168,7 @@
   </ul>
 </nav>
     <p>You may often see the following calls <code>std::ios::sync_with_stdio(false)</code> and <code>std::cin.tie(nullptr)</code> in some online judge system, such as leetcode, poj, etc. Someone would tell you that these codes are usually used to speed up the execution time. But what is the exact meanings for these codes?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">static</span> <span class="k">auto</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[]()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">static</span> <span class="k">auto</span> <span class="n">_</span> <span class="o">=</span> <span class="p">[]()</span> <span class="p">{</span>
 <span class="ln">2</span>  <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
 <span class="ln">3</span>  <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
 <span class="ln">4</span>  <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
@@ -176,13 +176,13 @@
 </code></pre></div><p>These two calls have different meanings that have nonthing to do with performance. The fact that it speeds up code execution time is just a side effect.</p>
 <h2 id="decoupling-c-and-c-streams">Decoupling C and C++ streams</h2>
 <h3 id="function">Function</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">static</span> <span class="kt">bool</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="kt">bool</span> <span class="n">sync</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">static</span> <span class="kt">bool</span> <span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">sync_with_stdio</span><span class="p">(</span><span class="kt">bool</span> <span class="n">sync</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
 </code></pre></div><p>Sets whether the standard C++ streams are synchronized to the standard C streams after each input/output operation.</p>
 <p>The standard C++ streams are: <code>std::cin</code>, <code>std::cout</code>, <code>std::cerr</code>, <code>std::clog</code>, <code>std::wcin</code>, <code>std::wcout</code>, <code>std::wcerr</code> and <code>std::wclog</code>.</p>
 <p>The standard C streams are: <code>stdin</code>, <code>stdout</code> and <code>stderr</code>.</p>
 <p>By default, <code>sync_with_stdio()</code> has default value <code>true</code>, which means all standard streams are synchronized between C and C++ standard streams. In practice, it allows you to mix C and C++ style I/O and get expected results.</p>
 <h3 id="example-1">Example 1</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span><span class="ln"> 3</span><span class="cp"></span>
 <span class="ln"> 4</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -193,13 +193,13 @@
 <span class="ln"> 9</span><span class="p">}</span>
 <span class="ln">10</span>
 </code></pre></div><p>In general, the result for the above example is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>a
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>a
 <span class="ln">2</span>b
 <span class="ln">3</span>c
 </code></pre></div><p>This is the default behavior in C++. The C stream <code>stdout</code> and C++ stream <code>std::out</code> are synchronized, they share the same I/O buffer. In fact, the C++ streams are unbuffered, and each I/O operaction on C++ streams is immediately applied to the corresponding C streams buffer. So it will result the correct order for all output.</p>
 <p>Now let&rsquo;s make some change.</p>
 <h3 id="example-2">Example 2</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp">
 </span><span class="ln"> 3</span><span class="cp"></span>
 <span class="ln"> 4</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -214,7 +214,7 @@
 <span class="ln">13</span>    <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
 <span class="ln">14</span><span class="p">}();</span>
 </code></pre></div><p>You may get a possible output like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>b
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>b
 <span class="ln">2</span>a
 <span class="ln">3</span>c
 </code></pre></div><p>Woops! The output result is no longer abc.</p>
@@ -222,11 +222,11 @@
 <p>In addition, I&rsquo;m not using <code>std::endl</code> to break line for <code>std::cout</code>, beacuse <code>std::endl</code> will flush the I/O buffer immediately which you won&rsquo;t see what happen between the C and C++ streams synchronization.</p>
 <h2 id="decoupling-input-and-output-streams">Decoupling input and output streams</h2>
 <h3 id="function-1">Function</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">ostream</span><span class="o">*</span> <span class="nf">tie</span> <span class="p">(</span><span class="n">ostream</span><span class="o">*</span> <span class="n">tiestr</span><span class="p">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">ostream</span><span class="o">*</span> <span class="nf">tie</span> <span class="p">(</span><span class="n">ostream</span><span class="o">*</span> <span class="n">tiestr</span><span class="p">);</span>
 </code></pre></div><p>The tied stream is an output stream object which is flushed before each I/O operation in this stream object.</p>
 <p>By default, the standard stream <code>std::cin</code> and <code>std::cerr</code> are tied to <code>std::cout</code>, and <code>std::wcin</code> and <code>std::wcerr</code> are tied to <code>std::wcout</code> to ensure a sensible user interaction.</p>
 <h3 id="example-1-1">Example 1</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span><span class="ln"> 3</span><span class="cp"></span>
 <span class="ln"> 4</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -237,14 +237,14 @@
 <span class="ln"> 9</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="ln">10</span><span class="p">}</span>
 </code></pre></div><p>In gernal, the result for the above code is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>What&#39;s your name:
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>What&#39;s your name:
 </code></pre></div><p>After type my name:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>What&#39;s your name:zhxilin
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>What&#39;s your name:zhxilin
 <span class="ln">2</span>Your name is zhxilin
 </code></pre></div><p>The standard input stream <code>std::cin</code> is tied to the output stream <code>std::cout</code> by default, which means before type my name to the input stream, the output stream buffer is flushed to the console. So you can see the sentence <code>What's your name</code> before any typing.</p>
 <p>Now let&rsquo;s make some change.</p>
 <h3 id="example-2-1">Example 2</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
 </span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span><span class="ln"> 3</span><span class="cp"></span>
 <span class="ln"> 4</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
@@ -261,7 +261,7 @@
 <span class="ln">15</span>    <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
 <span class="ln">16</span><span class="p">}();</span>
 </code></pre></div><p>You won&rsquo;t see the sentance <code>What's your name</code> before any typing now. But after type my name, the result is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>zhxilin
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>zhxilin
 <span class="ln">2</span>What&#39;s your name:Your name is zhxilin
 </code></pre></div><p>Therefore, if <code>std::cin</code> and <code>std::cout</code> are tied, you can expect the ouput to be flushed before the program prompts input for user. In this case, the output stream should be manually flushed or until the buffer is fulled. As for the side effect, some codes will speed up when execution for untied and non-synchronized streams.</p>
 <h2 id="conclusion">Conclusion</h2>
@@ -292,6 +292,9 @@
     <ul class="flex-column">
       
       <li>
+        <a href="https://zhxilin.github.io/post/backend_tech_stack_summary/" class="nav-link">服务端技术栈大纲</a>
+      </li>
+      <li>
         <a href="https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/" class="nav-link">SSL certificate and nginx config</a>
       </li>
       <li>
@@ -313,6 +316,11 @@
           <span class='button_tally'>5</span>
         </a>
         
+        <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
+          TECHNOLOGY-STACK
+          <span class='button_tally'>1</span>
+        </a>
+        
         
       </nav>
     </div>
@@ -325,13 +333,38 @@
           <span class='button_tally'>4</span>
         </a>
         
+        <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
+          C&#43;&#43;
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/algorigthm/' class=" post_tag button button_translucent">
+          ALGORIGTHM
+          <span class='button_tally'>1</span>
+        </a>
+        
         <a href='https://zhxilin.github.io/tags/algorithm/' class=" post_tag button button_translucent">
           ALGORITHM
           <span class='button_tally'>1</span>
         </a>
         
-        <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
-          C&#43;&#43;
+        <a href='https://zhxilin.github.io/tags/compilation-principle/' class=" post_tag button button_translucent">
+          COMPILATION-PRINCIPLE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/data-structure/' class=" post_tag button button_translucent">
+          DATA-STRUCTURE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/database/' class=" post_tag button button_translucent">
+          DATABASE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/distributed-system-design/' class=" post_tag button button_translucent">
+          DISTRIBUTED-SYSTEM-DESIGN
           <span class='button_tally'>1</span>
         </a>
         
@@ -345,16 +378,98 @@
           <span class='button_tally'>1</span>
         </a>
         
+        <a href='https://zhxilin.github.io/tags/network/' class=" post_tag button button_translucent">
+          NETWORK
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/operating-system/' class=" post_tag button button_translucent">
+          OPERATING-SYSTEM
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/software-engineer/' class=" post_tag button button_translucent">
+          SOFTWARE-ENGINEER
+          <span class='button_tally'>1</span>
+        </a>
+        
         <a href='https://zhxilin.github.io/tags/web-sequrity/' class=" post_tag button button_translucent">
           WEB-SEQURITY
           <span class='button_tally'>1</span>
         </a>
         
-        <a href='https://zhxilin.github.io/tags/wsl2/' class=" post_tag button button_translucent">
-          WSL2
-          <span class='button_tally'>1</span>
-        </a>
         
+        <br>
+        <div class="post_tags_toggle button">All tags</div>
+        <div class="post_tags">
+          <div class="tags_list">
+            
+            <a href='https://zhxilin.github.io/tags/algorigthm/' class=" post_tag button button_translucent" data-position=1>ALGORIGTHM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/algorithm/' class=" post_tag button button_translucent" data-position=1>ALGORITHM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=2>C&#43;&#43;<span class='button_tally'>2</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/compilation-principle/' class=" post_tag button button_translucent" data-position=1>COMPILATION-PRINCIPLE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/data-structure/' class=" post_tag button button_translucent" data-position=1>DATA-STRUCTURE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/database/' class=" post_tag button button_translucent" data-position=1>DATABASE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/distributed-system-design/' class=" post_tag button button_translucent" data-position=1>DISTRIBUTED-SYSTEM-DESIGN<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/gitlab/' class=" post_tag button button_translucent" data-position=1>GITLAB<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/index/' class=" post_tag button button_translucent" data-position=1>INDEX<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent" data-position=4>LINUX<span class='button_tally'>4</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/network/' class=" post_tag button button_translucent" data-position=1>NETWORK<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/operating-system/' class=" post_tag button button_translucent" data-position=1>OPERATING-SYSTEM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/software-engineer/' class=" post_tag button button_translucent" data-position=1>SOFTWARE-ENGINEER<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/web-sequrity/' class=" post_tag button button_translucent" data-position=1>WEB-SEQURITY<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/wsl2/' class=" post_tag button button_translucent" data-position=1>WSL2<span class='button_tally'>1</span>
+            </a>
+            
+            <div class="tags_sort"><span title="sort alphabetically">[A~Z]</span><span title="sort by count">[0~9]</span>
+            </div>
+            <span class="tags_hide"><svg class="icon">
+            <use xlink:href="#closeme"></use>
+          </svg></span>
+          </div>
+        </div>
         
       </nav>
     </div>

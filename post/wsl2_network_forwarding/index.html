@@ -2,7 +2,7 @@
 <html lang="en" data-figures="true" class="page">
   <head>  <title>WSL2 Network Forwarding | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.88.1" />
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
@@ -158,7 +158,7 @@
 <p>In addition, the virtual adapter on WSL2 changes it&rsquo;s ip address during reboot, which makes it tough to implement a run once solution. So we need a solution to auto update the forwarding TCP ports during host OS reboot.</p>
 <h2 id="tcp-ports-forwarding">TCP ports forwarding</h2>
 <p>If we had installed multiple version of WSL on Windows 10, we need to set the WSL2 as the default distribution:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>// Query versions of different WSL distribution
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>// Query versions of different WSL distribution
 <span class="ln">2</span>&gt; wsl -l -v
 <span class="ln">3</span>  NAME            STATE           VERSION
 <span class="ln">4</span>* Ubuntu-20.04    Running         <span class="m">2</span>
@@ -168,7 +168,7 @@
 <span class="ln">8</span>&gt; wsl --set-default Ubuntu-20.04 <span class="m">2</span>
 </code></pre></div><p>We will open the right version of WSL, Ubuntu20.04 for example, when executing <code>wsl.exe</code> in powershell or command line only if we had set the Ubuntu20.04 as the default distribution.</p>
 <p>Now we create a powershell script <code>wslbridge.ps1</code> to implement TCP ports forwarding:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Run as administrator</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="c"># Run as administrator</span>
 <span class="ln"> 2</span><span class="k">if</span> <span class="p">(!(</span><span class="no">[Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]</span><span class="p">::</span><span class="n">GetCurrent</span><span class="p">()).</span><span class="n">IsInRole</span><span class="p">(</span><span class="no">[Security.Principal.WindowsBuiltInRole]</span><span class="p">::</span><span class="n">Administrator</span><span class="p">))</span> <span class="p">{</span>
 <span class="ln"> 3</span>    <span class="nb">Start-Process</span> <span class="n">PowerShell</span> <span class="n">-Verb</span> <span class="n">RunAs</span> <span class="s2">&#34;-NoProfile -ExecutionPolicy Bypass -Command </span><span class="se">`&#34;</span><span class="s2">cd &#39;$pwd&#39;; &amp; &#39;$PSCommandPath&#39;;</span><span class="se">`&#34;</span><span class="s2">&#34;</span><span class="p">;</span>
 <span class="ln"> 4</span>    <span class="n">exit</span><span class="p">;</span>
@@ -206,7 +206,7 @@
 <span class="ln">36</span>  <span class="nb">iex </span><span class="s2">&#34;netsh interface portproxy add v4tov4 listenport=$port listenaddress=$addr connectport=$port connectaddress=$remoteport&#34;</span><span class="p">;</span>
 <span class="ln">37</span><span class="p">}</span>
 </code></pre></div><p>After executing the <code>wslbridge.ps1</code> script, we can check whether the TCP ports forwarding takes effect. Execute the following command in powershell:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">&gt;</span> <span class="n">netsh</span> <span class="n">interface</span> <span class="n">portproxy</span> <span class="n">show</span> <span class="n">all</span>
+<div class="highlight"><pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="ln"> 1</span><span class="p">&gt;</span> <span class="n">netsh</span> <span class="n">interface</span> <span class="n">portproxy</span> <span class="n">show</span> <span class="n">all</span>
 <span class="ln"> 2</span><span class="n">Listen</span> <span class="n">on</span> <span class="n">ipv4</span><span class="err">:</span>                 <span class="n">Connect</span> <span class="n">to</span> <span class="n">ipv4</span><span class="err">:</span>
 <span class="ln"> 3</span>
 <span class="ln"> 4</span><span class="n">Address</span>         <span class="n">Port</span>        <span class="n">Address</span>         <span class="n">Port</span>
@@ -222,7 +222,7 @@
 <p>We can place some vbs scripts here and Windows will auto execute these them during reboot.</p>
 <p>Now we can write a vbs script, <code>wsl2autostart.vbs</code> for example, to auto update the forwarding ports on the initialization for WSL2 startup, and update the Windows firewall rules in the meanwhile.</p>
 <p>WSL2 will not run the init services on Windows reboot, so manually execution is required. We can put it into the vbs script.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>&#39; run the Linux custom init script as root
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln">1</span>&#39; run the Linux custom init script as root
 <span class="ln">2</span>Set ws = WScript.CreateObject(&#34;WScript.Shell&#34;)
 <span class="ln">3</span>ws.run &#34;wsl -d Ubuntu-20.04 -u root /etc/init.wsl&#34;
 <span class="ln">4</span>
@@ -230,7 +230,7 @@
 <span class="ln">6</span>Set app = CreateObject(&#34;Wscript.Shell&#34;)
 <span class="ln">7</span>app.run &#34;powershell -ExecutionPolicy Unrestricted -file wslbridge.ps1&#34;
 </code></pre></div><p>The content of <code>/etc/init.wsl</code> depends on your own requirements. For example,</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="cp">#! /bin/bash
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span><span class="cp">#! /bin/bash
 </span><span class="ln">2</span><span class="cp"></span>
 <span class="ln">3</span><span class="nb">cd</span> /home/zhxilin/dev/script
 <span class="ln">4</span>
@@ -255,6 +255,9 @@
     <ul class="flex-column">
       
       <li>
+        <a href="https://zhxilin.github.io/post/backend_tech_stack_summary/" class="nav-link">服务端技术栈大纲</a>
+      </li>
+      <li>
         <a href="https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/" class="nav-link">SSL certificate and nginx config</a>
       </li>
       <li>
@@ -276,6 +279,11 @@
           <span class='button_tally'>5</span>
         </a>
         
+        <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
+          TECHNOLOGY-STACK
+          <span class='button_tally'>1</span>
+        </a>
+        
         
       </nav>
     </div>
@@ -288,13 +296,38 @@
           <span class='button_tally'>4</span>
         </a>
         
+        <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
+          C&#43;&#43;
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/algorigthm/' class=" post_tag button button_translucent">
+          ALGORIGTHM
+          <span class='button_tally'>1</span>
+        </a>
+        
         <a href='https://zhxilin.github.io/tags/algorithm/' class=" post_tag button button_translucent">
           ALGORITHM
           <span class='button_tally'>1</span>
         </a>
         
-        <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
-          C&#43;&#43;
+        <a href='https://zhxilin.github.io/tags/compilation-principle/' class=" post_tag button button_translucent">
+          COMPILATION-PRINCIPLE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/data-structure/' class=" post_tag button button_translucent">
+          DATA-STRUCTURE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/database/' class=" post_tag button button_translucent">
+          DATABASE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/distributed-system-design/' class=" post_tag button button_translucent">
+          DISTRIBUTED-SYSTEM-DESIGN
           <span class='button_tally'>1</span>
         </a>
         
@@ -308,16 +341,98 @@
           <span class='button_tally'>1</span>
         </a>
         
+        <a href='https://zhxilin.github.io/tags/network/' class=" post_tag button button_translucent">
+          NETWORK
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/operating-system/' class=" post_tag button button_translucent">
+          OPERATING-SYSTEM
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/software-engineer/' class=" post_tag button button_translucent">
+          SOFTWARE-ENGINEER
+          <span class='button_tally'>1</span>
+        </a>
+        
         <a href='https://zhxilin.github.io/tags/web-sequrity/' class=" post_tag button button_translucent">
           WEB-SEQURITY
           <span class='button_tally'>1</span>
         </a>
         
-        <a href='https://zhxilin.github.io/tags/wsl2/' class=" post_tag button button_translucent">
-          WSL2
-          <span class='button_tally'>1</span>
-        </a>
         
+        <br>
+        <div class="post_tags_toggle button">All tags</div>
+        <div class="post_tags">
+          <div class="tags_list">
+            
+            <a href='https://zhxilin.github.io/tags/algorigthm/' class=" post_tag button button_translucent" data-position=1>ALGORIGTHM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/algorithm/' class=" post_tag button button_translucent" data-position=1>ALGORITHM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=2>C&#43;&#43;<span class='button_tally'>2</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/compilation-principle/' class=" post_tag button button_translucent" data-position=1>COMPILATION-PRINCIPLE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/data-structure/' class=" post_tag button button_translucent" data-position=1>DATA-STRUCTURE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/database/' class=" post_tag button button_translucent" data-position=1>DATABASE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/distributed-system-design/' class=" post_tag button button_translucent" data-position=1>DISTRIBUTED-SYSTEM-DESIGN<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/gitlab/' class=" post_tag button button_translucent" data-position=1>GITLAB<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/index/' class=" post_tag button button_translucent" data-position=1>INDEX<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent" data-position=4>LINUX<span class='button_tally'>4</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/network/' class=" post_tag button button_translucent" data-position=1>NETWORK<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/operating-system/' class=" post_tag button button_translucent" data-position=1>OPERATING-SYSTEM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/software-engineer/' class=" post_tag button button_translucent" data-position=1>SOFTWARE-ENGINEER<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/web-sequrity/' class=" post_tag button button_translucent" data-position=1>WEB-SEQURITY<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/wsl2/' class=" post_tag button button_translucent" data-position=1>WSL2<span class='button_tally'>1</span>
+            </a>
+            
+            <div class="tags_sort"><span title="sort alphabetically">[A~Z]</span><span title="sort by count">[0~9]</span>
+            </div>
+            <span class="tags_hide"><svg class="icon">
+            <use xlink:href="#closeme"></use>
+          </svg></span>
+          </div>
+        </div>
         
       </nav>
     </div>

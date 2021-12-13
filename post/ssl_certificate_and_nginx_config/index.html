@@ -2,7 +2,7 @@
 <html lang="en" data-figures="true" class="page">
   <head>  <title>SSL certificate and nginx config | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.88.1" />
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
@@ -195,52 +195,52 @@
 <ul>
 <li>Copy the CA certificate to <code>/usr/share/ca-certificates/extra</code></li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo mkdir /usr/share/ca-certificates/extra
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo mkdir /usr/share/ca-certificates/extra
 <span class="ln">2</span>$ sudo cp ca.crt /usr/share/ca-certificates/extra
 </code></pre></div><ul>
 <li>Add path to config file</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo vim /etc/ca-certificates.conf
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo vim /etc/ca-certificates.conf
 <span class="ln">2</span>
 <span class="ln">3</span><span class="c1"># Add this line at the end of conf</span>
 <span class="ln">4</span>extra/ca.crt
 </code></pre></div><ul>
 <li>Update CA list</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo update-ca-certificates
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo update-ca-certificates
 </code></pre></div><p>After install the CA certificate, it can issue digital certificate with CSR now. And the digital certificate can be used in the applicant servers.</p>
 <h2 id="create-a-custom-ca-certificate">Create a custom CA certificate</h2>
 <ul>
 <li>Create a CA private key</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl genrsa -out ca.key <span class="m">2048</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl genrsa -out ca.key <span class="m">2048</span>
 </code></pre></div><ul>
 <li>Generate self-signed CA certificate</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl req -new -x509 -days <span class="m">3650</span> -key ca.key -subj <span class="s2">&#34;/C=CN/ST=BJ/L=BJ/O=MyCA/CN=CA&#34;</span> -out ca.crt
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl req -new -x509 -days <span class="m">3650</span> -key ca.key -subj <span class="s2">&#34;/C=CN/ST=BJ/L=BJ/O=MyCA/CN=CA&#34;</span> -out ca.crt
 </code></pre></div><p>It means the CA organization name is MyCA and it will expire in 10 years.</p>
 <h2 id="issues-a-server-digital-certificate-by-custom-ca">Issues a server digital certificate by custom CA</h2>
 <ul>
 <li>Create a server private key</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl genrsa -out server.key <span class="m">2048</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl genrsa -out server.key <span class="m">2048</span>
 </code></pre></div><ul>
 <li>Create a CSR file</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl req -newkey rsa:2048 -nodes -keyout server.key -subj <span class="s2">&#34;/C=CN/ST=BJ/L=BJ/O=Kiwifruit Studio/CN=&lt;YOUR_IP or YOUR_DOMAIN&gt;&#34;</span> -out server.csr
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl req -newkey rsa:2048 -nodes -keyout server.key -subj <span class="s2">&#34;/C=CN/ST=BJ/L=BJ/O=Kiwifruit Studio/CN=&lt;YOUR_IP or YOUR_DOMAIN&gt;&#34;</span> -out server.csr
 </code></pre></div><blockquote>
 <p>Notice: Replace the Ip address or domain name for your own</p>
 </blockquote>
 <ul>
 <li>CA issue a digital certificate with SAN</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl x509 -req -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;subjectAltName=IP:&lt;YOUR_IP&gt;[,DNS:&lt;YOUR_DOMAIN&gt;,...]&#34;</span><span class="o">)</span> -days <span class="m">3650</span> -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl x509 -req -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;subjectAltName=IP:&lt;YOUR_IP&gt;[,DNS:&lt;YOUR_DOMAIN&gt;,...]&#34;</span><span class="o">)</span> -days <span class="m">3650</span> -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 </code></pre></div><p>Subject Alternative Name(SAN) is an extension for SSL standard X509. A SAN or subject alternative name is a structured way to indicate all of the domain names and IP addresses that are secured by the certificate. Included on the short list of items that are considered a SAN are subdomains and IP addresses.</p>
 <p>Modern web browsers and operating system supports X509 standard. If the certifcate does not contain SAN information, an error &ldquo;x509: certificate signed by unknown authority&rdquo; will be shown.</p>
 <ul>
 <li>Display certificate information</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl x509 -text -noout -in server.crt
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ openssl x509 -text -noout -in server.crt
 </code></pre></div><p>After that, the server digital certificate <code>server.crt</code> is available to be used.</p>
 <h2 id="apply-digital-certificate-in-nginx">Apply digital certificate in nginx</h2>
 <p><a href="https://www.nginx.com/">NGINX</a> is open source software for web serving, reverse proxying, caching, load balancing, media streaming, and more.</p>
@@ -249,7 +249,7 @@
 <ul>
 <li>Create a custom config <code>login.conf</code> in <code>/etc/nginx/config.d</code></li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>upstream mylogin <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>upstream mylogin <span class="o">{</span>
 <span class="ln"> 2</span>        server 127.0.0.1:6679<span class="p">;</span>
 <span class="ln"> 3</span>        server 127.0.0.1:6680<span class="p">;</span>
 <span class="ln"> 4</span><span class="o">}</span>
@@ -271,7 +271,7 @@
 <ul>
 <li>Edit the <code>login.conf</code></li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>upstream mylogin <span class="o">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>upstream mylogin <span class="o">{</span>
 <span class="ln"> 2</span>        server 127.0.0.1:6679<span class="p">;</span>
 <span class="ln"> 3</span>        server 127.0.0.1:6680<span class="p">;</span>
 <span class="ln"> 4</span><span class="o">}</span>
@@ -308,11 +308,11 @@
 <ul>
 <li>First check the config</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo nginx -t
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo nginx -t
 </code></pre></div><ul>
 <li>Then reload the config without restart</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo nginx -s reload
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo nginx -s reload
 </code></pre></div><p>Now we can access to <code>https://&lt;YOUR_DOMAIN&gt;/login</code> in HTTPS.</p>
 <blockquote>
 <p>Notice: Since the digital certificate is issued by a custom CA, the CA certificate <code>ca.crt</code> is required to install on that client device.</p>
@@ -333,6 +333,9 @@
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       
+      <li>
+        <a href="https://zhxilin.github.io/post/backend_tech_stack_summary/" class="nav-link">服务端技术栈大纲</a>
+      </li>
       <li>
         <a href="https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/" class="nav-link">Solve Slow Access To Gitlab via ssh</a>
       </li>
@@ -355,6 +358,11 @@
           <span class='button_tally'>5</span>
         </a>
         
+        <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
+          TECHNOLOGY-STACK
+          <span class='button_tally'>1</span>
+        </a>
+        
         
       </nav>
     </div>
@@ -367,13 +375,38 @@
           <span class='button_tally'>4</span>
         </a>
         
+        <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
+          C&#43;&#43;
+          <span class='button_tally'>2</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/algorigthm/' class=" post_tag button button_translucent">
+          ALGORIGTHM
+          <span class='button_tally'>1</span>
+        </a>
+        
         <a href='https://zhxilin.github.io/tags/algorithm/' class=" post_tag button button_translucent">
           ALGORITHM
           <span class='button_tally'>1</span>
         </a>
         
-        <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
-          C&#43;&#43;
+        <a href='https://zhxilin.github.io/tags/compilation-principle/' class=" post_tag button button_translucent">
+          COMPILATION-PRINCIPLE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/data-structure/' class=" post_tag button button_translucent">
+          DATA-STRUCTURE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/database/' class=" post_tag button button_translucent">
+          DATABASE
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/distributed-system-design/' class=" post_tag button button_translucent">
+          DISTRIBUTED-SYSTEM-DESIGN
           <span class='button_tally'>1</span>
         </a>
         
@@ -387,16 +420,98 @@
           <span class='button_tally'>1</span>
         </a>
         
+        <a href='https://zhxilin.github.io/tags/network/' class=" post_tag button button_translucent">
+          NETWORK
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/operating-system/' class=" post_tag button button_translucent">
+          OPERATING-SYSTEM
+          <span class='button_tally'>1</span>
+        </a>
+        
+        <a href='https://zhxilin.github.io/tags/software-engineer/' class=" post_tag button button_translucent">
+          SOFTWARE-ENGINEER
+          <span class='button_tally'>1</span>
+        </a>
+        
         <a href='https://zhxilin.github.io/tags/web-sequrity/' class=" post_tag button button_translucent">
           WEB-SEQURITY
           <span class='button_tally'>1</span>
         </a>
         
-        <a href='https://zhxilin.github.io/tags/wsl2/' class=" post_tag button button_translucent">
-          WSL2
-          <span class='button_tally'>1</span>
-        </a>
         
+        <br>
+        <div class="post_tags_toggle button">All tags</div>
+        <div class="post_tags">
+          <div class="tags_list">
+            
+            <a href='https://zhxilin.github.io/tags/algorigthm/' class=" post_tag button button_translucent" data-position=1>ALGORIGTHM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/algorithm/' class=" post_tag button button_translucent" data-position=1>ALGORITHM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=2>C&#43;&#43;<span class='button_tally'>2</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/compilation-principle/' class=" post_tag button button_translucent" data-position=1>COMPILATION-PRINCIPLE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/data-structure/' class=" post_tag button button_translucent" data-position=1>DATA-STRUCTURE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/database/' class=" post_tag button button_translucent" data-position=1>DATABASE<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/distributed-system-design/' class=" post_tag button button_translucent" data-position=1>DISTRIBUTED-SYSTEM-DESIGN<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/gitlab/' class=" post_tag button button_translucent" data-position=1>GITLAB<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/index/' class=" post_tag button button_translucent" data-position=1>INDEX<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent" data-position=4>LINUX<span class='button_tally'>4</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/network/' class=" post_tag button button_translucent" data-position=1>NETWORK<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/operating-system/' class=" post_tag button button_translucent" data-position=1>OPERATING-SYSTEM<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/software-engineer/' class=" post_tag button button_translucent" data-position=1>SOFTWARE-ENGINEER<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/web-sequrity/' class=" post_tag button button_translucent" data-position=1>WEB-SEQURITY<span class='button_tally'>1</span>
+            </a>
+            
+            
+            <a href='https://zhxilin.github.io/tags/wsl2/' class=" post_tag button button_translucent" data-position=1>WSL2<span class='button_tally'>1</span>
+            </a>
+            
+            <div class="tags_sort"><span title="sort alphabetically">[A~Z]</span><span title="sort by count">[0~9]</span>
+            </div>
+            <span class="tags_hide"><svg class="icon">
+            <use xlink:href="#closeme"></use>
+          </svg></span>
+          </div>
+        </div>
         
       </nav>
     </div>

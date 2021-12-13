@@ -6,7 +6,11 @@
     <description>Recent content in WSL2 on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 20 Jul 2021 10:21:46 +0800</lastBuildDate><atom:link href="https://zhxilin.github.io/tags/wsl2/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Jul 2021 10:21:46 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhxilin.github.io/tags/wsl2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>WSL2 Network Forwarding</title>
       <link>https://zhxilin.github.io/post/wsl2_network_forwarding/</link>

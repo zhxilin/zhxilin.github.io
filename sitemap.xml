@@ -4,67 +4,132 @@
   
   <url>
     <loc>https://zhxilin.github.io/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhxilin.github.io/tags/algorigthm/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/c&#43;&#43;/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
+    <loc>https://zhxilin.github.io/tags/application-technology/</loc>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zhxilin.github.io/categories/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/compilation-principle/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/data-structure/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/database/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/distributed-system-design/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/network/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/operating-system/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxilin.github.io/tags/software-engineer/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zhxilin.github.io/tags/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zhxilin.github.io/categories/technology-stack/</loc>
-    <lastmod>2021-12-13T10:36:27+08:00</lastmod>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_application_technology/</loc>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/</loc>
+    <lastmod>2022-04-08T20:05:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/software-engineer/</loc>
+    <lastmod>2022-04-08T20:04:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_software_engineering/</loc>
+    <lastmod>2022-04-08T20:04:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/distributed-system-design/</loc>
+    <lastmod>2022-04-08T20:04:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</loc>
+    <lastmod>2022-04-08T20:04:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/compilation-principle/</loc>
+    <lastmod>2022-04-08T20:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_compile_principle/</loc>
+    <lastmod>2022-04-08T20:03:58+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/database/</loc>
+    <lastmod>2022-04-08T20:03:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/mysql/</loc>
+    <lastmod>2022-04-08T20:03:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/redis/</loc>
+    <lastmod>2022-04-08T20:03:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_database/</loc>
+    <lastmod>2022-04-08T20:03:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/networks/</loc>
+    <lastmod>2022-04-08T20:03:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_networks/</loc>
+    <lastmod>2022-04-08T20:03:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/operating-system/</loc>
+    <lastmod>2022-04-08T20:03:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_os/</loc>
+    <lastmod>2022-04-08T20:03:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/algorigthm/</loc>
+    <lastmod>2022-04-08T20:02:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/data-structure/</loc>
+    <lastmod>2022-04-08T20:02:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_ds_algorithm/</loc>
+    <lastmod>2022-04-08T20:02:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/tags/c&#43;&#43;/</loc>
+    <lastmod>2022-04-08T19:52:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxilin.github.io/post/tech_stack_programming_language/</loc>
+    <lastmod>2022-04-08T19:52:39+08:00</lastmod>
   </url>
   
   <url>

@@ -6,89 +6,116 @@
     <description>Recent content in Tags on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 13 Dec 2021 10:36:27 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Apr 2022 20:05:07 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Algorigthm</title>
-      <link>https://zhxilin.github.io/tags/algorigthm/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      <title>Application Technology</title>
+      <link>https://zhxilin.github.io/tags/application-technology/</link>
+      <pubDate>Fri, 08 Apr 2022 20:05:07 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/tags/algorigthm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>https://zhxilin.github.io/tags/c&#43;&#43;/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/c&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Compilation Principle</title>
-      <link>https://zhxilin.github.io/tags/compilation-principle/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/compilation-principle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Structure</title>
-      <link>https://zhxilin.github.io/tags/data-structure/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/data-structure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Database</title>
-      <link>https://zhxilin.github.io/tags/database/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/database/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Distributed System Design</title>
-      <link>https://zhxilin.github.io/tags/distributed-system-design/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/distributed-system-design/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Network</title>
-      <link>https://zhxilin.github.io/tags/network/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/network/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Operating System</title>
-      <link>https://zhxilin.github.io/tags/operating-system/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/tags/operating-system/</guid>
+      <guid>https://zhxilin.github.io/tags/application-technology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Software Engineer</title>
       <link>https://zhxilin.github.io/tags/software-engineer/</link>
-      <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
+      <pubDate>Fri, 08 Apr 2022 20:04:53 +0800</pubDate>
       
       <guid>https://zhxilin.github.io/tags/software-engineer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Distributed System Design</title>
+      <link>https://zhxilin.github.io/tags/distributed-system-design/</link>
+      <pubDate>Fri, 08 Apr 2022 20:04:35 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/distributed-system-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compilation Principle</title>
+      <link>https://zhxilin.github.io/tags/compilation-principle/</link>
+      <pubDate>Fri, 08 Apr 2022 20:03:58 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/compilation-principle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>https://zhxilin.github.io/tags/database/</link>
+      <pubDate>Fri, 08 Apr 2022 20:03:44 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://zhxilin.github.io/tags/mysql/</link>
+      <pubDate>Fri, 08 Apr 2022 20:03:44 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>https://zhxilin.github.io/tags/redis/</link>
+      <pubDate>Fri, 08 Apr 2022 20:03:44 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Networks</title>
+      <link>https://zhxilin.github.io/tags/networks/</link>
+      <pubDate>Fri, 08 Apr 2022 20:03:37 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Operating System</title>
+      <link>https://zhxilin.github.io/tags/operating-system/</link>
+      <pubDate>Fri, 08 Apr 2022 20:03:21 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/operating-system/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Algorigthm</title>
+      <link>https://zhxilin.github.io/tags/algorigthm/</link>
+      <pubDate>Fri, 08 Apr 2022 20:02:52 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/algorigthm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Structure</title>
+      <link>https://zhxilin.github.io/tags/data-structure/</link>
+      <pubDate>Fri, 08 Apr 2022 20:02:52 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/data-structure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://zhxilin.github.io/tags/c&#43;&#43;/</link>
+      <pubDate>Fri, 08 Apr 2022 19:52:39 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     

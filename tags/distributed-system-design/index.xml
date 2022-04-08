@@ -12,21 +12,21 @@
     
     
     <item>
-      <title>分布式架构</title>
-      <link>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</link>
-      <pubDate>Fri, 08 Apr 2022 20:04:35 +0800</pubDate>
-      
-      <guid>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>服务端技术栈知识体系</title>
       <link>https://zhxilin.github.io/post/backend_tech_stack_summary/</link>
       <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
       
       <guid>https://zhxilin.github.io/post/backend_tech_stack_summary/</guid>
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中经常会进行面试。结合大学计算机知识、工作经历和面试经历，本人总结了适合服务端开发的技术栈知识体系。本系列文章的特点是会重点解析知识背后的原理，不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。阅读本系列文章需要具备一定的计算机基础。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>分布式架构</title>
+      <link>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</link>
+      <pubDate>Fri, 08 Apr 2022 20:04:35 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</guid>
+      <description></description>
     </item>
     
   </channel>

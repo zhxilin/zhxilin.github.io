@@ -142,7 +142,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">200 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     <p>本系列文章将包括以下领域：</p>
 <ul>
 <li><a href="/post/tech_stack_programming_language">编程语言</a></li>
@@ -156,8 +156,65 @@
 <li><a href="/post/tech_stack_application_technology">应用技术</a></li>
 </ul>
 <h2 id="现代c">现代C++</h2>
+<p>作为一门编程工具的最核心，C++的语言和标准库一直在扩展和强化。从C++11开始，C++14、C++17、C++20、C++23以及未来的版本，业界习惯称之为“现代C++(Modern C++)”，用以区别“传统C++”。现代C++远不止是修修补补，其所考虑的新功能，使这门经典语言脱胎换骨。</p>
+<p>我们将先从常见的语言基础开始，再进一步探索C++11、C++14、C++17和C++20的一系列新特性。</p>
 <h3 id="语言基础">语言基础</h3>
 <h4 id="什么是pod数据">什么是POD数据？</h4>
+<p>POD, Plain Old Data, 是C++11引入的一类数据结构的概念，是指能用C语言的memcpy()函数进行操作的类或结构体。其中的Plain代表这个类型是平凡的(trivial)，Old代表与C语言兼容。</p>
+<p>POD类型需要满足2个条件：</p>
+<ul>
+<li>
+<p>平凡性</p>
+<p>一个类型具有平凡性，需要满足以下几个特点：</p>
+<ul>
+<li>
+<p>具有平凡的默认构造函数、析构函数、拷贝构造函数和移动构造函数，即不能自定义这些构造函数或析构函数，只能由编译器自动生成。可以不写，或者只能使用<code>default</code>关键字定义。</p>
+</li>
+<li>
+<p>具有平凡的拷贝/移动运算符。</p>
+</li>
+<li>
+<p>不含虚函数和虚基类。</p>
+</li>
+</ul>
+<p>C++11可使用<code>&lt;type_traits&gt;</code>中的<code>std::is_trivial&lt;T&gt;::value</code>来判断是否平凡。</p>
+</li>
+<li>
+<p>标准布局</p>
+<p>一个类型具有标准布局，需要满足以下几个特点：</p>
+<ul>
+<li>
+<p>所有非静态成员具有相同的访问级别。</p>
+</li>
+<li>
+<p>继承结构中最多只能有一个类拥有非静态成员。即派生类中有非静态成员，且只有仅包含静态成员的基类；或者基类有非静态成员，而派生类中没有非静态成员。</p>
+</li>
+<li>
+<p>类中第一个非静态成员与其基类不同。</p>
+</li>
+<li>
+<p>不含虚函数和虚基类。</p>
+</li>
+<li>
+<p>所有非静态成员符合标准布局，父类也符合标准布局。</p>
+</li>
+</ul>
+<p>C++11可使用<code>&lt;type_traits&gt;</code>中的<code>std::is_standard_layout</code>来判断是否标准布局。</p>
+</li>
+</ul>
+<p>另外，C++11还可使用<code>&lt;type_traits&gt;</code>中的<code>std::is_pod</code>来判断是否POD类型。</p>
+<p>POD类型的作用又是什么呢？</p>
+<ul>
+<li>
+<p>可以放心地使用memcpy()、memset()等函数对POD类型进行拷贝和赋值。</p>
+</li>
+<li>
+<p>可以提供对C内存的兼容。</p>
+</li>
+<li>
+<p>可以保证静态初始化的安全有效。</p>
+</li>
+</ul>
 <h4 id="引用指针迭代器的区别">引用、指针、迭代器的区别？</h4>
 <h4 id="类型转换">类型转换</h4>
 <h4 id="仿函数">仿函数</h4>

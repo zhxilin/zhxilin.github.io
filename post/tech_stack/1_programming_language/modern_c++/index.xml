@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>类型转换</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/</link>
+      <pubDate>Sun, 10 Apr 2022 11:28:51 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/</guid>
+      <description>&lt;p&gt;C++的类型转换分为隐式转换和显式转换。数值之间如何转换、指针之间如何转换、explicit关键字又是什么、强制类型转换操作符的区别又是什么，本节内容将一一解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>引用、指针、迭代器的区别？</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/</link>
       <pubDate>Sun, 10 Apr 2022 10:26:35 +0800</pubDate>

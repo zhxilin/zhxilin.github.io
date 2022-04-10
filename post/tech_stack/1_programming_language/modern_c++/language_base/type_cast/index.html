@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="" class="page">
-  <head>  <title>ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>类型转换 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "" />
-<meta property = "og:url" content = "https://zhxilin.github.io/archives/" />
-<meta property = "og:title" content = "" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "类型转换" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/" />
+<meta property = "og:title" content = "类型转换" />
+<meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/archives/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,7 @@
   
   
     
-  
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="20" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -100,30 +99,32 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'></h1><div class = 'post_meta'>
+    <h1 class='post_title'>类型转换</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    May 28, 2019</span>
+    Apr 10, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://twitter.com/intent/tweet?text=&url=https%3a%2f%2fzhxilin.github.io%2farchives%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=%e7%b1%bb%e5%9e%8b%e8%bd%ac%e6%8d%a2&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2ftype_cast%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
   
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2farchives%2f&t=" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2ftype_cast%2f&t=%e7%b1%bb%e5%9e%8b%e8%bd%ac%e6%8d%a2" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/archives/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/type_cast/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -131,7 +132,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/archives/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -139,8 +140,138 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 0 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#隐式转换">隐式转换</a>
+      <ul>
+        <li><a href="#数值类型转换">数值类型转换</a></li>
+        <li><a href="#指针类型转换">指针类型转换</a></li>
+      </ul>
+    </li>
+    <li><a href="#显式转换">显式转换</a>
+      <ul>
+        <li><a href="#explicit关键字">explicit关键字</a></li>
+        <li><a href="#四种强制类型转换">四种强制类型转换</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <p>C++的类型转换分为隐式转换和显式转换。数值之间如何转换、指针之间如何转换、explicit关键字又是什么、强制类型转换操作符的区别又是什么，本节内容将一一解答。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<h2 id="隐式转换">隐式转换</h2>
+<p>隐式类型转换是编译器自动推导的，无需显式操作符。隐式类型转换往往发生在函数实参到形参的转换过程、函数返回值的转换过程等。</p>
+<h3 id="数值类型转换">数值类型转换</h3>
+<p>从小的整形（<code>char</code>、<code>short</code>）向大的整形（<code>int</code>、<code>long</code>）转换，<code>float</code>向<code>double</code>转换，都属于数值类型转换，向上提升的类型转换只是内存存储形式的变化，不会对数值有影响。</p>
+<p>但是有一些数值类型转换可能会引起编译器警告：</p>
+<ul>
+<li>浮点数转成整形数，数值的小数部分会被直接截断丢弃，造成精度丢失。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">float</span> <span class="n">foo</span> <span class="o">=</span> <span class="mf">1.5f</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">int</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">foo</span><span class="p">;</span> <span class="c1">//b = 1，丢失精度
+</span></code></pre></div><ul>
+<li>有bool类型参与的转换，false等价于0或空指针，true等价于任何非0数值。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">bool</span> <span class="n">foo</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">int</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">foo</span><span class="p">;</span> <span class="c1">//bar = 1
+</span><span class="ln">3</span><span class="c1"></span>
+<span class="ln">4</span><span class="kt">int</span> <span class="n">hello</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+<span class="ln">5</span><span class="kt">bool</span> <span class="n">world</span> <span class="o">=</span> <span class="n">hello</span><span class="p">;</span> <span class="c1">//world = true
+</span></code></pre></div><ul>
+<li>负数转成无符号数，由于负数使用补码表示，编译器会产生警告。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">foo</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">foo</span><span class="p">;</span> <span class="c1">//bar = 2^32 - 1 = 4,294,967,295
+</span></code></pre></div><h3 id="指针类型转换">指针类型转换</h3>
+<ul>
+<li>
+<p>子类指针转成父类指针（<code>const</code>、<code>volatile</code>不会变）。</p>
+</li>
+<li>
+<p>C风格数组首元素隐式转成一个指针，指向数组第一个元素。</p>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//bad code, but works
+</span><span class="ln">2</span><span class="c1"></span>
+<span class="ln">3</span><span class="kt">char</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="s">&#34;CPlusPlus&#34;</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//&#34;CPlusPlus&#34;隐式转成一个指针p指向首元素&#39;C&#39;，p向后移动3个元素，指向&#39;u&#39;
+</span></code></pre></div><h2 id="显式转换">显式转换</h2>
+<p>C风格的强制类型转换在C++中应尽量避免，容易出错引发未定义的行为。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//old style, should not use in C++
+</span><span class="ln">2</span><span class="c1"></span><span class="kt">int</span> <span class="n">foo</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">bar</span><span class="p">;</span>
+<span class="ln">3</span><span class="kt">int</span> <span class="n">hello</span> <span class="o">=</span> <span class="kt">int</span><span class="p">(</span><span class="n">world</span><span class="p">);</span>
+</code></pre></div><h3 id="explicit关键字">explicit关键字</h3>
+<p><code>explicit</code>关键字一般用于构造函数，且构造函数只有一个参数，用来阻止通过一个参数类型的对象直接隐式调用了构造函数而转换成另一个类型。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">B</span> <span class="p">{</span>
+<span class="ln"> 4</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 5</span>    <span class="n">B</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln"> 6</span><span class="p">};</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="k">class</span> <span class="nc">C</span> <span class="p">{</span>
+<span class="ln"> 9</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">10</span>    <span class="k">explicit</span> <span class="n">C</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln">11</span><span class="p">};</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">14</span>    <span class="n">A</span> <span class="n">foo</span><span class="p">;</span>
+<span class="ln">15</span>    <span class="n">B</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">foo</span><span class="p">;</span> <span class="c1">//隐式调用构造函数进行隐式转换
+</span><span class="ln">16</span><span class="c1"></span>
+<span class="ln">17</span>    <span class="c1">// C cool = foo; //报错，不允许转换
+</span><span class="ln">18</span><span class="c1"></span>    <span class="n">C</span> <span class="n">cool</span><span class="p">(</span><span class="n">foo</span><span class="p">);</span> <span class="c1">//显式调用构造函数
+</span><span class="ln">19</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">20</span><span class="p">}</span>
+</code></pre></div><h3 id="四种强制类型转换">四种强制类型转换</h3>
+<p>C++提供4种进行安全类型强制转换的操作符：<code>static_cast</code>、<code>const_cast</code>、<code>dynamic_cast</code>、<code>reinterpret_cast</code></p>
+<h4 id="static_cast">static_cast</h4>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">expr</span><span class="p">);</span>
+</code></pre></div><p>在编译期做强制类型转换，expr的<code>const</code>和<code>volatile</code>属性得到保留。一般有以下使用场景：</p>
+<ol>
+<li>
+<p>基本数据类型之间的转换，如<code>char</code>转<code>int</code>，<code>int</code>转<code>enum</code>等</p>
+</li>
+<li>
+<p>任意类型指针转成<code>void*</code>指针，反之不安全</p>
+</li>
+<li>
+<p>转换为右值引用</p>
+</li>
+<li>
+<p>子类指针或引用转成父类指针或引用，反之不安全</p>
+</li>
+</ol>
+<h4 id="const_cast">const_cast</h4>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">const_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">expr</span><span class="p">);</span>
+</code></pre></div><p><code>T</code>为一个指针或引用，或者指向对象类型成员的指针，用于去除对象的<code>const</code>或<code>volatile</code>属性。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">newStr</span> <span class="o">=</span> <span class="k">const_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="n">newStr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;H&#39;</span><span class="p">;</span> <span class="c1">//newStr = &#34;Hello world&#34;;
+</span></code></pre></div><h4 id="dynamic_cast">dynamic_cast</h4>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">expr</span><span class="p">);</span>
+</code></pre></div><p><code>T</code>为一个指针或引用，或者<code>void*</code>指针，是<code>RTTI</code>机制的一个操作符，用来确保指向一个完整的目标类型。</p>
+<p>若<code>T</code>为指针，则<code>expr</code>也必须为指针，转换失败返回<code>nullptr</code>；若<code>T</code>为引用，则<code>expr</code>必须为左值，转换失败会抛出<code>bad_cast</code>异常。</p>
+<p>后面小节我们会继续展开聊一聊<code>RTTI</code>那些事儿。</p>
+<h4 id="reinterpret_cast">reinterpret_cast</h4>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">expr</span><span class="p">);</span>
+</code></pre></div><p><code>T</code>为指针、引用、基本类型、函数指针或成员指针，一般在底层代码中才会使用。不会改变比特位数据，而是用新的类型来解释这些比特位，故名为<code>reinterpret</code>转换。</p>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
@@ -156,9 +287,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/" class="nav-link">类型转换</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/" class="nav-link">引用、指针、迭代器的区别？</a>
@@ -170,9 +298,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/" class="nav-link">类型转换</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/" class="nav-link">引用、指针、迭代器的区别？</a>

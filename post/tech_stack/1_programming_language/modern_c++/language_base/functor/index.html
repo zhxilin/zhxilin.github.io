@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>Web Sequrity | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>仿函数 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Web Sequrity" />
-<meta property = "og:url" content = "https://zhxilin.github.io/tags/web-sequrity/" />
-<meta property = "og:title" content = "Web Sequrity" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "仿函数" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" />
+<meta property = "og:title" content = "仿函数" />
+<meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/tags/web-sequrity/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,9 @@
   
   
     
+    
   
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="false" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -97,48 +98,187 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/'>SSL certificate and nginx config</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>仿函数</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Sep 28, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/web-sequrity' class = 'post_tag button button_translucent'>Web Sequrity
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
+    Apr 10, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
-    </div>
-    <div class = 'excerpt_footer partition'>
-      <div class = 'excerpt_thumbnail'>
-      <img src = 'https://zhxilin.github.io/images/certificate_issue_process.png'>
-      </div>
-      
-        <div>
-          <p class = 'pale'>HTTP, as an application layer protocol, remains focused on presenting information, but cares less about the way this information travels from one place to another. Unfortunaly, this means that HTTP can be intercepted and potentially altered, making both the information and the information receiver vulnerable.
-HTTPS …</p>
-          <a href='https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class='post_share'>
+  Share on:
+  <a href="https://twitter.com/intent/tweet?text=%e4%bb%bf%e5%87%bd%e6%95%b0&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2ffunctor%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
+  </a>
   
-    <li>
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2ffunctor%2f&t=%e4%bb%bf%e5%87%bd%e6%95%b0" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
+  </a>
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/functor/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
+  </a>
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
+  </a>
+</div>
 
-
-    </li>
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是仿函数">什么是仿函数？</a></li>
+    <li><a href="#仿函数与谓词的关系">仿函数与谓词的关系？</a></li>
+    <li><a href="#仿函数的优点">仿函数的优点？</a></li>
   </ul>
+</nav>
+    <p>C++中仿函数是一个能行使函数功能的类，仿函数的使用方法几乎和函数一样。那么仿函数和函数到底有什么区别？仿函数有哪些优点？本节内容将一一解答。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<h2 id="什么是仿函数">什么是仿函数？</h2>
+<p>想象一下这种场景，当我们有一个过滤函数<code>Process</code>是用来过滤数组中大于10的元素，我们可以为“比较元素是否大于10”这个操作定义成一个函数<code>F</code>，作为函数指针传入前面的过滤函数中。</p>
+<p>如果此时要求把&quot;10&quot;也作为参数传入，可能就不那么美妙了。这个过滤函数<code>Process</code>可能来自第三方库，我们并不能直接修改它的参数定义，那我们只好把&quot;10&quot;这个值定义成一个全局变量，再在函数<code>F</code>中调用。</p>
+<p>这种做法虽然可行，但是我们被迫要维护一个全局变量，容易出错。比如有一个同名的全局变量，那就会导致命名空间污染。总之，更优雅的方式就应运而生了，它就是仿函数。</p>
+<p><strong>仿函数，functor，又称函数对象，是指实现一个简单的类，并且重载了<code>operator()</code>操作符，该类的实例化对象就可以行使函数的功能了。</strong></p>
+<p>以上例子，我们就可以定义个仿函数，在构造函数中将&quot;10&quot;作为参数传入函数对象内，由函数对象内部进行维护。同时重载一个<code>operator()</code>操作符，在函数体中使用这个&quot;10&quot;即可。</p>
+<h2 id="仿函数与谓词的关系">仿函数与谓词的关系？</h2>
+<p>仿函数在不同语言的实现方式有所差别：</p>
+<ul>
+<li>
+<p>C语言使用函数指针来实现</p>
+</li>
+<li>
+<p>C#使用delegate委托来实现</p>
+</li>
+<li>
+<p>Java通过实现包含单个函数的接口来实现</p>
+</li>
+<li>
+<p>C++通过实现一个重载<code>operator()</code>操作符的类来实现</p>
+</li>
+</ul>
+<p>在STL的实现中，使用了大量谓词(Predicate)来实现算法、容器、迭代器的抽象隔离。谓词和仿函数又是什么关系呢？</p>
+<p>我们来看一个STL的算法<code>for_each</code>的源码定义：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cm">/**
+</span><span class="ln"> 2</span><span class="cm">  *  @brief Apply a function to every element of a sequence.
+</span><span class="ln"> 3</span><span class="cm">  *  @ingroup non_mutating_algorithms
+</span><span class="ln"> 4</span><span class="cm">  *  @param  __first  An input iterator.
+</span><span class="ln"> 5</span><span class="cm">  *  @param  __last   An input iterator.
+</span><span class="ln"> 6</span><span class="cm">  *  @param  __f      A unary function object.
+</span><span class="ln"> 7</span><span class="cm">  *  @return   @p __f
+</span><span class="ln"> 8</span><span class="cm">  *
+</span><span class="ln"> 9</span><span class="cm">  *  Applies the function object @p __f to each element in the range
+</span><span class="ln">10</span><span class="cm">  *  @p [first,last).  @p __f must not modify the order of the sequence.
+</span><span class="ln">11</span><span class="cm">  *  If @p __f has a return value it is ignored.
+</span><span class="ln">12</span><span class="cm">*/</span>
+<span class="ln">13</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_InputIterator</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Function</span><span class="o">&gt;</span>
+<span class="ln">14</span><span class="n">_GLIBCXX20_CONSTEXPR</span>
+<span class="ln">15</span><span class="n">_Function</span>
+<span class="ln">16</span><span class="n">for_each</span><span class="p">(</span><span class="n">_InputIterator</span> <span class="n">__first</span><span class="p">,</span> <span class="n">_InputIterator</span> <span class="n">__last</span><span class="p">,</span> <span class="n">_Function</span> <span class="n">__f</span><span class="p">)</span>
+<span class="ln">17</span><span class="p">{</span>
+<span class="ln">18</span>    <span class="c1">// concept requirements
+</span><span class="ln">19</span><span class="c1"></span>    <span class="n">__glibcxx_function_requires</span><span class="p">(</span><span class="n">_InputIteratorConcept</span><span class="o">&lt;</span><span class="n">_InputIterator</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="ln">20</span>    <span class="n">__glibcxx_requires_valid_range</span><span class="p">(</span><span class="n">__first</span><span class="p">,</span> <span class="n">__last</span><span class="p">);</span>
+<span class="ln">21</span>    <span class="k">for</span> <span class="p">(;</span> <span class="n">__first</span> <span class="o">!=</span> <span class="n">__last</span><span class="p">;</span> <span class="o">++</span><span class="n">__first</span><span class="p">)</span>
+<span class="ln">22</span>        <span class="n">__f</span><span class="p">(</span><span class="o">*</span><span class="n">__first</span><span class="p">);</span>
+<span class="ln">23</span>    <span class="k">return</span> <span class="n">__f</span><span class="p">;</span> <span class="c1">// N.B. [alg.foreach] says std::move(f) but it&#39;s redundant.
+</span><span class="ln">24</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>其中第三个参数<code>__f</code>就是一个一元谓词。这个一元谓词既可以是一个普通的回调函数，也可以是一个仿函数即函数对象。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//一元谓词——回调函数
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kt">void</span> <span class="nf">showFunc</span><span class="p">(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用回调函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln"> 4</span><span class="p">}</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="c1">//一元谓词——仿函数
+</span><span class="ln"> 7</span><span class="c1"></span><span class="k">class</span> <span class="nc">showFuncObj</span> <span class="p">{</span>
+<span class="ln"> 8</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 9</span>    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">10</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用仿函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span><span class="p">};</span>
+<span class="ln">13</span>
+<span class="ln">14</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">15</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">};</span>
+<span class="ln">16</span>
+<span class="ln">17</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">showFunc</span><span class="p">);</span>
+<span class="ln">18</span>
+<span class="ln">19</span>    <span class="n">showFuncObj</span> <span class="n">s</span><span class="p">;</span>
+<span class="ln">20</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">s</span><span class="p">);</span>
+<span class="ln">21</span>
+<span class="ln">22</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">23</span><span class="p">}</span>
+</code></pre></div><p>所以，在这个例子中，<strong>仿函数一定是谓词，谓词不一定是仿函数，还可能是普通的回调函数。</strong></p>
+<h2 id="仿函数的优点">仿函数的优点？</h2>
+<p>既然仿函数和函数的功能类型，那么仿函数到底有啥优点呢？</p>
+<p>我们继续看上面的例子。</p>
+<p>如果此时要求统计在<code>for_each</code>过程中谓词被调用的次数，应该怎么办？</p>
+<p>对于仿函数，我们只需要在<code>showFuncObj</code>类中增加一个局部变量<code>m_count</code>就可以很快扩展，而回调函数就没办法很好扩展了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//一元谓词——回调函数
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kt">void</span> <span class="nf">showFunc</span><span class="p">(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用回调函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln"> 4</span><span class="p">}</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="c1">//一元谓词——仿函数
+</span><span class="ln"> 7</span><span class="c1"></span><span class="k">class</span> <span class="nc">showFuncObj</span> <span class="p">{</span>
+<span class="ln"> 8</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 9</span>    <span class="n">showFuncObj</span><span class="p">()</span> <span class="o">:</span> <span class="n">m_count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln">10</span>
+<span class="ln">11</span>    <span class="kt">void</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">12</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用仿函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">13</span>        <span class="n">m_count</span><span class="o">++</span><span class="p">;</span>
+<span class="ln">14</span>    <span class="p">}</span>
+<span class="ln">15</span>
+<span class="ln">16</span>    <span class="kt">void</span> <span class="nf">count</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_count</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">17</span><span class="k">private</span><span class="o">:</span>
+<span class="ln">18</span>    <span class="n">m_count</span><span class="p">;</span>
+<span class="ln">19</span><span class="p">};</span>
+<span class="ln">20</span>
+<span class="ln">21</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">22</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">};</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">showFunc</span><span class="p">);</span>
+<span class="ln">25</span>
+<span class="ln">26</span>    <span class="n">showFuncObj</span> <span class="n">s</span><span class="p">;</span>
+<span class="ln">27</span>    <span class="n">s</span> <span class="o">=</span> <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">s</span><span class="p">);</span> <span class="c1">//仿函数是按值传参
+</span><span class="ln">28</span><span class="c1"></span>    <span class="n">s</span><span class="p">.</span><span class="n">count</span><span class="p">();</span>
+<span class="ln">29</span>
+<span class="ln">30</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">31</span><span class="p">}</span>
+</code></pre></div><p>仿函数的优点是能做到封装，功能扩展起来非常方便，而回调函数则没有办法。所以在STL的实现中，运用了大量仿函数来实现谓词。</p>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -153,9 +293,6 @@ HTTPS …</p>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" class="nav-link">仿函数</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/" class="nav-link">类型转换</a>
@@ -167,9 +304,6 @@ HTTPS …</p>
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" class="nav-link">仿函数</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/" class="nav-link">类型转换</a>
@@ -377,9 +511,34 @@ HTTPS …</p>
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

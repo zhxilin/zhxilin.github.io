@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>仿函数</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/</link>
+      <pubDate>Sun, 10 Apr 2022 15:21:51 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/</guid>
+      <description>&lt;p&gt;C++中仿函数是一个能行使函数功能的类，仿函数的使用方法几乎和函数一样。那么仿函数和函数到底有什么区别？仿函数有哪些优点？本节内容将一一解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>类型转换</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/type_cast/</link>
       <pubDate>Sun, 10 Apr 2022 11:28:51 +0800</pubDate>

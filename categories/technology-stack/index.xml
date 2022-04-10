@@ -6,101 +6,111 @@
     <description>Recent content in Technology Stack on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 08 Apr 2022 20:05:07 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 09 Apr 2022 17:50:42 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/categories/technology-stack/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>服务端技术栈知识体系</title>
-      <link>https://zhxilin.github.io/post/backend_tech_stack_summary/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/summary/</link>
       <pubDate>Mon, 13 Dec 2021 10:36:27 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/backend_tech_stack_summary/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/summary/</guid>
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
-&lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。&lt;/p&gt;
-&lt;p&gt;阅读本系列文章需要具备一定的计算机基础。&lt;/p&gt;</description>
+&lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
+&lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>什么是POD?</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/</link>
+      <pubDate>Sat, 09 Apr 2022 17:50:42 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/</guid>
+      <description></description>
     </item>
     
     <item>
       <title>应用技术</title>
-      <link>https://zhxilin.github.io/post/tech_stack_application_technology/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/9_application_technology/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:05:07 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_application_technology/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/9_application_technology/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>软件工程</title>
-      <link>https://zhxilin.github.io/post/tech_stack_software_engineering/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/8_software_engeering/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:04:53 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_software_engineering/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/8_software_engeering/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>分布式架构</title>
-      <link>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/7_distributed_architecture/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:04:35 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_distributed_architecture/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/7_distributed_architecture/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>编译原理</title>
-      <link>https://zhxilin.github.io/post/tech_stack_compile_principle/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/6_compile_principle/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:03:58 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_compile_principle/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/6_compile_principle/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数据库</title>
-      <link>https://zhxilin.github.io/post/tech_stack_database/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/5_database/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:03:44 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_database/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/5_database/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网络</title>
-      <link>https://zhxilin.github.io/post/tech_stack_networks/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/4_networks/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:03:37 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_networks/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/4_networks/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>操作系统</title>
-      <link>https://zhxilin.github.io/post/tech_stack_os/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/3_os/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:03:21 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_os/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/3_os/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>数据结构与算法</title>
-      <link>https://zhxilin.github.io/post/tech_stack_ds_algorithm/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/2_ds_algorithm/summary/</link>
       <pubDate>Fri, 08 Apr 2022 20:02:52 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_ds_algorithm/</guid>
+      <guid>https://zhxilin.github.io/post/tech_stack/2_ds_algorithm/summary/</guid>
       <description></description>
     </item>
     
     <item>
       <title>编程语言</title>
-      <link>https://zhxilin.github.io/post/tech_stack_programming_language/</link>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/summary/</link>
       <pubDate>Fri, 08 Apr 2022 19:52:39 +0800</pubDate>
       
-      <guid>https://zhxilin.github.io/post/tech_stack_programming_language/</guid>
-      <description></description>
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/summary/</guid>
+      <description>&lt;p&gt;编程语言，是计算机科学的基础学科。C++作为一门历史悠久的常青树语言，也在不断与时俱进，注入新的活动，依然是当今最流行最稳定的编程语言之一。&lt;/p&gt;
+&lt;p&gt;本章节将重点围绕现代C++、C++并发编程以及C++模板编程等方面展开。&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编程语言 on ZHXILIN&#39;S BLOG</title>
+    <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/</link>
+    <description>Recent content in 编程语言 on ZHXILIN&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 10 Apr 2022 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zhxilin.github.io/post/tech_stack/1_programming_language/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>编程语言</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/summary/</link>
+      <pubDate>Fri, 08 Apr 2022 19:52:39 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/summary/</guid>
+      <description>&lt;p&gt;编程语言，是计算机科学的基础学科。C++作为一门历史悠久的常青树语言，也在不断与时俱进，注入新的活动，依然是当今最流行最稳定的编程语言之一。&lt;/p&gt;
+&lt;p&gt;本章节将重点围绕现代C++、C++并发编程以及C++模板编程等方面展开。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

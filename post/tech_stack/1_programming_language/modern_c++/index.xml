@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>现代C&#43;&#43; on ZHXILIN&#39;S BLOG</title>
+    <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/</link>
+    <description>Recent content in 现代C&#43;&#43; on ZHXILIN&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 10 Apr 2022 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>什么是POD?</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/</link>
+      <pubDate>Sat, 09 Apr 2022 17:50:42 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

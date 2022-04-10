@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43;并发 on ZHXILIN&#39;S BLOG</title>
+    <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/c&#43;&#43;_multithread/</link>
+    <description>Recent content in C&#43;&#43;并发 on ZHXILIN&#39;S BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 10 Apr 2022 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://zhxilin.github.io/post/tech_stack/1_programming_language/c++_multithread/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

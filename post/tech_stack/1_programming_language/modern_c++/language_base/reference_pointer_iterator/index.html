@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>服务端技术栈知识体系 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>引用、指针、迭代器的区别？ | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="本文是服务端开发所需技术体系总结">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "服务端技术栈知识体系" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/summary/" />
-<meta property = "og:title" content = "服务端技术栈知识体系" />
-<meta property = "og:description" content = "本文是服务端开发所需技术体系总结" />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/tech_stack_summary.png" />
+<meta name = "twitter:title" content = "引用、指针、迭代器的区别？" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/" />
+<meta property = "og:title" content = "引用、指针、迭代器的区别？" />
+<meta property = "og:description" content = "Article description." />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/summary/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -101,50 +101,32 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>服务端技术栈知识体系</h1><div class = 'post_meta'>
+    <h1 class='post_title'>引用、指针、迭代器的区别？</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Dec 13, 2021</span>
+    Apr 10, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/algorigthm' class = 'post_tag button button_translucent'>Algorigthm
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/data-structure' class = 'post_tag button button_translucent'>Data Structure
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/operating-system' class = 'post_tag button button_translucent'>Operating System
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/networks' class = 'post_tag button button_translucent'>Networks
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/database' class = 'post_tag button button_translucent'>Database
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/compilation-principle' class = 'post_tag button button_translucent'>Compilation Principle
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/distributed-system-design' class = 'post_tag button button_translucent'>Distributed System Design
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/software-engineer' class = 'post_tag button button_translucent'>Software Engineer
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/application-technology' class = 'post_tag button button_translucent'>Application Technology
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://twitter.com/intent/tweet?text=%e6%9c%8d%e5%8a%a1%e7%ab%af%e6%8a%80%e6%9c%af%e6%a0%88%e7%9f%a5%e8%af%86%e4%bd%93%e7%b3%bb&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2fsummary%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=%e5%bc%95%e7%94%a8%e3%80%81%e6%8c%87%e9%92%88%e3%80%81%e8%bf%ad%e4%bb%a3%e5%99%a8%e7%9a%84%e5%8c%ba%e5%88%ab%ef%bc%9f&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2freference_pointer_iterator%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
   
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2fsummary%2f&t=%e6%9c%8d%e5%8a%a1%e7%ab%af%e6%8a%80%e6%9c%af%e6%a0%88%e7%9f%a5%e8%af%86%e4%bd%93%e7%b3%bb" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2freference_pointer_iterator%2f&t=%e5%bc%95%e7%94%a8%e3%80%81%e6%8c%87%e9%92%88%e3%80%81%e8%bf%ad%e4%bb%a3%e5%99%a8%e7%9a%84%e5%8c%ba%e5%88%ab%ef%bc%9f" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/summary/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/reference_pointer_iterator/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -152,7 +134,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/summary/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -160,262 +142,59 @@
 </div>
 
     
-    <img src = '/images/tech_stack_summary.png' class="image_featured">
-    
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">200 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
-    <p>本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。</p>
-<p>本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。</p>
-<p>阅读本系列文章适合具备一定计算机编程基础的同学。</p>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <p>引用与指针的异同、指针与迭代器的异同，是一个老生常谈的话题。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
-<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
-<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
-<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
-<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
-<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
-<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
-<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
-<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
-<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+<li><a href="/post/tech_stack/1_programming_language/index">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/index">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/index">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/index">网络</a></li>
+<li><a href="/post/tech_stack/5_database/index">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/index">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/index">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/index">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/index">应用技术</a></li>
 </ul>
 </blockquote>
-<p>这些问题如果全部吃透，就能在面试、工作中解决大部分问题。服务端技术栈知识体系的大纲请看下图：</p>
-<p><img src="/images/tech_stack_detail.png" alt="服务端技术栈知识体系"></p>
-<h2 id="数据结构与算法">数据结构与算法</h2>
-<h3 id="数据结构">数据结构</h3>
+<h2 id="引用-vs-指针">引用 vs 指针</h2>
+<p>引用和指针都可以指代一个变量或对象，但是它们的区别如下：</p>
 <ul>
-<li>数组、链表</li>
-<li>栈、堆、队列</li>
-<li>字典</li>
-<li>树：BST、AVL、RB、B/B+、Tie</li>
-<li>图</li>
+<li>
+<p>引用是一个对象的别名，指针是一个新的存放一个对象地址的变量，指针可以有多级</p>
+</li>
+<li>
+<p>引用必须初始化，指针可以不用初始化，使用时指针需要判空，引用不需要</p>
+</li>
+<li>
+<p>引用不可为空，指针可以为空</p>
+</li>
+<li>
+<p>引用一旦初始化就不可以更改，指针可以更改指向的目标</p>
+</li>
+<li>
+<p>sizeof操作符对引用是计算对象的大小，对指针仅计算指针变量本身的大小</p>
+</li>
 </ul>
-<h3 id="排序算法">排序算法</h3>
+<h2 id="指针-vs-迭代器">指针 vs 迭代器</h2>
+<p>指针和迭代器都可以进行整数操作，都可以进行加减运算实现指代位置的移动，都支持相同类型互减得到二者的距离。但是它们的区别如下：</p>
 <ul>
-<li>选择排序</li>
-<li>插入排序</li>
-<li>冒泡排序</li>
-<li>快速排序</li>
-<li>归并排序</li>
-<li>堆排序</li>
-<li>希尔排序</li>
-</ul>
-<h3 id="算法">算法</h3>
-<ul>
-<li>分治法</li>
-<li>二分查找</li>
-<li>DFS、BFS</li>
-<li>贪心算法</li>
-<li>动态规划</li>
-<li>滑动窗口: 双指针、快慢指针</li>
-</ul>
-<h2 id="操作系统">操作系统</h2>
-<h3 id="linux常见命令">Linux常见命令</h3>
-<ul>
-<li>ss、ifconfig、netstat、traceroute、telnet</li>
-<li>vim、cat、touch、more、less、head、tail</li>
-<li>top、vmstat、sar、mpstat、iostat、dstat</li>
-</ul>
-<h3 id="文件与文件系统">文件与文件系统</h3>
-<ul>
-<li>文件结构、文件类型</li>
-<li>文件权限</li>
-<li>VFS</li>
-</ul>
-<h3 id="内存与虚拟内存">内存与虚拟内存</h3>
-<ul>
-<li>虚拟内存、虚拟地址空间</li>
-<li>内存分段</li>
-<li>内存分页</li>
-<li>段页式管理</li>
-<li>内存交换、页面置换算法</li>
-<li>空闲内存管理</li>
-</ul>
-<h3 id="进程线程协程">进程、线程、协程</h3>
-<ul>
-<li>进程、线程、协程的比较</li>
-<li>进程通信方式：信号、信号量、管道/命名管道、Socket、共享内存、消息队列</li>
-<li>线程同步方式：锁机制（互斥体、条件变量、读写锁）、信号量、信号</li>
-</ul>
-<h3 id="内核空间与用户空间">内核空间与用户空间</h3>
-<ul>
-<li>内核空间、用户空间的比较</li>
-<li>进程用户态、内核态</li>
-</ul>
-<h3 id="cpu调度算法">CPU调度算法</h3>
-<ul>
-<li>FIFO</li>
-<li>最短作业优先</li>
-<li>最短剩余时间优先</li>
-</ul>
-<h3 id="死锁">死锁</h3>
-<ul>
-<li>资源</li>
-<li>死锁、死锁检测、死锁恢复、死锁避免</li>
-</ul>
-<h2 id="网络">网络</h2>
-<h3 id="osi七层模型tcpip四层模型">OSI七层模型、TCP/IP四层模型</h3>
-<ul>
-<li>应用层</li>
-<li>表示层</li>
-<li>会话层</li>
-<li>传输层</li>
-<li>网络层</li>
-<li>数据链路层</li>
-<li>物理层</li>
-</ul>
-<h3 id="网络协议">网络协议</h3>
-<ul>
-<li>TCP三握四挥</li>
-<li>TCP状态机：CLOSE_WAIT、TIME_WAIT</li>
-<li>连接的含义</li>
-<li>TCP可靠性保证：校验和、确认机制、重传机制、拥塞控制、流量控制</li>
-<li>TCP、UDP的比较</li>
-<li>TCP、KCP的比较</li>
-<li>HTTPS TLS握手过程</li>
-<li>CA、证书、证书链</li>
-</ul>
-<h3 id="io模型">I/O模型</h3>
-<ul>
-<li>同步I/O、异步I/O</li>
-<li>阻塞I/O、非阻塞I/O</li>
-<li>I/O多路复用</li>
-</ul>
-<h3 id="selectpollepoll">select、poll、epoll</h3>
-<ul>
-<li>select、poll、epoll的比较</li>
-<li>epoll水平触发、边缘触发</li>
-</ul>
-<h3 id="reactor模型proactor模型">reactor模型、proactor模型</h3>
-<ul>
-<li>libevent分析</li>
-<li>netty分析</li>
-</ul>
-<h3 id="网络字节序">网络字节序</h3>
-<ul>
-<li>大端、小端</li>
-</ul>
-<h2 id="数据库">数据库</h2>
-<h3 id="关系型数据库的判定依据">关系型数据库的判定依据</h3>
-<ul>
-<li>三范式</li>
-</ul>
-<h3 id="mysql存储引擎与底层数据结构">MySQL存储引擎与底层数据结构</h3>
-<ul>
-<li>B+树</li>
-<li>InnoDB、MyISAM存储方式的区别</li>
-</ul>
-<h3 id="mysql索引">MySQL索引</h3>
-<ul>
-<li>聚簇索引</li>
-<li>非聚簇索引</li>
-</ul>
-<h3 id="mysql事务特性">MySQL事务特性</h3>
-<ul>
-<li>ACID</li>
-<li>原子性的实现原理：Undo Log</li>
-<li>持久性的实现原理：Redo Log</li>
-<li>隔离性的实现原理：事务的隔离级别、MVCC</li>
-<li>一致性的实现原理：原子性+持久性+隔离性</li>
-</ul>
-<h3 id="mysql锁机制">MySQL锁机制</h3>
-<ul>
-<li>表锁、行锁、页锁、间隙锁</li>
-<li>死锁</li>
-</ul>
-<h3 id="sql内外连接">SQL内外连接</h3>
-<ul>
-<li>内连接：左右都匹配</li>
-<li>左外连接：左全体+右匹配</li>
-<li>右外连接：右全体+左匹配</li>
-<li>全外连接：左全体+右全体</li>
-<li>交叉连接：笛卡尔积</li>
-</ul>
-<h3 id="redis数据结构与底层实现">Redis数据结构与底层实现</h3>
-<ul>
-<li>String：int、embstr、raw</li>
-<li>List：ziplist、linked list</li>
-<li>Hash: ziplist、hashtable</li>
-<li>Set: hashtable、intset</li>
-<li>ZSet：ziplist、skiplist</li>
-</ul>
-<h3 id="redis持久化与原理">Redis持久化与原理</h3>
-<ul>
-<li>RDB</li>
-<li>AOF</li>
-</ul>
-<h3 id="redis单线程实现的优势">Redis单线程实现的优势</h3>
-<h3 id="redis集群与主从复制">Redis集群与主从复制</h3>
-<ul>
-<li>集群</li>
-<li>Gossip协议：MEET、PING、PONG、FAIL、PUBLISH</li>
-<li>哨兵机制: Raft一致性算法</li>
-</ul>
-<h3 id="resp协议">RESP协议</h3>
-<h2 id="应用技术">应用技术</h2>
-<h3 id="protobuf">protobuf</h3>
-<ul>
-<li>pb协议的优缺点</li>
-<li>pb协议的实现：T-L-V</li>
-</ul>
-<h3 id="jwt">JWT</h3>
-<ul>
-<li>JWT结构</li>
-<li>JWT适用范围</li>
-</ul>
-<h3 id="cron表达式">Cron表达式</h3>
-<h3 id="mvc与mvvm">MVC与MVVM</h3>
-<h3 id="unicode与utf-8">unicode与utf-8</h3>
-<ul>
-<li>unicode编码</li>
-<li>utf-8实现原理</li>
-</ul>
-<h2 id="分布式系统设计">分布式系统设计</h2>
-<h3 id="高可用方案">高可用方案</h3>
-<ul>
-<li>Zookeeper</li>
-<li>哨兵机制</li>
-</ul>
-<h3 id="消息队列">消息队列</h3>
-<ul>
-<li>Kafka：Broker、Topic、Partition</li>
-</ul>
-<h3 id="悲观锁">悲观锁</h3>
-<ul>
-<li>互斥锁</li>
-<li>自旋锁</li>
-<li>读写锁：读优先锁、写优先锁、公平读写锁</li>
-</ul>
-<h3 id="乐观锁">乐观锁</h3>
-<h3 id="无锁机制">无锁机制</h3>
-<ul>
-<li>CAS</li>
-<li>CAS的缺点：ABA问题</li>
-</ul>
-<h3 id="分布式锁">分布式锁</h3>
-<ul>
-<li>Redlock</li>
-</ul>
-<h3 id="缓存穿透缓存击穿缓存雪崩">缓存穿透、缓存击穿、缓存雪崩</h3>
-<ul>
-<li>缓存穿透、缓存击穿、缓存雪崩的区别</li>
-<li>解决方法</li>
-</ul>
-<h3 id="一致性哈希算法">一致性哈希算法</h3>
-<h2 id="编译原理">编译原理</h2>
-<h3 id="gcc工作流程">gcc工作流程</h3>
-<ul>
-<li>预编译/预处理、编译、汇编、链接、装入</li>
-</ul>
-<h3 id="静态库与动态库">静态库与动态库</h3>
-<h3 id="静态链接与动态链接">静态链接与动态链接</h3>
-<h3 id="内部链接与外部链接">内部链接与外部链接</h3>
-<h2 id="软件工程">软件工程</h2>
-<h3 id="设计模式">设计模式</h3>
-<ul>
-<li>六大原则：单一职责原则、开闭原则、里氏替换法则、依赖倒置原则、接口隔离原则、迪米特原则</li>
-<li>23种设计模式</li>
+<li>
+<p>迭代器的表现像指针，但本质是一个类模板，它是连接容器和泛型算法的粘合剂</p>
+</li>
+<li>
+<p>迭代器通过重载操作符实现类似指针的功能，如解引用、前进、后退、比较等</p>
+</li>
+<li>
+<p>迭代器返回值是对象的引用而不是对象的值</p>
+</li>
+<li>
+<p>指针拥有迭代器没有的功能，如指针可以指向函数，而迭代器只能指向容器</p>
+</li>
+<li>
+<p>指针满足迭代器的所有要求，但只是迭代器的一种，且只能用于某些特定容器</p>
+</li>
 </ul>
   </article>
 <aside class="sidebar">
@@ -428,10 +207,10 @@
     <h2 class="mt-4">Featured Posts</h2>
     <ul>
     
-    
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/" class="nav-link">引用、指针、迭代器的区别？</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
+    
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/" class="nav-link">什么是POD?</a>
@@ -442,7 +221,7 @@
     <ul class="flex-column">
       
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/" class="nav-link">引用、指针、迭代器的区别？</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/" class="nav-link">什么是POD?</a>

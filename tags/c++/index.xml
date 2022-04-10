@@ -6,7 +6,7 @@
     <description>Recent content in C&#43;&#43; on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 09 Apr 2022 17:50:42 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Apr 2022 10:26:35 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
@@ -23,12 +23,21 @@
     </item>
     
     <item>
+      <title>引用、指针、迭代器的区别？</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/</link>
+      <pubDate>Sun, 10 Apr 2022 10:26:35 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/reference_pointer_iterator/</guid>
+      <description>&lt;p&gt;引用与指针的异同、指针与迭代器的异同，是一个老生常谈的话题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>什么是POD?</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/</link>
       <pubDate>Sat, 09 Apr 2022 17:50:42 +0800</pubDate>
       
       <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/pod/</guid>
-      <description></description>
+      <description>&lt;p&gt;为了兼容C内存的数据类型，C++11提出了POD的概念。什么是POD类型，POD类型有什么作用，本节内容将一一揭晓。&lt;/p&gt;</description>
     </item>
     
     <item>

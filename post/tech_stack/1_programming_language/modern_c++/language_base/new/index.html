@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>new表达式、operator new和placement new | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/6_compile_principle/" />
-<meta property = "og:title" content = "" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "new表达式、operator new和placement new" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/" />
+<meta property = "og:title" content = "new表达式、operator new和placement new" />
+<meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/6_compile_principle/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,9 @@
   
   
     
+    
   
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="false" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -97,41 +98,159 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/6_compile_principle/summary/'>编译原理</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>new表达式、operator new和placement new</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 8, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/compilation-principle' class = 'post_tag button button_translucent'>Compilation Principle
+    Apr 11, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/6_compile_principle/summary/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class='post_share'>
+  Share on:
+  <a href="https://twitter.com/intent/tweet?text=new%e8%a1%a8%e8%be%be%e5%bc%8f%e3%80%81operator%20new%e5%92%8cplacement%20new&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fnew%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
+  </a>
   
-    <li>
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fnew%2f&t=new%e8%a1%a8%e8%be%be%e5%bc%8f%e3%80%81operator%20new%e5%92%8cplacement%20new" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
+  </a>
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/new/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
+  </a>
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
+  </a>
+</div>
 
-
-    </li>
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#new和operator-new">new和operator new</a></li>
+    <li><a href="#new和new">new和::new</a></li>
+    <li><a href="#new和placement-new">new和placement new</a></li>
   </ul>
+</nav>
+    <p>C++中<code>new</code>关键字和<code>delete</code>关键字我们肯定都使用过，它们是对堆中的内存进行申请和释放的操作，这两个操作是不能被重载的。有的同学可能会被问到，如何实现自定义内存分配行为。搞懂这个问题之前，我们需要先了解<code>new</code>表达式、<code>operator new</code>和<code>placement new</code>之间的关系。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<h2 id="new和operator-new">new和operator new</h2>
+<p>我们通常使用关键字<code>new</code>的方式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">Foo</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Foo</span><span class="p">();</span>
+</code></pre></div><p>这是一个new表达式，实际上等价于以下代码：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">Foo</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">void</span><span class="o">*</span> <span class="n">raw</span> <span class="o">=</span> <span class="k">operator</span> <span class="k">new</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">Foo</span><span class="p">));</span> <span class="c1">//operator new
+</span><span class="ln">3</span><span class="c1"></span>
+<span class="ln">4</span><span class="k">try</span> <span class="p">{</span>
+<span class="ln">5</span>    <span class="n">p</span> <span class="o">=</span> <span class="k">new</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span> <span class="n">Foo</span><span class="p">();</span> <span class="c1">//placement new
+</span><span class="ln">6</span><span class="c1"></span><span class="p">}</span> <span class="k">catch</span><span class="p">(...)</span> <span class="p">{</span>
+<span class="ln">7</span>    <span class="k">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="n">raw</span><span class="p">);</span>
+<span class="ln">8</span>    <span class="k">throw</span><span class="p">;</span>
+<span class="ln">9</span><span class="p">}</span>
+</code></pre></div><p>new表达式实际上分为3步执行：</p>
+<ol>
+<li>
+<p>调用一个名为<code>operator new</code>的标准库函数，该函数从内存堆上分配一个足够大的、原始的、未命名的内存空间。若成功则返回该段内存地址，若失败则调用一个<code>new_handler</code>，然后继续前面的过程。</p>
+</li>
+<li>
+<p>调用一个<code>placement new</code>构造对象，并为其传入初始值。</p>
+</li>
+<li>
+<p>对象被分配了空间并构造完成，返回一个指向该对象的指针。</p>
+</li>
+</ol>
+<p>事实上，<code>operator new</code>是允许重载的，如果在类中重载了<code>operator new</code>，则调用的是<code>void* Foo::operator new(size_t size)</code>；如果没有重载，则调用的是全局的<code>void* ::operator new(size_t size)</code>。</p>
+<p>重载<code>operator new</code>时可以添加新的参数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">Test</span> <span class="p">{</span>
+<span class="ln">2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">3</span>    <span class="c1">//重载时可以增加额外参数
+</span><span class="ln">4</span><span class="c1"></span>    <span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">param</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">5</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Call override operator new with param &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">param</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">6</span>        <span class="k">return</span> <span class="o">::</span><span class="k">operator</span> <span class="k">new</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="ln">7</span>    <span class="p">}</span>
+<span class="ln">8</span><span class="p">};</span>
+</code></pre></div><p><code>operator new</code>有一个特殊的版本不可以被重载，即后面我们要提到的<code>placement new</code>。</p>
+<p>重载全局的<code>::operator new</code>比较少见，一旦重载，所有<code>new</code>的行为将被改变，内部就只能使用<code>malloc</code>来分配内存了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="c1">//...
+</span><span class="ln">3</span><span class="c1"></span>    <span class="k">return</span> <span class="n">malloc</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="ln">4</span><span class="p">}</span>
+</code></pre></div><p>所以，要实现不同的内存分配行为，应该重载<code>operator new</code>，而不是<code>new</code>。</p>
+<p>C++标准库定义了以下8个版本的<code>operator new</code>和<code>operator delete</code>，其中前4个可能抛出<code>bad_alloc</code>异常，而后4个版本不会抛出异常：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//以下版本可能抛出异常
+</span><span class="ln"> 2</span><span class="c1"></span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span><span class="p">);</span>
+<span class="ln"> 3</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">[](</span><span class="n">size_t</span><span class="p">);</span>
+<span class="ln"> 4</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="ln"> 5</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">[](</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="c1">//以下版本不会抛出异常
+</span><span class="ln"> 8</span><span class="c1"></span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="ln"> 9</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">[](</span><span class="n">size_t</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="ln">10</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">delete</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+<span class="ln">11</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="k">new</span><span class="p">[](</span><span class="kt">void</span><span class="o">*</span><span class="p">,</span> <span class="n">nothrow_t</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">;</span>
+</code></pre></div><p>尽管<code>new</code>表达式和<code>delete</code>表达式默认都会调用<code>operator new</code>和<code>operator delete</code>，但是它们都是标准库函数，普通代码也是可以直接调用的。</p>
+<h2 id="new和new">new和::new</h2>
+<p>默认情况下编译器会将关键字<code>new</code>翻译成全局<code>::operator new</code>和相应的构造函数。</p>
+<p>当<code>operator new</code>在类中被重载，而有些地方又想使用默认的<code>operator new</code>，就应该写成<code>::new</code>，即调用全局的<code>::operator new</code>。</p>
+<h2 id="new和placement-new">new和placement new</h2>
+<p><code>placement new</code>允许我们在一个特定的、已分配好的内存空间上直接构造对象，且这块内存空间可以暂存，反复用来构造对象，节省<code>new</code>时大量的系统调用开销。</p>
+<p><code>placement new</code>的调用原型如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">new</span> <span class="p">(</span><span class="n">place_addr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span>
+<span class="ln">2</span><span class="k">new</span> <span class="p">(</span><span class="n">place_addr</span><span class="p">)</span> <span class="n">T</span><span class="p">(</span><span class="n">initializer</span><span class="p">);</span>
+<span class="ln">3</span><span class="k">new</span> <span class="p">(</span><span class="n">place_addr</span><span class="p">)</span> <span class="n">T</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>
+<span class="ln">4</span><span class="k">new</span> <span class="p">(</span><span class="n">place_addr</span><span class="p">)</span> <span class="n">T</span><span class="p">[</span><span class="n">size</span><span class="p">]</span> <span class="p">{</span><span class="n">initializer</span> <span class="n">list</span><span class="p">}</span>
+</code></pre></div><p>其中<code>place_addr</code>必须是一个指针，同时initializer中提供了一个以逗号分隔的初始值列表，该初始值列表用于构造新分配的对象。</p>
+<p>其实，<code>placement new</code>本质上只是<code>operator new</code>的一个特殊重载版本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="k">throw</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">p</span><span class="p">;</span> <span class="p">}</span>
+</code></pre></div><p>可以看到，<code>placement new</code>的执行忽略了<code>size_t</code>参数，只返回第二个参数，其结果是允许用户把一个对象放到一个特定的地方，达到调用构造函数的效果。我们来看一个具体例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="kt">char</span><span class="o">*</span> <span class="n">ptr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="p">[</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)];</span> <span class="c1">//分配内存
+</span><span class="ln"> 2</span><span class="c1"></span>
+<span class="ln"> 3</span><span class="n">T</span><span class="o">*</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span> <span class="c1">//placement new构造对象
+</span><span class="ln"> 4</span><span class="c1"></span>
+<span class="ln"> 5</span><span class="n">t</span><span class="o">-&gt;~</span><span class="n">T</span><span class="p">();</span> <span class="c1">//析构对象t，注意此时不释放内存；使用placement new构造的对象，只能手动调用析构函数
+</span><span class="ln"> 6</span><span class="c1"></span>
+<span class="ln"> 7</span><span class="n">T</span><span class="o">*</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span> <span class="n">T</span><span class="p">;</span> <span class="c1">//复用内存，placement new构造新对象
+</span><span class="ln"> 8</span><span class="c1"></span>
+<span class="ln"> 9</span><span class="n">t2</span><span class="o">-&gt;~</span><span class="n">T</span><span class="p">();</span> <span class="c1">//析构对象t2，注意此时不释放内存
+</span><span class="ln">10</span><span class="c1"></span>
+<span class="ln">11</span><span class="k">delete</span><span class="p">[]</span> <span class="n">ptr</span><span class="p">;</span> <span class="c1">//真正释放内存
+</span><span class="ln">12</span><span class="c1"></span>
+</code></pre></div><p>总之，利用<code>placement new</code>可以对一块内存进行反复构造，这样节省了中间多次请求分配内存带来的开销。</p>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -146,9 +265,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/" class="nav-link">new表达式、operator new和placement new</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" class="nav-link">仿函数</a>
@@ -160,9 +276,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/" class="nav-link">new表达式、operator new和placement new</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" class="nav-link">仿函数</a>
@@ -370,9 +483,34 @@
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

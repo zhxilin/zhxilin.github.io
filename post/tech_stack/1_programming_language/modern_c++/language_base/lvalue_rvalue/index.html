@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>Software Engineer | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>左值&amp;右值，左值引用&amp;右值引用 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Software Engineer" />
-<meta property = "og:url" content = "https://zhxilin.github.io/tags/software-engineer/" />
-<meta property = "og:title" content = "Software Engineer" />
-<meta property = "og:description" content = "" />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
+<meta name = "twitter:title" content = "左值&amp;右值，左值引用&amp;右值引用" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" />
+<meta property = "og:title" content = "左值&amp;右值，左值引用&amp;右值引用" />
+<meta property = "og:description" content = "Article description." />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/lvalue_rvalue.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/tags/software-engineer/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,9 @@
   
   
     
+    
   
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="false" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -97,92 +98,251 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/summary/'>服务端技术栈知识体系</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>左值&amp;右值，左值引用&amp;右值引用</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Dec 13, 2021</span>
+    Apr 11, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
-  <a href = 'https://zhxilin.github.io/tags/algorigthm' class = 'post_tag button button_translucent'>Algorigthm
+</div>
+
+    <div class='post_share'>
+  Share on:
+  <a href="https://twitter.com/intent/tweet?text=%e5%b7%a6%e5%80%bc%26%e5%8f%b3%e5%80%bc%ef%bc%8c%e5%b7%a6%e5%80%bc%e5%bc%95%e7%94%a8%26%e5%8f%b3%e5%80%bc%e5%bc%95%e7%94%a8&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2flvalue_rvalue%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/data-structure' class = 'post_tag button button_translucent'>Data Structure
+  
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2flvalue_rvalue%2f&t=%e5%b7%a6%e5%80%bc%26%e5%8f%b3%e5%80%bc%ef%bc%8c%e5%b7%a6%e5%80%bc%e5%bc%95%e7%94%a8%26%e5%8f%b3%e5%80%bc%e5%bc%95%e7%94%a8" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/operating-system' class = 'post_tag button button_translucent'>Operating System
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/lvalue_rvalue/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/networks' class = 'post_tag button button_translucent'>Networks
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/database' class = 'post_tag button button_translucent'>Database
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/compilation-principle' class = 'post_tag button button_translucent'>Compilation Principle
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/distributed-system-design' class = 'post_tag button button_translucent'>Distributed System Design
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/software-engineer' class = 'post_tag button button_translucent'>Software Engineer
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/application-technology' class = 'post_tag button button_translucent'>Application Technology
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
   </a>
 </div>
 
-    </div>
-    <div class = 'excerpt_footer partition'>
-      <div class = 'excerpt_thumbnail'>
-      <img src = 'https://zhxilin.github.io/images/tech_stack_summary.png'>
-      </div>
-      
-        <div>
-          <p class = 'pale'><p>本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。</p>
-<p>本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。</p>
-<p>阅读本系列文章适合具备一定计算机编程基础的同学。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/summary/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/8_software_engeering/summary/'>软件工程</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 8, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/software-engineer' class = 'post_tag button button_translucent'>Software Engineer
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/8_software_engeering/summary/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-    <li>
-
-
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">200 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#expression表达式">expression表达式</a>
+      <ul>
+        <li><a href="#lvalue左值">lvalue左值</a></li>
+        <li><a href="#prvalue纯右值">prvalue纯右值</a></li>
+        <li><a href="#xvalue将亡值">xvalue将亡值</a></li>
+        <li><a href="#glvalue泛左值">glvalue泛左值</a></li>
+        <li><a href="#rvalue右值">rvalue右值</a></li>
+        <li><a href="#特殊情况">特殊情况</a></li>
+      </ul>
     </li>
+    <li><a href="#左值引用和右值引用">左值引用和右值引用</a></li>
   </ul>
+</nav>
+    <p>C++11引入了右值引用的概念，用以区分C++11之前的引用（统称左值引用）。那么什么是右值引用？右值又是什么？和左值、左值引用有什么关系和区别？本节内容将一一解答。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<h2 id="expression表达式">expression表达式</h2>
+<p>要搞清楚左值和右值的概念，首先需要了解表达式的概念。</p>
+<p>表达式，expression，是指由运算符(operator)和运算对象(operand)构成的计算式。字面值(literal)和变量(variable)是最基本的表达式，函数返回值也是表达式。表达式是可以求值的，对表达式求值将得到一个结果，这个结果包含两个属性——类型(type)和值类别(value categoties)。</p>
+<p>在现代C++中，一个表达式的值类型可以划分为：泛左值(<code>glvalue</code>)和右值(<code>rvalue</code>)。泛左值又可以划分为左值(<code>lvalue</code>)和将亡值(<code>xvalue</code>)，右值又可以划分为将亡值(<code>xvalue</code>)和纯右值(<code>prvalue</code>)。它们的关系可以用一张图来表示：</p>
+<p><img src="/images/lvalue_rvalue.png" alt="表达式分类"></p>
+<p><code>glvalue</code> = <code>lvalue</code> + <code>xvalue</code></p>
+<p><code>rvalue</code> = <code>prvalue</code> + <code>xvalue</code></p>
+<p>你肯定一脸疑惑，我们接下来逐一展开细说。对于左值、将亡值、纯右值其实只是表达式的属性，主要体现在使用上，比如能否取地址、能否使用移动语义等。</p>
+<h3 id="lvalue左值">lvalue左值</h3>
+<p><code>lvalue</code>名为左值，是<code>locator value</code>的缩写，并不是<code>left value</code>，这点要特别强调。所以从字面意思也能看出，<code>lvalue</code>是表示对象位置之物，在表达式结束后依然持有对象地址，可以起到定位的作用。</p>
+<ul>
+<li>
+<p>左值最重要的特点是可以取地址，这是区分右值的唯一标志。</p>
+</li>
+<li>
+<p>可修改的左值可以是赋值操作符的左操作数，但不是绝对，等号左边的值不一定是左值。</p>
+</li>
+<li>
+<p>所有具名对象或变量都是左值。</p>
+</li>
+</ul>
+<p>常见的左值表达式有以下类型：</p>
+<ul>
+<li>
+<p>具名变量、函数指针，如<code>std::cin</code>、<code>std::cout</code></p>
+</li>
+<li>
+<p>返回左值引用的函数调用</p>
+</li>
+<li>
+<p>赋值或组合赋值类型，如<code>a = b</code>、<code>a += b</code></p>
+</li>
+<li>
+<p>前置自增或前置自减，如<code>++i</code>、<code>--i</code></p>
+</li>
+<li>
+<p>解引用表达式，如<code>*p</code></p>
+</li>
+<li>
+<p>逗号表达式的最右的值是左值，如<code>a, b</code>，其中<code>b</code>是左值</p>
+</li>
+<li>
+<p>条件表达式，如<code>a ? b : c</code>，其中<code>b</code>和<code>c</code>是左值</p>
+</li>
+<li>
+<p>字符串字面值：<code>&quot;Hello World&quot;</code></p>
+</li>
+<li>
+<p>引用的强制转型表达式：<code>static_cast&lt;int&amp;&gt;(x);</code></p>
+</li>
+<li>
+<p>右值引用强转函数类型：<code>staic_cast&lt;void(&amp;&amp;)(int)&gt;(x);</code></p>
+</li>
+</ul>
+<p>总之，左值一定可以取地址，有名字的变量一定是左值（即使是<code>void foo(T&amp;&amp; x)</code>中的<code>x</code>也是左值，因为右值引用是有名字的，故右值引用也是左值）。等号左边的不一定是左值，因为<code>=</code>运算符是可以重载的，完全可以使等号左边重载为右值的形式。</p>
+<h3 id="prvalue纯右值">prvalue纯右值</h3>
+<p><code>prvalue</code>是<code>pure rvalue</code>的缩写，纯粹的字面值（如<code>25</code>、<code>true</code>），或者求值结果是字面值或不具名的临时对象时，是一个纯右值。</p>
+<ul>
+<li>
+<p>纯右值不能是多态类型</p>
+</li>
+<li>
+<p>非<code>class</code>的类型和非数组的纯右值不能被<code>const</code>和<code>volatile</code>修饰。</p>
+</li>
+<li>
+<p>纯右值不能是不完整类型</p>
+</li>
+</ul>
+<p>常见的纯右值表达式有以下类型：</p>
+<ul>
+<li>
+<p>除字符串字面值外的其他字面值量，如<code>nullptr</code>、<code>true</code>、<code>false</code></p>
+</li>
+<li>
+<p>返回非引用类型的函数调用</p>
+</li>
+<li>
+<p>后置自增或后置自减，如<code>i++</code>、<code>i--</code></p>
+</li>
+<li>
+<p>算数表达式，如<code>a + b</code>、<code>a % b</code>、<code>a &amp; b</code></p>
+</li>
+<li>
+<p>逻辑表达式，如<code>a &amp;&amp; b</code>、<code>~a</code></p>
+</li>
+<li>
+<p>比较表达式，如<code>a &lt; b</code>、<code>a &gt;= b</code></p>
+</li>
+<li>
+<p>取址表达式，如<code>&amp;a</code>，其结果相当于一个<code>unsigned int</code>类型的字面值</p>
+</li>
+<li>
+<p>逗号表达式的最右的值是右值，如<code>a, b</code>，其中<code>b</code>是右值</p>
+</li>
+<li>
+<p><code>this</code>指针，因为<code>this</code>也是一个地址</p>
+</li>
+<li>
+<p>非引用的强制转型表达式：<code>static_cast&lt;int&gt;(x);</code>、<code>(int)42</code></p>
+</li>
+<li>
+<p>lambda表达式：<code>[](int x) { return x * x; };</code></p>
+</li>
+</ul>
+<h3 id="xvalue将亡值">xvalue将亡值</h3>
+<p>在C++11之前，右值和C++11的纯右值是等价的；而将亡值是伴随右值引用加入的概念。将亡值是由右值引用产生而引起的。</p>
+<p>用左值去初始化或赋值给一个对象时，会调用拷贝构造函数或拷贝赋值运算符；而用右值去初始化或赋值给一个对象时，会调用移动构造函数或移动赋值运算符。当该右值完成初始化或赋值后，它的资源已经被移动给了被初始化或被赋值的对象上，该右值马上会被析构销毁，即“将亡”。</p>
+<p>常见的将亡值表达式有以下类型：</p>
+<ul>
+<li>
+<p>返回右值引用的函数调用，如<code>std::move(x)</code></p>
+</li>
+<li>
+<p>转换为右值引用的转换函数调用，如<code>static_cast&lt;T&amp;&amp;&gt;(x)</code></p>
+</li>
+</ul>
+<p>以上两种情况的函数调用返回值都是不具名的右值引用，它们属于右值，又因为都与C++11新加入的移动语义相关，故被这类右值称为“将亡值”。<code>xvalue</code>与<code>prvalue</code>在功能上及其类似，都不能作作为操作符的左操作数，都可以使用移动构造和移动赋值。</p>
+<p><strong>具名的右值引用是左值，不具名的右值引用是右值。</strong></p>
+<h3 id="glvalue泛左值">glvalue泛左值</h3>
+<p>泛左值要么是左值，要么是将亡值。具有以下特点：</p>
+<ul>
+<li>
+<p><code>glvalue</code>可以隐式地转换为纯右值：lvalue-&gt;rvalue的隐式转换、数组到指针的隐式转换、函数到指针的隐式转换</p>
+</li>
+<li>
+<p><code>glvalue</code>可以是多态类型的</p>
+</li>
+<li>
+<p><code>glvalue</code>可以是不完整类型</p>
+</li>
+</ul>
+<h3 id="rvalue右值">rvalue右值</h3>
+<p>右值要么是纯右值，要么是将亡值。<code>rvalue</code>，是<code>read value</code>的缩写，并不是<code>right value</code>，这点要特别强调。具有以下特点：</p>
+<ul>
+<li>
+<p><code>rvalue</code>不可取地址</p>
+</li>
+<li>
+<p><code>rvalue</code>不可用于赋值运算符或组合赋值的左操作数</p>
+</li>
+<li>
+<p><code>rvalue</code>可以用来初始化<code>const</code>左值引用，这样<code>rvalue</code>的生命周期将被延长至该作用域结束</p>
+</li>
+<li>
+<p><code>rvalue</code>可以用来初始化一个右值引用，这样<code>rvalue</code>的生命周起也被延长至该作用域结束</p>
+</li>
+<li>
+<p>如果存在一个函数的两个重载（只有某个参数不同，且这个参数在一个重载中是右值引用，另一个是<code>const</code>左值引用），此时用右值调用这个重载函数，将会匹配右值引用的函数</p>
+</li>
+</ul>
+<h3 id="特殊情况">特殊情况</h3>
+<ul>
+<li>
+<p><code>void</code>表达式，函数返回值是<code>void</code>、强制类型转化为<code>void</code>、<code>throw</code>异常都被归类为纯右值，但是它们不可以用来初始化<code>const</code>左值引用或右值引用，也不能作用函数的参数。</p>
+</li>
+<li>
+<p>位域(bit field)是左值，但是位域不能取地址，也不能将一个非<code>const</code>引用绑定到位域上。但是<code>const</code>引用可以绑定到位域上，此时会产生一个临时变量。</p>
+</li>
+</ul>
+<h2 id="左值引用和右值引用">左值引用和右值引用</h2>
+<p>顾名思义，左值引用，是只能用来绑定左值的引用；右值引用，是只能用来绑定右值的引用。但<code>const</code>左值引用既可以绑定非<code>const</code>左值，又可以绑定<code>const</code>左值，还可以绑定右值。</p>
+<p>右值引用往往是将不具名的变量取别名，这样一来该右值引用具名了，变成了一个左值。所以右值引用不一定是右值，也可以是左值。请看以下例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">foo</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="p">));</span> <span class="c1">//std::move的返回值是一个右值引用，因为不具名，所以是个右值
+</span><span class="ln">2</span><span class="c1"></span>
+<span class="ln">3</span><span class="kt">int</span><span class="o">&amp;&amp;</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="c1">//std::move的返回值是一个右值引用，但该右值引用有名字temp，所以是一个左值
+</span></code></pre></div><p>右值引用是用来支持转移语义的。转移语义可以将资源如堆、系统对象等从一个对象转移到另一个对象，这样能够减少不必要的临时对象的创建、拷贝以及销毁，能够大幅度提高C++应用程序的性能。在后面的章节中我们将进一步讨论<a href="/post/tech_stack/1_programming_language/modern_c++/c++11/move_forward">C++的移动语义</a>。</p>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -197,9 +357,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" class="nav-link">左值&amp;右值，左值引用&amp;右值引用</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/" class="nav-link">new表达式、operator new和placement new</a>
@@ -211,9 +368,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" class="nav-link">左值&amp;右值，左值引用&amp;右值引用</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/new/" class="nav-link">new表达式、operator new和placement new</a>
@@ -421,9 +575,34 @@
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

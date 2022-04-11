@@ -203,7 +203,7 @@
 <span class="ln">6</span>        <span class="k">return</span> <span class="o">::</span><span class="k">operator</span> <span class="k">new</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
 <span class="ln">7</span>    <span class="p">}</span>
 <span class="ln">8</span><span class="p">};</span>
-</code></pre></div><p><code>operator new</code>有一个特殊的版本不可以被重载，即后面我们要提到的<code>placement new</code>。</p>
+</code></pre></div><p><code>operator new</code>有一个特殊的版本不可以被重载，即后面我们要提到的<a href="#new%E5%92%8Cplacement-new">placement new</a>。</p>
 <p>重载全局的<code>::operator new</code>比较少见，一旦重载，所有<code>new</code>的行为将被改变，内部就只能使用<code>malloc</code>来分配内存了：</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">void</span><span class="o">*</span> <span class="k">operator</span> <span class="nf">new</span><span class="p">(</span><span class="n">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
 <span class="ln">2</span>    <span class="c1">//...
@@ -265,10 +265,10 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-    
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" class="nav-link">仿函数</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" class="nav-link">左值&amp;右值，左值引用&amp;右值引用</a>
       </li>
+    
     
     </ul>
     <h2 class="mt-4">Recent Posts</h2>
@@ -276,6 +276,9 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
+      </li>
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" class="nav-link">左值&amp;右值，左值引用&amp;右值引用</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/functor/" class="nav-link">仿函数</a>
@@ -292,9 +295,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/9_application_technology/summary/" class="nav-link">应用技术</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/8_software_engeering/summary/" class="nav-link">软件工程</a>
-      </li>
     </ul> 
     
     <div>
@@ -302,12 +302,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>15</span>
+          <span class='button_tally'>16</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>15</span>
+          <span class='button_tally'>16</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -324,7 +324,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>8</span>
+          <span class='button_tally'>9</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -410,7 +410,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=8>C&#43;&#43;<span class='button_tally'>8</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=9>C&#43;&#43;<span class='button_tally'>9</span>
             </a>
             
             

@@ -140,7 +140,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">200 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
@@ -259,7 +259,7 @@
 <p>如果有作用域符，以<code>E</code>结尾</p>
 </li>
 <li>
-<p>最后加上函数形参的符号，<code>void</code>-&gt;<code>v</code>，<code>int</code>-&gt;<code>i</code>，<code>char</code>-&gt;<code>c</code>，<code>P</code>代表指针，有几个参数就写几个符号。</p>
+<p>最后加上函数形参的符号，<code>void</code>-&gt;<code>v</code>，<code>int</code>-&gt;<code>i</code>，<code>char</code>-&gt;<code>c</code>，<code>P</code>代表指针，<code>R</code>代表引用，<code>K</code>代表<code>const</code>，有几个参数就写几个符号。</p>
 </li>
 </ul>
 <p>可以看到name mangling与函数返回值无关。</p>
@@ -280,7 +280,10 @@
 <span class="ln">14</span><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">//_Z4funcii
 </span><span class="ln">15</span><span class="c1"></span>
 <span class="ln">16</span><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">zhxilin</span><span class="o">::</span><span class="n">Test</span><span class="o">*</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">//_Z4funcPN7zhxilin4TestE
-</span></code></pre></div><p>Linux提供了一个工具<code>c++filt</code>可以用来将编码后的符号还原成易读的格式</p>
+</span><span class="ln">17</span><span class="c1"></span>
+<span class="ln">18</span><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">zhxilin</span><span class="o">::</span><span class="n">Test</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{}</span> <span class="c1">//_Z4funcRKN7zhxilin4TestE
+</span></code></pre></div><p>更详细的规则可以参阅<a href="https://github.com/gchatelet/gcc_cpp_mangling_documentation">gcc_cpp_mangling_documentation</a>。</p>
+<p>Linux提供了一个工具<code>c++filt</code>可以用来将编码后的符号还原成易读的格式</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ c++filt _Z4funcPN7zhxilin4TestE
 <span class="ln">2</span>func<span class="o">(</span>zhxilin::Test*<span class="o">)</span>
 </code></pre></div>

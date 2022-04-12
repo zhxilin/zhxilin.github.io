@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>volatile的作用</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/</link>
+      <pubDate>Tue, 12 Apr 2022 10:19:28 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/</guid>
+      <description>&lt;p&gt;C++中&lt;code&gt;volatile&lt;/code&gt;和&lt;code&gt;const&lt;/code&gt;对应，都是用来修饰变量的关键字。&lt;code&gt;volatile&lt;/code&gt;关键字通常用来建立语言级别的&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C&#34;&gt;内存屏障（memory barrier）&lt;/a&gt;。为什么要使用&lt;code&gt;volatile&lt;/code&gt;？&lt;code&gt;volatile&lt;/code&gt;关键字的含义是什么？&lt;code&gt;volatile&lt;/code&gt;与多线程有什么关系？本节内容将一一解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>左值&amp;右值，左值引用&amp;右值引用</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/</link>
       <pubDate>Mon, 11 Apr 2022 16:22:51 +0800</pubDate>

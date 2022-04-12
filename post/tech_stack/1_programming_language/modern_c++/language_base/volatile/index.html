@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>Posts | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>volatile的作用 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -12,16 +12,15 @@
   gtag('js', new Date());
   gtag('config', 'XXXXXXXXXX');
 </script>
-  
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Posts" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/" />
-<meta property = "og:title" content = "Posts" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "volatile的作用" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/" />
+<meta property = "og:title" content = "volatile的作用" />
+<meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -32,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -47,8 +46,9 @@
   
   
     
+    
   
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="false" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -98,218 +98,168 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/summary/'>服务端技术栈知识体系</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>volatile的作用</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Dec 13, 2021</span>
+    Apr 12, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
-  <a href = 'https://zhxilin.github.io/tags/algorigthm' class = 'post_tag button button_translucent'>Algorigthm
+</div>
+
+    <div class='post_share'>
+  Share on:
+  <a href="https://twitter.com/intent/tweet?text=volatile%e7%9a%84%e4%bd%9c%e7%94%a8&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fvolatile%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/data-structure' class = 'post_tag button button_translucent'>Data Structure
+  
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fvolatile%2f&t=volatile%e7%9a%84%e4%bd%9c%e7%94%a8" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/operating-system' class = 'post_tag button button_translucent'>Operating System
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/volatile/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/networks' class = 'post_tag button button_translucent'>Networks
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/database' class = 'post_tag button button_translucent'>Database
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/compilation-principle' class = 'post_tag button button_translucent'>Compilation Principle
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/distributed-system-design' class = 'post_tag button button_translucent'>Distributed System Design
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/software-engineer' class = 'post_tag button button_translucent'>Software Engineer
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/application-technology' class = 'post_tag button button_translucent'>Application Technology
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
   </a>
 </div>
 
-    </div>
-    <div class = 'excerpt_footer partition'>
-      <div class = 'excerpt_thumbnail'>
-      <img src = 'https://zhxilin.github.io/images/tech_stack_summary.png'>
-      </div>
-      
-        <div>
-          <p class = 'pale'><p>本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。</p>
-<p>本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。</p>
-<p>阅读本系列文章适合具备一定计算机编程基础的同学。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/summary/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/'>SSL certificate and nginx config</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Sep 28, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/web-sequrity' class = 'post_tag button button_translucent'>Web Sequrity
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
-  </a>
-</div>
-
-    </div>
-    <div class = 'excerpt_footer partition'>
-      <div class = 'excerpt_thumbnail'>
-      <img src = 'https://zhxilin.github.io/images/certificate_issue_process.png'>
-      </div>
-      
-        <div>
-          <p class = 'pale'>HTTP, as an application layer protocol, remains focused on presenting information, but cares less about the way this information travels from one place to another. Unfortunaly, this means that HTTP can be intercepted and potentially altered, making both the information and the information receiver vulnerable.
-HTTPS …</p>
-          <a href='https://zhxilin.github.io/post/ssl_certificate_and_nginx_config/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/'>Solve Slow Access To Gitlab via ssh</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Sep 8, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/gitlab' class = 'post_tag button button_translucent'>Gitlab
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'>I&rsquo;ve deployed a custom gitlab server for my team. I found that it&rsquo;s weired that when clone, pull, push or fetch codes from the gitlab server via SSH, it performs slow response times for each access. But it works perfectly via HTTPS.
-After seaching sort of posts, it&rsquo;s pointed that the SSH service of …</p>
-          <a href='https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/ubuntu_update_alternatives/'>Update multiple versions of dev tools under Ubuntu</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Aug 15, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'>Since different projects may require different versions of the same dev tool, we have to install multiple versions of them and provide a way for quick switch. This post introduces how to use update-alternatives command to switch dev tool versions under Ubuntu.
-I will take protoc for example.
- ProjectA requires protoc …</p>
-          <a href='https://zhxilin.github.io/post/ubuntu_update_alternatives/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/wsl2_network_forwarding/'>WSL2 Network Forwarding</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Jul 20, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/wsl2' class = 'post_tag button button_translucent'>WSL2
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'>With the WSL2 Released, Microsoft has made a big change on the system architecture, including changing from the default bridged network adapter to a hyper-v virtual network adapter.
-The new version of WSL is built on Hyper-V, which provides independent virtual network adapter for the virtual matchine. Therefore, WSL2 …</p>
-          <a href='https://zhxilin.github.io/post/wsl2_network_forwarding/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/'>What&#39;s std::ios::sync_with_stdio(false) and std::cin.tie(nullptr)?</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Aug 5, 2020</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/algorithm' class = 'post_tag button button_translucent'>Algorithm
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'>You may often see the following calls std::ios::sync_with_stdio(false) and std::cin.tie(nullptr) in some online judge system, such as leetcode, poj, etc. Someone would tell you that these codes are usually used to speed up the execution time. But what is the exact meanings for these codes?
-1static auto _ = []() { 2 …</p>
-          <a href='https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-    <li>
-
-
-    </li>
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么要使用volatile">为什么要使用volatile？</a></li>
+    <li><a href="#volatile关键字的含义">volatile关键字的含义</a></li>
+    <li><a href="#volatile与多线程有什么关系">volatile与多线程有什么关系？</a></li>
   </ul>
+</nav>
+    <p>C++中<code>volatile</code>和<code>const</code>对应，都是用来修饰变量的关键字。<code>volatile</code>关键字通常用来建立语言级别的<a href="https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C">内存屏障（memory barrier）</a>。为什么要使用<code>volatile</code>？<code>volatile</code>关键字的含义是什么？<code>volatile</code>与多线程有什么关系？本节内容将一一解答。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<h2 id="为什么要使用volatile">为什么要使用volatile？</h2>
+<p><code>volatile</code>从字面上理解，是指被它修饰的对象有可能突然不可预期地发生变化。对于程序来说，代码的任何行为都必须是可预期的。那么在程序中什么样的情况才叫<code>volatile</code>。程序可能受到程序本身之外的因素影响，比如操作系统、硬件或者其他线程等。</p>
+<p>我们来看一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln">2</span>
+<span class="ln">3</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="c1">//其他代码并未明确告诉编译器对i进行过操作
+</span><span class="ln">6</span><span class="c1"></span><span class="p">...</span>
+<span class="ln">7</span>
+<span class="ln">8</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</code></pre></div><p>上面这段代码中，编译器发现两次从<code>i</code>读取数据的代码之间没有对<code>i</code>进行过操作，因此编译器会对指令进行优化：第一次读取<code>i</code>时访存取数据后，把它放置在CPU寄存器中；第二次读取<code>i</code>时为了提升效率，不再从内存读取数据，而是直接从CPU寄存器中读取。</p>
+<p>但是请注意，我们强调的是代码“没有明确地”提示编译器会改变内存中的<code>i</code>，编译器就会进行指令优化。什么情况是“没有明确地”提示编译器呢？我们接着往下看：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//a = 10
+</span><span class="ln"> 4</span><span class="c1"></span>
+<span class="ln"> 5</span><span class="c1">//插入一段汇编代码，用来改变内存中i的值为32
+</span><span class="ln"> 6</span><span class="c1">//通过插入汇编代码的方式改变代码行为的方式，不是“明确地”提示编译器。
+</span><span class="ln"> 7</span><span class="c1"></span><span class="kr">__asm</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="mi">20</span><span class="n">h</span>
+<span class="ln"> 9</span><span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//b = 10
+</span></code></pre></div><p>结果显示第二次读取<code>i</code>时，并没有重新访存读取最新的数值，而是直接读取了CPU缓存，导致运行结果与预期不符合。为了解决这种非预期的问题，<code>volatile</code>应运而生。来看一下加入<code>volatile</code>修饰后的结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">volatile</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//a = 10
+</span><span class="ln"> 4</span><span class="c1"></span>
+<span class="ln"> 5</span><span class="c1">//插入一段汇编代码，用来改变内存中i的值为32
+</span><span class="ln"> 6</span><span class="c1">//通过插入汇编代码的方式改变代码行为的方式，不是“明确地”提示编译器。
+</span><span class="ln"> 7</span><span class="c1"></span><span class="kr">__asm</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">ebp</span><span class="o">-</span><span class="mi">4</span><span class="p">],</span> <span class="mi">20</span><span class="n">h</span>
+<span class="ln"> 9</span><span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="c1">//b = 32
+</span></code></pre></div><p>结果显示第二次读取<code>i</code>时，总是重新访存读取最新数值，不再从CPU缓存读取，这样依赖代码就符合预期了。</p>
+<h2 id="volatile关键字的含义">volatile关键字的含义</h2>
+<p>在<a href="https://en.cppreference.com/w/">cppreference</a>网站上，对<code>volatile</code>关键字有如下<a href="https://en.cppreference.com/w/cpp/language/cv">解释</a>：</p>
+<blockquote>
+<p><em><strong>volatile object</strong></em> - an object whose type is volatile-qualified, or a subobject of a volatile object, or a mutable subobject of a const-volatile object. Every access (read or write operation, member function call, etc.) made through a glvalue expression of volatile-qualified type is treated as a visible side-effect for the purposes of optimization (that is, within a single thread of execution, volatile accesses cannot be optimized out or reordered with another visible side effect that is sequenced-before or sequenced-after the volatile access. This makes volatile objects suitable for communication with a signal handler, but not with another thread of execution, see std::memory_order). Any attempt to refer to a volatile object through a glvalue of non-volatile type (e.g. through a reference or pointer to non-volatile type) results in undefined behavior.</p>
+</blockquote>
+<p>翻译过来就是，对被<code>volatile</code>关键字修饰的<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/lvalue_rvalue">泛左值<code>glvalue</code></a>的每一种操作（读写、成员函数调用等），会引发一些可观测的编译器优化副作用。</p>
+<p>在C++中，对<code>volatile</code>对象的访问，有编译器优化上的副作用：</p>
+<ul>
+<li>
+<p>不允许被优化消失（optimized ou）：编译器不能做任何假设和推理，必须按部就班地与内存进行交互（访存），复用CPU寄存器中的值是不允许出现的。</p>
+</li>
+<li>
+<p>执行顺序在另一个<code>volatile</code>对象的访问之前：两个表达式<code>E1</code>和<code>E2</code>之间，<code>E1</code>的求值动作和副作用都优先于<code>E2</code>的求值动作和副作用。但是这种对<code>volatile</code>对象访问的序列性，在多线程环境中不一定成立。</p>
+</li>
+</ul>
+<h2 id="volatile与多线程有什么关系">volatile与多线程有什么关系？</h2>
+<p>上一小节我们提到，对<code>volatile</code>对象访问的序列性，在多线程环境中不一定成立，这是什么意思呢？</p>
+<p>我们先从简单的<code>volatile</code>解决线程间变量读取方式的问题说起。</p>
+<p>我们现在很明确了，<code>volatile</code>就是阻止编译器优化（把变量放入CPU寄存器），而是用时必须从内存中真正取出。如果两个线程中一个读取寄存器，一个读取内存，那么势必造成逻辑错误。来看这个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//main thread
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">volatile</span> <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="c1">//thread 1
+</span><span class="ln"> 5</span><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">flag</span><span class="p">)</span> <span class="p">{...}</span>
+<span class="ln"> 6</span><span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c1">//thread 2
+</span><span class="ln"> 9</span><span class="c1"></span><span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="ln">10</span><span class="k">while</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="p">{...}</span>
+</code></pre></div><p>如果<code>flag</code>不使用<code>volatile</code>修饰，那么thread2中的<code>while</code>将陷入死循环，因为<code>flag</code>已经读取到CPU寄存器了，<code>while</code>语句在读取<code>flag</code>时不会从内存重新读取，而是一直从CPU寄存器读取，等同于<code>while (true)</code>，因此进入死循环。加上<code>volatile</code>关键字之后，<code>while</code>语句每次只能从内存里读取<code>flag</code>的最新值，就不会进入死循环。</p>
+<p>然而，事情有想象的这样简单吗？我们进一步考虑一种情况：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//main thread
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">volatile</span> <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="ln"> 3</span>
+<span class="ln"> 4</span><span class="c1">//thread 1
+</span><span class="ln"> 5</span><span class="c1"></span><span class="n">MyType</span><span class="o">*</span> <span class="n">value</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyType</span><span class="p">();</span>
+<span class="ln"> 6</span><span class="n">thread2</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="ln"> 7</span><span class="k">while</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="p">{</span> <span class="n">apply</span><span class="p">(</span><span class="n">value</span><span class="p">);</span> <span class="p">}</span>
+<span class="ln"> 8</span><span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="ln"> 9</span><span class="n">t2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="c1">//thread 2
+</span><span class="ln">12</span><span class="c1"></span><span class="n">value</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">();</span>
+<span class="ln">13</span><span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</code></pre></div><p>在这个例子中，<code>flag</code>被<code>volatie</code>修饰，确实解决了<code>while</code>死循环的问题，但是<code>value</code>并不是。编译器仍有可能在优化thread2时，把<code>value-&gt;update()</code>和<code>flag = true</code>交换顺序，因为两句没有直接关系，编译器优化可能会对这里的顺序进行优化。从逻辑上看，如果交换了顺序，那么在thread1中调用<code>apply(value)</code>时，<code>value</code>仍然有可能是旧的。</p>
+<p>如果再对<code>value</code>加上<code>volatile</code>修饰呢？聪明的你一定看出来了，<code>value</code>加上<code>volatile</code>之后会阻止编译器优化，因而不会交换它们的顺序了。但是！</p>
+<p>我们的代码最终是在CPU中执行的，CPU的<code>memory_order</code>不同可能会导致指令是乱序执行的，在CPU执行时，<code>value-&gt;update()</code>和<code>flag = true</code>仍然可能被交换执行顺序。所以这种情况下，<code>volatile</code>并不能解决序列性的问题，还可能因为禁止编译器优化导致代码效率低下。所以我们有前面的结论：对<code>volatile</code>对象访问的序列性，在多线程环境中不一定成立。</p>
+<p>正确的做法应该是使用<code>std::atomic&lt;bool&gt;</code>，搭配<code>std::memory_order</code>可以构建良好的<a href="https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C">内存屏障</a>。</p>
+<blockquote>
+<p>内存屏障（英语：Memory barrier），也称内存栅栏，内存栅障，屏障指令等，是一类同步屏障指令，它使得 CPU 或编译器在对内存进行操作的时候, 严格按照一定的顺序来执行, 也就是说在内存屏障之前的指令和之后的指令不会由于系统优化等原因而导致乱序。</p>
+<p>大多数现代计算机为了提高性能而采取乱序执行，这使得内存屏障成为必须。</p>
+<p>语义上，内存屏障之前的所有写操作都要写入内存；内存屏障之后的读操作都可以获得同步屏障之前的写操作的结果。因此，对于敏感的程序块，写操作之后、读操作之前可以插入内存屏障。</p>
+</blockquote>
+<p>也可以使用互斥量、条件变量等多线程同步技术。我们将在后面的章节展开。</p>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -324,9 +274,6 @@ The new version of WSL is built on Hyper-V, which provides independent virtual n
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/" class="nav-link">volatile的作用</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" class="nav-link">左值&amp;右值，左值引用&amp;右值引用</a>
@@ -338,9 +285,6 @@ The new version of WSL is built on Hyper-V, which provides independent virtual n
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/" class="nav-link">volatile的作用</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/lvalue_rvalue/" class="nav-link">左值&amp;右值，左值引用&amp;右值引用</a>
@@ -548,9 +492,34 @@ The new version of WSL is built on Hyper-V, which provides independent virtual n
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

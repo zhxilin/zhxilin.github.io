@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>extern关键字</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/extern/</link>
+      <pubDate>Tue, 12 Apr 2022 14:21:09 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/extern/</guid>
+      <description>&lt;p&gt;在C++标准库中，我们经常可以看到&lt;code&gt;extern&lt;/code&gt;关键字的使用。围绕声明与定义、&lt;code&gt;extern&lt;/code&gt;和&lt;code&gt;static&lt;/code&gt;、&lt;code&gt;extern &amp;quot;C&amp;quot;&lt;/code&gt;，本节内容将尝试一次性讲清楚。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>volatile的作用</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/volatile/</link>
       <pubDate>Tue, 12 Apr 2022 10:19:28 +0800</pubDate>

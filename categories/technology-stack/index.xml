@@ -6,7 +6,7 @@
     <description>Recent content in Technology Stack on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 12 Apr 2022 14:21:09 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Apr 2022 17:23:56 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/categories/technology-stack/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,17 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>对象内存模型</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/object_memory_layout/</link>
+      <pubDate>Tue, 12 Apr 2022 17:23:56 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/object_memory_layout/</guid>
+      <description>&lt;p&gt;C++的三大特性是封装、继承和多态，而要理解这些特性的底层原理，就不得不说说C++对象的内存模型（布局）。&lt;/p&gt;
+&lt;p&gt;对于一个C++对象，每个对象有独立的非静态数据成员，而内存中只有一份成员函数，所有该类的对象共享成员函数；&lt;code&gt;static&lt;/code&gt;数据成员属于类，它们存储在静态存储区，该类的所有对象共享。当调用对象的成员函数时，又是怎么识别是哪个对象在调用呢？实际上，所有类的成员函数在编译期会被编译器重构成非成员函数，即将&lt;code&gt;this&lt;/code&gt;指针作为函数的第一个参数，这样在函数中通过&lt;code&gt;this&lt;/code&gt;指针就能找到属于该对象的其他数据成员了。这些都是理解C++对象内存模型的前提。&lt;/p&gt;
+&lt;p&gt;当出现了类的继承关系，且存在虚函数的时候，情况就复杂了。本节内容将详细介绍单一继承、多重继承、重复继承、虚拟继承等不同的继承方式的对象内存模型。&lt;/p&gt;</description>
     </item>
     
     <item>

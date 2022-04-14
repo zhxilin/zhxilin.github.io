@@ -140,7 +140,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">1600 Words | Read in about 8 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">2300 Words | Read in about 11 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
@@ -216,7 +216,32 @@
 </span><span class="ln">41</span><span class="cm">*/</span>
 </code></pre></div><p>请仔细阅读上述代码的注释，这样你会清楚如何通过对象地址获得各个虚函数的地址以及<code>type_info</code>对象的地址。关于<code>type_info</code>我们还将在后面<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/rtti">RTTI</a>的章节中介绍。</p>
 <p>我们可以通过这种方式来获取整个对象的内存布局，这些结构在内存中都是连续分布的，我们只需要知道地址偏移量，就可以得到具体的对象数据或函数。</p>
-<h2 id="单一继承">单一继承</h2>
+<p>gcc编译器还提供一个命令，可以用来导出内存布局结构：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>&gt;$ g++ -fdump-lang-class main.cpp
+</code></pre></div><p>执行后会生成一个<code>*.001l.class</code>后缀的文件，其中可以查看对象的内存布局，比如</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>Vtable for D
+<span class="ln"> 2</span>D::_ZTV1D: 20 entries
+<span class="ln"> 3</span>0     32
+<span class="ln"> 4</span>8     (int (*)(...))0
+<span class="ln"> 5</span>16    (int (*)(...))(&amp; _ZTI1D)
+<span class="ln"> 6</span>24    (int (*)(...))D::foo
+<span class="ln"> 7</span>32    (int (*)(...))D::baz
+<span class="ln"> 8</span>40    (int (*)(...))B::qux
+<span class="ln"> 9</span>48    (int (*)(...))D::quux
+<span class="ln">10</span>56    (int (*)(...))D::corge
+<span class="ln">11</span>64    16
+<span class="ln">12</span>72    (int (*)(...))-16
+<span class="ln">13</span>80    (int (*)(...))(&amp; _ZTI1D)
+<span class="ln">14</span>88    (int (*)(...))D::_ZThn16_N1D3fooEv
+<span class="ln">15</span>96    (int (*)(...))D::_ZThn16_N1D4quuxEv
+<span class="ln">16</span>104   (int (*)(...))C::quuz
+<span class="ln">17</span>112   0
+<span class="ln">18</span>120   18446744073709551584
+<span class="ln">19</span>128   (int (*)(...))-32
+<span class="ln">20</span>136   (int (*)(...))(&amp; _ZTI1D)
+<span class="ln">21</span>144   (int (*)(...))D::_ZTv0_n24_N1D3fooEv
+<span class="ln">22</span>152   (int (*)(...))A::bar
+</code></pre></div><h2 id="单一继承">单一继承</h2>
 <p>假设有如下图的继承关系：</p>
 <p><img src="/images/single_inheritance.png" alt="单一继承"></p>
 <p>对应的源代码为：</p>
@@ -302,6 +327,7 @@
 </code></pre></div><p>仔细观察，<code>vptr</code>的地址<code>0x7ffe4c28f740</code>与第一个成员变量<code>m1</code>的地址<code>0x7ffe4c28f748</code>相差是8个字节，说明<code>vptr</code>大小是8；而<code>m1</code>、<code>m2</code>、<code>m3</code>的地址差都是4个字节，即每个int的大小是4字节。</p>
 <p>该运行结果可以用下图直观的展示出来：</p>
 <p><img src="/images/single_inheritance_layout.png" alt="单一继承内存布局图"></p>
+<p><strong>图中<code>top_offset</code>指的是虚表指针地址与对象起始地址的偏移量</strong></p>
 <h2 id="多重继承">多重继承</h2>
 <p>假如有如下图的继承关系：</p>
 <p><img src="/images/multiple_inheritance.png" alt="多重继承"></p>
@@ -373,14 +399,14 @@
 <span class="ln"> 2</span>    <span class="o">[</span>0<span class="o">]</span> 0x55d3637dec80: C::foo<span class="o">()</span>
 <span class="ln"> 3</span>    <span class="o">[</span>1<span class="o">]</span> 0x55d3637dec88: A::bar<span class="o">()</span>
 <span class="ln"> 4</span>    <span class="o">[</span>2<span class="o">]</span> 0x55d3637dec90: A::baz<span class="o">()</span>
-<span class="ln"> 5</span>    <span class="o">[</span>3<span class="o">]</span> 0x55d3637dec98: C::qux<span class="o">()</span>  &lt;-- 注意这里，C类新增的虚函数直接追加到第一个父类的虚表空间中，且不会出现在第二个父类的虚表空间中
-<span class="ln"> 6</span>    <span class="o">[</span>4<span class="o">]</span> 0x55d3637deca0: <span class="m">1</span>       &lt;-- 注意这里为1，表示多继承父类还未结束
+<span class="ln"> 5</span>    <span class="o">[</span>3<span class="o">]</span> 0x55d3637dec98: C::qux<span class="o">()</span>    <span class="c1">#&lt;-- 注意这里，C类新增的虚函数直接追加到第一个父类的虚表空间中，且不会出现在第二个父类的虚表空间中</span>
+<span class="ln"> 6</span>    <span class="o">[</span>4<span class="o">]</span> 0x55d3637deca0: <span class="m">1</span>           <span class="c1">#&lt;-- 注意这里为1，表示多继承父类还未结束</span>
 <span class="ln"> 7</span><span class="o">[</span>1<span class="o">]</span> 0x7ffde775b188 A.m1 <span class="o">=</span> <span class="m">1</span>
 <span class="ln"> 8</span><span class="o">[</span>2<span class="o">]</span> 0x7ffde775b190 B::vptr-&gt;
 <span class="ln"> 9</span>    <span class="o">[</span>0<span class="o">]</span> 0x55d3637decb0: C::foo<span class="o">()</span>
 <span class="ln">10</span>    <span class="o">[</span>1<span class="o">]</span> 0x55d3637decb8: B::bar<span class="o">()</span>
 <span class="ln">11</span>    <span class="o">[</span>2<span class="o">]</span> 0x55d3637decc0: B::baz<span class="o">()</span>
-<span class="ln">12</span>    <span class="o">[</span>3<span class="o">]</span> 0x55d3637decc8: <span class="m">0</span>         &lt;-- 注意这里为0，表示多继承父类已结束
+<span class="ln">12</span>    <span class="o">[</span>3<span class="o">]</span> 0x55d3637decc8: <span class="m">0</span>           <span class="c1">#&lt;-- 注意这里为0，表示多继承父类已结束</span>
 <span class="ln">13</span><span class="o">[</span>3<span class="o">]</span> 0x7ffde775b198 B.m2 <span class="o">=</span> <span class="m">2</span>
 <span class="ln">14</span><span class="o">[</span>4<span class="o">]</span> 0x7ffde775b19c C.m3 <span class="o">=</span> <span class="m">3</span>
 </code></pre></div><p>运行结果表明，多重继承的情况下：</p>
@@ -527,6 +553,131 @@
 </span><span class="ln">12</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">d</span><span class="p">.</span><span class="n">B</span><span class="o">::</span><span class="n">m2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//30
 </span></code></pre></div><p>最后四行代码虽然消除了二义性，但是成员变量<code>m1</code>实际上是2个不同变量，这种情况使用过程非常不方便且容易出错。虚拟继承便可以解决这个问题。</p>
 <h2 id="虚拟继承">虚拟继承</h2>
+<p>虚拟继承的出现是为了解决重复继承出现的问题。虚拟继承的关系可以用下图来表示：</p>
+<p><img src="/images/virtual_inheritance.png" alt="虚拟继承"></p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln"> 2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 3</span>    <span class="n">A</span><span class="p">()</span> <span class="o">:</span> <span class="n">m1</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln"> 4</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;A::foo()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln"> 5</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">bar</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;A::bar()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln"> 6</span>    <span class="kt">int</span> <span class="n">m1</span><span class="p">;</span>
+<span class="ln"> 7</span><span class="p">};</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">virtual</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span>
+<span class="ln">10</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">11</span>    <span class="n">B</span><span class="p">()</span> <span class="o">:</span> <span class="n">m2</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln">12</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;B::foo()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">13</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;B::baz()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">14</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">qux</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;B::qux()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">15</span>    <span class="kt">int</span> <span class="n">m2</span><span class="p">;</span>
+<span class="ln">16</span><span class="p">};</span>
+<span class="ln">17</span>
+<span class="ln">18</span><span class="k">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="k">virtual</span> <span class="k">public</span> <span class="n">A</span> <span class="p">{</span>
+<span class="ln">19</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">20</span>    <span class="n">C</span><span class="p">()</span> <span class="o">:</span> <span class="n">m3</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln">21</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;C::foo()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">22</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">quux</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;C::quux()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">23</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">quuz</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;C::quuz()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">24</span>    <span class="kt">int</span> <span class="n">m3</span><span class="p">;</span>
+<span class="ln">25</span><span class="p">};</span>
+<span class="ln">26</span>
+<span class="ln">27</span><span class="k">class</span> <span class="nc">D</span> <span class="o">:</span> <span class="k">public</span> <span class="n">B</span><span class="p">,</span> <span class="k">public</span> <span class="n">C</span> <span class="p">{</span>
+<span class="ln">28</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">29</span>    <span class="n">D</span><span class="p">()</span> <span class="o">:</span> <span class="n">m4</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">{}</span>
+<span class="ln">30</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;D::foo()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">31</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">baz</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;D::baz()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">32</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">quux</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;D::quux()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">33</span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">corge</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;D::corge()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">34</span>    <span class="kt">int</span> <span class="n">m4</span><span class="p">;</span>
+<span class="ln">35</span><span class="p">};</span>
+</code></pre></div><p>代码中类<code>B</code>和类<code>C</code>都是虚继承自类<code>A</code>。我们通过测试代码来打印<code>D</code>类对象的内存空间来看看发生了什么变化：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">typedef</span> <span class="nf">void</span><span class="p">(</span><span class="o">*</span><span class="n">Func</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
+<span class="ln"> 2</span>
+<span class="ln"> 3</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 4</span>    <span class="n">D</span> <span class="n">d</span><span class="p">;</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>    <span class="n">intptr_t</span><span class="o">**</span> <span class="n">ptabb</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">intptr_t</span><span class="o">**&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span>
+<span class="ln"> 7</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[0] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ptabb</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D::B::vptr-&gt;&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">Func</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">ptabb</span> <span class="o">+</span> <span class="n">i</span><span class="p">));</span>
+<span class="ln">10</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;    [&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;] &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptabb</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;: &#34;</span><span class="p">;</span>
+<span class="ln">11</span>        <span class="k">if</span> <span class="p">(</span><span class="mi">5</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+<span class="ln">12</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">13</span>        <span class="k">else</span>
+<span class="ln">14</span>            <span class="n">func</span><span class="p">();</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span>
+<span class="ln">17</span>    <span class="kt">int</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">intptr_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ptabb</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+<span class="ln">18</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[1] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; B.m2 = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">p</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">19</span>
+<span class="ln">20</span>    <span class="n">intptr_t</span><span class="o">**</span> <span class="n">ptabc</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">intptr_t</span><span class="o">**&gt;</span><span class="p">(</span><span class="n">ptabb</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+<span class="ln">21</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[2] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ptabc</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D::C::vptr-&gt;&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">22</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">23</span>        <span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">Func</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">ptabc</span> <span class="o">+</span> <span class="n">i</span><span class="p">));</span>
+<span class="ln">24</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;    [&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;] &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptabc</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;: &#34;</span><span class="p">;</span>
+<span class="ln">25</span>        <span class="k">if</span> <span class="p">(</span><span class="mi">3</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+<span class="ln">26</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">27</span>        <span class="k">else</span>
+<span class="ln">28</span>            <span class="n">func</span><span class="p">();</span>
+<span class="ln">29</span>    <span class="p">}</span>
+<span class="ln">30</span>
+<span class="ln">31</span>    <span class="kt">int</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">intptr_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ptabc</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+<span class="ln">32</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[3] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p2</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; C.m3 = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">p2</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">33</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[4] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p2</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D.m4 = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">p2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">34</span>
+<span class="ln">35</span>    <span class="n">intptr_t</span><span class="o">**</span> <span class="n">ptaba</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">intptr_t</span><span class="o">**&gt;</span><span class="p">(</span><span class="n">ptabc</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+<span class="ln">36</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[5] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">ptaba</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D::A::vptr-&gt;&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">37</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">38</span>        <span class="k">auto</span> <span class="n">func</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">Func</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">ptaba</span> <span class="o">+</span> <span class="n">i</span><span class="p">));</span>
+<span class="ln">39</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;    [&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;] &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">ptaba</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;: &#34;</span><span class="p">;</span>
+<span class="ln">40</span>        <span class="k">if</span> <span class="p">(</span><span class="mi">2</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+<span class="ln">41</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">func</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">42</span>        <span class="k">else</span>
+<span class="ln">43</span>            <span class="n">func</span><span class="p">();</span>
+<span class="ln">44</span>    <span class="p">}</span>
+<span class="ln">45</span>
+<span class="ln">46</span>    <span class="kt">int</span><span class="o">*</span> <span class="n">p3</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">intptr_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ptaba</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
+<span class="ln">47</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;[6] &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">p3</span> <span class="o">+</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; A.m1 = &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="p">(</span><span class="n">p3</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">48</span>
+<span class="ln">49</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">50</span><span class="p">}</span>
+</code></pre></div><p>代码的运行结果如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span><span class="o">[</span>0<span class="o">]</span> 0x7ffe87cceb10 D::B::vptr-&gt;
+<span class="ln"> 2</span>    <span class="o">[</span>0<span class="o">]</span> 0x564b97ff2b38: D::foo<span class="o">()</span>
+<span class="ln"> 3</span>    <span class="o">[</span>1<span class="o">]</span> 0x564b97ff2b40: D::baz<span class="o">()</span>
+<span class="ln"> 4</span>    <span class="o">[</span>2<span class="o">]</span> 0x564b97ff2b48: B::qux<span class="o">()</span>
+<span class="ln"> 5</span>    <span class="o">[</span>3<span class="o">]</span> 0x564b97ff2b50: D::quux<span class="o">()</span>
+<span class="ln"> 6</span>    <span class="o">[</span>4<span class="o">]</span> 0x564b97ff2b58: D::corge<span class="o">()</span>
+<span class="ln"> 7</span>    <span class="o">[</span>5<span class="o">]</span> 0x564b97ff2b60: <span class="m">1</span>               <span class="c1">#&lt;-- 注意这里，非最后一个中间父类为1</span>
+<span class="ln"> 8</span><span class="o">[</span>1<span class="o">]</span> 0x7ffe87cceb18 B.m2 <span class="o">=</span> <span class="m">2</span>
+<span class="ln"> 9</span><span class="o">[</span>2<span class="o">]</span> 0x7ffe87cceb20 D::C::vptr-&gt;
+<span class="ln">10</span>    <span class="o">[</span>0<span class="o">]</span> 0x564b97ff2b78: D::foo<span class="o">()</span>
+<span class="ln">11</span>    <span class="o">[</span>1<span class="o">]</span> 0x564b97ff2b80: D::quux<span class="o">()</span>
+<span class="ln">12</span>    <span class="o">[</span>2<span class="o">]</span> 0x564b97ff2b88: C::quuz<span class="o">()</span>
+<span class="ln">13</span>    <span class="o">[</span>3<span class="o">]</span> 0x564b97ff2b90: <span class="m">0</span>               <span class="c1">#&lt;-- 注意这里，最后一个中间父类为0</span>
+<span class="ln">14</span><span class="o">[</span>3<span class="o">]</span> 0x7ffe87cceb28 C.m3 <span class="o">=</span> <span class="m">3</span>
+<span class="ln">15</span><span class="o">[</span>4<span class="o">]</span> 0x7ffe87cceb2c D.m4 <span class="o">=</span> <span class="m">4</span>
+<span class="ln">16</span><span class="o">[</span>5<span class="o">]</span> 0x7ffe87cceb30 D::A::vptr-&gt;
+<span class="ln">17</span>    <span class="o">[</span>0<span class="o">]</span> 0x564b97ff2bb0: D::foo<span class="o">()</span>
+<span class="ln">18</span>    <span class="o">[</span>1<span class="o">]</span> 0x564b97ff2bb8: A::bar<span class="o">()</span>
+<span class="ln">19</span>    <span class="o">[</span>2<span class="o">]</span> 0x564b97ff2bc0: <span class="m">1</span>               <span class="c1">#&lt;-- 注意这里，虚基类永远为1</span>
+<span class="ln">20</span><span class="o">[</span>6<span class="o">]</span> 0x7ffe87cceb38 A.m1 <span class="o">=</span> <span class="m">1</span>
+</code></pre></div><p>运行结果表明，虚拟继承的情况下：</p>
+<ul>
+<li>
+<p>虚基类的虚表指针和数据成员被挪动到最后一部分</p>
+</li>
+<li>
+<p>最底层子类覆盖的虚函数会出现在每个一虚表空间中，未覆盖的虚函数只会出现在虚基类的虚表空间中</p>
+</li>
+<li>
+<p>最底层子有的但中间父类没有的虚函数，会追加到第一个虚表空间中</p>
+</li>
+</ul>
+<p>该运行结果可以用下图直观的展示出来：</p>
+<p><img src="/images/virtual_inheritance_layout.png" alt="虚拟继承内存布局"></p>
+<p>从图中可以发现，比其他情况多了个<code>vb_offset</code>。**图中<code>top_offset</code>指的是当前的虚表指针地址距离对象起始地址的偏移量，而<code>vb_offset</code>指的是当前的虚表指针距离虚基类虚表指针的偏移量。**两者的值之和一般为0，用来辅助动态绑定的过程中可以快速定位各个虚表指针的地址：方便从当前虚表指针地址计算出对象的起始地址，在虚继承中还方便从当前虚表指针计算出虚基类虚表指针的地址。</p>
+<p>正因为如此可以推导出，虚继承时，每个父类的<code>vptr</code>都会计算出相同的虚基类，这样在构造时就不会重复构造了。</p>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">

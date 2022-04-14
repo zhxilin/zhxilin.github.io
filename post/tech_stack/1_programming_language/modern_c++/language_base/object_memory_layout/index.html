@@ -140,7 +140,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">2300 Words | Read in about 11 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">2400 Words | Read in about 12 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
@@ -149,7 +149,13 @@
     <li><a href="#单一继承">单一继承</a></li>
     <li><a href="#多重继承">多重继承</a></li>
     <li><a href="#重复继承">重复继承</a></li>
-    <li><a href="#虚拟继承">虚拟继承</a></li>
+    <li><a href="#虚拟继承">虚拟继承</a>
+      <ul>
+        <li><a href="#top_offset与vb_offset">top_offset与vb_offset</a></li>
+        <li><a href="#thunk">thunk</a></li>
+      </ul>
+    </li>
+    <li><a href="#reference">Reference</a></li>
   </ul>
 </nav>
     <p>C++的三大特性是封装、继承和多态，而要理解这些特性的底层原理，就不得不说说C++对象的内存模型（布局）。</p>
@@ -219,28 +225,28 @@
 <p>gcc编译器还提供一个命令，可以用来导出内存布局结构：</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>&gt;$ g++ -fdump-lang-class main.cpp
 </code></pre></div><p>执行后会生成一个<code>*.001l.class</code>后缀的文件，其中可以查看对象的内存布局，比如</p>
-<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback"><span class="ln"> 1</span>Vtable for D
-<span class="ln"> 2</span>D::_ZTV1D: 20 entries
-<span class="ln"> 3</span>0     32
-<span class="ln"> 4</span>8     (int (*)(...))0
-<span class="ln"> 5</span>16    (int (*)(...))(&amp; _ZTI1D)
-<span class="ln"> 6</span>24    (int (*)(...))D::foo
-<span class="ln"> 7</span>32    (int (*)(...))D::baz
-<span class="ln"> 8</span>40    (int (*)(...))B::qux
-<span class="ln"> 9</span>48    (int (*)(...))D::quux
-<span class="ln">10</span>56    (int (*)(...))D::corge
-<span class="ln">11</span>64    16
-<span class="ln">12</span>72    (int (*)(...))-16
-<span class="ln">13</span>80    (int (*)(...))(&amp; _ZTI1D)
-<span class="ln">14</span>88    (int (*)(...))D::_ZThn16_N1D3fooEv
-<span class="ln">15</span>96    (int (*)(...))D::_ZThn16_N1D4quuxEv
-<span class="ln">16</span>104   (int (*)(...))C::quuz
-<span class="ln">17</span>112   0
-<span class="ln">18</span>120   18446744073709551584
-<span class="ln">19</span>128   (int (*)(...))-32
-<span class="ln">20</span>136   (int (*)(...))(&amp; _ZTI1D)
-<span class="ln">21</span>144   (int (*)(...))D::_ZTv0_n24_N1D3fooEv
-<span class="ln">22</span>152   (int (*)(...))A::bar
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>Vtable <span class="k">for</span> D
+<span class="ln"> 2</span>D::_ZTV1D: <span class="m">20</span> entries
+<span class="ln"> 3</span><span class="m">0</span>     <span class="m">32</span>
+<span class="ln"> 4</span><span class="m">8</span>     <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span><span class="m">0</span>
+<span class="ln"> 5</span><span class="m">16</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))(</span><span class="p">&amp;</span> _ZTI1D<span class="o">)</span>
+<span class="ln"> 6</span><span class="m">24</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::foo
+<span class="ln"> 7</span><span class="m">32</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::baz
+<span class="ln"> 8</span><span class="m">40</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>B::qux
+<span class="ln"> 9</span><span class="m">48</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::quux
+<span class="ln">10</span><span class="m">56</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::corge
+<span class="ln">11</span><span class="m">64</span>    <span class="m">16</span>
+<span class="ln">12</span><span class="m">72</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>-16
+<span class="ln">13</span><span class="m">80</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))(</span><span class="p">&amp;</span> _ZTI1D<span class="o">)</span>
+<span class="ln">14</span><span class="m">88</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::_ZThn16_N1D3fooEv
+<span class="ln">15</span><span class="m">96</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::_ZThn16_N1D4quuxEv
+<span class="ln">16</span><span class="m">104</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>C::quuz
+<span class="ln">17</span><span class="m">112</span>   <span class="m">0</span>
+<span class="ln">18</span><span class="m">120</span>   <span class="m">18446744073709551584</span>
+<span class="ln">19</span><span class="m">128</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>-32
+<span class="ln">20</span><span class="m">136</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))(</span><span class="p">&amp;</span> _ZTI1D<span class="o">)</span>
+<span class="ln">21</span><span class="m">144</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::_ZTv0_n24_N1D3fooEv
+<span class="ln">22</span><span class="m">152</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>A::bar
 </code></pre></div><h2 id="单一继承">单一继承</h2>
 <p>假设有如下图的继承关系：</p>
 <p><img src="/images/single_inheritance.png" alt="单一继承"></p>
@@ -327,7 +333,7 @@
 </code></pre></div><p>仔细观察，<code>vptr</code>的地址<code>0x7ffe4c28f740</code>与第一个成员变量<code>m1</code>的地址<code>0x7ffe4c28f748</code>相差是8个字节，说明<code>vptr</code>大小是8；而<code>m1</code>、<code>m2</code>、<code>m3</code>的地址差都是4个字节，即每个int的大小是4字节。</p>
 <p>该运行结果可以用下图直观的展示出来：</p>
 <p><img src="/images/single_inheritance_layout.png" alt="单一继承内存布局图"></p>
-<p><strong>图中<code>top_offset</code>指的是虚表指针地址与对象起始地址的偏移量</strong></p>
+<p>**图中<code>top_offset</code>指的是虚表指针地址与对象起始地址的偏移量。**关于<code>top_offset</code>的含义我们先按下不表，最后我们再回头来看。</p>
 <h2 id="多重继承">多重继承</h2>
 <p>假如有如下图的继承关系：</p>
 <p><img src="/images/multiple_inheritance.png" alt="多重继承"></p>
@@ -676,8 +682,78 @@
 </ul>
 <p>该运行结果可以用下图直观的展示出来：</p>
 <p><img src="/images/virtual_inheritance_layout.png" alt="虚拟继承内存布局"></p>
-<p>从图中可以发现，比其他情况多了个<code>vb_offset</code>。**图中<code>top_offset</code>指的是当前的虚表指针地址距离对象起始地址的偏移量，而<code>vb_offset</code>指的是当前的虚表指针距离虚基类虚表指针的偏移量。**两者的值之和一般为0，用来辅助动态绑定的过程中可以快速定位各个虚表指针的地址：方便从当前虚表指针地址计算出对象的起始地址，在虚继承中还方便从当前虚表指针计算出虚基类虚表指针的地址。</p>
-<p>正因为如此可以推导出，虚继承时，每个父类的<code>vptr</code>都会计算出相同的虚基类，这样在构造时就不会重复构造了。</p>
+<h3 id="top_offset与vb_offset">top_offset与vb_offset</h3>
+<p>前面我们提到了<code>top_offset</code>指的是<strong>当前的虚表指针地址距离对象起始地址的偏移量。</strong> 如图所示，当<code>top_offset</code>等于0，代表第一个虚表指针<code>D::B::vptr</code>地址与对象起始地址是相等的。从测试代码和运行结果也能看出来，<code>&amp;d</code>是对象起始地址<code>0x7ffe87cceb10</code>，也是首个虚表指针的地址。而<code>vb_offset</code>又是什么呢？</p>
+<p><code>vb_offset</code>指的是<strong>当前的虚表指针距离虚基类虚表指针的偏移量。</strong> 如图所示，当<code>vb_offset</code>等于32，我们用当前的虚表指针地址<code>0x7ffe87cceb10</code>，加上偏移量32（十六进制是0x20），结果是<code>0x7ffe87cceb30</code>，这个地址刚好就是虚基类虚表指针<code>D::A::vptr</code>的地址。</p>
+<p>我们再看第二个虚表指针<code>D::C::vptr</code>的地址<code>0x7ffe87cceb20</code>是否也能计算出相同的虚基类虚表指针地址。如果所示，此时<code>vb_offset</code>等于16（十六进制是0x10），与<code>D::C::vptr</code>地址相加之后同样的到地址<code>0x7ffe87cceb30</code>，即虚基类虚表指针<code>D::A::vptr</code>的地址。</p>
+<p>由此可见，虚继承时，每个非虚基类的<code>vptr</code>都会计算出相同的虚基类<code>vptr</code>地址，所以在构造时就不会重复构造虚基类的部分了。</p>
+<p><code>top_offset</code>和<code>vb_offset</code>两者的值之和一般为<code>0</code>。如果没有虚继承，就没有<code>vb_offset</code>，只有<code>top_offset</code>。它们在动态绑定的过程中用来辅助快速定位各个虚表指针的地址，方便虚表指针地址和对象起始地址之间相互推导，也方便虚表指针地址和虚基类虚表指针地址之间相互推导。</p>
+<h3 id="thunk">thunk</h3>
+<p>我们用gcc编译器提供的功能查看一下类<code>D</code>的对象内存布局：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span>Vtable <span class="k">for</span> D
+<span class="ln"> 2</span>D::_ZTV1D: <span class="m">20</span> entries
+<span class="ln"> 3</span><span class="m">0</span>     <span class="m">32</span>
+<span class="ln"> 4</span><span class="m">8</span>     <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span><span class="m">0</span>
+<span class="ln"> 5</span><span class="m">16</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))(</span><span class="p">&amp;</span> _ZTI1D<span class="o">)</span>
+<span class="ln"> 6</span><span class="m">24</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::foo
+<span class="ln"> 7</span><span class="m">32</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::baz
+<span class="ln"> 8</span><span class="m">40</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>B::qux
+<span class="ln"> 9</span><span class="m">48</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::quux
+<span class="ln">10</span><span class="m">56</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::corge
+<span class="ln">11</span><span class="m">64</span>    <span class="m">16</span>
+<span class="ln">12</span><span class="m">72</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>-16
+<span class="ln">13</span><span class="m">80</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))(</span><span class="p">&amp;</span> _ZTI1D<span class="o">)</span>
+<span class="ln">14</span><span class="m">88</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::_ZThn16_N1D3fooEv        <span class="c1">#&lt;-- 注意这里</span>
+<span class="ln">15</span><span class="m">96</span>    <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::_ZThn16_N1D4quuxEv
+<span class="ln">16</span><span class="m">104</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>C::quuz
+<span class="ln">17</span><span class="m">112</span>   <span class="m">0</span>
+<span class="ln">18</span><span class="m">120</span>   <span class="m">18446744073709551584</span>
+<span class="ln">19</span><span class="m">128</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>-32
+<span class="ln">20</span><span class="m">136</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))(</span><span class="p">&amp;</span> _ZTI1D<span class="o">)</span>
+<span class="ln">21</span><span class="m">144</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>D::_ZTv0_n24_N1D3fooEv      <span class="c1">#&lt;-- 注意这里</span>
+<span class="ln">22</span><span class="m">152</span>   <span class="o">(</span>int <span class="o">(</span>*<span class="o">)(</span>...<span class="o">))</span>A::bar
+</code></pre></div><p>这是类<code>D</code>的虚表结构。用<code>c++filt</code>解析标注的几个符：</p>
+<ul>
+<li>
+<p><code>D::_ZThn16_N1D3fooEv</code> ==&gt; <code>D::non-virtual thunk to D::foo()</code></p>
+</li>
+<li>
+<p><code>D::_ZTv0_n24_N1D3fooEv</code> ==&gt; <code>D::virtual thunk to D::foo()</code></p>
+</li>
+</ul>
+<p>出现了个新玩意儿<code>thunk</code>，这是什么意思？</p>
+<p>所谓<code>thunk</code>是一段汇编代码，这段汇编代码可以以适当的偏移值来调整<code>this</code>指针，以跳到对应的虚函数中去，并调用这个函数。例如我们的例子<code>class D : public B, public C</code>：</p>
+<p>当使用<code>B</code>类指针指向<code>D</code>的对象，<code>this</code>不需要发生偏移；当使用<code>C</code>类指针指向<code>D</code>的对象，<code>this</code>就需要偏移<code>sizeof(B)</code>个字节，并跳转到<code>B</code>中执行函数。此时通过<code>C</code>类指针调用<code>foo</code>函数时，其实是<code>thunk</code>技术使得<code>this</code>偏移到<code>B</code>中，调用<code>D::foo()</code>函数。</p>
+<p>虚函数表的<code>thunk</code>有以下特点：</p>
+<ul>
+<li>
+<p>如果两个父类中的虚函数名字不同，子类只覆盖了第二个父类的虚函数，则不会产生thunk用以跳转。</p>
+</li>
+<li>
+<p>如果父类中虚函数名字相同，子类如果覆盖，将会一次性覆盖两个父类的虚函数，这时候第二个父类的虚函数表中存放的就是<code>thunk</code>对象。我们的例子属于这种情况。</p>
+</li>
+<li>
+<p>第一个父类的虚函数被覆盖与否都不会产生<code>thunk</code>对象，因为这个类是被别的父类指针跳转的目标，而这个类的指针在进行多态的时候是不会发生跳转的。</p>
+</li>
+<li>
+<p>子类新定义的虚函数将会追加在第一个虚函数表的后面，但是当第二个父类指针调用这个函数的时候，会通过<code>thunk</code>技术跳转回第一个类的虚函数表以执行相对应的虚函数。</p>
+</li>
+<li>
+<p>除了第一个父类的虚析构函数，其他父类的析构函数都是<code>thunk</code>对象。</p>
+</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>
+<p><a href="http://demangler.com/">在线GCC和MSVC C++符号翻译</a></p>
+</li>
+<li>
+<p><a href="https://www.songbingjia.com/shida/show-419937.html">对于从虚拟基类继承的虚函数，什么是“虚拟thunk”？</a></p>
+</li>
+<li>
+<p><a href="https://en.wikipedia.org/wiki/Metasyntactic_variable">Metasyntactic variable</a></p>
+</li>
+</ul>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">

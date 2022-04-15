@@ -169,7 +169,11 @@
 </div>
 
     </div>
-      <div class = 'excerpt_footer'>
+    <div class = 'excerpt_footer partition'>
+      <div class = 'excerpt_thumbnail'>
+      <img src = 'https://zhxilin.github.io/images/virtual_inheritance_layout.png'>
+      </div>
+      
         <div>
           <p class = 'pale'><p>C++的三大特性是封装、继承和多态，而要理解这些特性的底层原理，就不得不说说C++对象的内存模型（布局）。</p>
 <p>对于一个C++对象，每个对象有独立的非静态数据成员，而内存中只有一份成员函数，所有该类的对象共享成员函数；<code>static</code>数据成员属于类，它们存储在静态存储区，该类的所有对象共享。当调用对象的成员函数时，又是怎么识别是哪个对象在调用呢？实际上，所有类的成员函数在编译期会被编译器重构成非成员函数，即将<code>this</code>指针作为函数的第一个参数，这样在函数中通过<code>this</code>指针就能找到属于该对象的其他数据成员了。这些都是理解C++对象内存模型的前提。</p>

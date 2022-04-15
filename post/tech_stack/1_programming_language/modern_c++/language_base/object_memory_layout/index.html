@@ -222,7 +222,7 @@
 </span><span class="ln">39</span><span class="cm">- (intptr_t*)*(intptr_t*)&amp;b + 0：虚表地址强转为intptr_t*类型，就得到第1个虚函数指针
 </span><span class="ln">40</span><span class="cm">- (intptr_t*)*(intptr_t*)&amp;b - 1：type_info指针一般都位于虚表的偏移量为-1的位置，所以这个地址解引用后再强转为std::type_info*类型即type_info的指针
 </span><span class="ln">41</span><span class="cm">*/</span>
-</code></pre></div><p>请仔细阅读上述代码的注释，这样你会清楚如何通过对象地址获得各个虚函数的地址以及<code>type_info</code>对象的地址。关于<code>type_info</code>我们还将在后面<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/rtti">RTTI</a>的章节中介绍。</p>
+</code></pre></div><p>请仔细阅读上述代码的注释，这样你会清楚如何通过对象地址获得各个虚函数的地址以及<code>type_info</code>对象的地址。关于<code>type_info</code>我们还将在后面<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/rtti_reflection">RTTI与反射</a>的章节中介绍。</p>
 <p>我们可以通过这种方式来获取整个对象的内存布局，这些结构在内存中都是连续分布的，我们只需要知道地址偏移量，就可以得到具体的对象数据或函数。</p>
 <p>gcc编译器还提供一个命令，可以用来导出内存布局结构：</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>&gt;$ g++ -fdump-lang-class main.cpp
@@ -772,7 +772,7 @@
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/" class="nav-link">RTTI</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/" class="nav-link">RTTI与反射</a>
       </li>
     
     
@@ -784,7 +784,7 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/" class="nav-link">RTTI</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/" class="nav-link">RTTI与反射</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/extern/" class="nav-link">extern关键字</a>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>RTTI | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>RTTI与反射 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -17,9 +17,9 @@
 <meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "RTTI" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/" />
-<meta property = "og:title" content = "RTTI" />
+<meta name = "twitter:title" content = "RTTI与反射" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/" />
+<meta property = "og:title" content = "RTTI与反射" />
 <meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -99,7 +99,7 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>RTTI</h1><div class = 'post_meta'>
+    <h1 class='post_title'>RTTI与反射</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
@@ -111,20 +111,20 @@
 
     <div class='post_share'>
   Share on:
-  <a href="https://twitter.com/intent/tweet?text=RTTI&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2frtti%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=RTTI%e4%b8%8e%e5%8f%8d%e5%b0%84&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2frtti_reflection%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
   
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2frtti%2f&t=RTTI" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2frtti_reflection%2f&t=RTTI%e4%b8%8e%e5%8f%8d%e5%b0%84" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/rtti/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/rtti_reflection/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -132,7 +132,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -145,17 +145,16 @@
     <h2>Overview</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#为什么有rtti">为什么有RTTI？</a>
+    <li><a href="#什么是rtti">什么是RTTI？</a>
       <ul>
-        <li><a href="#什么是rtti">什么是RTTI？</a></li>
-        <li><a href="#什么是反射">什么是反射？</a></li>
+        <li><a href="#typeid操作符">typeid操作符</a></li>
+        <li><a href="#dynamic_cast操作符">dynamic_cast操作符</a></li>
       </ul>
     </li>
-    <li><a href="#typeid操作符">typeid操作符</a></li>
-    <li><a href="#dynamic_cast操作符">dynamic_cast操作符</a></li>
+    <li><a href="#什么是反射">什么是反射？</a></li>
   </ul>
 </nav>
-    <p>前文<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">《对象内存模型》</a>在介绍C++对象内存模型中有提到过<code>type_info</code>对象。<code>type_info</code>是RTTI机制的核心内容。那什么是RTTI？<code>type_info</code>又是怎么一回事？本节内容将一一解答。</p>
+    <p>前文<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">《对象内存模型》</a>在介绍C++对象内存模型中有提到过<code>type_info</code>对象。<code>type_info</code>是RTTI机制的核心内容。那什么是RTTI？反射和RTTI又有什么关系？本节内容将一一解答。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
@@ -171,8 +170,7 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
-<h2 id="为什么有rtti">为什么有RTTI？</h2>
-<h3 id="什么是rtti">什么是RTTI？</h3>
+<h2 id="什么是rtti">什么是RTTI？</h2>
 <blockquote>
 <p>C++是如何通过基类指针或引用，得知所指向的对象的实际类型？</p>
 </blockquote>
@@ -193,29 +191,7 @@
 </li>
 </ul>
 <p>C++的RTTI通过两个操作符来实现，即<code>typeid</code>操作符和<code>dynamic_cast</code>操作符。<code>dynamic_cast</code>是C++的四种强制类型转换方法之一，其他类型转换方法可以阅读前面的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/type_cast">《类型转换》</a>。</p>
-<h3 id="什么是反射">什么是反射？</h3>
-<p>说到RTTI，不得不提一嘴“反射”，RTTI经常被拿来和反射做对比。<a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84%E5%BC%8F%E7%BC%96%E7%A8%8B">维基百科</a>是这样定义“反射”的：</p>
-<blockquote>
-<p>在计算机学中，反射式编程（英语：reflective programming）或反射（英语：reflection），是指计算机程序在运行时（runtime）可以访问、检测和修改它本身状态或行为的一种能力。用比喻来说，反射就是程序在运行的时候能够“观察”并且修改自己的行为。</p>
-<p>要注意术语“反射”和“内省”（type introspection）的关系。内省（或称“自省”）机制仅指程序在运行时对自身信息（称为元数据）的检测；反射机制不仅包括要能在运行时对程序自身信息进行检测，还要求程序能进一步根据这些信息改变程序状态或结构。</p>
-</blockquote>
-<p>翻译过来就是，反射是程序在运行过程中检查和修改进程本身的功能，支持在运行时动态获取对象信息以及调用对象方法。对象的类型信息一般也叫元数据（metadata）。反射就是操作元数据的过程，进一步拆解反射的步骤：</p>
-<ul>
-<li>生成元数据</li>
-</ul>
-<p>反射依赖编译器为类生成元数据，C#、Java等语言的编译器会默认生成类型的元数据，而C++编译器几乎抹掉了所有的类型信息，C++默认只为多态类生成元数据。这就决定了C++从语言标准层面不支持反射，只能通过自定义框架来实现和保存元数据。</p>
-<ul>
-<li>查询元数据</li>
-</ul>
-<p>根据类名或方法名去反射元数据的本质，就是查询，即匹配和搜索字符串。</p>
-<ul>
-<li>根据元数据执行对应的操作</li>
-</ul>
-<p>根据元数据执行对应的操作，对C++而言非常简单，只需要通过一个函数指针强制转换一下类型就可以做到，而C#、Java等语言就没办法这么做，还得通过反射机制来动态调用。</p>
-<p>反射不是C++标准的特性，根本原因在于C++的设计哲学一直是追求零开销，不为用不到的特性付出代价。C#、Java等语言下的反射会在编译时登记一切类型的元数据，包括全部字段信息、全部方法信息、全部接口信息，不管使不使用。这种有备无患的做法向来为C++所不齿，C++只会在必要的时候（比如含虚函数的类型），编译器才会生成必要的<code>type_info</code>信息，而且<code>type_info</code>里的信息非常少，除了一个类型名几乎什么也没有。这种做法在C++里只是RTTI，还远远不能满足反射的条件。</p>
-<p>C++的RTTI的确可以提供一部分反射的能力，即查询元数据，但是功能非常单一，没办法根据类型名动态地创建对象和调用对象方法。所以说C++在语言标准层面没法完备支持反射。</p>
-<p>当然有很多非标准C++库是可以自己实现完备的反射机制的，比如<code>protobuf</code>、<code>UE4</code>、<code>QT</code>等。按照C++标准的思路是提供编译期反射，即静态反射。不过按照C++标准委员会一贯的谨慎作风，什么时候正式进入标准还有很长的道路要走。</p>
-<h2 id="typeid操作符">typeid操作符</h2>
+<h3 id="typeid操作符">typeid操作符</h3>
 <p><code>typeid</code>操作符返回的结果是一个的<code>type_info</code>类型对象的常量引用，代表表达式或类型名的实际类型。<code>typeid</code>在标准库头文件<code>&lt;typeinfo&gt;</code>中定义，有如下两种使用语法：</p>
 <ul>
 <li>
@@ -296,7 +272,7 @@
 </span></code></pre></div><p>回顾<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">《对象内存模型》</a>一文中描绘的内存结构布局图，我们以一个虚拟继承的内存布局图为例子</p>
 <p><img src="/images/virtual_inheritance_layout.png" alt="虚拟继承内存布局"></p>
 <p>在每个虚表指针指向的虚表空间中，虚表空间索引为-1的slot就是一个指向<code>type_info</code>对象地址的指针。多重继承和虚拟继承有多个虚表指针和多个虚表空间（虚表空间在内存中是连续的），每个虚表空间索引为-1的slot都指向同一个<code>type_info</code>对象，所以即使用不同的父类指针，用<code>typeid</code>操作符获取的实际类型都是一致的。</p>
-<h2 id="dynamic_cast操作符">dynamic_cast操作符</h2>
+<h3 id="dynamic_cast操作符">dynamic_cast操作符</h3>
 <p>我们知道，一个派生类指针或引用强制转换成基类指针或引用是安全的，因为从<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">对象内存布局</a>来看，派生类对象的内存空间总是包含基类的子对象；而反之不安全。把一个基类指针或引用转换为派生类的指针或引用称为向下转型（downcast）。<code>dynamic_cast</code>操作符就是用来安全而有效地进行downcast。</p>
 <p><code>dynamic_cast</code>的语法为</p>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
@@ -314,6 +290,29 @@
 </li>
 </ol>
 <p>以上3步如果转换不成功，还需要继续遍历继承链，继续查看是否有转换成功的可能。当继承层次很深的情况下，<code>dynamic_cast</code>是有性能问题的。</p>
+<h2 id="什么是反射">什么是反射？</h2>
+<p>说到RTTI，不得不提一嘴“反射”，RTTI经常被拿来和反射做对比。<a href="https://zh.wikipedia.org/wiki/%E5%8F%8D%E5%B0%84%E5%BC%8F%E7%BC%96%E7%A8%8B">维基百科</a>是这样定义“反射”的：</p>
+<blockquote>
+<p>在计算机学中，反射式编程（英语：reflective programming）或反射（英语：reflection），是指计算机程序在运行时（runtime）可以访问、检测和修改它本身状态或行为的一种能力。用比喻来说，反射就是程序在运行的时候能够“观察”并且修改自己的行为。</p>
+<p>要注意术语“反射”和“内省”（type introspection）的关系。内省（或称“自省”）机制仅指程序在运行时对自身信息（称为元数据）的检测；反射机制不仅包括要能在运行时对程序自身信息进行检测，还要求程序能进一步根据这些信息改变程序状态或结构。</p>
+</blockquote>
+<p>翻译过来就是，反射是程序在运行过程中检查和修改进程本身的功能，支持在运行时动态获取对象信息以及调用对象方法。对象的类型信息一般也叫元数据（metadata）。反射就是操作元数据的过程，进一步拆解反射的步骤：</p>
+<ul>
+<li>生成元数据</li>
+</ul>
+<p>反射依赖编译器为类生成元数据，C#、Java等语言的编译器会默认生成类型的元数据，而C++编译器几乎抹掉了所有的类型信息，C++默认只为多态类生成元数据。这就决定了C++从语言标准层面不支持反射，只能通过自定义框架来实现和保存元数据。</p>
+<ul>
+<li>查询元数据</li>
+</ul>
+<p>根据类名或方法名去反射元数据的本质，就是查询，即匹配和搜索字符串。</p>
+<ul>
+<li>根据元数据执行对应的操作</li>
+</ul>
+<p>根据元数据执行对应的操作，对C++而言非常简单，只需要通过一个函数指针强制转换一下类型就可以做到，而C#、Java等语言就没办法这么做，还得通过反射机制来动态调用。</p>
+<p>反射不是C++标准的特性，根本原因在于C++的设计哲学一直是追求零开销，不为用不到的特性付出代价。C#、Java等语言下的反射会在编译时登记一切类型的元数据，包括全部字段信息、全部方法信息、全部接口信息，不管使不使用。这种有备无患的做法向来为C++所不齿，C++只会在必要的时候（比如含虚函数的类型），编译器才会生成必要的<code>type_info</code>信息，而且<code>type_info</code>里的信息非常少，除了一个类型名几乎什么也没有。这种做法在C++里只是RTTI，还远远不能满足反射的条件。</p>
+<p>C++的RTTI的确可以提供一部分反射的能力，即查询元数据，但是功能非常单一，没办法根据类型名动态地创建对象和调用对象方法。所以说C++在语言标准层面没法完备支持反射。</p>
+<p>当然有很多非标准C++库是可以自己实现完备的反射机制的，比如<code>protobuf</code>、<code>UE4</code>、<code>QT</code>等。</p>
+<p>现在有提议为在C++标准中加入编译期反射，即静态反射。不过按照C++标准委员会一贯的谨慎作风，什么时候正式进入标准还有很长的道路要走。</p>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">

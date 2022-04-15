@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>RTTI</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/</link>
+      <pubDate>Fri, 15 Apr 2022 10:33:39 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti/</guid>
+      <description>&lt;p&gt;前文&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout&#34;&gt;《对象内存模型》&lt;/a&gt;在介绍C++对象内存模型中有提到过&lt;code&gt;type_info&lt;/code&gt;对象。&lt;code&gt;type_info&lt;/code&gt;是RTTI机制的核心内容。那什么是RTTI？&lt;code&gt;type_info&lt;/code&gt;又是怎么一回事？本节内容将一一解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>对象内存模型</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/object_memory_layout/</link>
       <pubDate>Tue, 12 Apr 2022 17:23:56 +0800</pubDate>

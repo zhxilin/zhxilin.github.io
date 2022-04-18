@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>内存对齐</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/</link>
+      <pubDate>Mon, 18 Apr 2022 11:55:22 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/</guid>
+      <description>&lt;p&gt;现代计算机的处理器为了高效地处理数据的存取，会以内存存取粒度为单位进行。为了让数据在内容中能够以内存存取粒度为单位进行排列，就需要内存对齐技术。本节内容将介绍内存对齐的意义和内存对齐规则。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>位域</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/</link>
       <pubDate>Fri, 15 Apr 2022 21:22:55 +0800</pubDate>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>Algorithm | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>内存对齐 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="C&#43;&#43;内存对齐memory alignment">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Algorithm" />
-<meta property = "og:url" content = "https://zhxilin.github.io/tags/algorithm/" />
-<meta property = "og:title" content = "Algorithm" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "内存对齐" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/" />
+<meta property = "og:title" content = "内存对齐" />
+<meta property = "og:description" content = "C&#43;&#43;内存对齐memory alignment" />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/tags/algorithm/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,7 @@
   
   
     
-  
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -97,44 +96,71 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/'>What&#39;s std::ios::sync_with_stdio(false) and std::cin.tie(nullptr)?</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>内存对齐</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Aug 5, 2020</span>
+    Apr 18, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/algorithm' class = 'post_tag button button_translucent'>Algorithm
   </a>
 </div>
 
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'>You may often see the following calls std::ios::sync_with_stdio(false) and std::cin.tie(nullptr) in some online judge system, such as leetcode, poj, etc. Someone would tell you that these codes are usually used to speed up the execution time. But what is the exact meanings for these codes?
-1static auto _ = []() { 2 …</p>
-          <a href='https://zhxilin.github.io/post/sync_with_stdio_false_cin_tie_null/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class='post_share'>
+  Share on:
+  <a href="https://twitter.com/intent/tweet?text=%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fmemory_alignment%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
+  </a>
   
-    <li>
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fmemory_alignment%2f&t=%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
+  </a>
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/memory_alignment/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
+  </a>
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
+  </a>
+</div>
 
-
-    </li>
-  </ul>
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents"></nav>
+    <p>现代计算机的处理器为了高效地处理数据的存取，会以内存存取粒度为单位进行。为了让数据在内容中能够以内存存取粒度为单位进行排列，就需要内存对齐技术。本节内容将介绍内存对齐的意义和内存对齐规则。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -149,9 +175,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/" class="nav-link">内存对齐</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/" class="nav-link">位域</a>
@@ -163,9 +186,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/" class="nav-link">内存对齐</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/" class="nav-link">位域</a>
@@ -373,9 +393,34 @@
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

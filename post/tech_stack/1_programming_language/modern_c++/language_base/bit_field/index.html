@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>Solve Slow Access To Gitlab via ssh | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>位域 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="SSH service of gitlab server enables `UseDNS` feature by default, which makes it slow to access via SSH.">
+<meta name="description" content="C&#43;&#43;位域bitfield">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Solve Slow Access To Gitlab via ssh" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/" />
-<meta property = "og:title" content = "Solve Slow Access To Gitlab via ssh" />
-<meta property = "og:description" content = "SSH service of gitlab server enables `UseDNS` feature by default, which makes it slow to access via SSH." />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
+<meta name = "twitter:title" content = "位域" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/" />
+<meta property = "og:title" content = "位域" />
+<meta property = "og:description" content = "C&#43;&#43;位域bitfield" />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/bitfield.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,9 +46,7 @@
   
   
     
-    
-  
-  <body data-code="10" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -101,34 +99,32 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>Solve Slow Access To Gitlab via ssh</h1><div class = 'post_meta'>
+    <h1 class='post_title'>位域</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Sep 8, 2021</span>
-  <a href = 'https://zhxilin.github.io/tags/linux' class = 'post_tag button button_translucent'>Linux
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/gitlab' class = 'post_tag button button_translucent'>Gitlab
+    Apr 15, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://twitter.com/intent/tweet?text=Solve%20Slow%20Access%20To%20Gitlab%20via%20ssh&url=https%3a%2f%2fzhxilin.github.io%2fpost%2fsolve_slow_access_to_gitlab_via_ssh%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=%e4%bd%8d%e5%9f%9f&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fbit_field%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
   
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2fsolve_slow_access_to_gitlab_via_ssh%2f&t=Solve%20Slow%20Access%20To%20Gitlab%20via%20ssh" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_c%2b%2b%2flanguage_base%2fbit_field%2f&t=%e4%bd%8d%e5%9f%9f" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c++/language_base/bit_field/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -136,7 +132,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/solve_slow_access_to_gitlab_via_ssh/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -144,24 +140,184 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
-    <p>I&rsquo;ve deployed a custom gitlab server for my team. I found that it&rsquo;s weired that when clone, pull, push or fetch codes from the gitlab server via SSH, it performs slow response times for each access. But it works perfectly via HTTPS.</p>
-<p>After seaching sort of posts, it&rsquo;s pointed that the SSH service of gitlab server enables <code>UseDNS</code> feature by default, which makes it slow to access via SSH.</p>
+    <img src = '/images/bitfield.png' class="image_featured">
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">500 Words | Read in about 3 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#位域是什么">位域是什么？</a></li>
+    <li><a href="#位域的大小和对齐规则">位域的大小和对齐规则</a></li>
+    <li><a href="#位域的初始化和重映射">位域的初始化和重映射</a>
+      <ul>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#利用地址重映射归零">利用地址重映射归零</a></li>
+      </ul>
+    </li>
+    <li><a href="#位域的字节序问题">位域的字节序问题</a>
+      <ul>
+        <li><a href="#字节序">字节序</a></li>
+        <li><a href="#位域的字节序">位域的字节序</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    <p>位域是一种特殊的数据结构，可以节省内存资源，使数据结构的存储更加紧凑。本节内容将全面了解一下位域的方方面面。</p>
 <blockquote>
-<p>While it is possible to run a GitLab instance using only IP addresses, it is often beneficial to use DNS as it is easier for users and is required for HTTPS. Depending on the features you want to take advantage of, multiple DNS entries may be necessary. Any of these DNS entries should be of type A, AAAA, or CNAME. This depends on the underlying architecture of the instance you are using.</p>
-</blockquote>
-<p>When enable this feature, gitlab server will first perform DNS PTR reverse query according to the client&rsquo;s IP address to obtain the client&rsquo;s host name. Then perform DNS forward query by the host name, the IP address obtained is compared with the client&rsquo;s IP address to check whether it&rsquo;s consistant to prevent client deception.</p>
-<h2 id="workaround">Workaround</h2>
+<p>本系列文章将包括以下领域：</p>
 <ul>
-<li>Login gitlab server via SSH as root.</li>
-<li>Edit the file <code>/etc/ssh/sshd_config</code>.</li>
-<li>Modify &ldquo;#UseDNS yes&rdquo; as &ldquo;UseDNS no&rdquo;.</li>
-<li>Save the config and restart the sshd service:
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>$ sudo service sshd restart
-</code></pre></div></li>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
 </ul>
-<p>After doing this, the slow access to gitlab server is gone!</p>
-
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<h2 id="位域是什么">位域是什么？</h2>
+<p>位域，Bit field，是一种把数据按位紧凑存储的数据结构，可以大大减小存储数据的内存大小。位域使用结构体关键字<code>struct</code>来声明，乍一看和结构体很类似，不过位域的每个字段需要设置宽度，位域的声明形式如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">bit_filed</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">type</span> <span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">:</span> <span class="n">witdh</span><span class="p">;</span>
+<span class="ln">3</span><span class="p">};</span>
+</code></pre></div><p>举个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">msg_hdr</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">cmd</span> <span class="p">:</span> <span class="mi">8</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">ver</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">ts</span> <span class="p">:</span> <span class="mi">32</span><span class="p">;</span>
+<span class="ln">5</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">sz</span> <span class="p">:</span> <span class="mi">32</span><span class="p">;</span>
+<span class="ln">6</span><span class="p">};</span>
+</code></pre></div><p>定义了一个位域<code>msg_hdr</code>，包含2个2位的字段和2个32位的字段，使用结构体的字段运算符对其进行赋值。<strong>赋值时，值的大小不能超过该位域字段的大小上限。</strong> 如<code>msg_hrd.cmd</code>为4位的位域字段，值的取值范围为[0, 2^8 - 1]，即[0, 255]。</p>
+<p>另外，位域字段的宽度不能超过该数据类型的大小。如<code>unsigned int cmd : 64</code>将无法产生警告，因为<code>unsigned int</code>的大小是32位。</p>
+<p>位域字段可以没有名字，这时它只用来作填充或调整位置。无名位域字段是不能使用的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">record</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">a</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">unsigned</span> <span class="kt">int</span>   <span class="o">:</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//无名位域，仅用来填充空间
+</span><span class="ln">4</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">b</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span>
+<span class="ln">5</span><span class="p">};</span>
+</code></pre></div><p>宽度为0的无名位域字段强制下一位位域字段与下一个类型的边界对齐，即将前后两个位域字段分开在不同的基本类型内存中存储：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">record</span>
+<span class="ln">2</span><span class="p">{</span>
+<span class="ln">3</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">a</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// 第一个unsigned int，占4位
+</span><span class="ln">4</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">:</span>   <span class="mi">0</span><span class="p">;</span> <span class="c1">// 无名位域
+</span><span class="ln">5</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">b</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// 上一个unsigned int剩余的空间不用了，从开始第二个unsigned int开始存放，占4位
+</span><span class="ln">6</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">c</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span> <span class="c1">// 还是第二个unsigned int中的4位
+</span><span class="ln">7</span><span class="c1"></span>    <span class="c1">//该位域结构总共8位
+</span><span class="ln">8</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p>位域字段的类型最好使用无符号类型来定义，并且在整个位域结构内部保持一致。</p>
+<p>在<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/lvalue_rvalue">《左值&amp;右值，左值引用&amp;右值引用》</a>一文中，我们提到过：</p>
+<blockquote>
+<p>位域(bit field)是左值，但是位域不能取地址，也不能将一个非<code>const</code>引用绑定到位域上。但是<code>const</code>引用可以绑定到位域上，此时会产生一个临时变量。</p>
+</blockquote>
+<p>这是因为位域字段往往不占用完整的字节，有时候也不处于字节的开头位置，所以用<code>&amp;</code>取地址符获取位域字段的地址是没有意义的，编译器会产生如下编译错误<code>error: attempt to take address of bit-field</code>。但是注意整个位域结构是可以取地址的。</p>
+<h2 id="位域的大小和对齐规则">位域的大小和对齐规则</h2>
+<p>位域的对齐规则和内存对齐规则类似，又有一些区别。要计算出位域的大小，首先要理清位域的对齐规则：</p>
+<ul>
+<li>
+<p>同一个位域字段必须存储在同一个存储单元中，不可以跨多个存储单元，一个存储单元容纳不下时，应从下一单元开始存放</p>
+</li>
+<li>
+<p>整个结构的大小是位域字段类型中最宽大小的整数倍</p>
+</li>
+<li>
+<p>若相邻的位域字段类型相同，且位宽之和小于等于类型的大小，则后面的字段紧邻前一个字段排列，直到容纳不下</p>
+</li>
+<li>
+<p>若相邻的位域字段类型相同，但位宽之和大于类型的大小，则后面的字段从下一个存储单元开始，其偏移量为类型大小的整数倍</p>
+</li>
+<li>
+<p>若相邻的位域字段类型不同，gcc编译器采用压缩排列，尽量让后面的字段紧邻前一个字段排列，直到容纳不下，而msvc编译器不压缩排列</p>
+</li>
+<li>
+<p>位域字段之间如果穿插非位域字段，则穿插的非位域字段不参与压缩排列，连续的位域字段还是会压缩排列</p>
+</li>
+</ul>
+<p>我们以下面这个例子来展示位域的对齐规则：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Date</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">dayOfWeek</span> <span class="p">:</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">//3位，取值[0, 7]
+</span><span class="ln">3</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">day</span> <span class="p">:</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">//6位，取值[0, 31]
+</span><span class="ln">4</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//强制下一字段对齐到下一个类型
+</span><span class="ln">5</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">month</span> <span class="p">:</span> <span class="mi">5</span><span class="p">;</span> <span class="c1">//5位，取值[0, 12]
+</span><span class="ln">6</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="nl">year</span> <span class="p">:</span> <span class="mi">8</span><span class="p">;</span> <span class="c1">//8位，取值[0, 100]
+</span><span class="ln">7</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p>其内存布局如图所示：</p>
+<p><img src="/images/bitfield.png" alt="位域内存布局"></p>
+<h2 id="位域的初始化和重映射">位域的初始化和重映射</h2>
+<h3 id="初始化">初始化</h3>
+<p>位域的初始化与普通结构体的初始化方法相同：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">msg_hdr</span> <span class="n">msg_hdr1</span><span class="p">;</span>
+<span class="ln">2</span><span class="n">msg_hdr1</span><span class="p">.</span><span class="n">cmd</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="ln">3</span><span class="n">msg_hdr1</span><span class="p">.</span><span class="n">ver</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="ln">4</span><span class="n">msg_hrd1</span><span class="p">.</span><span class="n">ts</span> <span class="o">=</span> <span class="mi">1650031642</span><span class="p">;</span>
+<span class="ln">5</span><span class="n">msg_hrd1</span><span class="p">.</span><span class="n">sz</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">;</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="k">struct</span> <span class="nc">msg_hdr</span> <span class="n">msg_hdr2</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1650031642</span><span class="p">,</span> <span class="mi">1024</span><span class="p">};</span>
+</code></pre></div><h3 id="利用地址重映射归零">利用地址重映射归零</h3>
+<p>利用重映射可以将位域数据归零</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">msg_hdr</span> <span class="n">hdr</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1650031642</span><span class="p">,</span> <span class="mi">1024</span><span class="p">};</span>
+<span class="ln">2</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">cmd</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">ver</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">ts</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//1, 1, 1650031642, 1024
+</span><span class="ln">3</span><span class="c1"></span>
+<span class="ln">4</span><span class="n">intptr_t</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">intptr_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">hdr</span><span class="p">;</span>
+<span class="ln">5</span><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">cmd</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">ver</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">ts</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">hdr</span><span class="p">.</span><span class="n">sz</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//0, 0, 0, 0
+</span></code></pre></div><p>同理，可以将位域和等长度的字段作为<code>union</code>的字段，由于<code>union</code>共享内存，利用这个特性将另一个字段的值设置为0，那么位域数据也就自动归零了。</p>
+<h2 id="位域的字节序问题">位域的字节序问题</h2>
+<h3 id="字节序">字节序</h3>
+<p>字节序分为大端序（big-endian）和小端序（little-endian）。</p>
+<ul>
+<li>
+<p>大端序：高位字节在低地址，低位字节在高地址，简称高低低高。</p>
+</li>
+<li>
+<p>小端序：高位字节在高地址，低位字节在低地址，简称高高低低。</p>
+</li>
+</ul>
+<p>举个例子，<code>0x12345678</code>在两种字节序的存储方式如下：</p>
+<p><img src="/images/big_endian_little_endian.png" alt="字节序"></p>
+<p>因为计算都是从低位开始的，电路先处理低位字节效率会比较高。那么如果计算机采用小端序，就可以从低地址先读取到低位字节。</p>
+<p>然而大端序更加符合人类的阅读习惯。所以除了计算机内部处理，其他场合几乎都是大端序，比如网络传输和文件储存。</p>
+<h3 id="位域的字节序">位域的字节序</h3>
+<p>我们来看一个例子理解位域的字节序:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">struct</span> <span class="nc">hdr</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">fin</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="ln"> 3</span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">rsv</span> <span class="p">:</span> <span class="mi">3</span><span class="p">;</span>
+<span class="ln"> 4</span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">opcode</span> <span class="p">:</span> <span class="mi">4</span><span class="p">;</span>
+<span class="ln"> 5</span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">mask</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>
+<span class="ln"> 6</span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="nl">payload</span> <span class="p">:</span> <span class="mi">7</span><span class="p">;</span>
+<span class="ln"> 7</span><span class="p">};</span><span class="c1">//typeof(hdr) = 2
+</span><span class="ln"> 8</span><span class="c1"></span>
+<span class="ln"> 9</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">10</span>    <span class="k">struct</span> <span class="nc">hdr</span> <span class="n">t</span><span class="p">;</span>
+<span class="ln">11</span>
+<span class="ln">12</span>    <span class="c1">//位域重映射清空
+</span><span class="ln">13</span><span class="c1"></span>    <span class="n">intptr_t</span><span class="o">*</span> <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="n">intptr_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">t</span><span class="p">;</span>
+<span class="ln">14</span>    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">15</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;fin=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">fin</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, rsv=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">rsv</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, opcode=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">opcode</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, mask=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">mask</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, payload=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">payload</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">16</span>    <span class="c1">//fin=0, rsv=0, opcode=0, mask=0, payload=0
+</span><span class="ln">17</span><span class="c1"></span>
+<span class="ln">18</span>    <span class="c1">//把2字节的位域结构按字节映射为一个unsigned short，对unsigned short赋值之后，查看位域字段的值来理解字节序
+</span><span class="ln">19</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">short</span><span class="o">*</span> <span class="n">s</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">short</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t</span><span class="p">));</span>
+<span class="ln">20</span>    <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="mh">0x8183</span><span class="p">;</span>
+<span class="ln">21</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;fin=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">fin</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, rsv=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">rsv</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, opcode=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">opcode</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, mask=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">mask</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, payload=&#34;</span> <span class="o">&lt;&lt;</span> <span class="o">+</span><span class="n">t</span><span class="p">.</span><span class="n">payload</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">22</span>    <span class="c1">//fin=1, rsv=1, opcode=8, mask=1, payload=64
+</span><span class="ln">23</span><span class="c1"></span>
+<span class="ln">24</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">25</span><span class="p">}</span>
+</code></pre></div><p>我们用下面的示例图来展示现在的内存布局：</p>
+<p><img src="/images/bitfield_byte_order.png" alt="位域字节序"></p>
+<p>有以下事实，数据0x8183的高位字节是0x81，低位字节是0x83；位域结构<code>hdr</code>在内存中的地址由低到高分别是<code>fin</code>、<code>rsv</code>、<code>opcode</code>、<code>mask</code>、<code>payload</code>。</p>
+<p>由于计算机是采用小端序存储的，即高位字节存在高地址，低位字节存在低地址，那么低位字节0x83赋给了低地址所在的<code>fin</code>+<code>rsv</code>+<code>opcode</code>这3个位域字段（宽度共8位），高位字节0x81赋给了<code>mask</code>+<code>payload</code>高地址所在的这2个位域字段（宽度共8位）。每个位域字段在赋值时，按各自的位域宽度，从低到高依次读取指定位数的字节，如<code>fin</code>读取1位，数据为<code>1</code>，<code>rsv</code>读取3位，数据为<code>001</code>，依次类推。</p>
+<p>所以<code>0x8183</code>这个值与位域字段应对的二进制关系为</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>fin: <span class="m">1</span> -&gt; <span class="m">1</span>
+<span class="ln">2</span>rsv: <span class="m">001</span> -&gt; <span class="m">1</span>
+<span class="ln">3</span>opcode: <span class="m">1000</span> -&gt; <span class="m">8</span>
+<span class="ln">4</span>mask: <span class="m">1</span> -&gt; <span class="m">1</span>
+<span class="ln">5</span>payload: <span class="m">1000000</span> -&gt; <span class="m">64</span>
+</code></pre></div><p>所以，理解了字节序，才能在位域赋值时得到预期的结果。</p>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
@@ -177,9 +333,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/" class="nav-link">位域</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/" class="nav-link">RTTI与反射</a>
@@ -191,9 +344,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/" class="nav-link">位域</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/" class="nav-link">RTTI与反射</a>

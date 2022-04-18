@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>位域</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/</link>
+      <pubDate>Fri, 15 Apr 2022 21:22:55 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/bit_field/</guid>
+      <description>&lt;p&gt;位域是一种特殊的数据结构，可以节省内存资源，使数据结构的存储更加紧凑。本节内容将全面了解一下位域的方方面面。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>RTTI与反射</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/rtti_reflection/</link>
       <pubDate>Fri, 15 Apr 2022 10:33:39 +0800</pubDate>

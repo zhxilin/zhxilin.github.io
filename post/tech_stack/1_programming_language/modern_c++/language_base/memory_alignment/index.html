@@ -143,7 +143,13 @@
     <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
-    <nav id="TableOfContents"></nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是内存对齐">什么是内存对齐</a></li>
+    <li><a href="#为什么要内存对齐">为什么要内存对齐</a></li>
+    <li><a href="#内存对齐规则">内存对齐规则</a></li>
+  </ul>
+</nav>
     <p>现代计算机的处理器为了高效地处理数据的存取，会以内存存取粒度为单位进行。为了让数据在内容中能够以内存存取粒度为单位进行排列，就需要内存对齐技术。本节内容将介绍内存对齐的意义和内存对齐规则。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
@@ -160,6 +166,109 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
+<p>我们在<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/bit_field">《位域》</a>这篇文章中提到过位域的对齐规则，本质上也属于内存对齐的一种情形。</p>
+<h2 id="什么是内存对齐">什么是内存对齐</h2>
+<p>操作系统有64位和32位之分。64位操作系统意味着CPU有更强的寻址能力。理论上讲，性能会比32位操作系统提升1倍。</p>
+<p>程序中的数据类型的字节数大小，其实和操作系统是多少位没有关系，而是由编译器决定的。数据类型占用的字节数取决于编译时选择的编译器是64位还是32位。在不同位数的编译器下基本数据类型的字节数大小如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>32位编译器（单位：字节）</th>
+<th>64位编译器（单位：字节）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>char*</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>int*</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>unsigned int</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long</td>
+<td>4</td>
+<td>8</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>4</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出，主要差别在指针和<code>long</code>的大小：32位指针大小是4，64位指针大小是8；32位<code>long</code>大小是4，64位<code>long</code>大小是8。</p>
+<p>为了保证每个对象拥有彼此独立的内存地址，C++空类的内存大小为1字节，而非空类的大小与类中非静态成员变量和虚函数表的多少有关。其中，类中非静态成员变量的大小则与编译器的位数以及内存对齐的设置有关。<strong>类中的成员变量在内存中并不一定是连续的，它是按照编译器的设置，按照内存块来存储的，这个内存块大小的取值，就是内存对齐。</strong></p>
+<h2 id="为什么要内存对齐">为什么要内存对齐</h2>
+<ul>
+<li>平台原因</li>
+</ul>
+<p>不是所有的硬件都能访问任意地址上的任意数据的，有些硬件只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</p>
+<ul>
+<li>性能原因</li>
+</ul>
+<p>数据结构应该尽可能地在自然边界上对齐，如果为了访问未对齐的内存，处理器需要作两次内存访问，而对齐的内存访问仅需要一次访问：</p>
+<p>假如没有内存对齐，数据可以在任意地址上存放，一个<code>int</code>变量不是从地址0开始存放，而是从地址1开始存放，连续存4个字节的地址，当处理去读取数据时，要分别访问地址为[0, 3]和[4, 7]的地址，然后从第一块内存中剔除不想要的第0字节，以及第二块内存中的第5-7字节，最后剩下的字节数据再放入CPU寄存器。这个过程显然比整个<code>int</code>变量都在[0, 3]的地址空间中性能差很多。</p>
+<h2 id="内存对齐规则">内存对齐规则</h2>
+<p>不同特定平台上的编译器都有自己的默认对齐系数。</p>
+<p>C/C++中，可以通过预编译代码修改对齐系数：</p>
+<p>用预编译命令<code>#pragma pack(n)</code>用来指定对齐系数，单位字节。<code>n</code>的取值范围为<code>1, 2, 4, 8, 16</code>。gcc默认对齐系数是<code>4</code>，msvc默认对齐系数是<code>8</code>。</p>
+<p>用预编译命令<code>#pragma pack()</code>用来取消自定义的对齐系数，恢复为默认值。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//#pragma pack(4) //默认对齐系数是4
+</span><span class="ln">2</span><span class="c1"></span><span class="cp">#pragma pack(1) </span><span class="c1">//修改对齐系数为1
+</span><span class="ln">3</span><span class="c1"></span>
+<span class="ln">4</span><span class="p">...</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="cp">#pragma pack() </span><span class="c1">//取消自定义的对齐系数，恢复为默认值4
+</span></code></pre></div><p>假设在一个结构体中，最大数据类型长度为<code>m</code>，编译器对齐系数是<code>n</code>，则<code>min(m, n)</code>叫做对齐单位<code>s</code>。所以当设置的对齐系数<code>n</code>大于类中最大数据类型长度，该设置是不起作用的。当<code>n</code>等于<code>1</code>时，整个类的大小为所有成员长度之和。</p>
+<p>了解了以上概念后，我们来看具体的内存对齐规则：</p>
+<ul>
+<li>
+<p>每个成员的对齐规则：类中第一个成员的偏移量（offset）为<code>0</code>，以后每个成员（该成员的数据类型长度为<code>k</code>）相对于结构体首地址的offset为<code>min(k, s)</code>的整数倍。</p>
+</li>
+<li>
+<p>整体对齐规则：整个结构体的大小应是对齐单位<code>s</code>的整数倍。</p>
+</li>
+</ul>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">

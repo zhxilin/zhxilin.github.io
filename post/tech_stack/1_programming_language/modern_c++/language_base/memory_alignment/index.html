@@ -21,7 +21,7 @@
 <meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_c&#43;&#43;/language_base/memory_alignment/" />
 <meta property = "og:title" content = "内存对齐" />
 <meta property = "og:description" content = "C&#43;&#43;内存对齐memory alignment" />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/memory_alignment_case1.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -140,14 +140,27 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <img src = '/images/memory_alignment_case1.png' class="image_featured">
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
   <ul>
     <li><a href="#什么是内存对齐">什么是内存对齐</a></li>
     <li><a href="#为什么要内存对齐">为什么要内存对齐</a></li>
-    <li><a href="#内存对齐规则">内存对齐规则</a></li>
+    <li><a href="#内存对齐规则">内存对齐规则</a>
+      <ul>
+        <li><a href="#case-1">case 1</a></li>
+        <li><a href="#case-2">case 2</a></li>
+        <li><a href="#case-3">case 3</a></li>
+        <li><a href="#case-4">case 4</a></li>
+        <li><a href="#case-5">case 5</a></li>
+        <li><a href="#case-6">case 6</a></li>
+        <li><a href="#case-7">case 7</a></li>
+      </ul>
+    </li>
+    <li><a href="#延伸">延伸</a></li>
   </ul>
 </nav>
     <p>现代计算机的处理器为了高效地处理数据的存取，会以内存存取粒度为单位进行。为了让数据在内容中能够以内存存取粒度为单位进行排列，就需要内存对齐技术。本节内容将介绍内存对齐的意义和内存对齐规则。</p>
@@ -166,7 +179,7 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_c++/">《现代C++》</a></p>
-<p>我们在<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/bit_field">《位域》</a>这篇文章中提到过位域的对齐规则，本质上也属于内存对齐的一种情形。</p>
+<p>我们在<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/bit_field">《位域》</a>这篇文章中提到过位域的对齐规则，本质上也属于内存对齐的一种情形。位域的对齐是对小于一个字节的数据进行压缩，是以位数为单位进行的；而本文所要讲述的内存对齐，是针对超过一个字节的数据类型进行压缩，是以字节为单位进行的。</p>
 <h2 id="什么是内存对齐">什么是内存对齐</h2>
 <p>操作系统有64位和32位之分。64位操作系统意味着CPU有更强的寻址能力。理论上讲，性能会比32位操作系统提升1倍。</p>
 <p>程序中的数据类型的字节数大小，其实和操作系统是多少位没有关系，而是由编译器决定的。数据类型占用的字节数取决于编译时选择的编译器是64位还是32位。在不同位数的编译器下基本数据类型的字节数大小如下：</p>
@@ -242,12 +255,19 @@
 <ul>
 <li>平台原因</li>
 </ul>
-<p>不是所有的硬件都能访问任意地址上的任意数据的，有些硬件只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</p>
+<p>不是所有的CPU都能访问任意地址上的任意数据的，有些CPU只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</p>
 <ul>
 <li>性能原因</li>
 </ul>
-<p>数据结构应该尽可能地在自然边界上对齐，如果为了访问未对齐的内存，处理器需要作两次内存访问，而对齐的内存访问仅需要一次访问：</p>
-<p>假如没有内存对齐，数据可以在任意地址上存放，一个<code>int</code>变量不是从地址0开始存放，而是从地址1开始存放，连续存4个字节的地址，当处理去读取数据时，要分别访问地址为[0, 3]和[4, 7]的地址，然后从第一块内存中剔除不想要的第0字节，以及第二块内存中的第5-7字节，最后剩下的字节数据再放入CPU寄存器。这个过程显然比整个<code>int</code>变量都在[0, 3]的地址空间中性能差很多。</p>
+<p>数据结构应该尽可能地在自然边界上对齐，如果为了访问未对齐的内存，处理器需要作两次内存访问，而对齐的内存访问仅需要一次访问。CPU处理器把内存当作一块一块去读取，块的大小可以是2、4、8、16字节大小，这个大小称为内存存取粒度。假设当前处理器的内存存取粒度为4，对于一个<code>int</code>变量（大小4字节），分两种情况讨论：</p>
+<ul>
+<li>数据从第0字节开始存放（已内存对齐）</li>
+</ul>
+<p>CPU只需要访存一次，就可以把4字节数据读完，然后存入寄存器。</p>
+<ul>
+<li>数据从第1字节开始存放（没有内存对齐）</li>
+</ul>
+<p>数据不处于自然边界上，CPU需要分两次访存，第一次先访问[0, 3]字节进入寄存器，第二次访问[4, 7]字节进入寄存器，然后剔除第0、5、6、7字节，仅留第1、2、3、4字节数据进入寄存器。对于未内存对齐的数据，显然大大降低了CPU的处理性能。这种未对齐的情况有些CPU甚至直接开摆。</p>
 <h2 id="内存对齐规则">内存对齐规则</h2>
 <p>不同特定平台上的编译器都有自己的默认对齐系数。</p>
 <p>C/C++中，可以通过预编译代码修改对齐系数：</p>
@@ -266,9 +286,83 @@
 <p>每个成员的对齐规则：类中第一个成员的偏移量（offset）为<code>0</code>，以后每个成员（该成员的数据类型长度为<code>k</code>）相对于结构体首地址的offset为<code>min(k, s)</code>的整数倍。</p>
 </li>
 <li>
+<p>如果一个类里有结构体成员，则结构体成员要从其内部最宽基本类型成员的整数倍地址开始存储。</p>
+</li>
+<li>
 <p>整体对齐规则：整个结构体的大小应是对齐单位<code>s</code>的整数倍。</p>
 </li>
 </ul>
+<p>接下来我们通过一些例子来体会内存对齐规则。</p>
+<h3 id="case-1">case 1</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data1</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln">4</span><span class="p">};</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//8
+</span></code></pre></div><p><img src="/images/memory_alignment_case1.png" alt="内存对齐case1"></p>
+<h3 id="case-2">case 2</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data2</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln">4</span><span class="p">};</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
+</span></code></pre></div><p><img src="/images/memory_alignment_case2.png" alt="内存对齐case2"></p>
+<h3 id="case-3">case 3</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data3</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
+<span class="ln">5</span><span class="p">};</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//12
+</span></code></pre></div><p><img src="/images/memory_alignment_case3.png" alt="内存对齐case3"></p>
+<h3 id="case-4">case 4</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data4</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">char</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+<span class="ln">5</span><span class="p">};</span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//8
+</span></code></pre></div><p><img src="/images/memory_alignment_case4.png" alt="内存对齐case4"></p>
+<h3 id="case-5">case 5</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">struct</span> <span class="nc">BigData</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="kt">char</span> <span class="n">array</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
+<span class="ln"> 3</span><span class="p">};</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="k">struct</span> <span class="nc">Data5</span> <span class="p">{</span>
+<span class="ln"> 6</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln"> 7</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
+<span class="ln"> 9</span><span class="p">};</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data5</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
+</span></code></pre></div><p><img src="/images/memory_alignment_case5.png" alt="内存对齐case5"></p>
+<h3 id="case-6">case 6</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data6</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln">4</span><span class="p">};</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
+</span></code></pre></div><p><img src="/images/memory_alignment_case6.png" alt="内存对齐case6"></p>
+<h3 id="case-7">case 7</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data7</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
+<span class="ln">4</span><span class="p">};</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data7</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
+</span></code></pre></div><p><img src="/images/memory_alignment_case7.png" alt="内存对齐case7"></p>
+<h2 id="延伸">延伸</h2>
+<p>C++不允许一个对象的大小为<code>0</code>，不同对象的地址不能具有相同的地址。</p>
+<p>这是因为<code>new</code>需要分配不同的内存地址，不能分配内存大小为<code>0</code>的空间，避免除以<code>sizeof(T)</code>引发除零异常。</p>
+<p>所以一个没有数据成员的空类，编译器会为其分配1字节的内存空间，即空类的大小为<code>1</code>。</p>
+<p>空基类被继承后，如果派生类有自己的数据成员，那么空基类这1个字节不会添加到派生类中。</p>
+<p>关于<code>new</code>操作，可以阅读一下之前的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/new">《new表达式、operator new和placement new》</a></p>
+<p>关于对象内存模型，可以阅读一下之前的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">《对象内存模型》</a></p>
   </article>
 <aside class="sidebar">
   <section class="sidebar_inner">

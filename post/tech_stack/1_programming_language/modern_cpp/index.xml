@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>C&#43;&#43; NULL与nullptr</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/</link>
+      <pubDate>Fri, 22 Apr 2022 15:59:11 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/</guid>
+      <description>&lt;p&gt;在C语言中，我们使用&lt;code&gt;NULL&lt;/code&gt;来代表一个空指针，而这种做法在现代C++是不允许的。在现代C++中，&lt;code&gt;NULL&lt;/code&gt;本质上是一个类型为&lt;code&gt;long int&lt;/code&gt;的数值&lt;code&gt;0&lt;/code&gt;，而空指针需要用C++11新引入的&lt;code&gt;nullptr&lt;/code&gt;来表示。&lt;/p&gt;
+&lt;p&gt;那么在现代C++中，&lt;code&gt;NULL&lt;/code&gt;和&lt;code&gt;nullptr&lt;/code&gt;使用上有什么区别？为什么会有&lt;code&gt;nullptr&lt;/code&gt;？本节内容将一一解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;智能指针</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/smart_pointer/</link>
       <pubDate>Tue, 19 Apr 2022 17:28:10 +0800</pubDate>

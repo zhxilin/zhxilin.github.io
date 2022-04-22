@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>C&#43;&#43;仿函数 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>C&#43;&#43; NULL与nullptr | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="C&#43;&#43;仿函数functor">
+<meta name="description" content="C&#43;&#43; NULL与nullptr">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "C&#43;&#43;仿函数" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/functor/" />
-<meta property = "og:title" content = "C&#43;&#43;仿函数" />
-<meta property = "og:description" content = "C&#43;&#43;仿函数functor" />
+<meta name = "twitter:title" content = "C&#43;&#43; NULL与nullptr" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/" />
+<meta property = "og:title" content = "C&#43;&#43; NULL与nullptr" />
+<meta property = "og:description" content = "C&#43;&#43; NULL与nullptr" />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/functor/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -99,47 +99,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>C&#43;&#43;仿函数</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43; NULL与nullptr</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 10, 2022</span>
+    Apr 22, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%e4%bb%bf%e5%87%bd%e6%95%b0&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2ffunctor%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2ffunctor.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%20NULL%e4%b8%8enullptr&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fnull_nullptr%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fnull_nullptr.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2ffunctor%2f&sharesource=qzone&title=C%2b%2b%e4%bb%bf%e5%87%bd%e6%95%b0" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fnull_nullptr%2f&sharesource=qzone&title=C%2b%2b%20NULL%e4%b8%8enullptr" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2ffunctor%2f&sharesource=qzone&title=C%2b%2b%e4%bb%bf%e5%87%bd%e6%95%b0" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fnull_nullptr%2f&sharesource=qzone&title=C%2b%2b%20NULL%e4%b8%8enullptr" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%e4%bb%bf%e5%87%bd%e6%95%b0&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2ffunctor%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%20NULL%e4%b8%8enullptr&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fnull_nullptr%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2ffunctor%2f&t=C%2b%2b%e4%bb%bf%e5%87%bd%e6%95%b0" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fnull_nullptr%2f&t=C%2b%2b%20NULL%e4%b8%8enullptr" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/functor/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -147,7 +147,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/functor/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -155,17 +155,24 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是仿函数">什么是仿函数？</a></li>
-    <li><a href="#仿函数与谓词的关系">仿函数与谓词的关系？</a></li>
-    <li><a href="#仿函数的优点">仿函数的优点？</a></li>
+    <li><a href="#nullptr">nullptr</a></li>
+    <li><a href="#null">NULL</a></li>
+    <li><a href="#null-vs-nullptr">NULL vs nullptr</a>
+      <ul>
+        <li><a href="#函数重载">函数重载</a></li>
+        <li><a href="#模板">模板</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
   </ul>
 </nav>
-    <p>C++中仿函数是一个能行使函数功能的类，仿函数的使用方法几乎和函数一样。那么仿函数和函数到底有什么区别？仿函数有哪些优点？本节内容将一一解答。</p>
+    <p>在C语言中，我们使用<code>NULL</code>来代表一个空指针，而这种做法在现代C++是不允许的。在现代C++中，<code>NULL</code>本质上是一个类型为<code>long int</code>的数值<code>0</code>，而空指针需要用C++11新引入的<code>nullptr</code>来表示。</p>
+<p>那么在现代C++中，<code>NULL</code>和<code>nullptr</code>使用上有什么区别？为什么会有<code>nullptr</code>？本节内容将一一解答。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
@@ -181,129 +188,109 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
-<h2 id="什么是仿函数">什么是仿函数？</h2>
-<p>想象一下这种场景，当我们有一个过滤函数<code>Process</code>是用来过滤数组中大于10的元素，我们可以为“比较元素是否大于10”这个操作定义成一个函数<code>F</code>，作为函数指针传入前面的过滤函数中。</p>
-<p>如果此时要求把&quot;10&quot;也作为参数传入，可能就不那么美妙了。这个过滤函数<code>Process</code>可能来自第三方库，我们并不能直接修改它的参数定义，那我们只好把&quot;10&quot;这个值定义成一个全局变量，再在函数<code>F</code>中调用。</p>
-<p>这种做法虽然可行，但是我们被迫要维护一个全局变量，容易出错。比如有一个同名的全局变量，那就会导致命名空间污染。总之，更优雅的方式就应运而生了，它就是仿函数。</p>
-<p><strong>仿函数，functor，又称函数对象，是指实现一个简单的类，并且重载了<code>operator()</code>操作符，该类的实例化对象就可以行使函数的功能了。</strong></p>
-<p>以上例子，我们就可以定义个仿函数，在构造函数中将&quot;10&quot;作为参数传入函数对象内，由函数对象内部进行维护。同时重载一个<code>operator()</code>操作符，在函数体中使用这个&quot;10&quot;即可。</p>
-<h2 id="仿函数与谓词的关系">仿函数与谓词的关系？</h2>
-<p>仿函数在不同语言的实现方式有所差别：</p>
+<h2 id="nullptr">nullptr</h2>
+<p><code>nullptr</code>是C++11引入的一个新关键字，用来替代以前的<code>NULL</code>。<code>nullptr</code>提供了一个类型安全的指针值，用来表示一个空指针。<code>nullptr</code>的实际类型为<code>std::nullptr_t</code>。</p>
+<p>在现代C++的最佳实践中，只要过去是使用<code>NULL</code>的场景，就应该开始改用<code>nullptr</code>。</p>
+<h2 id="null">NULL</h2>
+<p>那么，我们的老朋友<code>NULL</code>怎么了？为什么到了现代C++就被嫌弃了呢？</p>
+<p><code>NULL</code>是一个宏，不是关键字，在C语言中它被定义为<code>void*</code>类型指针，而在C++中它只是数值<code>0</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//&lt;stddef.h&gt;
+</span><span class="ln">2</span><span class="c1"></span><span class="cp">#undef NULL
+</span><span class="ln">3</span><span class="cp">#ifndef __cplusplus
+</span><span class="ln">4</span><span class="cp">#define NULL ((void *)0) </span><span class="c1">//C语言
+</span><span class="ln">5</span><span class="c1"></span><span class="cp">#else
+</span><span class="ln">6</span><span class="cp">#define NULL 0 </span><span class="c1">//C++
+</span><span class="ln">7</span><span class="c1"></span><span class="cp">#endif
+</span></code></pre></div><p>在C++中<code>NULL</code>不过是<code>0</code>，在传统C++把它当成空指针只是权宜之计。C++不允许将<code>void*</code>类型的指针隐式转换成其他指针类型，所以C语言对<code>NULL</code>的定义方式不适合C++。</p>
+<p><a href="https://en.cppreference.com/w/cpp/types/NULL">cppreference</a>指出：</p>
+<blockquote>
+<p>The macro NULL is an implementation-defined null pointer constant, which may be</p>
+<p>an integral constant expression rvalue of integer type that evaluates to zero (until C++11)</p>
+<p>an integer literal with value zero, or a prvalue of type std::nullptr_t (since C++11)</p>
+</blockquote>
+<p>翻译过来，就是<code>NULL</code>宏是由实现定义的空指针常量，但从C++11开始，<code>NULL</code>既可以是数值为<code>0</code>的整型字面量，也可以是<code>std::nullptr_t</code>类型的<a href="/post/tech_stack/1_programming_language/modern_cpp/language_base/lvalue_rvalue">纯右值<code>prvalue</code></a>。</p>
+<h2 id="null-vs-nullptr">NULL vs nullptr</h2>
+<p>我们先看一下这个例子来看二者有哪些相通之处：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span><span class="o">*</span> <span class="n">x</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">int</span><span class="o">*</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="ln">3</span><span class="kt">int</span><span class="o">*</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">z</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//0, 0, 0
+</span></code></pre></div><p>从运行结果可以看出，在赋值指针方面，<code>nullptr</code>、<code>NULL</code>和<code>0</code>的结果都是一样的。</p>
+<p><a href="https://en.cppreference.com/w/cpp/types/NULL">cppference</a>指出：</p>
+<blockquote>
+<p>A null pointer constant may be implicitly converted to any pointer and pointer to member type; such conversion results in the null pointer value of that type. If a null pointer constant has integer type, it may be converted to a prvalue of type std::nullptr_t.</p>
+</blockquote>
+<p>大致意思是说，空指针常量可以隐式转换为任意指针类型，这种转换会产生该类型的空指针值。如果空指针常量具有整型类型，那么它可以转换为<code>std::nullptr_t</code>类型的纯右值。</p>
+<p>在这个例子中，<code>NULL</code>和<code>0</code>都是整型类型，从这个意义上看，由它们转换而来的空指针<code>y</code>、<code>z</code>可以转换为<code>std::nullptr_t</code>纯右值<code>nullptr</code>，所以<code>x</code>、<code>y</code>和<code>z</code>是等价的。</p>
+<p>所以，<strong>在指针赋值方面，<code>NULL</code>和<code>nullptr</code>是等价的。</strong></p>
+<p>那么既然对于指针赋值方面，<code>NULL</code>和<code>nullptr</code>是等价的，为什么还要区分这两者呢？</p>
+<h3 id="函数重载">函数重载</h3>
+<p>C++是强类型语言，在函数重载的类型检查中更加严格。我们还是看一下例子来分析二者的不同：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">);</span>
+<span class="ln">2</span><span class="kt">int</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">);</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="n">foo</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">//调用的是foo(int x)还是foo(int* p)？产生二义性错误error: call of overloaded ‘foo(NULL)’ is ambiguous
+</span><span class="ln">5</span><span class="c1"></span><span class="n">foo</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span> <span class="c1">//明确调用foo(int* p)
+</span></code></pre></div><p>从上面的例子可以看出，<code>NULL</code>作为参数传入函数中时，既可以当作整型数值<code>0</code>，又可以作为空指针常量隐式转换为<code>int*</code>类型的指针，那么两个重载函数都可以成功匹配，因此产生二义性错误。</p>
+<h3 id="模板">模板</h3>
+<p>使用<code>nullptr</code>的另一个好处是在模板中可以用来特化某些版本的模板函数，而<code>NULL</code>不能用来特化模板：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="kt">void</span> <span class="n">bar</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 3</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;bar(T* p)&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln"> 4</span><span class="p">}</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="c1">//全特化版本
+</span><span class="ln"> 7</span><span class="c1"></span><span class="kt">void</span> <span class="nf">bar</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">nullptr_t</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;bar(std::nullptr_t)&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln"> 9</span><span class="p">}</span>
+<span class="ln">10</span>
+<span class="ln">11</span><span class="kt">int</span><span class="o">*</span> <span class="n">x</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="ln">12</span><span class="kt">int</span><span class="o">*</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="ln">13</span><span class="kt">int</span><span class="o">*</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">14</span>
+<span class="ln">15</span><span class="n">bar</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span> <span class="c1">//bar(std::nullptr_t)
+</span><span class="ln">16</span><span class="c1"></span><span class="n">bar</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">//bar(std::nullptr_t)
+</span><span class="ln">17</span><span class="c1"></span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="c1">//bar(T* p)
+</span><span class="ln">18</span><span class="c1"></span><span class="n">bar</span><span class="p">(</span><span class="n">y</span><span class="p">);</span> <span class="c1">//bar(T* p)
+</span><span class="ln">19</span><span class="c1"></span><span class="n">bar</span><span class="p">(</span><span class="n">z</span><span class="p">);</span> <span class="c1">//bar(T* p)
+</span></code></pre></div><p>所以在这种情况下，可以在模板函数中区分出来<code>nullptr</code>（其类型为<code>std::nullptr_t</code>）和其他类型的指针。</p>
+<p>注意到上面例子中<code>bar(NULL)</code>调用的版本是<code>bar(std::nullptr_t)</code>，<code>NULL</code>作为实参传递给形参时，发生了一次指针赋值，前面我们说过了，<code>NULL</code>和<code>nullptr</code>在指针赋值方面是等价的，所以<code>bar(NULL)</code>和<code>bar(nullptr)</code>调用的结果也是等价的。</p>
+<p>我们再来看一个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="kt">void</span> <span class="nf">foo</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;foo(int* p)&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln"> 3</span><span class="p">}</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 6</span><span class="kt">void</span> <span class="n">baz</span><span class="p">(</span><span class="n">T</span> <span class="n">ptr</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="n">foo</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+<span class="ln"> 8</span><span class="p">}</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span><span class="n">baz</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span> <span class="c1">//foo(int* p)
+</span><span class="ln">11</span><span class="c1"></span><span class="n">baz</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span> <span class="c1">//编译错误，error: invalid conversion from ‘long int’ to ‘int*’ [-fpermissive]
+</span></code></pre></div><p>从运行结果可以看出，<code>NULL</code>在模板参数中被推导为<code>long int</code>类型，而不是<code>int*</code>，最终导致函数参数类型不匹配，<code>nullptr</code>就没有这种问题。</p>
+<h2 id="总结">总结</h2>
 <ul>
 <li>
-<p>C语言使用函数指针来实现</p>
+<p>在现代C++的最佳实践中，只要过去是使用<code>NULL</code>的场景，就应该开始改用<code>nullptr</code>。</p>
 </li>
 <li>
-<p>C#使用delegate委托来实现</p>
+<p>从C++11开始，<code>NULL</code>既可以是数值为<code>0</code>的整型字面量，也可以是<code>std::nullptr_t</code>类型的纯右值<code>prvalue</code>，所以使用<code>NULL</code>容易引发二义性问题，建议全部使用<code>nullptr</code>。</p>
 </li>
 <li>
-<p>Java通过实现包含单个函数的接口来实现</p>
-</li>
-<li>
-<p>C++通过实现一个重载<code>operator()</code>操作符的类来实现</p>
+<p><code>nullptr</code>可以使代码更加健壮，减少对<code>NULL</code>具体实现的依赖。</p>
 </li>
 </ul>
-<p>在STL的实现中，使用了大量谓词(Predicate)来实现算法、容器、迭代器的抽象隔离。谓词和仿函数又是什么关系呢？</p>
-<p>我们来看一个STL的算法<code>for_each</code>的源码定义：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cm">/**
-</span><span class="ln"> 2</span><span class="cm">  *  @brief Apply a function to every element of a sequence.
-</span><span class="ln"> 3</span><span class="cm">  *  @ingroup non_mutating_algorithms
-</span><span class="ln"> 4</span><span class="cm">  *  @param  __first  An input iterator.
-</span><span class="ln"> 5</span><span class="cm">  *  @param  __last   An input iterator.
-</span><span class="ln"> 6</span><span class="cm">  *  @param  __f      A unary function object.
-</span><span class="ln"> 7</span><span class="cm">  *  @return   @p __f
-</span><span class="ln"> 8</span><span class="cm">  *
-</span><span class="ln"> 9</span><span class="cm">  *  Applies the function object @p __f to each element in the range
-</span><span class="ln">10</span><span class="cm">  *  @p [first,last).  @p __f must not modify the order of the sequence.
-</span><span class="ln">11</span><span class="cm">  *  If @p __f has a return value it is ignored.
-</span><span class="ln">12</span><span class="cm">*/</span>
-<span class="ln">13</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_InputIterator</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Function</span><span class="o">&gt;</span>
-<span class="ln">14</span><span class="n">_GLIBCXX20_CONSTEXPR</span>
-<span class="ln">15</span><span class="n">_Function</span>
-<span class="ln">16</span><span class="n">for_each</span><span class="p">(</span><span class="n">_InputIterator</span> <span class="n">__first</span><span class="p">,</span> <span class="n">_InputIterator</span> <span class="n">__last</span><span class="p">,</span> <span class="n">_Function</span> <span class="n">__f</span><span class="p">)</span>
-<span class="ln">17</span><span class="p">{</span>
-<span class="ln">18</span>    <span class="c1">// concept requirements
-</span><span class="ln">19</span><span class="c1"></span>    <span class="n">__glibcxx_function_requires</span><span class="p">(</span><span class="n">_InputIteratorConcept</span><span class="o">&lt;</span><span class="n">_InputIterator</span><span class="o">&gt;</span><span class="p">)</span>
-<span class="ln">20</span>    <span class="n">__glibcxx_requires_valid_range</span><span class="p">(</span><span class="n">__first</span><span class="p">,</span> <span class="n">__last</span><span class="p">);</span>
-<span class="ln">21</span>    <span class="k">for</span> <span class="p">(;</span> <span class="n">__first</span> <span class="o">!=</span> <span class="n">__last</span><span class="p">;</span> <span class="o">++</span><span class="n">__first</span><span class="p">)</span>
-<span class="ln">22</span>        <span class="n">__f</span><span class="p">(</span><span class="o">*</span><span class="n">__first</span><span class="p">);</span>
-<span class="ln">23</span>    <span class="k">return</span> <span class="n">__f</span><span class="p">;</span> <span class="c1">// N.B. [alg.foreach] says std::move(f) but it&#39;s redundant.
-</span><span class="ln">24</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>其中第三个参数<code>__f</code>就是一个一元谓词。这个一元谓词既可以是一个普通的回调函数，也可以是一个仿函数即函数对象。</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//一元谓词——回调函数
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kt">void</span> <span class="nf">showFunc</span><span class="p">(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用回调函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="ln"> 4</span><span class="p">}</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="c1">//一元谓词——仿函数
-</span><span class="ln"> 7</span><span class="c1"></span><span class="k">class</span> <span class="nc">showFuncObj</span> <span class="p">{</span>
-<span class="ln"> 8</span><span class="k">public</span><span class="o">:</span>
-<span class="ln"> 9</span>    <span class="kt">void</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">10</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用仿函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="ln">11</span>    <span class="p">}</span>
-<span class="ln">12</span><span class="p">};</span>
-<span class="ln">13</span>
-<span class="ln">14</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">15</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">};</span>
-<span class="ln">16</span>
-<span class="ln">17</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">showFunc</span><span class="p">);</span>
-<span class="ln">18</span>
-<span class="ln">19</span>    <span class="n">showFuncObj</span> <span class="n">s</span><span class="p">;</span>
-<span class="ln">20</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">s</span><span class="p">);</span>
-<span class="ln">21</span>
-<span class="ln">22</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="ln">23</span><span class="p">}</span>
-</code></pre></div><p>所以，在这个例子中，<strong>仿函数一定是谓词，谓词不一定是仿函数，还可能是普通的回调函数。</strong></p>
-<h2 id="仿函数的优点">仿函数的优点？</h2>
-<p>既然仿函数和函数的功能类型，那么仿函数到底有啥优点呢？</p>
-<p>我们继续看上面的例子。</p>
-<p>如果此时要求统计在<code>for_each</code>过程中谓词被调用的次数，应该怎么办？</p>
-<p>对于仿函数，我们只需要在<code>showFuncObj</code>类中增加一个局部变量<code>m_count</code>就可以很快扩展，而回调函数就没办法很好扩展了：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//一元谓词——回调函数
-</span><span class="ln"> 2</span><span class="c1"></span><span class="kt">void</span> <span class="nf">showFunc</span><span class="p">(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln"> 3</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用回调函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="ln"> 4</span><span class="p">}</span>
-<span class="ln"> 5</span>
-<span class="ln"> 6</span><span class="c1">//一元谓词——仿函数
-</span><span class="ln"> 7</span><span class="c1"></span><span class="k">class</span> <span class="nc">showFuncObj</span> <span class="p">{</span>
-<span class="ln"> 8</span><span class="k">public</span><span class="o">:</span>
-<span class="ln"> 9</span>    <span class="n">showFuncObj</span><span class="p">()</span> <span class="o">:</span> <span class="n">m_count</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
-<span class="ln">10</span>
-<span class="ln">11</span>    <span class="kt">void</span> <span class="nf">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">12</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;调用仿函数：&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="ln">13</span>        <span class="n">m_count</span><span class="o">++</span><span class="p">;</span>
-<span class="ln">14</span>    <span class="p">}</span>
-<span class="ln">15</span>
-<span class="ln">16</span>    <span class="kt">void</span> <span class="nf">count</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_count</span><span class="p">;</span> <span class="p">}</span>
-<span class="ln">17</span><span class="k">private</span><span class="o">:</span>
-<span class="ln">18</span>    <span class="n">m_count</span><span class="p">;</span>
-<span class="ln">19</span><span class="p">};</span>
-<span class="ln">20</span>
-<span class="ln">21</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">22</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">};</span>
-<span class="ln">23</span>
-<span class="ln">24</span>    <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">showFunc</span><span class="p">);</span>
-<span class="ln">25</span>
-<span class="ln">26</span>    <span class="n">showFuncObj</span> <span class="n">s</span><span class="p">;</span>
-<span class="ln">27</span>    <span class="n">s</span> <span class="o">=</span> <span class="n">for_each</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">s</span><span class="p">);</span> <span class="c1">//仿函数是按值传参
-</span><span class="ln">28</span><span class="c1"></span>    <span class="n">s</span><span class="p">.</span><span class="n">count</span><span class="p">();</span>
-<span class="ln">29</span>
-<span class="ln">30</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="ln">31</span><span class="p">}</span>
-</code></pre></div><p>仿函数的优点是能做到封装，功能扩展起来非常方便，而回调函数则没有办法。所以在STL的实现中，运用了大量仿函数来实现谓词。</p>
 
     
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/type_cast/">
-          <span>Prev Post: 『C&#43;&#43;类型转换』</span>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/smart_pointer/">
+          <span>Prev Post: 『C&#43;&#43;智能指针』</span>
         </a>
     </section>
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/new/">
-          <span>Next Post: 『C&#43;&#43; new表达式、operator new和placement new』</span>
-        </a>
     </section>
 
   </article>
@@ -321,9 +308,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/" class="nav-link">C&#43;&#43; NULL与nullptr</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/smart_pointer/" class="nav-link">C&#43;&#43;智能指针</a>
@@ -335,9 +319,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/" class="nav-link">C&#43;&#43; NULL与nullptr</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/smart_pointer/" class="nav-link">C&#43;&#43;智能指针</a>

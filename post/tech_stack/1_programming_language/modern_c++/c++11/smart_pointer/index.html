@@ -2,7 +2,7 @@
 <html lang="en" data-figures="true" class="page">
   <head>  <title>智能指针 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.74.3" />
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
@@ -142,7 +142,7 @@
     
     <img src = '/images/smart_pointer.png' class="image_featured">
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">2400 Words | Read in about 12 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">2700 Words | Read in about 13 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
@@ -994,9 +994,9 @@
 <h4 id="总览">总览</h4>
 <p>C++标准库的实现方案是这样的：</p>
 <p><img src="/images/smart_pointer.png" alt="smart_pointer"></p>
-<p>整个实现方案中的核心是<code>__Sp_counted_base</code>类，就是通过这个类来管理引用计数的。这个基类本身不保存堆内存对象的指针，而是由它的一个派生类型<code>__Sp_counted_ptr</code>中的<code>_M_ptr</code>指针来保存原始的堆内存对象。</p>
-<p><code>shared_ptr</code>其实是继承自<code>__shared_ptr</code>类型，其内部持有一个<code>__shared_count</code>类型的对象，这个对象的内部又持有一个<code>__Sp_counted_base</code>类型的指针<code>_M_pi</code>，最终指向派生类<code>__Sp_counted_ptr</code>的一个对象。这样一来就可以通过<code>__shared_count</code>对象既管理引用计数，又管理堆内存对象，得以在引用计数变成<code>0</code>时释放堆内存对象。</p>
-<p>有时我们又把<code>_M_ptr</code>指针所指的堆内存对象称为托管对象，而把<code>_M_pi</code>指针所指的<code>__Sp_counted_ptr</code>引用计数对象称为管理对象。管理同一个托管对象的多个智能指针内部共享一个管理对象。管理对象提供两个变量<code>_M_use_count</code>和<code>_M_weak_count</code>，分别通过<code>shared_ptr</code>和<code>weak_ptr</code>的<code>use_count()</code>函数返回。<code>_M_use_count</code>表示托管对象的引用计数，当<code>_M_use_count</code>减成<code>0</code>时，调用托管对象的析构函数销毁并释放内存。<code>_M_weak_count</code>表示管理对象的引用次数，当<code>_M_weak_count</code>减成<code>0</code>时，调用管理对象的析构函数销毁并释放内存。管理对象也是一个指针，是在第一次<code>shared_ptr</code>创建的时候<code>new</code>出来的，因此最后也需要析构销毁。</p>
+<p>整个实现方案中的核心是<code>_Sp_counted_base</code>类，就是通过这个类来管理引用计数的。这个基类本身不保存堆内存对象的指针，而是由它的一个派生类型<code>_Sp_counted_ptr</code>中的<code>_M_ptr</code>指针来保存原始的堆内存对象。</p>
+<p><code>shared_ptr</code>其实是继承自<code>__shared_ptr</code>类型，其内部持有一个<code>__shared_count</code>类型的对象，这个对象的内部又持有一个<code>_Sp_counted_base</code>类型的指针<code>_M_pi</code>，最终指向派生类<code>_Sp_counted_ptr</code>的一个对象。这样一来就可以通过<code>__shared_count</code>对象既管理引用计数，又管理堆内存对象，得以在引用计数变成<code>0</code>时释放堆内存对象。</p>
+<p>有时我们又把<code>_M_ptr</code>指针所指的堆内存对象称为托管对象，而把<code>_M_pi</code>指针所指的<code>_Sp_counted_ptr</code>引用计数对象称为管理对象。管理同一个托管对象的多个智能指针内部共享一个管理对象。管理对象提供两个变量<code>_M_use_count</code>和<code>_M_weak_count</code>，分别通过<code>shared_ptr</code>和<code>weak_ptr</code>的<code>use_count()</code>函数返回。<code>_M_use_count</code>表示托管对象的引用计数，当<code>_M_use_count</code>减成<code>0</code>时，调用托管对象的析构函数销毁并释放内存。<code>_M_weak_count</code>表示管理对象的引用次数，当<code>_M_weak_count</code>减成<code>0</code>时，调用管理对象的析构函数销毁并释放内存。管理对象也是一个指针，是在第一次<code>shared_ptr</code>创建的时候<code>new</code>出来的，因此最后也需要析构销毁。</p>
 <p><code>_M_weak_count</code>初始值是<code>1</code>，当<code>shared_ptr</code>拷贝或移动时不会增加，只有当<code>_M_use_count</code>减为<code>0</code>的时候，<code>_M_weak_count</code>才会减<code>1</code>。除此之外，它是由<code>weak_ptr</code>控制的。当<code>weak_ptr</code>拷贝时，<code>_M_weak_count</code>就会增加；当<code>weak_ptr</code>析构时，<code>_M_weak_count</code>会相应减少，减到<code>0</code>时表明不再需要管理对象来控制托管对象了，所以管理对象也可以销毁了。</p>
 <p>我们通过源码具体看看这两个引用计数是如何增减的。</p>
 <h4 id="_m_use_count的增减">_M_use_count的增减</h4>
@@ -1004,114 +1004,223 @@
 <li><code>_M_use_count</code>的增加</li>
 </ul>
 <p>对于拷贝构造：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr_base.h&gt;
-</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
-<span class="ln"> 3</span><span class="n">__shared_ptr</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="p">,</span> <span class="n">_Lp</span><span class="o">&gt;&amp;</span> <span class="n">__r</span><span class="p">,</span> <span class="n">element_type</span><span class="o">*</span> <span class="n">__p</span><span class="p">)</span> <span class="k">noexcept</span>
-<span class="ln"> 4</span>    <span class="o">:</span> <span class="n">_M_ptr</span><span class="p">(</span><span class="n">__p</span><span class="p">),</span> <span class="n">_M_refcount</span><span class="p">(</span><span class="n">__r</span><span class="p">.</span><span class="n">_M_refcount</span><span class="p">)</span>  <span class="c1">// never throws
-</span><span class="ln"> 5</span><span class="c1"></span><span class="p">{</span> <span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="c1">//...
-</span><span class="ln"> 8</span><span class="c1"></span>
-<span class="ln"> 9</span><span class="n">__shared_count</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_count</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">:</span> <span class="n">_M_pi</span><span class="p">(</span><span class="n">__r</span><span class="p">.</span><span class="n">_M_pi</span><span class="p">)</span>
-<span class="ln">10</span><span class="p">{</span>
-<span class="ln">11</span>    <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_add_ref_copy</span><span class="p">();</span>
-<span class="ln">12</span><span class="p">}</span>
-<span class="ln">13</span>
-<span class="ln">14</span><span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="ln">15</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_add_ref_copy</span><span class="p">()</span>
-<span class="ln">16</span><span class="p">{</span>
-<span class="ln">17</span>    <span class="o">++</span><span class="n">_M_use_count</span><span class="p">;</span>
-<span class="ln">18</span><span class="p">}</span>
-</code></pre></div><p>每当拷贝构造一个<code>shared_ptr</code>，即调用基类<code>__shared_ptr</code>的拷贝构造函数时，会同时拷贝构造一个<code>__shared_count</code>对象<code>_M_refcount</code>。在这个计数对象的拷贝构造函数中，实际上调用了共享管理对象的基类方法<code>__Sp_counted_base::_M_add_ref_copy()</code>，然后<code>_M_use_count</code>就会自增<code>1</code>。这样一来所有同源的<code>shared_ptr::use_count()</code>的返回结果都会加<code>1</code>。</p>
-<p>对于拷贝赋值：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr.h&gt;
-</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
-<span class="ln"> 3</span><span class="n">_Assignable</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">&gt;&amp;&gt;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">&gt;&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr_base.h&gt; class __shared_ptr
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="p">,</span> <span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">__shared_ptr</span> <span class="o">:</span> <span class="k">public</span> <span class="n">__shared_ptr_access</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="p">,</span> <span class="n">_Lp</span><span class="o">&gt;</span>
 <span class="ln"> 4</span><span class="p">{</span>
-<span class="ln"> 5</span>    <span class="k">this</span><span class="o">-&gt;</span><span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">__r</span><span class="p">);</span>
-<span class="ln"> 6</span>    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="ln"> 7</span><span class="p">}</span>
-<span class="ln"> 8</span>
-<span class="ln"> 9</span><span class="c1">//&lt;shared_ptr_base.h&gt;
-</span><span class="ln">10</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
-<span class="ln">11</span><span class="n">_Assignable</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="p">,</span> <span class="n">_Lp</span><span class="o">&gt;&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
-<span class="ln">12</span><span class="p">{</span>
-<span class="ln">13</span>    <span class="n">_M_ptr</span> <span class="o">=</span> <span class="n">__r</span><span class="p">.</span><span class="n">_M_ptr</span><span class="p">;</span>
-<span class="ln">14</span>    <span class="n">_M_refcount</span> <span class="o">=</span> <span class="n">__r</span><span class="p">.</span><span class="n">_M_refcount</span><span class="p">;</span>  <span class="c1">// __shared_count::op= doesn&#39;t throw
-</span><span class="ln">15</span><span class="c1"></span>    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="ln">16</span><span class="p">}</span>
-<span class="ln">17</span>
-<span class="ln">18</span><span class="n">__shared_count</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_count</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
-<span class="ln">19</span><span class="p">{</span>
-<span class="ln">20</span>    <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_Lp</span><span class="o">&gt;*</span> <span class="n">__tmp</span> <span class="o">=</span> <span class="n">__r</span><span class="p">.</span><span class="n">_M_pi</span><span class="p">;</span>
-<span class="ln">21</span>    <span class="k">if</span> <span class="p">(</span><span class="n">__tmp</span> <span class="o">!=</span> <span class="n">_M_pi</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">22</span>        <span class="k">if</span> <span class="p">(</span><span class="n">__tmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">__tmp</span><span class="o">-&gt;</span><span class="n">_M_add_ref_copy</span><span class="p">();</span>
-<span class="ln">23</span>        <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_release</span><span class="p">();</span>
-<span class="ln">24</span>        <span class="n">_M_pi</span> <span class="o">=</span> <span class="n">__tmp</span><span class="p">;</span>
-<span class="ln">25</span>    <span class="p">}</span>
-<span class="ln">26</span>    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-<span class="ln">27</span><span class="p">}</span>
-</code></pre></div><p>每当拷贝赋值一个<code>shared_ptr</code>，即调用<code>operator=()</code>赋值操作符时，最终实际上也是调用了共享管理对象的基类方法<code>__Sp_counted_base::_M_add_ref_copy()</code>，从而实现<code>_M_use_count</code>自增。</p>
+<span class="ln"> 5</span><span class="c1">//...
+</span><span class="ln"> 6</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 7</span>    <span class="k">using</span> <span class="n">element_type</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">remove_extent</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="c1">//...
+</span><span class="ln"> 9</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
+<span class="ln">10</span>    <span class="n">__shared_ptr</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="p">,</span> <span class="n">_Lp</span><span class="o">&gt;&amp;</span> <span class="n">__r</span><span class="p">,</span> <span class="n">element_type</span><span class="o">*</span> <span class="n">__p</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">11</span>        <span class="o">:</span> <span class="n">_M_ptr</span><span class="p">(</span><span class="n">__p</span><span class="p">),</span> <span class="n">_M_refcount</span><span class="p">(</span><span class="n">__r</span><span class="p">.</span><span class="n">_M_refcount</span><span class="p">)</span> <span class="c1">// never throws
+</span><span class="ln">12</span><span class="c1"></span>    <span class="p">{</span> <span class="p">}</span>
+<span class="ln">13</span>
+<span class="ln">14</span><span class="c1">//...
+</span><span class="ln">15</span><span class="c1"></span>
+<span class="ln">16</span><span class="k">private</span><span class="o">:</span>
+<span class="ln">17</span>    <span class="n">element_type</span><span class="o">*</span> <span class="n">_M_ptr</span><span class="p">;</span>         <span class="c1">// Contained pointer.
+</span><span class="ln">18</span><span class="c1"></span>    <span class="n">__shared_count</span><span class="o">&lt;</span><span class="n">_Lp</span><span class="o">&gt;</span> <span class="n">_M_refcount</span><span class="p">;</span>    <span class="c1">// Reference counter.
+</span><span class="ln">19</span><span class="c1"></span><span class="p">};</span>
+<span class="ln">20</span>
+<span class="ln">21</span><span class="c1">//&lt;shared_ptr_base.h&gt; class __shared_count
+</span><span class="ln">22</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">23</span><span class="k">class</span> <span class="nc">__shared_count</span>
+<span class="ln">24</span><span class="p">{</span>
+<span class="ln">25</span><span class="c1">//...
+</span><span class="ln">26</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+<span class="ln">27</span>    <span class="c1">//...
+</span><span class="ln">28</span><span class="c1"></span>    <span class="n">__shared_count</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_count</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">29</span>        <span class="o">:</span> <span class="n">_M_pi</span><span class="p">(</span><span class="n">__r</span><span class="p">.</span><span class="n">_M_pi</span><span class="p">)</span>
+<span class="ln">30</span>    <span class="p">{</span>
+<span class="ln">31</span>        <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ln">32</span>            <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_add_ref_copy</span><span class="p">();</span>
+<span class="ln">33</span>    <span class="p">}</span>
+<span class="ln">34</span>    <span class="c1">//...
+</span><span class="ln">35</span><span class="c1"></span><span class="p">};</span>
+<span class="ln">36</span>
+<span class="ln">37</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_base
+</span><span class="ln">38</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="ln">39</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_add_ref_copy</span><span class="p">()</span>
+<span class="ln">40</span><span class="p">{</span>
+<span class="ln">41</span>    <span class="o">++</span><span class="n">_M_use_count</span><span class="p">;</span>
+<span class="ln">42</span><span class="p">}</span>
+</code></pre></div><p>每当拷贝构造一个<code>shared_ptr</code>，即调用基类<code>__shared_ptr</code>的拷贝构造函数时，会同时拷贝构造一个<code>__shared_count</code>对象<code>_M_refcount</code>。在这个计数对象的拷贝构造函数中，实际上调用了共享管理对象的基类方法<code>_Sp_counted_base::_M_add_ref_copy()</code>，然后<code>_M_use_count</code>就会自增<code>1</code>。这样一来所有同源的<code>shared_ptr::use_count()</code>的返回结果都会加<code>1</code>。</p>
+<p>对于拷贝赋值：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr.h&gt; class shared_ptr
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">shared_ptr</span> <span class="o">:</span> <span class="k">public</span> <span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln"> 4</span><span class="p">{</span>
+<span class="ln"> 5</span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Arg</span><span class="o">&gt;</span>
+<span class="ln"> 6</span>    <span class="k">using</span> <span class="n">_Assignable</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;</span>
+<span class="ln"> 7</span>        <span class="n">is_assignable</span><span class="o">&lt;</span><span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;&amp;</span><span class="p">,</span> <span class="n">_Arg</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="n">shared_ptr</span><span class="o">&amp;</span>
+<span class="ln"> 8</span>    <span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>    <span class="c1">//...
+</span><span class="ln">11</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+<span class="ln">12</span>    <span class="c1">//...
+</span><span class="ln">13</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
+<span class="ln">14</span>    <span class="n">_Assignable</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">&gt;&amp;&gt;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">&gt;&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">15</span>    <span class="p">{</span>
+<span class="ln">16</span>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">__r</span><span class="p">);</span>
+<span class="ln">17</span>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="ln">18</span>    <span class="p">}</span>
+<span class="ln">19</span><span class="p">};</span>
+<span class="ln">20</span>
+<span class="ln">21</span><span class="c1">//&lt;shared_ptr_base.h&gt; __shared_ptr
+</span><span class="ln">22</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="p">,</span> <span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">23</span><span class="k">class</span> <span class="nc">__shared_ptr</span> <span class="o">:</span> <span class="k">public</span> <span class="n">__shared_ptr_access</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="p">,</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">24</span><span class="p">{</span>
+<span class="ln">25</span>    <span class="c1">//...
+</span><span class="ln">26</span><span class="c1"></span>
+<span class="ln">27</span>    <span class="c1">// Constraint for construction from shared_ptr and weak_ptr:
+</span><span class="ln">28</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Res</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>
+<span class="ln">29</span>    <span class="k">using</span> <span class="n">_Compatible</span> <span class="o">=</span> <span class="k">typename</span>
+<span class="ln">30</span>    <span class="n">enable_if</span><span class="o">&lt;</span><span class="n">__sp_compatible_with</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">*</span><span class="p">,</span> <span class="n">_Tp</span><span class="o">*&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="n">_Res</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>
+<span class="ln">31</span>
+<span class="ln">32</span>    <span class="c1">// Constraint for assignment from shared_ptr and weak_ptr:
+</span><span class="ln">33</span><span class="c1"></span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
+<span class="ln">34</span>    <span class="k">using</span> <span class="n">_Assignable</span> <span class="o">=</span> <span class="n">_Compatible</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="p">,</span> <span class="n">__shared_ptr</span><span class="o">&amp;&gt;</span><span class="p">;</span>
+<span class="ln">35</span>
+<span class="ln">36</span>    <span class="c1">//...
+</span><span class="ln">37</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+<span class="ln">38</span>    <span class="c1">//..
+</span><span class="ln">39</span><span class="c1"></span>    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Yp</span><span class="o">&gt;</span>
+<span class="ln">40</span>    <span class="n">_Assignable</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_ptr</span><span class="o">&lt;</span><span class="n">_Yp</span><span class="p">,</span> <span class="n">_Lp</span><span class="o">&gt;&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">41</span>    <span class="p">{</span>
+<span class="ln">42</span>        <span class="n">_M_ptr</span> <span class="o">=</span> <span class="n">__r</span><span class="p">.</span><span class="n">_M_ptr</span><span class="p">;</span>
+<span class="ln">43</span>        <span class="n">_M_refcount</span> <span class="o">=</span> <span class="n">__r</span><span class="p">.</span><span class="n">_M_refcount</span><span class="p">;</span>  <span class="c1">// __shared_count::op= doesn&#39;t throw //调用__shared_count::operator=()
+</span><span class="ln">44</span><span class="c1"></span>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="ln">45</span>    <span class="p">}</span>
+<span class="ln">46</span><span class="p">};</span>
+<span class="ln">47</span>
+<span class="ln">48</span><span class="c1">//&lt;shared_ptr_base.h&gt; class __shared_count
+</span><span class="ln">49</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">50</span><span class="k">class</span> <span class="nc">__shared_count</span>
+<span class="ln">51</span><span class="p">{</span>
+<span class="ln">52</span><span class="c1">//...
+</span><span class="ln">53</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+<span class="ln">54</span>    <span class="c1">//...
+</span><span class="ln">55</span><span class="c1"></span>    <span class="n">__shared_count</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">__shared_count</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">56</span>    <span class="p">{</span>
+<span class="ln">57</span>        <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_Lp</span><span class="o">&gt;*</span> <span class="n">__tmp</span> <span class="o">=</span> <span class="n">__r</span><span class="p">.</span><span class="n">_M_pi</span><span class="p">;</span>
+<span class="ln">58</span>        <span class="k">if</span> <span class="p">(</span><span class="n">__tmp</span> <span class="o">!=</span> <span class="n">_M_pi</span><span class="p">)</span>
+<span class="ln">59</span>        <span class="p">{</span>
+<span class="ln">60</span>            <span class="k">if</span> <span class="p">(</span><span class="n">__tmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ln">61</span>                <span class="n">__tmp</span><span class="o">-&gt;</span><span class="n">_M_add_ref_copy</span><span class="p">();</span>
+<span class="ln">62</span>            <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ln">63</span>                <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_release</span><span class="p">();</span>
+<span class="ln">64</span>            <span class="n">_M_pi</span> <span class="o">=</span> <span class="n">__tmp</span><span class="p">;</span>
+<span class="ln">65</span>        <span class="p">}</span>
+<span class="ln">66</span>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="ln">67</span>    <span class="p">}</span>
+<span class="ln">68</span>    <span class="c1">//...
+</span><span class="ln">69</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p>每当拷贝赋值一个<code>shared_ptr</code>，即调用<code>operator=()</code>赋值操作符时，最终实际上也是调用了共享管理对象的基类方法<code>_Sp_counted_base::_M_add_ref_copy()</code>，从而实现<code>_M_use_count</code>自增。</p>
 <ul>
 <li><code>_M_use_count</code>的减少</li>
 </ul>
 <p>每当<code>shared_ptr</code>析构时，<code>_M_use_count</code>相应会减少，具体的做法是：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr_base.h&gt;
-</span><span class="ln"> 2</span><span class="c1"></span><span class="o">~</span><span class="n">__shared_count</span><span class="p">()</span> <span class="k">noexcept</span>
-<span class="ln"> 3</span><span class="p">{</span>
-<span class="ln"> 4</span>    <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_release</span><span class="p">();</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="ln"> 8</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_release</span><span class="p">()</span> <span class="k">noexcept</span>
-<span class="ln"> 9</span><span class="p">{</span>
-<span class="ln">10</span>    <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">_M_use_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-<span class="ln">11</span>        <span class="n">_M_dispose</span><span class="p">();</span>
-<span class="ln">12</span>        <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">_M_weak_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">_M_destroy</span><span class="p">();</span>
-<span class="ln">13</span>    <span class="p">}</span>
-<span class="ln">14</span><span class="p">}</span>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr_base.h&gt; class __shared_count
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">__shared_count</span>
+<span class="ln"> 4</span><span class="p">{</span>
+<span class="ln"> 5</span><span class="c1">//...
+</span><span class="ln"> 6</span><span class="c1"></span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 7</span>    <span class="c1">//...
+</span><span class="ln"> 8</span><span class="c1"></span>    <span class="o">~</span><span class="n">__shared_count</span><span class="p">()</span> <span class="k">noexcept</span>
+<span class="ln"> 9</span>    <span class="p">{</span>
+<span class="ln">10</span>        <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+<span class="ln">11</span>            <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_release</span><span class="p">();</span>
+<span class="ln">12</span>    <span class="p">}</span>
+<span class="ln">13</span>    <span class="c1">//...
+</span><span class="ln">14</span><span class="c1"></span><span class="p">};</span>
 <span class="ln">15</span>
-<span class="ln">16</span><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">_M_dispose</span><span class="p">()</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">_M_ptr</span><span class="p">;</span> <span class="p">}</span>
-</code></pre></div><p>析构时调用了管理对象的基类方法<code>__Sp_counted_base::_M_release()</code>，每调用一次，<code>_M_use_count</code>就会减<code>1</code>；当减至<code>0</code>时，调用<code>_M_dispose()</code>用于销毁托管对象。</p>
+<span class="ln">16</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_base
+</span><span class="ln">17</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;&gt;</span>
+<span class="ln">18</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_release</span><span class="p">()</span> <span class="k">noexcept</span>
+<span class="ln">19</span><span class="p">{</span>
+<span class="ln">20</span>    <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">_M_use_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ln">21</span>    <span class="p">{</span>
+<span class="ln">22</span>        <span class="n">_M_dispose</span><span class="p">();</span>
+<span class="ln">23</span>        <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">_M_weak_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ln">24</span>            <span class="n">_M_destroy</span><span class="p">();</span>
+<span class="ln">25</span>    <span class="p">}</span>
+<span class="ln">26</span><span class="p">}</span>
+<span class="ln">27</span>
+<span class="ln">28</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_ptr
+</span><span class="ln">29</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Ptr</span><span class="p">,</span> <span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">30</span><span class="k">class</span> <span class="nc">_Sp_counted_ptr</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">31</span><span class="p">{</span>
+<span class="ln">32</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">33</span>    <span class="c1">//...
+</span><span class="ln">34</span><span class="c1"></span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">_M_dispose</span><span class="p">()</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">_M_ptr</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">35</span><span class="p">};</span>
+</code></pre></div><p>析构时调用了管理对象的基类方法<code>_Sp_counted_base::_M_release()</code>，每调用一次，<code>_M_use_count</code>就会减<code>1</code>；当减至<code>0</code>时，调用<code>_M_dispose()</code>用于销毁托管对象。</p>
 <h4 id="_m_weak_count的增减">_M_weak_count的增减</h4>
 <ul>
 <li><code>_M_weak_count</code>的增加</li>
 </ul>
-<p><code>_M_weak_count</code>在<code>__Sp_counted_base</code>构造函数中初始化为<code>1</code>：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//&lt;shared_ptr_base.h&gt;
+<p><code>_M_weak_count</code>在<code>_Sp_counted_base</code>构造函数中初始化为<code>1</code>：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_base
 </span><span class="ln">2</span><span class="c1"></span><span class="n">_Sp_counted_base</span><span class="p">()</span> <span class="k">noexcept</span> <span class="o">:</span> <span class="n">_M_use_count</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">_M_weak_count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{}</span>
 </code></pre></div><p>从上面的代码可以看出，<code>shared_ptr</code>在拷贝和移动时都不会增加<code>_M_weak_count</code>。<code>_M_weak_count</code>的增加发生在拷贝构造<code>weak_ptr</code>时：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr_base.h&gt;
-</span><span class="ln"> 2</span><span class="c1"></span><span class="n">__weak_count</span><span class="p">(</span><span class="k">const</span> <span class="n">__weak_count</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">:</span> <span class="n">_M_pi</span><span class="p">(</span><span class="n">__r</span><span class="p">.</span><span class="n">_M_pi</span><span class="p">)</span>
-<span class="ln"> 3</span><span class="p">{</span>
-<span class="ln"> 4</span>    <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_weak_add_ref</span><span class="p">();</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="ln"> 8</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_weak_add_ref</span><span class="p">()</span> <span class="k">noexcept</span>
-<span class="ln"> 9</span><span class="p">{</span>
-<span class="ln">10</span>    <span class="o">++</span><span class="n">_M_weak_count</span><span class="p">;</span>
-<span class="ln">11</span><span class="p">}</span>
-</code></pre></div><p>拷贝构造时，共享的管理对象调用基类方法<code>__Sp_counted_base::_M_weak_add_ref()</code>来递增<code>_M_weak_count</code>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_ptr_base.h&gt; class __weak_count
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">__weak_count</span>
+<span class="ln"> 4</span><span class="p">{</span>
+<span class="ln"> 5</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 6</span>    <span class="c1">//...
+</span><span class="ln"> 7</span><span class="c1"></span>    <span class="n">__weak_count</span><span class="p">(</span><span class="k">const</span> <span class="n">__weak_count</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">:</span> <span class="n">_M_pi</span><span class="p">(</span><span class="n">__r</span><span class="p">.</span><span class="n">_M_pi</span><span class="p">)</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+<span class="ln">10</span>            <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_weak_add_ref</span><span class="p">();</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span><span class="p">}</span>
+<span class="ln">13</span>
+<span class="ln">14</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_base
+</span><span class="ln">15</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="ln">16</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_weak_add_ref</span><span class="p">()</span> <span class="k">noexcept</span>
+<span class="ln">17</span><span class="p">{</span>
+<span class="ln">18</span>    <span class="o">++</span><span class="n">_M_weak_count</span><span class="p">;</span>
+<span class="ln">19</span><span class="p">}</span>
+</code></pre></div><p>拷贝构造时，共享的管理对象调用基类方法<code>_Sp_counted_base::_M_weak_add_ref()</code>来递增<code>_M_weak_count</code>。</p>
 <ul>
 <li><code>_M_weak_count</code>的减少</li>
 </ul>
-<p><code>_M_weak_count</code>的减少有两种情况：第一种情况是<code>shared_ptr</code>析构时最终调用了<code>__Sp_counted_base::_M_release()</code>，<code>_M_use_count</code>减至<code>0</code>时会自动递减一次<code>_M_weak_count</code>；第二种情况是<code>weak_ptr</code>自身析构时最终调用了<code>__Sp_counted_base::_M_weak_release()</code>引起一次<code>_M_weak_count</code>递减。</p>
+<p><code>_M_weak_count</code>的减少有两种情况：第一种情况是<code>shared_ptr</code>析构时最终调用了<code>_Sp_counted_base::_M_release()</code>，<code>_M_use_count</code>减至<code>0</code>时会自动递减一次<code>_M_weak_count</code>；第二种情况是<code>weak_ptr</code>自身析构时最终调用了<code>_Sp_counted_base::_M_weak_release()</code>引起一次<code>_M_weak_count</code>递减。</p>
 <p>第一种情况我们在<code>shared_ptr</code>析构的源码中已经了解了，第二种情况是这样实现的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_prt_base.h&gt;
-</span><span class="ln"> 2</span><span class="c1"></span><span class="o">~</span><span class="n">__weak_count</span><span class="p">()</span> <span class="k">noexcept</span>
-<span class="ln"> 3</span><span class="p">{</span>
-<span class="ln"> 4</span>    <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_weak_release</span><span class="p">();</span>
-<span class="ln"> 5</span><span class="p">}</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="k">template</span> <span class="o">&lt;&gt;</span>
-<span class="ln"> 8</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_weak_release</span><span class="p">()</span> <span class="k">noexcept</span>
-<span class="ln"> 9</span><span class="p">{</span>
-<span class="ln">10</span>    <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">_M_weak_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">_M_destroy</span><span class="p">();</span>
-<span class="ln">11</span><span class="p">}</span>
-<span class="ln">12</span>
-<span class="ln">13</span><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">_M_destroy</span><span class="p">()</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">delete</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
-</code></pre></div><p>这两种情况一旦将<code>_M_weak_count</code>减至<code>0</code>，则调用<code>__Sp_counted_base::_M_destroy()</code>来销毁管理对象本身。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;shared_prt_base.h&gt; class __weak_count
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">__weak_count</span>
+<span class="ln"> 4</span><span class="p">{</span>
+<span class="ln"> 5</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 6</span>    <span class="c1">//...
+</span><span class="ln"> 7</span><span class="c1"></span>    <span class="o">~</span><span class="n">__weak_count</span><span class="p">()</span> <span class="k">noexcept</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="k">if</span> <span class="p">(</span><span class="n">_M_pi</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span>
+<span class="ln">10</span>            <span class="n">_M_pi</span><span class="o">-&gt;</span><span class="n">_M_weak_release</span><span class="p">();</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span><span class="p">}</span>
+<span class="ln">13</span>
+<span class="ln">14</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_base
+</span><span class="ln">15</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="ln">16</span><span class="kr">inline</span> <span class="kt">void</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_S_single</span><span class="o">&gt;::</span><span class="n">_M_weak_release</span><span class="p">()</span> <span class="k">noexcept</span>
+<span class="ln">17</span><span class="p">{</span>
+<span class="ln">18</span>    <span class="k">if</span> <span class="p">(</span><span class="o">--</span><span class="n">_M_weak_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="ln">19</span>        <span class="n">_M_destroy</span><span class="p">();</span>
+<span class="ln">20</span><span class="p">}</span>
+<span class="ln">21</span>
+<span class="ln">22</span><span class="c1">//&lt;shared_ptr_base.h&gt; class _Sp_counted_ptr
+</span><span class="ln">23</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Ptr</span><span class="p">,</span> <span class="n">_Lock_policy</span> <span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">24</span><span class="k">class</span> <span class="nc">_Sp_counted_ptr</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">_Sp_counted_base</span><span class="o">&lt;</span><span class="n">_Lp</span><span class="o">&gt;</span>
+<span class="ln">25</span><span class="p">{</span>
+<span class="ln">26</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">27</span>    <span class="c1">//...
+</span><span class="ln">28</span><span class="c1"></span>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">_M_destroy</span><span class="p">()</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">delete</span> <span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">29</span><span class="p">}</span>
+</code></pre></div><p>这两种情况一旦将<code>_M_weak_count</code>减至<code>0</code>，则调用<code>_Sp_counted_base::_M_destroy()</code>来销毁管理对象本身。</p>
 <p>以上内容就是关于智能指针中引用计数实现的核心内容，所有源码均来自g++10.2版本的C++标准库。</p>
 
     

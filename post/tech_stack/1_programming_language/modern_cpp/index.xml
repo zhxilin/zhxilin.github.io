@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>C&#43;&#43;移动语义、万能引用、引用折叠、完美转发</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/</link>
+      <pubDate>Fri, 22 Apr 2022 19:10:23 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/</guid>
+      <description>&lt;p&gt;现代C++提供了移动语义相关的操作，通过移动语义可以将资源的所有权转移到新的对象上，从而避免数据拷贝带来的性能开销。移动语义实现了从一个对象到另一个对象的资源转移的过程。标准库为移动语义提供了辅助函数&lt;code&gt;std::move()&lt;/code&gt;，用于执行一个无条件的对&lt;code&gt;rvalue&lt;/code&gt;的转换，对于函数本身而言，并不移动任何内容，只是强制转化左值引用为右值引用，从而通过这个右值引用使用该值，以用于移动语义。与之类似的还有一个辅助函数&lt;code&gt;std::forward()&lt;/code&gt;，它和&lt;code&gt;std::move()&lt;/code&gt;类似，但只有在参数被一个&lt;code&gt;lvalue&lt;/code&gt;初始化时，才会转换为&lt;code&gt;rvalue&lt;/code&gt;。&lt;code&gt;std::forward()&lt;/code&gt;还能将一组参数原封不动地传递给另一个函数，包括参数的属性（左值/右值和&lt;code&gt;const&lt;/code&gt;/非&lt;code&gt;const&lt;/code&gt;），这个过程叫完美转发。&lt;/p&gt;
+&lt;p&gt;提到移动语义和完美转发，就不得不谈及&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/lvalue_rvalue&#34;&gt;右值引用&lt;/a&gt;。右值引用的基本形式是&lt;code&gt;T&amp;amp;&amp;amp;&lt;/code&gt;，这需要和模板编程中的万能引用&lt;code&gt;T&amp;amp;&amp;amp;&lt;/code&gt;有所区别。在模板编程中，当传递不同属性的参数到&lt;code&gt;T&amp;amp;&amp;amp;&lt;/code&gt;中时进行的类型推导需要遵循引用折叠原则。&lt;/p&gt;
+&lt;p&gt;本节内容将就移动语义、万能引用、引用折叠和完美转发一一展开。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43; NULL与nullptr</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/</link>
       <pubDate>Fri, 22 Apr 2022 15:59:11 +0800</pubDate>

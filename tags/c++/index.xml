@@ -6,7 +6,7 @@
     <description>Recent content in C&#43;&#43; on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 22 Apr 2022 19:10:23 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 Apr 2022 19:32:40 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,21 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;引用包装</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/</link>
+      <pubDate>Sun, 24 Apr 2022 19:32:40 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/</guid>
+      <description>现代C++引入一个std::ref()用来模拟某个变量的引用。C++原来就有引用，为什么还需要模拟引用呢？这是为了解决某些场景下，只能值传递传参，却需要对传入的参数进行修改的问题。这类问题往往出现在函数式编程里。
+理解std::ref()之前还需要先了解一个引用包装（reference wrapper）的概念，std::ref()的返回值就是一个引用包装。
+本文围绕&amp;lt;functional&amp;gt;头文件提供的std::reference_wrapper和std::ref的实现细节，来说明为什么需要这项技术。
+ 本系列文章将包括以下领域：
+ 编程语言 数据结构与算法 操作系统 网络 数据库 编译原理 分布式架构 软件工程 应用技术   本章其他内容请见 《现代C++》
+为什么需要std::ref 在函数式编程中，如std::bind绑定一个函数，对于需要传入函数的参数，统一使用值传递的方式传参，而不是引用传递的方式传参。即使参数本身就是一个左值引用也不行，而通过将参数用std::ref()包装之后再传参，就能得到像引用一样的效果：
+1void foo(int&amp;amp; a, int&amp;amp; b) { 2 std::cout &amp;lt;&amp;lt; &amp;#34;call f()&amp;#34; &amp;lt;&amp;lt; std::endl; 3 ++a; 4 ++b; 5 std::cout &amp;lt;&amp;lt; &amp;#34;a: &amp;#34; &amp;lt;&amp;lt; &amp;amp;a &amp;lt;&amp;lt; &amp;#34;, &amp;#34; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; std::endl; 6 std::cout &amp;lt;&amp;lt; &amp;#34;b: &amp;#34; &amp;lt;&amp;lt; &amp;amp;b &amp;lt;&amp;lt; &amp;#34;, &amp;#34; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; std::endl; 7} 8 9int main() { 10 int a = 0, b = 0; 11 int&amp;amp; ra = a; 12 13 auto f = std::bind(foo, ra, std::ref(b)); 14 15 std::cout &amp;lt;&amp;lt; &amp;#34;before call f()&amp;#34; &amp;lt;&amp;lt; std::endl; 16 std::cout &amp;lt;&amp;lt; &amp;#34;a: &amp;#34; &amp;lt;&amp;lt; &amp;amp;a &amp;lt;&amp;lt; &amp;#34;, &amp;#34; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; std::endl; 17 std::cout &amp;lt;&amp;lt; &amp;#34;b: &amp;#34; &amp;lt;&amp;lt; &amp;amp;b &amp;lt;&amp;lt; &amp;#34;, &amp;#34; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; std::endl; 18 19 f(); 20 21 std::cout &amp;lt;&amp;lt; &amp;#34;after call f()&amp;#34; &amp;lt;&amp;lt; std::endl; 22 std::cout &amp;lt;&amp;lt; &amp;#34;a: &amp;#34; &amp;lt;&amp;lt; &amp;amp;a &amp;lt;&amp;lt; &amp;#34;, &amp;#34; &amp;lt;&amp;lt; a &amp;lt;&amp;lt; std::endl; 23 std::cout &amp;lt;&amp;lt; &amp;#34;b: &amp;#34; &amp;lt;&amp;lt; &amp;amp;b &amp;lt;&amp;lt; &amp;#34;, &amp;#34; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; std::endl; 24 25 return 0; 26} 运行结果如下：</description>
     </item>
     
     <item>

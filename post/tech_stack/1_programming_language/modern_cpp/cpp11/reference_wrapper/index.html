@@ -155,7 +155,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">600 Words | Read in about 3 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
@@ -167,7 +167,7 @@
 </nav>
     <p>现代C++引入一个<code>std::ref()</code>用来模拟某个变量的引用。C++原来就有引用，为什么还需要模拟引用呢？这是为了解决某些场景下，只能值传递传参，却需要对传入的参数进行修改的问题。这类问题往往出现在函数式编程里。</p>
 <p>理解<code>std::ref()</code>之前还需要先了解一个引用包装（reference wrapper）的概念，<code>std::ref()</code>的返回值就是一个引用包装。</p>
-<p>本文围绕<code>&lt;functional&gt;</code>头文件提供的<code>std::reference_wrapper</code>和<code>std::ref</code>的实现细节，来说明为什么需要这项技术。</p>
+<p>本文围绕<code>&lt;refwrap&gt;</code>头文件提供的<code>std::reference_wrapper</code>和<code>std::ref</code>的实现细节，来说明为什么需要这项技术。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
@@ -227,8 +227,125 @@
 <p><code>auto r = std::ref(o);</code>实际上等价于<code>std::reference_wrapper&lt;decltype(o)&gt; r(o);</code>。</p>
 <p>那么<code>std::reference_wrapper</code>又是怎么一回事呢？</p>
 <h2 id="什么是引用包装stdreference_wrapper">什么是引用包装std::reference_wrapper</h2>
+<p><code>std::reference_wrapper</code>是一个模板类类型，它将对象进行一层额外的包装，实现了这种语义：给我一个对象，返给你一个引用。除了我们上面<code>std::bind()</code>传值参数包装成<code>std::reference_wrapper</code>进行引用传递外，还可以用于STL容器元素的存储。</p>
+<p>STL容器如<code>vector</code>，容器的元素可以是对象，也可以实对象的指针，唯独不能是对象的引用，也不能是引用的指针，况且C++标准规定，不允许有引用的指针。STL容器提供的是value语义而不是reference语义，所以容器不支持元素为引用，而用<code>std::reference_wrapper</code>可以实现。</p>
+<p>我们来看下面这个例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="ln"> 2</span><span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">l</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="o">-</span><span class="mi">4</span><span class="p">);</span> <span class="c1">//从-4开始填充序列
+</span><span class="ln"> 3</span><span class="c1"></span>
+<span class="ln"> 4</span><span class="c1">//定义一个元素为引用包装类型的vector，用用数据来源为list
+</span><span class="ln"> 5</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">l</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">l</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="k">auto</span> <span class="n">print</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;list: &#34;</span><span class="p">;</span>
+<span class="ln"> 9</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">n</span> <span class="p">:</span> <span class="n">l</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">11</span>
+<span class="ln">12</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;vector: &#34;</span><span class="p">;</span>
+<span class="ln">13</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">n</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="p">;</span>
+<span class="ln">14</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">15</span><span class="p">};</span>
+<span class="ln">16</span>
+<span class="ln">17</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Original: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">18</span><span class="n">print</span><span class="p">();</span>
+<span class="ln">19</span>
+<span class="ln">20</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Shuffling: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">21</span><span class="n">std</span><span class="o">::</span><span class="n">shuffle</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">random_device</span><span class="p">{}()});</span>
+<span class="ln">22</span><span class="n">print</span><span class="p">();</span>
+<span class="ln">23</span>
+<span class="ln">24</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Doubling: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">25</span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="nl">n</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span> <span class="n">n</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="ln">26</span><span class="n">print</span><span class="p">();</span>
+</code></pre></div><p>运行结果为:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>Original:
+<span class="ln">2</span>list: -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+<span class="ln">3</span>vector: -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+<span class="ln">4</span>Shuffling:
+<span class="ln">5</span>list: -4, -3, -2, -1, 0, 1, 2, 3, 4, 5,
+<span class="ln">6</span>vector: -3, 5, 3, 1, -2, -1, 2, -4, 0, 4,
+<span class="ln">7</span>Doubling:
+<span class="ln">8</span>list: -8, -6, -4, -2, 0, 2, 4, 6, 8, 10,
+<span class="ln">9</span>vector: -6, 10, 6, 2, -4, -2, 4, -8, 0, 8,
+</code></pre></div><p>注意<code>vector</code>并没有存储引用，而是存储的对象，即<code>std::reference_wrapper</code>对象。</p>
+<p><code>std::reference_wrapper</code>的意义在于</p>
+<ul>
+<li>
+<p>引用不是对象，不存在引用的指针、引用的数组等，但引用包装使得定义引用的容器成为可能。</p>
+</li>
+<li>
+<p>模板函数无法辨别传入左值引用的意图是传值还是传引用，<code>std::ref()</code>或<code>std::cref()</code>明确告诉模板函数是传引用。</p>
+</li>
+</ul>
 <h2 id="stdreference_wrapper和stdref的实现原理">std::reference_wrapper和std::ref的实现原理</h2>
-
+<p><code>std::reference_wrapper</code>的简化版关键源码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="k">class</span> <span class="nc">reference_wrapper</span>
+<span class="ln"> 3</span><span class="p">{</span>
+<span class="ln"> 4</span>    <span class="n">_Tp</span><span class="o">*</span> <span class="n">_M_data</span><span class="p">;</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span>    <span class="k">constexpr</span> <span class="k">static</span> <span class="n">_Tp</span><span class="o">*</span> <span class="nf">_S_fun</span><span class="p">(</span><span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__r</span><span class="p">)</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">__addressof</span><span class="p">(</span><span class="n">__r</span><span class="p">);</span> <span class="p">}</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span>    <span class="k">static</span> <span class="kt">void</span> <span class="nf">_S_fun</span><span class="p">(</span><span class="n">_Tp</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Up</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Up2</span> <span class="o">=</span> <span class="n">__remove_cvref_t</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;&gt;</span>
+<span class="ln">11</span>    <span class="k">using</span> <span class="n">__not_same</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;!</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">reference_wrapper</span><span class="p">,</span> <span class="n">_Up2</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">14</span>    <span class="k">typedef</span> <span class="n">_Tp</span> <span class="n">type</span><span class="p">;</span>
+<span class="ln">15</span>
+<span class="ln">16</span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Up</span><span class="p">,</span> <span class="k">typename</span> <span class="o">=</span> <span class="n">__not_same</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">typename</span>
+<span class="ln">17</span>        <span class="o">=</span> <span class="k">decltype</span><span class="p">(</span><span class="n">reference_wrapper</span><span class="o">::</span><span class="n">_S_fun</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;</span><span class="p">()))</span><span class="o">&gt;</span>
+<span class="ln">18</span>    <span class="k">constexpr</span> <span class="n">reference_wrapper</span><span class="p">(</span><span class="n">_Up</span><span class="o">&amp;&amp;</span> <span class="n">__uref</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span><span class="k">noexcept</span><span class="p">(</span><span class="n">reference_wrapper</span><span class="o">::</span><span class="n">_S_fun</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">declval</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;</span><span class="p">())))</span>
+<span class="ln">19</span>        <span class="o">:</span> <span class="n">_M_data</span><span class="p">(</span><span class="n">reference_wrapper</span><span class="o">::</span><span class="n">_S_fun</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;</span><span class="p">(</span><span class="n">__uref</span><span class="p">)))</span>
+<span class="ln">20</span>    <span class="p">{</span> <span class="p">}</span>
+<span class="ln">21</span>
+<span class="ln">22</span>    <span class="n">reference_wrapper</span><span class="p">(</span><span class="k">const</span> <span class="n">reference_wrapper</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="n">reference_wrapper</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">reference_wrapper</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln">25</span>
+<span class="ln">26</span>    <span class="k">constexpr</span> <span class="k">operator</span> <span class="n">_Tp</span><span class="o">&amp;</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">();</span> <span class="p">}</span>
+<span class="ln">27</span>
+<span class="ln">28</span>    <span class="k">constexpr</span> <span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">get</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">_M_data</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">29</span>
+<span class="ln">30</span>    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">_Args</span><span class="o">&gt;</span>
+<span class="ln">31</span>    <span class="k">constexpr</span> <span class="k">typename</span> <span class="n">result_of</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&amp;</span><span class="p">(</span><span class="n">_Args</span><span class="o">&amp;&amp;</span><span class="p">...)</span><span class="o">&gt;::</span><span class="n">type</span>
+<span class="ln">32</span>    <span class="k">operator</span><span class="p">()(</span><span class="n">_Args</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="n">__args</span><span class="p">)</span> <span class="k">const</span>
+<span class="ln">33</span>    <span class="p">{</span>
+<span class="ln">34</span>        <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">__invoke</span><span class="p">(</span><span class="n">get</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">_Args</span><span class="o">&gt;</span><span class="p">(</span><span class="n">__args</span><span class="p">)...);</span>
+<span class="ln">35</span>    <span class="p">}</span>
+<span class="ln">36</span><span class="p">};</span>
+</code></pre></div><p><code>std::reference_wrapper</code>也没有那么神秘，只不过包装了一个原始指针罢了。它重载了<code>&amp;</code>操作符，对象可以隐式地转换回原来的引用。它重载了<code>=</code>操作符，包装仿函数时可以直接使用函数调用运算符。调用其他成员函数时，要先用<code>get()</code>函数获得其内部的引用。</p>
+<p><code>std::ref</code>和<code>std::cref</code>的关键源码如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;</span> <span class="n">ref</span><span class="p">(</span><span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__t</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln"> 3</span><span class="p">{</span>
+<span class="ln"> 4</span>    <span class="k">return</span> <span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">__t</span><span class="p">);</span>
+<span class="ln"> 5</span><span class="p">}</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln"> 8</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">&gt;</span> <span class="n">cref</span><span class="p">(</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__t</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln"> 9</span><span class="p">{</span>
+<span class="ln">10</span>    <span class="k">return</span> <span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">__t</span><span class="p">);</span>
+<span class="ln">11</span><span class="p">}</span>
+<span class="ln">12</span>
+<span class="ln">13</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln">14</span><span class="kt">void</span> <span class="n">ref</span><span class="p">(</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+<span class="ln">15</span>
+<span class="ln">16</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln">17</span><span class="kt">void</span> <span class="n">cref</span><span class="p">(</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+<span class="ln">18</span>
+<span class="ln">19</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln">20</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;</span> <span class="n">ref</span><span class="p">(</span><span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;</span> <span class="n">__t</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">21</span><span class="p">{</span>
+<span class="ln">22</span>    <span class="k">return</span> <span class="n">__t</span><span class="p">;</span>
+<span class="ln">23</span><span class="p">}</span>
+<span class="ln">24</span>
+<span class="ln">25</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln">26</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">_Tp</span><span class="o">&gt;</span> <span class="n">cref</span><span class="p">(</span><span class="n">reference_wrapper</span><span class="o">&lt;</span><span class="n">_Tp</span><span class="o">&gt;</span> <span class="n">__t</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="ln">27</span><span class="p">{</span>
+<span class="ln">28</span>    <span class="k">return</span> <span class="p">{</span> <span class="n">__t</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="p">};</span>
+<span class="ln">29</span><span class="p">}</span>
+</code></pre></div><p><code>std::ref</code>和<code>std::cref</code>更加简单，就是分别创建一个左值引用的引用包装对象和一个常量左值引用的引用包装对象返回。对于本身就是引用包装的对象，也支持使用<code>std::ref</code>和<code>std::cref</code>，只不过原样返回。</p>
 
     
     <section>

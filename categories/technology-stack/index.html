@@ -156,6 +156,34 @@
   <div class = 'excerpt'>
     <div class = 'excerpt_header'>
       <h3 class = 'post_link'>
+        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/'>C&#43;&#43;复制消除与RVO/NRVO</a>
+      </h3>
+      <div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    Apr 25, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
+</div>
+
+    </div>
+      <div class = 'excerpt_footer'>
+        <div>
+          <p class = 'pale'><p>C++11标准明确提出了复制消除（copy elision）优化技术，复制消除要求编译器在满足一些特定条件时，省略类对象的拷贝和移动构造，以达到优化效果。复制消除主要发生在两种条件下，即函数参数是值语义以及函数返回值是值语义。而RVO和NRVO是函数返回值优化的两种技术，NRVO从C++11开始加入C++标准。</p>
+<p>本文我们将讨论的主题围绕函数返回值优化，先了解RVO和NRVO在不同的现代C++版本中，启用和关闭编译器优化之后各自的表现；接着我们将分析RVO和NRVO的实现原理；最后聊一下优化失效的情形。</p></p>
+          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/' class='excerpt_more button'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+      
+<li class = 'post_item'>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_header'>
+      <h3 class = 'post_link'>
         <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/'>C&#43;&#43;引用包装</a>
       </h3>
       <div class = 'post_meta'>
@@ -388,33 +416,6 @@
     </div>
   </li>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/extern/'>C&#43;&#43; extern关键字</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 12, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'><p>在C++标准库中，我们经常可以看到<code>extern</code>关键字的使用。围绕声明与定义、<code>extern</code>和<code>static</code>、<code>extern &quot;C&quot;</code>，本节内容将尝试一次性讲清楚。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/extern/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
     <li>
 <ul class="pagination">
   <li class="page-item">
@@ -458,11 +459,11 @@
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/" class="nav-link">C&#43;&#43;引用包装</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/" class="nav-link">C&#43;&#43;复制消除与RVO/NRVO</a>
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/" class="nav-link">C&#43;&#43;移动语义、万能引用、引用折叠、完美转发</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/" class="nav-link">C&#43;&#43;引用包装</a>
       </li>
     
     </ul>
@@ -471,6 +472,9 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
+      </li>
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/" class="nav-link">C&#43;&#43;复制消除与RVO/NRVO</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/" class="nav-link">C&#43;&#43;引用包装</a>
@@ -490,9 +494,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/bit_field/" class="nav-link">C&#43;&#43;位域</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/rtti_reflection/" class="nav-link">C&#43;&#43; RTTI与反射</a>
-      </li>
     </ul> 
     
     <div>
@@ -500,12 +501,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>26</span>
+          <span class='button_tally'>27</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>26</span>
+          <span class='button_tally'>27</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -522,7 +523,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>19</span>
+          <span class='button_tally'>20</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -608,7 +609,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=19>C&#43;&#43;<span class='button_tally'>19</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=20>C&#43;&#43;<span class='button_tally'>20</span>
             </a>
             
             

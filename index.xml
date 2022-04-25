@@ -6,7 +6,7 @@
     <description>Recent content on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 24 Apr 2022 19:32:40 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 25 Apr 2022 10:47:59 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,16 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;复制消除与RVO/NRVO</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/</link>
+      <pubDate>Mon, 25 Apr 2022 10:47:59 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/</guid>
+      <description>&lt;p&gt;C++11标准明确提出了复制消除（copy elision）优化技术，复制消除要求编译器在满足一些特定条件时，省略类对象的拷贝和移动构造，以达到优化效果。复制消除主要发生在两种条件下，即函数参数是值语义以及函数返回值是值语义。而RVO和NRVO是函数返回值优化的两种技术，NRVO从C++11开始加入C++标准。&lt;/p&gt;
+&lt;p&gt;本文我们将讨论的主题围绕函数返回值优化，先了解RVO和NRVO在不同的现代C++版本中，启用和关闭编译器优化之后各自的表现；接着我们将分析RVO和NRVO的实现原理；最后聊一下优化失效的情形。&lt;/p&gt;</description>
     </item>
     
     <item>

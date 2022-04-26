@@ -156,6 +156,33 @@
   <div class = 'excerpt'>
     <div class = 'excerpt_header'>
       <h3 class = 'post_link'>
+        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/'>C&#43;&#43;闭包</a>
+      </h3>
+      <div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    Apr 26, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
+</div>
+
+    </div>
+      <div class = 'excerpt_footer'>
+        <div>
+          <p class = 'pale'><p>闭包，closure，一般是指带有状态的函数，这里的状态指的是调用环境的上下文。一个函数带上了状态，就是闭包。那么闭包就需要有捕获并持有外部作用域变量的能力，闭包状态的捆绑发生在运行时。在C++中，闭包的实现方式包括仿函数、<code>std::bind()</code>绑定器以及lambda表达式。仿函数在以前的文章<a href="/post/tech_stack/1_programming_language/modern_cpp/language_base/functor">《C++仿函数》</a>中以前介绍过了，本文将重点讨论另外两种闭包实现类型的用法和原理。</p></p>
+          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/' class='excerpt_more button'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+      
+<li class = 'post_item'>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_header'>
+      <h3 class = 'post_link'>
         <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/'>C&#43;&#43;复制消除与RVO/NRVO</a>
       </h3>
       <div class = 'post_meta'>
@@ -383,39 +410,6 @@
     </div>
   </li>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/object_memory_layout/'>C&#43;&#43;对象内存模型</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 12, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-</div>
-
-    </div>
-    <div class = 'excerpt_footer partition'>
-      <div class = 'excerpt_thumbnail'>
-      <img src = 'https://zhxilin.github.io/images/virtual_inheritance_layout.png'>
-      </div>
-      
-        <div>
-          <p class = 'pale'><p>C++的三大特性是封装、继承和多态，而要理解这些特性的底层原理，就不得不说说C++对象的内存模型（布局）。</p>
-<p>对于一个C++对象，每个对象有独立的非静态数据成员，而内存中只有一份成员函数，所有该类的对象共享成员函数；<code>static</code>数据成员属于类，它们存储在静态存储区，该类的所有对象共享。当调用对象的成员函数时，又是怎么识别是哪个对象在调用呢？实际上，所有类的成员函数在编译期会被编译器重构成非成员函数，即将<code>this</code>指针作为函数的第一个参数，这样在函数中通过<code>this</code>指针就能找到属于该对象的其他数据成员了。这些都是理解C++对象内存模型的前提。</p>
-<p>当出现了类的继承关系，且存在虚函数的时候，情况就复杂了。本节内容将详细介绍单一继承、多重继承、重复 …</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/object_memory_layout/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
     <li>
 <ul class="pagination">
   <li class="page-item">
@@ -456,17 +450,20 @@
     
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/" class="nav-link">C&#43;&#43;复制消除与RVO/NRVO</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/" class="nav-link">C&#43;&#43;闭包</a>
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/reference_wrapper/" class="nav-link">C&#43;&#43;引用包装</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/" class="nav-link">C&#43;&#43;复制消除与RVO/NRVO</a>
       </li>
     
     </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/" class="nav-link">C&#43;&#43;闭包</a>
+      </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/" class="nav-link">C&#43;&#43;复制消除与RVO/NRVO</a>
       </li>
@@ -485,9 +482,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/" class="nav-link">C&#43;&#43;内存对齐</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/bit_field/" class="nav-link">C&#43;&#43;位域</a>
-      </li>
     </ul> 
     
     <div>
@@ -495,12 +489,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>27</span>
+          <span class='button_tally'>28</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>27</span>
+          <span class='button_tally'>28</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -517,7 +511,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>20</span>
+          <span class='button_tally'>21</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -603,7 +597,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=20>C&#43;&#43;<span class='button_tally'>20</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=21>C&#43;&#43;<span class='button_tally'>21</span>
             </a>
             
             

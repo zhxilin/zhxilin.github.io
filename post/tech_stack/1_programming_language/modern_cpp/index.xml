@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;闭包</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/</link>
+      <pubDate>Tue, 26 Apr 2022 12:02:34 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/</guid>
+      <description>&lt;p&gt;闭包，closure，一般是指带有状态的函数，这里的状态指的是调用环境的上下文。一个函数带上了状态，就是闭包。那么闭包就需要有捕获并持有外部作用域变量的能力，闭包状态的捆绑发生在运行时。在C++中，闭包的实现方式包括仿函数、&lt;code&gt;std::bind()&lt;/code&gt;绑定器以及lambda表达式。仿函数在以前的文章&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/functor&#34;&gt;《C++仿函数》&lt;/a&gt;中以前介绍过了，本文将重点讨论另外两种闭包实现类型的用法和原理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;复制消除与RVO/NRVO</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/</link>
       <pubDate>Mon, 25 Apr 2022 10:47:59 +0800</pubDate>

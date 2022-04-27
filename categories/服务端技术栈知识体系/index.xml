@@ -6,7 +6,7 @@
     <description>Recent content in 服务端技术栈知识体系 on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 26 Apr 2022 12:02:34 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 27 Apr 2022 10:22:58 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;类内初始化</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/</link>
+      <pubDate>Wed, 27 Apr 2022 10:22:58 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/</guid>
+      <description>&lt;p&gt;现代C++提供了3种对类成员的初始化方式，即构造函数初始化、初始化列表，以及C++11新加入的类内初始化。本节内容将具体讲解这3种类成员初始化方式的用法，并比较他们之间的区别。&lt;/p&gt;</description>
     </item>
     
     <item>

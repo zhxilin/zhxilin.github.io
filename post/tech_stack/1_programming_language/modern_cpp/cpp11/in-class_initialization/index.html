@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>Application Technology | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>C&#43;&#43;类内初始化 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="现代C&#43;&#43;提供了3种对类成员的初始化方式，即构造函数初始化、初始化列表，以及C&#43;&#43;11新加入的类内初始化。本节内容将具体讲解这3种类成员初始化方式的用法，并比较他们之间的区别。">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Application Technology" />
-<meta property = "og:url" content = "https://zhxilin.github.io/tags/application-technology/" />
-<meta property = "og:title" content = "Application Technology" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "C&#43;&#43;类内初始化" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/" />
+<meta property = "og:title" content = "C&#43;&#43;类内初始化" />
+<meta property = "og:description" content = "现代C&#43;&#43;提供了3种对类成员的初始化方式，即构造函数初始化、初始化列表，以及C&#43;&#43;11新加入的类内初始化。本节内容将具体讲解这3种类成员初始化方式的用法，并比较他们之间的区别。" />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/tags/application-technology/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,7 @@
   
   
     
-  
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -97,92 +96,219 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/summary/'>服务端技术栈知识体系</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>C&#43;&#43;类内初始化</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Dec 13, 2021</span>
+    Apr 27, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
-  <a href = 'https://zhxilin.github.io/tags/algorigthm' class = 'post_tag button button_translucent'>Algorigthm
+</div>
+
+    <div class='post_share'>
+  Share on:
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%e7%b1%bb%e5%86%85%e5%88%9d%e5%a7%8b%e5%8c%96&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fin-class_initialization%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fin-class_initialization.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#weibo"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/data-structure' class = 'post_tag button button_translucent'>Data Structure
+  
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fin-class_initialization%2f&sharesource=qzone&title=C%2b%2b%e7%b1%bb%e5%86%85%e5%88%9d%e5%a7%8b%e5%8c%96" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#qq"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/operating-system' class = 'post_tag button button_translucent'>Operating System
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fin-class_initialization%2f&sharesource=qzone&title=C%2b%2b%e7%b1%bb%e5%86%85%e5%88%9d%e5%a7%8b%e5%8c%96" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#qzone"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/networks' class = 'post_tag button button_translucent'>Networks
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%e7%b1%bb%e5%86%85%e5%88%9d%e5%a7%8b%e5%8c%96&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fin-class_initialization%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/database' class = 'post_tag button button_translucent'>Database
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fin-class_initialization%2f&t=C%2b%2b%e7%b1%bb%e5%86%85%e5%88%9d%e5%a7%8b%e5%8c%96" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/compilation-principle' class = 'post_tag button button_translucent'>Compilation Principle
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
   </a>
-  <a href = 'https://zhxilin.github.io/tags/distributed-system-design' class = 'post_tag button button_translucent'>Distributed System Design
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/software-engineer' class = 'post_tag button button_translucent'>Software Engineer
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/application-technology' class = 'post_tag button button_translucent'>Application Technology
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
   </a>
 </div>
 
-    </div>
-    <div class = 'excerpt_footer partition'>
-      <div class = 'excerpt_thumbnail'>
-      <img src = 'https://zhxilin.github.io/images/tech_stack_summary.png'>
-      </div>
-      
-        <div>
-          <p class = 'pale'><p>本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。</p>
-<p>本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。</p>
-<p>阅读本系列文章适合具备一定计算机编程基础的同学。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/summary/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/9_application_technology/summary/'>应用技术</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 8, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/application-technology' class = 'post_tag button button_translucent'>Application Technology
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/9_application_technology/summary/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-    <li>
-
-
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#类内成员初始化的方式">类内成员初始化的方式</a>
+      <ul>
+        <li><a href="#构造函数初始化">构造函数初始化</a></li>
+        <li><a href="#初始化列表">初始化列表</a></li>
+        <li><a href="#类内初始化">类内初始化</a></li>
+      </ul>
+    </li>
+    <li><a href="#初始化方式优先级">初始化方式优先级</a></li>
+    <li><a href="#初始化方式的适用场景">初始化方式的适用场景</a>
+      <ul>
+        <li><a href="#构造函数初始化适用场景">构造函数初始化适用场景</a></li>
+        <li><a href="#初始化列表的适用场景">初始化列表的适用场景</a></li>
+        <li><a href="#类内初始化的适用场景">类内初始化的适用场景</a></li>
+      </ul>
     </li>
   </ul>
+</nav>
+    <p>现代C++提供了3种对类成员的初始化方式，即构造函数初始化、初始化列表，以及C++11新加入的类内初始化。本节内容将具体讲解这3种类成员初始化方式的用法，并比较他们之间的区别。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
+<p>我们之前在<a href="/post/tech_stack/1_programming_language/modern_cpp/language_base/extern">《C++ extern关键字》</a>这篇文章中提到过声明和定义的概念，我们再复习一下这些知识。</p>
+<p>声明是用于向程序表明变量的类型和名字，不会实际分配内存空间；定义则会为变量分配空间，但是未必会给分配的内存空间的变量赋予初始值。定义的范围不止是变量，还包含函数等其他内容。</p>
+<p>初始化是会为已经定义的变量赋予初始值。初始化只针对变量，而定义可以包括变量，也可以包括函数，且定义的变量可以不初始化。</p>
+<p>传统C++对类成员的初始化方式有构造函数初始化以及初始化列表，现代C++加入了类内初始化的方式。</p>
+<h2 id="类内成员初始化的方式">类内成员初始化的方式</h2>
+<h3 id="构造函数初始化">构造函数初始化</h3>
+<p>在构造函数的函数体内对类的成员变量进行初始化：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln">2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">3</span>    <span class="kt">int</span> <span class="n">m_a</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="n">A</span><span class="p">()</span> <span class="p">{</span> <span class="n">m_a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">5</span>    <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">6</span><span class="p">};</span>
+</code></pre></div><h3 id="初始化列表">初始化列表</h3>
+<p>在构造函数名后面紧跟冒号，冒号后面是类的成员变量，再接圆括号，其中是这个成员变量的初始值。这样的结构就是构造函数的初始化列表：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln">2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">3</span>    <span class="kt">int</span> <span class="n">m_a</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="n">A</span><span class="p">()</span> <span class="o">:</span> <span class="n">m_a</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="ln">5</span>    <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_a</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="ln">6</span><span class="p">};</span>
+</code></pre></div><h3 id="类内初始化">类内初始化</h3>
+<p>对于初始化列表的方式，如果类内有多个构造函数，那么每个函数都要单独维护一个初始化列表，非常容易造成遗漏的状况出现，而且代码会显得非常冗长。因此C++11引入了类内初始化，可以进行极大简化。类内初始化是在定义类成员变量的时候直接对其赋值，赋值的方式可以使用等号赋值，也可以使用大括号赋值：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln">2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">3</span>    <span class="c1">//...
+</span><span class="ln">4</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">m_a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">5</span>    <span class="kt">int</span> <span class="n">m_b</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="ln">6</span><span class="p">};</span>
+</code></pre></div><p>有同学会疑问，这有啥新奇的，传统C++不就已经可以在类内声明成员变量的时候使用等号来初始化了吗？</p>
+<p>是的，但是作用范围非常有限。</p>
+<p>传统C++在类内声明成员变量时进行赋值，只能针对类中的静态常量成员，即声明为<code>static const</code>的成员变量，单独的<code>const</code>成员和<code>static</code>成员都不能直接初始化。而且这些静态常量成员变量，也只能是整型或者枚举类型才可以进行初始化。非静态常量的其他成员变量只能在构造函数里进行初始化。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//C++98
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln"> 3</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 4</span>    <span class="c1">//...
+</span><span class="ln"> 5</span><span class="c1"></span>
+<span class="ln"> 6</span>    <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">m_a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//ok
+</span><span class="ln"> 7</span><span class="c1"></span>
+<span class="ln"> 8</span>    <span class="kt">int</span> <span class="n">m_b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//invalid
+</span><span class="ln"> 9</span><span class="c1"></span>    <span class="k">static</span> <span class="kt">int</span> <span class="n">m_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//invalid
+</span><span class="ln">10</span><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">m_d</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//invalid
+</span><span class="ln">11</span><span class="c1"></span>
+<span class="ln">12</span>    <span class="k">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">m_e</span> <span class="o">=</span> <span class="mf">1.3</span><span class="p">;</span> <span class="c1">//invalid
+</span><span class="ln">13</span><span class="c1"></span>    <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">m_f</span> <span class="o">=</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span> <span class="c1">//invalid
+</span><span class="ln">14</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><h2 id="初始化方式优先级">初始化方式优先级</h2>
+<p>在现代C++中，三种类内成员初始化方式都可以共同存在，这个时候可能会出现对同一个成员变量使用了多种方式进行初始化，那么它们之间的优先级如何呢？</p>
+<p>初始化的顺序是先类内初始化，再初始化列表，最后构造函数初始化，后面的初始化会把前面的覆盖掉。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln"> 2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 3</span>    <span class="kt">int</span> <span class="n">m_a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln"> 4</span>    <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">)</span> <span class="o">:</span> <span class="n">m_a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="n">m_a</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln"> 5</span><span class="p">};</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="n">A</span> <span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="ln"> 9</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">m_a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//3
+</span><span class="ln">10</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">11</span><span class="p">}</span>
+</code></pre></div><h2 id="初始化方式的适用场景">初始化方式的适用场景</h2>
+<h3 id="构造函数初始化适用场景">构造函数初始化适用场景</h3>
+<ul>
+<li>
+<p>适用于大多数场景</p>
+</li>
+<li>
+<p>用于构造函数和拷贝构造函数</p>
+</li>
+<li>
+<p>用于将多个成员变量都初始化为同一个值：</p>
+</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+<span class="ln">2</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">3</span>    <span class="n">A</span><span class="p">()</span> <span class="p">{</span> <span class="n">m_a</span> <span class="o">=</span> <span class="n">m_b</span> <span class="o">=</span> <span class="n">m_c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">4</span><span class="k">private</span><span class="o">:</span>
+<span class="ln">5</span>    <span class="kt">int</span> <span class="n">m_a</span><span class="p">;</span>
+<span class="ln">6</span>    <span class="kt">int</span> <span class="n">m_b</span><span class="p">;</span>
+<span class="ln">7</span>    <span class="kt">int</span> <span class="n">m_c</span><span class="p">;</span>
+<span class="ln">8</span><span class="p">};</span>
+</code></pre></div><h3 id="初始化列表的适用场景">初始化列表的适用场景</h3>
+<ul>
+<li>
+<p><code>const</code>成员变量，只能用初始化列表完成初始化，而且不能在构造函数中赋值</p>
+</li>
+<li>
+<p>成员变量是引用类型的成员变量，只能用初始化列表完成初始化，而且不能在构造函数中赋值</p>
+</li>
+<li>
+<p>成员变量是自定义类型的对象，建议使用初始化列表初始化</p>
+</li>
+</ul>
+<p>因为构造函数初始化的本质是赋值操作，赋值过程会产生临时对象，临时对象构造和析构都有开销，效率不高，所以推荐使用初始化列表。</p>
+<h3 id="类内初始化的适用场景">类内初始化的适用场景</h3>
+<ul>
+<li>
+<p>查看代码定义时更加直观看到初始值</p>
+</li>
+<li>
+<p>定义多个构造函数时不用对每个构造函数都写一遍初始化列表或构造函数初始化</p>
+</li>
+</ul>
+
+    
+    <section>
+      
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/">
+          <span>Prev Post: 『C&#43;&#43;闭包』</span>
+        </a>
+    </section>
+    <section>
+      
+    </section>
+
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -197,9 +323,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/" class="nav-link">C&#43;&#43;类内初始化</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/" class="nav-link">C&#43;&#43;闭包</a>
@@ -211,9 +334,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/in-class_initialization/" class="nav-link">C&#43;&#43;类内初始化</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/" class="nav-link">C&#43;&#43;闭包</a>
@@ -421,9 +541,34 @@
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

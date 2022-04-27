@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;用户定义字面量</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/</link>
+      <pubDate>Wed, 27 Apr 2022 17:09:25 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/</guid>
+      <description>&lt;p&gt;C++11引入了用户自定义字面量（user-defined literal），也叫自定义后缀操作符。通过实现一个后缀操作符，可以将声明了后缀标识的字面量转换为所需的类型和数值。本节内容我们将探讨各种常见的字面量，以及C++11新加入的用户定义字面量。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;原始字符串字面量</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/raw_string_literal/</link>
       <pubDate>Wed, 27 Apr 2022 14:53:46 +0800</pubDate>

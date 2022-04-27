@@ -6,7 +6,7 @@
     <description>Recent content on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 27 Apr 2022 14:53:46 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 27 Apr 2022 17:09:25 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;用户定义字面量</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/</link>
+      <pubDate>Wed, 27 Apr 2022 17:09:25 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/</guid>
+      <description>&lt;p&gt;C++11引入了用户自定义字面量（user-defined literal），也叫自定义后缀操作符。通过实现一个后缀操作符，可以将声明了后缀标识的字面量转换为所需的类型和数值。本节内容我们将探讨各种常见的字面量，以及C++11新加入的用户定义字面量。&lt;/p&gt;</description>
     </item>
     
     <item>

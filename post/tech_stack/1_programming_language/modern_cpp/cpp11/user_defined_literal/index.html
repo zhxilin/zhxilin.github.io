@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>数据库 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>C&#43;&#43;用户定义字面量 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -17,9 +17,9 @@
 <meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "数据库" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/5_database/summary/" />
-<meta property = "og:title" content = "数据库" />
+<meta name = "twitter:title" content = "C&#43;&#43;用户定义字面量" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" />
+<meta property = "og:title" content = "C&#43;&#43;用户定义字面量" />
 <meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/5_database/summary/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,9 +46,7 @@
   
   
     
-    
-  
-  <body data-code="10" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -109,51 +107,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>数据库</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43;用户定义字面量</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 8, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/database' class = 'post_tag button button_translucent'>Database
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/mysql' class = 'post_tag button button_translucent'>MySQL
-  </a>
-  <a href = 'https://zhxilin.github.io/tags/redis' class = 'post_tag button button_translucent'>Redis
+    Apr 27, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=%e6%95%b0%e6%8d%ae%e5%ba%93&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f5_database%2fsummary%2f&pic=Page%28%2fpost%2ftech_stack%2f5_database%2fsummary.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%e7%94%a8%e6%88%b7%e5%ae%9a%e4%b9%89%e5%ad%97%e9%9d%a2%e9%87%8f&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fuser_defined_literal%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fuser_defined_literal.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f5_database%2fsummary%2f&sharesource=qzone&title=%e6%95%b0%e6%8d%ae%e5%ba%93" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fuser_defined_literal%2f&sharesource=qzone&title=C%2b%2b%e7%94%a8%e6%88%b7%e5%ae%9a%e4%b9%89%e5%ad%97%e9%9d%a2%e9%87%8f" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f5_database%2fsummary%2f&sharesource=qzone&title=%e6%95%b0%e6%8d%ae%e5%ba%93" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fuser_defined_literal%2f&sharesource=qzone&title=C%2b%2b%e7%94%a8%e6%88%b7%e5%ae%9a%e4%b9%89%e5%ad%97%e9%9d%a2%e9%87%8f" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=%e6%95%b0%e6%8d%ae%e5%ba%93&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f5_database%2fsummary%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%e7%94%a8%e6%88%b7%e5%ae%9a%e4%b9%89%e5%ad%97%e9%9d%a2%e9%87%8f&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fuser_defined_literal%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f5_database%2fsummary%2f&t=%e6%95%b0%e6%8d%ae%e5%ba%93" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fuser_defined_literal%2f&t=C%2b%2b%e7%94%a8%e6%88%b7%e5%ae%9a%e4%b9%89%e5%ad%97%e9%9d%a2%e9%87%8f" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/5_database/summary/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -161,7 +155,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/5_database/summary/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -169,8 +163,28 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
-    <blockquote>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#字面量">字面量</a>
+      <ul>
+        <li><a href="#整型字面量">整型字面量</a></li>
+        <li><a href="#浮点型字面量">浮点型字面量</a></li>
+        <li><a href="#字符型字面量">字符型字面量</a></li>
+        <li><a href="#字符串字面量">字符串字面量</a></li>
+        <li><a href="#枚举字面量">枚举字面量</a></li>
+        <li><a href="#布尔型字面量">布尔型字面量</a></li>
+        <li><a href="#指针型字面量">指针型字面量</a></li>
+        <li><a href="#用户自定义的字面量">用户自定义的字面量</a></li>
+      </ul>
+    </li>
+    <li><a href="#用户定义字面量">用户定义字面量</a></li>
+  </ul>
+</nav>
+    <p>C++11引入了用户自定义字面量（user-defined literal），也叫自定义后缀操作符。通过实现一个后缀操作符，可以将声明了后缀标识的字面量转换为所需的类型和数值。本节内容我们将探讨各种常见的字面量，以及C++11新加入的用户定义字面量。</p>
+<blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
 <li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
@@ -181,143 +195,181 @@
 <li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
 <li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
 <li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
-<li><a href="/post/tech_stack/9_application_technology/index">应用技术</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
 </ul>
 </blockquote>
-<h2 id="redis">Redis</h2>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
+<h2 id="字面量">字面量</h2>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E9%9D%A2%E5%B8%B8%E9%87%8F_(C%E8%AF%AD%E8%A8%80)">维基百科</a>对于字面量（literal）的定义如下：</p>
+<blockquote>
+<p>字面常量（literal constant），是C程序设计语言与C++语言的词法上的概念（lexical conventions），是指源程序中表示固定值的符号。</p>
+</blockquote>
+<p>我们一般把字面常量简称为字面量。现代C++支持的字面量类型包括：</p>
+<h3 id="整型字面量">整型字面量</h3>
+<p>支持的数值进制有10进制（如<code>1234</code>）、8进制（如<code>0373</code>）、16进制（如<code>0x2f</code>）、2进制（如<code>0b1001</code>）。</p>
+<p>整型字面量按照以下顺序转化为整数类型表示：<code>int</code>、<code>unsigned int</code>、<code>long</code>、<code>unsigned long</code>、<code>long long</code>、<code>unsigned long long</code>。其中，10进制表示的字面量仅考虑有符号的整数类型；而8进制或16进制的字面量先考虑能否用有符号的整数类型表示，如不能再考虑能否用同样长度的无符号整数类型表示。</p>
+<p>例如，字面量<code>0x87654321</code>，这是一个正值，用4字节长的<code>int</code>无法表示，编译器就会自动选用<code>unsigned int</code>来表示该字面量。</p>
+<p>整型字面量可以使用后缀<code>u</code>、<code>U</code>、<code>ul</code>、<code>UL</code>、<code>ull</code>、<code>ULL</code>明确表示各种无符号整型，如<code>1234u</code>、<code>123ul</code>。</p>
+<h3 id="浮点型字面量">浮点型字面量</h3>
+<p>支持的数值进制有10进制（如<code>1.5e15</code>、<code>2.3f</code>）、16进制（如<code>0x1p10</code>、<code>0x1.001p10</code>）。如果不是科学计数法的形式，就必须有小数点，小数点前或后的数字可以省略。</p>
+<p>没有后缀的浮点型字面量是<code>double</code>类型，使用后缀<code>f</code>的是<code>float</code>类型。</p>
+<h3 id="字符型字面量">字符型字面量</h3>
+<p>字符型字面量是用单引号括起来的一个或多个字符。</p>
+<p>没有前缀字符的叫普通字符型字面量或窄字符字面量，包含多个字符的普通字符字面量叫多字符字面量。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//多字符字面量
+</span><span class="ln">2</span><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">abcd</span><span class="err">&#39;</span><span class="p">;</span> <span class="c1">//值为0x61626364的整型数
+</span></code></pre></div><p>在C++中，字符字面量<code>a</code>是<code>char</code>类型，所以<code>sizeof('a')</code>为<code>1</code>；而在C语言中，字符字面量<code>a</code>是<code>int</code>类型，所以<code>sizeof('a')</code>为<code>4</code>。</p>
+<p>当字符字面量有前缀<code>u</code>、<code>U</code>、<code>L</code>时，分别表示<code>char16_t</code>、<code>char32_t</code>和<code>wchar_t</code>。</p>
+<p>转义字符也是字符型字面量的一种，其表示范围可能不属于C++的字符范围，所以需要用反斜杠<code>\</code>来转义所需的字符。</p>
+<h3 id="字符串字面量">字符串字面量</h3>
+<p>字符串字面量是最常见的形式。C++11加入了<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp11/raw_string_literal">原始字符串字面量</a>，来避免使用大量反斜杠转义字符，增强可读性和计算性能。</p>
+<h3 id="枚举字面量">枚举字面量</h3>
+<p>枚举类型本质上是取有限个值的整型，在传统C++中，枚举字面量的作用域属于定义了这个枚举类型的作用域，而不属于这个枚举类型的内部，这容易导致枚举字面量重定义冲突：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">enum</span> <span class="nc">FileAccess</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">Read</span><span class="p">,</span>
+<span class="ln">3</span>    <span class="n">Write</span><span class="p">,</span>
+<span class="ln">4</span><span class="p">};</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="k">enum</span> <span class="nc">FileShare</span> <span class="p">{</span>
+<span class="ln">7</span>    <span class="n">Read</span><span class="p">,</span> <span class="c1">//error: ‘Read’ conflicts with a previous declaration
+</span><span class="ln">8</span><span class="c1"></span>    <span class="n">Write</span><span class="p">,</span> <span class="c1">//error: ‘Write’ conflicts with a previous declaration
+</span><span class="ln">9</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p>C++11为了解决这个问题，引入了枚举类。定义枚举类时在原<code>enum</code>关键字后面增加<code>class</code>关键字，此时枚举字面量的作用域就归属于这个枚举类了，避免了重定义冲突；同时也避免了相同数值的枚举字面量进行隐式转换，保证枚举是强类型的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">enum</span> <span class="k">class</span> <span class="nc">FileAccess</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">Read</span><span class="p">,</span>
+<span class="ln">3</span>    <span class="n">Write</span><span class="p">,</span>
+<span class="ln">4</span><span class="p">};</span>
+<span class="ln">5</span>
+<span class="ln">6</span><span class="k">enum</span> <span class="k">class</span> <span class="nc">FileShare</span> <span class="p">{</span>
+<span class="ln">7</span>    <span class="n">Read</span><span class="p">,</span> <span class="c1">//ok
+</span><span class="ln">8</span><span class="c1"></span>    <span class="n">Write</span><span class="p">,</span> <span class="c1">//ok
+</span><span class="ln">9</span><span class="c1"></span><span class="p">};</span>
+</code></pre></div><p>C++11还支持指定枚举类的存储类型，从而可以支持前置声明：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//前置声明
+</span><span class="ln">2</span><span class="c1"></span><span class="k">enum</span> <span class="k">class</span> <span class="nc">FileAccess</span> <span class="o">:</span> <span class="kt">char</span><span class="p">;</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="c1">//枚举类定义
+</span><span class="ln">5</span><span class="c1"></span><span class="k">enum</span> <span class="k">class</span> <span class="nc">FileAccess</span> <span class="o">:</span> <span class="kt">char</span> <span class="p">{</span>
+<span class="ln">6</span>    <span class="n">Read</span><span class="p">,</span>
+<span class="ln">7</span>    <span class="n">Write</span><span class="p">,</span>
+<span class="ln">8</span><span class="p">};</span>
+</code></pre></div><h3 id="布尔型字面量">布尔型字面量</h3>
+<p>有两个布尔型字面量，即<code>true</code>和<code>false</code>。</p>
+<h3 id="指针型字面量">指针型字面量</h3>
+<p>C++11定义了一个指针型字面量，即<code>nullptr</code>。</p>
+<h3 id="用户自定义的字面量">用户自定义的字面量</h3>
+<p>用户定义字面量，user-defined literal，是C++11新加入的特性。</p>
+<h2 id="用户定义字面量">用户定义字面量</h2>
+<p>C++11允许我们定义一个用户定义后缀（user-defined suffix）来把原生的整型、浮点型、字符、字符串等字面量转换为我们自己需要的形式，这个形式可以是原生数据类型，也可以是自定义类。</p>
+<p>具体地，字面量会自动调用一个函数来转换它的类型。由用户定义的字面量调用的函数称为字面量运算符。如果它是模板，则称为字面量运算符模板。</p>
 <ul>
-<li>
-<p>RESP协议</p>
-</li>
-<li>
-<p>Redis底层数据结构的实现</p>
-<ul>
-<li>redisObject</li>
-<li>SDS</li>
-<li>Ziplist</li>
-<li>Quicklist</li>
-<li>Dict</li>
-<li>IntSet</li>
-<li>Skiplist</li>
+<li>字面量运算符</li>
 </ul>
-</li>
-<li>
-<p>Redis持久化方式</p>
-<ul>
-<li>RDB、AOF、混合模式</li>
+<p>语法定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">return_type</span> <span class="k">operator</span><span class="s">&#34;&#34;</span> <span class="n">custom_suffix</span> <span class="p">(</span><span class="n">parameters</span><span class="p">);</span>
+</code></pre></div><ul>
+<li>字面量运算符模板</li>
 </ul>
-</li>
-<li>
-<p>Redis的IO多路复用机制</p>
-</li>
-<li>
-<p>Redis主从复制原理</p>
-</li>
-<li>
-<p>Redis哨兵机制</p>
-</li>
-<li>
-<p>Redis淘汰策略</p>
-</li>
-<li>
-<p>Redis高效删除大key</p>
-</li>
-<li>
-<p>Redis Cluster原理</p>
-<ul>
-<li>Redis Cluster通信基础——Gossip协议</li>
-<li>Redis-Cluster故障转移</li>
-</ul>
-</li>
-</ul>
-<h2 id="mysql">MySQL</h2>
-<ul>
-<li>
-<p>数据库范式</p>
-</li>
-<li>
-<p>MySQL逻辑架构</p>
-</li>
-<li>
-<p>MySQL存储引擎对比</p>
-</li>
-<li>
-<p>MySQL数据页与B+树</p>
-</li>
-<li>
-<p>MySQL索引</p>
-<ul>
-<li>聚簇索引、非聚簇索引</li>
-<li>索引维护</li>
-<li>索引覆盖</li>
-<li>最左前缀原则</li>
-</ul>
-</li>
-<li>
-<p>MySQL数据可靠性保证——两阶段提交</p>
-</li>
-<li>
-<p>MySQL Buffer Pool与LRU算法</p>
-</li>
-<li>
-<p>MySQL事务</p>
-<ul>
-<li>
-<p>事务特性</p>
-</li>
-<li>
-<p>事务隔离级别及实现原理</p>
-<ul>
-<li>ReadView与MVCC、Undo Log</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>MySQL锁机制</p>
-<ul>
-<li>
-<p>全局锁FTWRL</p>
-</li>
-<li>
-<p>表级锁</p>
-<ul>
-<li>表锁</li>
-<li>元数据锁</li>
-<li>意向锁</li>
-</ul>
-</li>
-<li>
-<p>行级锁</p>
-<ul>
-<li>记录锁</li>
-<li>间隙锁</li>
-<li>邻键锁</li>
-</ul>
-</li>
-<li>
-<p>页级锁</p>
-</li>
-</ul>
-</li>
-<li>
-<p>MySQL主备原理</p>
-</li>
-<li>
-<p>其他</p>
-<ul>
-<li>查询大数据是否引起OOM？</li>
-<li>order by实现原理</li>
-<li>Explain单表访问方法</li>
-</ul>
-</li>
-</ul>
-<h2 id="缓存穿透缓存击穿缓存雪崩缓存污染">缓存穿透、缓存击穿、缓存雪崩、缓存污染</h2>
-<p>&lt;内容构建中&hellip;&gt;</p>
+<p>语法定义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span> <span class="o">&lt;</span><span class="kt">char</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">return_type</span> <span class="k">operator</span><span class="s">&#34;&#34;</span> <span class="n">custom_suffix</span> <span class="p">();</span>
+</code></pre></div><p>注意这两种语法定义中的自定义后缀必须以下划线<code>_</code>开头，并符合标识符命名规则。</p>
+<p>另外，字面运算符的返回值类型无限制，但是参数只能是以下类型：</p>
+<table>
+<thead>
+<tr>
+<th>支持的参数类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>const char*</td>
+<td>原始字符串字面量，整型、浮点用户定义字面量的候选方式</td>
+</tr>
+<tr>
+<td>unsigned long long int</td>
+<td>整型用户定义字面量的首选方式</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>浮点型用户定义字面量的首选方式</td>
+</tr>
+<tr>
+<td>char</td>
+<td></td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td></td>
+</tr>
+<tr>
+<td>char8_t</td>
+<td></td>
+</tr>
+<tr>
+<td>char16_t</td>
+<td></td>
+</tr>
+<tr>
+<td>char32_t</td>
+<td></td>
+</tr>
+<tr>
+<td>const char*, size_t</td>
+<td></td>
+</tr>
+<tr>
+<td>const wchar_t*, size_t</td>
+<td></td>
+</tr>
+<tr>
+<td>const char8_t*, size_t</td>
+<td></td>
+</tr>
+<tr>
+<td>const char16_t*, size_t</td>
+<td></td>
+</tr>
+<tr>
+<td>const char32_t*, size_t</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>另外字面量运算符和字面量运算符模板是普通函数和模板函数，它们可以声明为<code>inline</code>或<code>constexpr</code>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">constexpr</span> <span class="kt">long</span> <span class="kt">double</span> <span class="k">operator</span><span class="s">&#34;&#34;</span> <span class="n">_mm</span><span class="p">(</span><span class="kt">long</span> <span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">2</span><span class="k">constexpr</span> <span class="kt">long</span> <span class="kt">double</span> <span class="k">operator</span><span class="s">&#34;&#34;</span> <span class="n">_cm</span><span class="p">(</span><span class="kt">long</span> <span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">3</span><span class="k">constexpr</span> <span class="kt">long</span> <span class="kt">double</span> <span class="k">operator</span><span class="s">&#34;&#34;</span> <span class="n">_m</span><span class="p">(</span><span class="kt">long</span> <span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="k">auto</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span><span class="n">_mm</span><span class="p">;</span> <span class="c1">//100.0
+</span><span class="ln">6</span><span class="c1"></span><span class="k">auto</span> <span class="n">height</span> <span class="o">=</span> <span class="mf">3.0</span><span class="n">_cm</span><span class="p">;</span> <span class="c1">//30.0
+</span><span class="ln">7</span><span class="c1"></span><span class="k">auto</span> <span class="n">width</span> <span class="o">=</span> <span class="mf">1.5</span><span class="n">_m</span><span class="p">;</span> <span class="c1">//1500.0
+</span></code></pre></div><p>再看另一个例子，用户定义字面量转换为自定义类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">struct</span> <span class="nc">S</span> <span class="p">{</span>
+<span class="ln"> 2</span>    <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+<span class="ln"> 3</span>    <span class="kt">void</span> <span class="nf">print</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;value = &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln"> 4</span><span class="p">};</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="n">S</span> <span class="k">operator</span><span class="s">&#34;&#34;</span><span class="n">_zxl</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="n">S</span> <span class="n">s</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="n">s</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">v</span><span class="p">;</span>
+<span class="ln"> 9</span>    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="ln">10</span><span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">13</span>    <span class="c1">//2022_zxl.print(); //error: unable to find numeric literal operator ‘operator&#34;&#34;_zxl.print’
+</span><span class="ln">14</span><span class="c1"></span>    <span class="mi">2022</span><span class="n">_zxl</span> <span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="c1">//value = 2022
+</span><span class="ln">15</span><span class="c1"></span>    <span class="p">(</span><span class="mi">2022</span><span class="n">_zxl</span><span class="p">).</span><span class="n">print</span><span class="p">();</span> <span class="c1">//value = 2022
+</span><span class="ln">16</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">17</span><span class="p">}</span>
+</code></pre></div><p>注意这里<code>2022_zxl</code>转换为<code>S</code>类型的对象后，要调用对象的成员函数，要么后面接空格，要么用圆括号把用户自定义字面量包裹起来。否则将被编译器当作<code>_zxl.print()</code>操作符来看待，而编译器找不到这样的重载操作符，所以会报错。</p>
 
     
     <section>
       
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/raw_string_literal/">
+          <span>Prev Post: 『C&#43;&#43;原始字符串字面量』</span>
+        </a>
     </section>
     <section>
       
@@ -338,9 +390,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" class="nav-link">C&#43;&#43;用户定义字面量</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/raw_string_literal/" class="nav-link">C&#43;&#43;原始字符串字面量</a>
@@ -352,9 +401,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" class="nav-link">C&#43;&#43;用户定义字面量</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/raw_string_literal/" class="nav-link">C&#43;&#43;原始字符串字面量</a>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>C&#43;&#43;内存对齐 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>C&#43;&#43; auto关键字 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="C&#43;&#43;内存对齐memory alignment">
+<meta name="description" content="`auto`关键字在C&#43;&#43;11中进行了重新定义，抛弃了传统C&#43;&#43;中`auto`是用来自动延长对象生命周期的用法，而是将其用作类型自动推导。本节内容主要讨论`auto`的用法以及一些注意事项。">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "C&#43;&#43;内存对齐" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/" />
-<meta property = "og:title" content = "C&#43;&#43;内存对齐" />
-<meta property = "og:description" content = "C&#43;&#43;内存对齐memory alignment" />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/memory_alignment_case1.png" />
+<meta name = "twitter:title" content = "C&#43;&#43; auto关键字" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/" />
+<meta property = "og:title" content = "C&#43;&#43; auto关键字" />
+<meta property = "og:description" content = "`auto`关键字在C&#43;&#43;11中进行了重新定义，抛弃了传统C&#43;&#43;中`auto`是用来自动延长对象生命周期的用法，而是将其用作类型自动推导。本节内容主要讨论`auto`的用法以及一些注意事项。" />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -107,47 +107,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>C&#43;&#43;内存对齐</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43; auto关键字</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 18, 2022</span>
+    Apr 28, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%20auto%e5%85%b3%e9%94%ae%e5%ad%97&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fauto%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fauto.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&sharesource=qzone&title=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fauto%2f&sharesource=qzone&title=C%2b%2b%20auto%e5%85%b3%e9%94%ae%e5%ad%97" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&sharesource=qzone&title=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fauto%2f&sharesource=qzone&title=C%2b%2b%20auto%e5%85%b3%e9%94%ae%e5%ad%97" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%20auto%e5%85%b3%e9%94%ae%e5%ad%97&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fauto%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&t=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fauto%2f&t=C%2b%2b%20auto%e5%85%b3%e9%94%ae%e5%ad%97" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -155,7 +155,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -163,30 +163,33 @@
 </div>
 
     
-    <img src = '/images/memory_alignment_case1.png' class="image_featured">
-    
     <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是内存对齐">什么是内存对齐</a></li>
-    <li><a href="#为什么要内存对齐">为什么要内存对齐</a></li>
-    <li><a href="#内存对齐规则">内存对齐规则</a>
+    <li><a href="#auto关键字的用法">auto关键字的用法</a>
       <ul>
-        <li><a href="#case-1">case 1</a></li>
-        <li><a href="#case-2">case 2</a></li>
-        <li><a href="#case-3">case 3</a></li>
-        <li><a href="#case-4">case 4</a></li>
-        <li><a href="#case-5">case 5</a></li>
-        <li><a href="#case-6">case 6</a></li>
-        <li><a href="#case-7">case 7</a></li>
+        <li><a href="#代替冗长的类型声明">代替冗长的类型声明</a></li>
+        <li><a href="#用于声明模板函数中依赖模板参数的变量类型">用于声明模板函数中依赖模板参数的变量类型</a></li>
+        <li><a href="#用于声明模板函数返回值类型">用于声明模板函数返回值类型</a></li>
       </ul>
     </li>
-    <li><a href="#延伸">延伸</a></li>
+    <li><a href="#auto关键字的注意事项">auto关键字的注意事项</a>
+      <ul>
+        <li><a href="#auto变量定义时必须初始化">auto变量定义时必须初始化</a></li>
+        <li><a href="#auto关键字修饰">auto关键字修饰</a></li>
+        <li><a href="#auto定义变量序列时必须始终推导为同一类型">auto定义变量序列时必须始终推导为同一类型</a></li>
+        <li><a href="#如果初始化表达式是引用">如果初始化表达式是引用</a></li>
+        <li><a href="#如果初始化表达式带有const和volatile语义">如果初始化表达式带有const和volatile语义</a></li>
+        <li><a href="#如果初始化表达式是数组">如果初始化表达式是数组</a></li>
+        <li><a href="#函数或模板参数不能声明为auto">函数或模板参数不能声明为auto</a></li>
+        <li><a href="#auto仅是占位符不是一个真正的类型">auto仅是占位符，不是一个真正的类型</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
-    <p>现代计算机的处理器为了高效地处理数据的存取，会以内存存取粒度为单位进行。为了让数据在内容中能够以内存存取粒度为单位进行排列，就需要内存对齐技术。本节内容将介绍内存对齐的意义和内存对齐规则。</p>
+    <p><code>auto</code>关键字在C++11中进行了重新定义，抛弃了传统C++中<code>auto</code>是用来自动延长对象生命周期的用法，而是将其用作类型自动推导。本节内容主要讨论<code>auto</code>的用法以及一些注意事项。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
@@ -202,203 +205,104 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
-<p>我们在<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/bit_field">《位域》</a>这篇文章中提到过位域的对齐规则，本质上也属于内存对齐的一种情形。位域的对齐是对小于一个字节的数据进行压缩，是以位数为单位进行的；而本文所要讲述的内存对齐，是针对超过一个字节的数据类型进行压缩，是以字节为单位进行的。</p>
-<h2 id="什么是内存对齐">什么是内存对齐</h2>
-<p>操作系统有64位和32位之分。64位操作系统意味着CPU有更强的寻址能力。理论上讲，性能会比32位操作系统提升1倍。</p>
-<p>程序中的数据类型的字节数大小，其实和操作系统是多少位没有关系，而是由编译器决定的。数据类型占用的字节数取决于编译时选择的编译器是64位还是32位。在不同位数的编译器下基本数据类型的字节数大小如下：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>32位编译器（单位：字节）</th>
-<th>64位编译器（单位：字节）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>char</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>char*</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>short</td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>int</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>int*</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>unsigned int</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>float</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>double</td>
-<td>8</td>
-<td>8</td>
-</tr>
-<tr>
-<td>long</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>long</td>
-<td>8</td>
-<td>8</td>
-</tr>
-<tr>
-<td>unsigned long</td>
-<td>4</td>
-<td>8</td>
-</tr>
-</tbody>
-</table>
-<p>可以看出，主要差别在指针和<code>long</code>的大小：32位指针大小是4，64位指针大小是8；32位<code>long</code>大小是4，64位<code>long</code>大小是8。</p>
-<p>为了保证每个对象拥有彼此独立的内存地址，C++空类的内存大小为1字节，而非空类的大小与类中非静态成员变量和虚函数表的多少有关。其中，类中非静态成员变量的大小则与编译器的位数以及内存对齐的设置有关。<strong>类中的成员变量在内存中并不一定是连续的，它是按照编译器的设置，按照内存块来存储的，这个内存块大小的取值，就是内存对齐。</strong></p>
-<h2 id="为什么要内存对齐">为什么要内存对齐</h2>
+<h2 id="auto关键字的用法">auto关键字的用法</h2>
+<p>用<code>auto</code>关键字来声明变量类型的时候，会根据变量的初始化数值类型自动推导出变量的匹配类型，与<code>decltype</code>关键字的作用类似。</p>
+<p><code>auto</code>的类型推导发生在编译期，而不是运行期，所以使用<code>auto</code>关键字声明变量类型并不会降低效率。</p>
+<h3 id="代替冗长的类型声明">代替冗长的类型声明</h3>
+<p>特别是对于容器迭代器的类型声明非常有用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">mp</span><span class="p">;</span>
+<span class="ln"> 2</span><span class="c1">//传统写法，非常冗长
+</span><span class="ln"> 3</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">itr</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="ln"> 4</span><span class="k">if</span> <span class="p">(</span><span class="n">itr</span> <span class="o">!=</span> <span class="n">mp</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+<span class="ln"> 5</span>    <span class="c1">//...
+</span><span class="ln"> 6</span><span class="c1"></span><span class="p">}</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c1">//C++11写法
+</span><span class="ln"> 9</span><span class="c1"></span><span class="k">auto</span> <span class="n">itr2</span> <span class="o">=</span> <span class="n">mp</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="ln">10</span><span class="k">if</span> <span class="p">(</span><span class="n">itr2</span> <span class="o">!=</span> <span class="n">mp</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+<span class="ln">11</span>    <span class="c1">//...
+</span><span class="ln">12</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h3 id="用于声明模板函数中依赖模板参数的变量类型">用于声明模板函数中依赖模板参数的变量类型</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="kt">void</span> <span class="n">Plus</span><span class="p">(</span><span class="n">T1</span> <span class="n">x</span><span class="p">,</span> <span class="n">T2</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="c1">//...
+</span><span class="ln">5</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p><code>T1</code>和<code>T2</code>的类型需要在具体调用的时候才能进行模板初始化，在此之前无法得知其真实类型，如果此时不用<code>auto</code>来声明<code>result</code>的类型，函数就无法定义。</p>
+<h3 id="用于声明模板函数返回值类型">用于声明模板函数返回值类型</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">auto</span> <span class="n">Multiply</span><span class="p">(</span><span class="n">T1</span> <span class="n">x</span><span class="p">,</span> <span class="n">T2</span> <span class="n">y</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">decltype</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+<span class="ln">4</span><span class="p">}</span>
+</code></pre></div><p>当模板函数的返回值类型依赖于模板参数，也需要使用<code>auto</code>来声明返回值类型。此处的<code>auto</code>也称为返回值占位符，只是代表一个返回值类型的占位，真正的类型是后面的<code>decltype</code>语句。</p>
+<p>这里不使用<code>decltype(x * y) Multiply(T1 x, T2 y)</code>，是因为如果前置<code>decltype</code>语句，此时的<code>x</code>和<code>y</code>还未声明，不能直接使用。</p>
+<h2 id="auto关键字的注意事项">auto关键字的注意事项</h2>
+<h3 id="auto变量定义时必须初始化">auto变量定义时必须初始化</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">auto</span> <span class="n">a1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">//ok
+</span><span class="ln">2</span><span class="c1"></span><span class="k">auto</span> <span class="n">a2</span><span class="p">;</span> <span class="c1">//error
+</span></code></pre></div><h3 id="auto关键字修饰">auto关键字修饰</h3>
+<p><code>auto</code>关键字可以结合<code>const</code>、<code>volatile</code>、<code>*</code>、<code>&amp;</code>、<code>&amp;&amp;</code>一起使用。</p>
+<h3 id="auto定义变量序列时必须始终推导为同一类型">auto定义变量序列时必须始终推导为同一类型</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">auto</span> <span class="n">a1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">c1</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span> <span class="c1">//ok
+</span><span class="ln">2</span><span class="c1"></span><span class="k">auto</span> <span class="n">a2</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">b2</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">,</span> <span class="n">c2</span> <span class="o">=</span> <span class="sc">&#39;a&#39;</span><span class="p">;</span> <span class="c1">//error
+</span></code></pre></div><h3 id="如果初始化表达式是引用">如果初始化表达式是引用</h3>
 <ul>
-<li>平台原因</li>
+<li><code>auto</code>推导去除引用语义</li>
 </ul>
-<p>不是所有的CPU都能访问任意地址上的任意数据的，有些CPU只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">//c的类型推导为int，而非int&amp;
+</span></code></pre></div><ul>
+<li><code>auto&amp;</code>推导保留引用语义</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span> <span class="c1">//d的类型才是int&amp;
+</span></code></pre></div><h3 id="如果初始化表达式带有const和volatile语义">如果初始化表达式带有const和volatile语义</h3>
 <ul>
-<li>性能原因</li>
+<li><code>auto</code>推导去除<code>const</code>和<code>volatile</code>语义，除非显示声明</li>
 </ul>
-<p>数据结构应该尽可能地在自然边界上对齐，如果为了访问未对齐的内存，处理器需要作两次内存访问，而对齐的内存访问仅需要一次访问。CPU处理器把内存当作一块一块去读取，块的大小可以是2、4、8、16字节大小，这个大小称为内存存取粒度。假设当前处理器的内存存取粒度为4，对于一个<code>int</code>变量（大小4字节），分两种情况讨论：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln">2</span><span class="k">auto</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//b的类型推导为int，而非const int
+</span><span class="ln">3</span><span class="c1"></span><span class="k">const</span> <span class="k">auto</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//c的类型才是const int
+</span></code></pre></div><ul>
+<li><code>auto&amp;</code>保留<code>const</code>和<code>volatile</code>语义</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">const</span> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="ln">2</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//b的类型推导为const int&amp;
+</span></code></pre></div><p>这是因为如果<code>auto</code>推导的类型去除了<code>const</code>，那么<code>b</code>就变成了非<code>const</code>引用，可以修改<code>a</code>的值，这显然是错误的。</p>
+<h3 id="如果初始化表达式是数组">如果初始化表达式是数组</h3>
 <ul>
-<li>数据从第0字节开始存放（已内存对齐）</li>
+<li><code>auto</code>推导成指针类型</li>
 </ul>
-<p>CPU只需要访存一次，就可以把4字节数据读完，然后存入寄存器。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">};</span>
+<span class="ln">2</span><span class="k">auto</span> <span class="n">brr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">;</span>
+<span class="ln">3</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">arr</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">brr</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//A10_i,Pi
+</span></code></pre></div><p>其中<code>A10_i</code>表示<code>int[10]</code>，而<code>Pi</code>表示<code>int*</code>。</p>
 <ul>
-<li>数据从第1字节开始存放（没有内存对齐）</li>
+<li><code>auto&amp;</code>推导为数组类型</li>
 </ul>
-<p>数据不处于自然边界上，CPU需要分两次访存，第一次先访问[0, 3]字节进入寄存器，第二次访问[4, 7]字节进入寄存器，然后剔除第0、5、6、7字节，仅留第1、2、3、4字节数据进入寄存器。对于未内存对齐的数据，显然大大降低了CPU的处理性能。这种未对齐的情况有些CPU甚至直接开摆。</p>
-<h2 id="内存对齐规则">内存对齐规则</h2>
-<p>不同特定平台上的编译器都有自己的默认对齐系数。</p>
-<p>C/C++中，可以通过预编译代码修改对齐系数：</p>
-<p>用预编译命令<code>#pragma pack(n)</code>用来指定对齐系数，单位字节。<code>n</code>的取值范围为<code>1, 2, 4, 8, 16</code>。gcc默认对齐系数是<code>4</code>，msvc默认对齐系数是<code>8</code>。</p>
-<p>用预编译命令<code>#pragma pack()</code>用来取消自定义的对齐系数，恢复为默认值。</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//#pragma pack(4) //默认对齐系数是4
-</span><span class="ln">2</span><span class="c1"></span><span class="cp">#pragma pack(1) </span><span class="c1">//修改对齐系数为1
-</span><span class="ln">3</span><span class="c1"></span>
-<span class="ln">4</span><span class="p">...</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="cp">#pragma pack() </span><span class="c1">//取消自定义的对齐系数，恢复为默认值4
-</span></code></pre></div><p>假设在一个结构体中，最大数据类型长度为<code>m</code>，编译器对齐系数是<code>n</code>，则<code>min(m, n)</code>叫做对齐单位<code>s</code>。所以当设置的对齐系数<code>n</code>大于类中最大数据类型长度，该设置是不起作用的。当<code>n</code>等于<code>1</code>时，整个类的大小为所有成员长度之和。</p>
-<p>了解了以上概念后，我们来看具体的内存对齐规则：</p>
-<ul>
-<li>
-<p>每个成员的对齐规则：类中第一个成员的偏移量（offset）为<code>0</code>，以后每个成员（该成员的数据类型长度为<code>k</code>）相对于结构体首地址的offset为<code>min(k, s)</code>的整数倍。</p>
-</li>
-<li>
-<p>如果一个类里有结构体成员，则结构体成员要从其内部最宽基本类型成员的整数倍地址开始存储。</p>
-</li>
-<li>
-<p>整体对齐规则：整个结构体的大小应是对齐单位<code>s</code>的整数倍。</p>
-</li>
-</ul>
-<p>接下来我们通过一些例子来体会内存对齐规则。</p>
-<h3 id="case-1">case 1</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data1</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//8
-</span></code></pre></div><p><img src="/images/memory_alignment_case1.png" alt="内存对齐case1"></p>
-<h3 id="case-2">case 2</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data2</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
-</span></code></pre></div><p><img src="/images/memory_alignment_case2.png" alt="内存对齐case2"></p>
-<h3 id="case-3">case 3</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data3</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-<span class="ln">5</span><span class="p">};</span>
-<span class="ln">6</span>
-<span class="ln">7</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//12
-</span></code></pre></div><p><img src="/images/memory_alignment_case3.png" alt="内存对齐case3"></p>
-<h3 id="case-4">case 4</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data4</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">char</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span>    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
-<span class="ln">5</span><span class="p">};</span>
-<span class="ln">6</span>
-<span class="ln">7</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//8
-</span></code></pre></div><p><img src="/images/memory_alignment_case4.png" alt="内存对齐case4"></p>
-<h3 id="case-5">case 5</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">struct</span> <span class="nc">BigData</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="kt">char</span> <span class="n">array</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
-<span class="ln"> 3</span><span class="p">};</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="k">struct</span> <span class="nc">Data5</span> <span class="p">{</span>
-<span class="ln"> 6</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln"> 7</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln"> 8</span>    <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
-<span class="ln"> 9</span><span class="p">};</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data5</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
-</span></code></pre></div><p><img src="/images/memory_alignment_case5.png" alt="内存对齐case5"></p>
-<h3 id="case-6">case 6</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data6</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
-</span></code></pre></div><p><img src="/images/memory_alignment_case6.png" alt="内存对齐case6"></p>
-<h3 id="case-7">case 7</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data7</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data7</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
-</span></code></pre></div><p><img src="/images/memory_alignment_case7.png" alt="内存对齐case7"></p>
-<h2 id="延伸">延伸</h2>
-<p>C++不允许一个对象的大小为<code>0</code>，不同对象的地址不能具有相同的地址。</p>
-<p>这是因为<code>new</code>需要分配不同的内存地址，不能分配内存大小为<code>0</code>的空间，避免除以<code>sizeof(T)</code>引发除零异常。</p>
-<p>所以一个没有数据成员的空类，编译器会为其分配1字节的内存空间，即空类的大小为<code>1</code>。</p>
-<p>空基类被继承后，如果派生类有自己的数据成员，那么空基类这1个字节不会添加到派生类中。</p>
-<p>关于<code>new</code>操作，可以阅读一下之前的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/new">《new表达式、operator new和placement new》</a></p>
-<p>关于对象内存模型，可以阅读一下之前的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">《对象内存模型》</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">};</span>
+<span class="ln">2</span><span class="k">auto</span><span class="o">&amp;</span> <span class="n">brr</span> <span class="o">=</span> <span class="n">arr</span><span class="p">;</span>
+<span class="ln">3</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">brr</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//A10_i, A10_i
+</span></code></pre></div><h3 id="函数或模板参数不能声明为auto">函数或模板参数不能声明为auto</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="k">auto</span> <span class="n">param</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//error
+</span><span class="ln">2</span><span class="c1"></span>    <span class="c1">//...
+</span><span class="ln">3</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h3 id="auto仅是占位符不是一个真正的类型">auto仅是占位符，不是一个真正的类型</h3>
+<p>由于<code>auto</code>仅仅是代表占位，不是真正的类型，故不能对<code>auto</code>使用以类型为操作数的操作符，如<code>sizeof()</code>和<code>typeid()</code>。</p>
 
     
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/bit_field/">
-          <span>Prev Post: 『C&#43;&#43;位域』</span>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/">
+          <span>Prev Post: 『C&#43;&#43;用户定义字面量』</span>
         </a>
     </section>
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/smart_pointer/">
-          <span>Next Post: 『C&#43;&#43;智能指针』</span>
-        </a>
     </section>
 
   </article>
@@ -416,9 +320,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/" class="nav-link">C&#43;&#43; auto关键字</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" class="nav-link">C&#43;&#43;用户定义字面量</a>
@@ -430,9 +331,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/" class="nav-link">C&#43;&#43; auto关键字</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" class="nav-link">C&#43;&#43;用户定义字面量</a>

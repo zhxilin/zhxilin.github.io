@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43; auto关键字</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/</link>
+      <pubDate>Thu, 28 Apr 2022 10:42:51 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/</guid>
+      <description>&lt;p&gt;&lt;code&gt;auto&lt;/code&gt;关键字在C++11中进行了重新定义，抛弃了传统C++中&lt;code&gt;auto&lt;/code&gt;是用来自动延长对象生命周期的用法，而是将其用作类型自动推导。本节内容主要讨论&lt;code&gt;auto&lt;/code&gt;的用法以及一些注意事项。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;用户定义字面量</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/</link>
       <pubDate>Wed, 27 Apr 2022 17:09:25 +0800</pubDate>

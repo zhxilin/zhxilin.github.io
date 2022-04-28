@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>网络 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>C&#43;&#43; STL标准库概览 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="Article description.">
+<meta name="description" content="STL的核心是三大组件：容器、迭代器和算法。本文通过一个概览图展示一下整个STL三大组件的逻辑关系。">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "网络" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/4_networks/summary/" />
-<meta property = "og:title" content = "网络" />
-<meta property = "og:description" content = "Article description." />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
+<meta name = "twitter:title" content = "C&#43;&#43; STL标准库概览" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/" />
+<meta property = "og:title" content = "C&#43;&#43; STL标准库概览" />
+<meta property = "og:description" content = "STL的核心是三大组件：容器、迭代器和算法。本文通过一个概览图展示一下整个STL三大组件的逻辑关系。" />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/path/stl_detail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/4_networks/summary/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,9 +46,7 @@
   
   
     
-    
-  
-  <body data-code="10" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -109,47 +107,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>网络</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43; STL标准库概览</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 8, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/networks' class = 'post_tag button button_translucent'>Networks
+    Apr 28, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=%e7%bd%91%e7%bb%9c&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f4_networks%2fsummary%2f&pic=Page%28%2fpost%2ftech_stack%2f4_networks%2fsummary.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%20STL%e6%a0%87%e5%87%86%e5%ba%93%e6%a6%82%e8%a7%88&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fstl%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fstl.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f4_networks%2fsummary%2f&sharesource=qzone&title=%e7%bd%91%e7%bb%9c" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fstl%2f&sharesource=qzone&title=C%2b%2b%20STL%e6%a0%87%e5%87%86%e5%ba%93%e6%a6%82%e8%a7%88" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f4_networks%2fsummary%2f&sharesource=qzone&title=%e7%bd%91%e7%bb%9c" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fstl%2f&sharesource=qzone&title=C%2b%2b%20STL%e6%a0%87%e5%87%86%e5%ba%93%e6%a6%82%e8%a7%88" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=%e7%bd%91%e7%bb%9c&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f4_networks%2fsummary%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%20STL%e6%a0%87%e5%87%86%e5%ba%93%e6%a6%82%e8%a7%88&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fstl%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f4_networks%2fsummary%2f&t=%e7%bd%91%e7%bb%9c" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp11%2fstl%2f&t=C%2b%2b%20STL%e6%a0%87%e5%87%86%e5%ba%93%e6%a6%82%e8%a7%88" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/4_networks/summary/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -157,7 +155,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/4_networks/summary/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -165,8 +163,11 @@
 </div>
 
     
+    <img src = '/images/stl_summary.png' class="image_featured">
+    
     <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
-    <blockquote>
+    <p>STL的核心是三大组件：容器、迭代器和算法。本文通过一个概览图展示一下整个STL三大组件的逻辑关系。</p>
+<blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
 <li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
@@ -180,75 +181,15 @@
 <li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
 </ul>
 </blockquote>
-<h2 id="osi模型与tcpip模型">OSI模型与TCP/IP模型</h2>
-<h2 id="httphttps">HTTP/HTTPS</h2>
-<h3 id="http协议">HTTP协议</h3>
-<h3 id="https握手过程">HTTPS握手过程</h3>
-<ul>
-<li>RSA</li>
-<li>ECDHE</li>
-</ul>
-<h2 id="tcp">TCP</h2>
-<h3 id="什么是连接">什么是连接</h3>
-<h3 id="tcp状态机握手挥手">TCP状态机、握手、挥手</h3>
-<h3 id="tcp可靠性保证">TCP可靠性保证</h3>
-<h3 id="tcp确认机制">TCP确认机制</h3>
-<h3 id="tcp重传机制">TCP重传机制</h3>
-<h3 id="tcp流量控制与滑动窗口">TCP流量控制与滑动窗口</h3>
-<h3 id="tcp拥塞控制">TCP拥塞控制</h3>
-<h2 id="udpkcp">UDP/KCP</h2>
-<h3 id="udp协议">UDP协议</h3>
-<h3 id="kcp与帧同步">KCP与帧同步</h3>
-<h2 id="ip">IP</h2>
-<h3 id="ip与mac的关系">IP与MAC的关系</h3>
-<h3 id="ip地址分类">IP地址分类</h3>
-<h3 id="ip协议栈">IP协议栈</h3>
-<ul>
-<li>DNS</li>
-<li>ARP</li>
-<li>DHCP</li>
-<li>NAT</li>
-<li>ICMP</li>
-</ul>
-<h2 id="网络io模型">网络I/O模型</h2>
-<h3 id="同步io">同步IO</h3>
-<h4 id="阻塞io">阻塞IO</h4>
-<h4 id="非阻塞io">非阻塞IO</h4>
-<h4 id="io多路复用">IO多路复用</h4>
-<ul>
-<li>
-<p>select</p>
-</li>
-<li>
-<p>poll</p>
-</li>
-<li>
-<p>epoll</p>
-<ul>
-<li>epoll实现原理</li>
-<li>ET、LT</li>
-<li>epoll惊群</li>
-</ul>
-</li>
-</ul>
-<h4 id="信号驱动io">信号驱动IO</h4>
-<h3 id="异步io">异步IO</h3>
-<h2 id="高性能网络模型">高性能网络模型</h2>
-<h3 id="reactor模型">Reactor模型</h3>
-<ul>
-<li>libevent IO模型</li>
-<li>Redis IO模型</li>
-</ul>
-<h3 id="proactor模型">Proactor模型</h3>
-<h2 id="网络字节序">网络字节序</h2>
-<h3 id="大端序">大端序</h3>
-<h3 id="小端序">小端序</h3>
-<h3 id="判定方法">判定方法</h3>
-<p>&lt;内容构建中&hellip;&gt;</p>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
+<p><img src="/images/stl_detail.png" alt="STL标准库概览图"></p>
 
     
     <section>
       
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/">
+          <span>Prev Post: 『C&#43;&#43;列表初始化』</span>
+        </a>
     </section>
     <section>
       
@@ -269,9 +210,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/" class="nav-link">C&#43;&#43; STL标准库概览</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/" class="nav-link">C&#43;&#43;列表初始化</a>
@@ -283,9 +221,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/" class="nav-link">C&#43;&#43; STL标准库概览</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/" class="nav-link">C&#43;&#43;列表初始化</a>

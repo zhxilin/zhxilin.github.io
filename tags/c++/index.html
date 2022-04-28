@@ -164,6 +164,37 @@
   <div class = 'excerpt'>
     <div class = 'excerpt_header'>
       <h3 class = 'post_link'>
+        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/'>C&#43;&#43; STL标准库概览</a>
+      </h3>
+      <div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    Apr 28, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
+</div>
+
+    </div>
+    <div class = 'excerpt_footer partition'>
+      <div class = 'excerpt_thumbnail'>
+      <img src = 'https://zhxilin.github.io/images/stl_summary.png'>
+      </div>
+      
+        <div>
+          <p class = 'pale'><p>STL的核心是三大组件：容器、迭代器和算法。本文通过一个概览图展示一下整个STL三大组件的逻辑关系。</p></p>
+          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/' class='excerpt_more button'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+      
+<li class = 'post_item'>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_header'>
+      <h3 class = 'post_link'>
         <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/'>C&#43;&#43;列表初始化</a>
       </h3>
       <div class = 'post_meta'>
@@ -378,33 +409,6 @@
     </div>
   </li>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/'>C&#43;&#43;移动语义、万能引用、引用折叠、完美转发</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 22, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'><p>现代C++提供了移动语义相关的操作，通过移动语义可以将资源的所有权转移到新的对象上，从而避免数据拷贝带来的性能开销。移动语义实现了从一个对象到另一个对象的资源转移的过程。标准库为移动语义提供了辅助函数<code>std::move()</code>，用于执行一个无条件的对<code>rvalue</code>的转换，对于函数本身而言，并不移动任何内容，只是强制转化左值引用为右值引用，从而通过这个右值引用使用该值，以用于移动语义。与之类似的还有一个辅助函数<code>std::forward()</code>，它和<code>std::move()</code>类似，但只有在参数被一个<code>lvalue</code>初始化时，才会转换为<code>rvalue</code>。<code>std::forward()</code>还能将一组参数原封不动地传递给另一个函数，包括参数的属性（左值/右值和<code>const …</code></p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
     <li>
 <ul class="pagination">
   <li class="page-item">
@@ -448,11 +452,11 @@
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/" class="nav-link">C&#43;&#43;列表初始化</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/" class="nav-link">C&#43;&#43; STL标准库概览</a>
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/" class="nav-link">C&#43;&#43; auto关键字</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/" class="nav-link">C&#43;&#43;列表初始化</a>
       </li>
     
     </ul>
@@ -461,6 +465,9 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
+      </li>
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/" class="nav-link">C&#43;&#43; STL标准库概览</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/" class="nav-link">C&#43;&#43;列表初始化</a>
@@ -480,9 +487,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/" class="nav-link">C&#43;&#43;闭包</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/" class="nav-link">C&#43;&#43;复制消除与RVO/NRVO</a>
-      </li>
     </ul> 
     
     <div>
@@ -490,12 +494,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>33</span>
+          <span class='button_tally'>34</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>33</span>
+          <span class='button_tally'>34</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -512,7 +516,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>26</span>
+          <span class='button_tally'>27</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -598,7 +602,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=26>C&#43;&#43;<span class='button_tally'>26</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=27>C&#43;&#43;<span class='button_tally'>27</span>
             </a>
             
             

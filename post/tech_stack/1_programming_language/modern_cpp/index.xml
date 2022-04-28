@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43; STL标准库概览</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/</link>
+      <pubDate>Thu, 28 Apr 2022 19:01:49 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/</guid>
+      <description>&lt;p&gt;STL的核心是三大组件：容器、迭代器和算法。本文通过一个概览图展示一下整个STL三大组件的逻辑关系。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;列表初始化</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/</link>
       <pubDate>Thu, 28 Apr 2022 15:05:41 +0800</pubDate>

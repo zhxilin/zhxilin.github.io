@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;列表初始化</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/</link>
+      <pubDate>Thu, 28 Apr 2022 15:05:41 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/list_initialization/</guid>
+      <description>&lt;p&gt;在传统C++中，只能对普通数组和&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/pod&#34;&gt;POD类型&lt;/a&gt;使用列表初始化，适用范围非常有限。在现代C++中，统一了初始化方式，任何类型对象的初始化都可以使用列表初始化了。本节内容我们讲解列表初始化的各项使用细节。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43; auto关键字</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/</link>
       <pubDate>Thu, 28 Apr 2022 10:42:51 +0800</pubDate>

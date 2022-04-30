@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>STL std::sort是什么样的排序？</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/sort/</link>
+      <pubDate>Fri, 29 Apr 2022 16:19:14 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/sort/</guid>
+      <description>&lt;p&gt;排序是最基础的一种算法，C++的STL标准库也提供了一些关于排序算法的实现，其中使用最多的当属&lt;code&gt;std::sort()&lt;/code&gt;了，也是工作面试中的高频主角。本节内容将对&lt;code&gt;std::sort()&lt;/code&gt;具体的源码实现进行详细解剖。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43; STL标准库概览</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/stl/</link>
       <pubDate>Thu, 28 Apr 2022 19:01:49 +0800</pubDate>

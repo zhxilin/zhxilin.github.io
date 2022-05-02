@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;14 auto关键字的改进</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhance/</link>
+      <pubDate>Mon, 02 May 2022 16:17:28 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhance/</guid>
+      <description>&lt;p&gt;C++11对&lt;code&gt;auto&lt;/code&gt;关键字进行了重新定义，到了C++14又对&lt;code&gt;auto&lt;/code&gt;关键字做了进一步的改进。从&lt;code&gt;C++14&lt;/code&gt;开始，&lt;code&gt;auto&lt;/code&gt;关键字可以用于函数返回值推导和lambda表达式参数列表的类型推导了。本节内容就围绕这两项改进详细展开。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>STL std::sort是什么样的排序？</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/sort/</link>
       <pubDate>Fri, 29 Apr 2022 16:19:14 +0800</pubDate>

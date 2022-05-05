@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="" class="page">
-  <head>  <title>About | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>C&#43;&#43;读写锁 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -12,16 +12,15 @@
   gtag('js', new Date());
   gtag('config', 'XXXXXXXXXX');
 </script>
-  
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="about ZHXILIN&#39;S BLOG">
+<meta name="description" content="读写锁是并发编程中的一项重要的技术，相较于互斥锁（要么锁住要么不加锁），读写锁可以在更细的粒度上提高并发性能。现代C&#43;&#43;提供了`std::shared_mutex`和`std::shared_timed_mutex`两种共享互斥量，以及用来管理这类共享互斥量的`std::shared_lock`。本节内容对现代C&#43;&#43;中 …">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "About" />
-<meta property = "og:url" content = "https://zhxilin.github.io/about/" />
-<meta property = "og:title" content = "About" />
-<meta property = "og:description" content = "about ZHXILIN&#39;S BLOG" />
+<meta name = "twitter:title" content = "C&#43;&#43;读写锁" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" />
+<meta property = "og:title" content = "C&#43;&#43;读写锁" />
+<meta property = "og:description" content = "读写锁是并发编程中的一项重要的技术，相较于互斥锁（要么锁住要么不加锁），读写锁可以在更细的粒度上提高并发性能。现代C&#43;&#43;提供了`std::shared_mutex`和`std::shared_timed_mutex`两种共享互斥量，以及用来管理这类共享互斥量的`std::shared_lock`。本节内容对现代C&#43;&#43;中 …" />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -32,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/about/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -47,8 +46,7 @@
   
   
     
-  
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -109,45 +107,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>About</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43;读写锁</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Aug 5, 2020</span>
+    May 5, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=About&url=https%3a%2f%2fzhxilin.github.io%2fabout%2f&pic=Page%28%2fabout.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%e8%af%bb%e5%86%99%e9%94%81&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fread_write_lock%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fread_write_lock.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fabout%2f&sharesource=qzone&title=About" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fread_write_lock%2f&sharesource=qzone&title=C%2b%2b%e8%af%bb%e5%86%99%e9%94%81" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fabout%2f&sharesource=qzone&title=About" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fread_write_lock%2f&sharesource=qzone&title=C%2b%2b%e8%af%bb%e5%86%99%e9%94%81" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=About&url=https%3a%2f%2fzhxilin.github.io%2fabout%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%e8%af%bb%e5%86%99%e9%94%81&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fread_write_lock%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fabout%2f&t=About" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fread_write_lock%2f&t=C%2b%2b%e8%af%bb%e5%86%99%e9%94%81" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/about/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -155,7 +155,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/about/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -163,32 +163,250 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
-    <h2 id="xilin-zheng-zhxilin">XILIN ZHENG (zhxilin)</h2>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">200 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是读写锁">什么是读写锁？</a></li>
+    <li><a href="#现代c中的读写锁">现代C++中的读写锁</a>
+      <ul>
+        <li><a href="#stdshared_mutex">std::shared_mutex</a></li>
+        <li><a href="#stdshared_timed_mutex">std::shared_timed_mutex</a></li>
+        <li><a href="#stdshared_lock">std::shared_lock</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用示例">使用示例</a></li>
+  </ul>
+</nav>
+    <p>读写锁是并发编程中的一项重要的技术，相较于互斥锁（要么锁住要么不加锁），读写锁可以在更细的粒度上提高并发性能。现代C++提供了<code>std::shared_mutex</code>和<code>std::shared_timed_mutex</code>两种共享互斥量，以及用来管理这类共享互斥量的<code>std::shared_lock</code>。本节内容对现代C++中的读写锁进行详细介绍。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
 <ul>
-<li>Email: <a href="mailto:zhxilin@live.com">zhxilin@live.com</a></li>
-<li>Working: 8 years</li>
-<li>Education: Sun Yat-sen University (CS 2009-2013)</li>
-<li>Major: Software Engineering</li>
-<li>GitHub: <a href="https://github.com/zhxilin">https://github.com/zhxilin</a></li>
-<li>Blog: <a href="https://zhxilin.github.io">https://zhxilin.github.io</a></li>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
 </ul>
-<h2 id="skills">SKILLS</h2>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
+<h2 id="什么是读写锁">什么是读写锁？</h2>
+<p>提到读写锁之前，我们先简单了解一下与之相对的互斥锁。互斥锁，是只同一时刻只能有一个线程获得锁，其余尝试加锁的线程都处于阻塞状态。</p>
+<p>而相比于互斥锁的两种状态（锁住和未加锁），读写锁可以有三种状态，即读模式加锁、写模式加锁和未加锁。只有一个线程可以处于写模式加锁状态，但是可以有多个线程同时处于读模式加锁状态。</p>
+<p>当处于写模式加锁状态时是独占的，而处于读模式加锁状态时是共享的，所以读写锁也称为独占-共享锁。读写锁处于写模式加锁状态时，在解锁之前，任何尝试对其加锁的线程都会阻塞，此时加读锁或者加写锁都会阻塞；读写锁处于读模式加锁状态时，在解锁之前，所有尝试读模式加锁的线程都可以获得访问权，所有尝试写模式加锁的线程都会阻塞。可以用下表来表示它们之间的关系：</p>
+<table>
+<thead>
+<tr>
+<th>锁状态</th>
+<th>加读锁</th>
+<th>加写锁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>写模式加锁状态</td>
+<td>失败</td>
+<td>失败</td>
+</tr>
+<tr>
+<td>读模式加锁状态</td>
+<td>成功</td>
+<td>失败</td>
+</tr>
+<tr>
+<td>未加锁状态</td>
+<td>成功</td>
+<td>成功</td>
+</tr>
+</tbody>
+</table>
+<h2 id="现代c中的读写锁">现代C++中的读写锁</h2>
+<p>现代C++提供了<code>std::shared_mutex</code>(C++17)实现读写锁，<code>std::shared_timed_mutex</code>(C++14)实现带超时逻辑的读写锁，<code>std::shared_lock</code>(C++14)用来安全管理这些读写锁。</p>
+<h3 id="stdshared_mutex">std::shared_mutex</h3>
+<p>从C++17开始提供了<code>std::shared_mutex</code>用来实现基本的读写锁。这个类的本质是一个可共享互斥量，与<code>std::mutex</code>都提供类似的同步互斥语义，可以保护共享数据不被多个线程同时修改。<code>std::shared_mutex</code>除了提供排他性操作外，还提供共享性操作。排他性操作可以使一个线程独占该互斥量，而共享性操作可以使多个线程共享该互斥量。</p>
+<p>若一个线程已获取排他性锁，即通过<code>lock()</code>、<code>try_lock()</code>上锁，则其他线程不能获取该锁，包括共享锁。</p>
+<p>当任何线程都未获取排他性锁时，共享锁能被多个线程获取，即通过<code>lock_shared()</code>、<code>try_lock_shared()</code>上锁。</p>
+<p>在一个线程内，同一时刻只能获取一个锁（共享锁或排他锁）。</p>
+<p><code>std::shared_mutex</code>定义在标准库头文件<code>&lt;shared_mutex&gt;</code>中，声明原型为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">shared_mutex</span><span class="p">;</span>
+</code></pre></div><p><code>std::shared_mutex</code>只有默认构造函数，没有拷贝构造函数，也没有赋值操作。</p>
+<p><code>std::shared_mutex</code>的成员函数如下：</p>
 <ul>
-<li>Game Server Dev: C++, C#, Golang, Python, NodeJS</li>
-<li>App Dev: UWP, WPF, Xamarin, Unity, Qt4(Basic)</li>
-<li>Database: Redis, MySQL</li>
-<li>Dev Tools: Vim, Git, VSCode</li>
-<li>Dev flow: Pull requests, Code review, Tests, Deploy</li>
-<li>IaaS: AliCloud, Google Cloud</li>
+<li>
+<p>排他性锁</p>
+<ul>
+<li>lock</li>
 </ul>
-
+<p>排他性锁定互斥量，相当于写模式上锁，若锁定失败则阻塞。已经获得互斥量所有权（不管是排他锁还是共享锁）的线程调用<code>lock()</code>，会引发未定义行为错误。一般不直接使用<code>std::shared_mutex::lock</code>，而是使用<code>std::unique_lock</code>或<code>std::lock_guard</code>来进行互斥量管理。</p>
+<ul>
+<li>try_lock</li>
+</ul>
+<p>尝试排他性锁定互斥量，相当于写模式上锁，若锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>unlock</li>
+</ul>
+<p>解锁排他性互斥量。解锁的前提必须是上过排他锁，否则会引发未定义行为错误。一般也不直接调用<code>std::shared_mutex::unlock</code>，而是用<code>std::unique_lock</code>或<code>std::lock_guard</code>来进行互斥量管理。</p>
+</li>
+<li>
+<p>共享性锁</p>
+<ul>
+<li>lock_shared</li>
+</ul>
+<p>共享性锁定互斥量，相当于读模式上锁，若锁定失败则阻塞。已经获得互斥量所有权（不管是排他锁还是共享锁）的线程调用<code>lock_shared()</code>，会引发未定义行为错误。一般不直接使用<code>std::shared_mutex::lock_shared</code>，而是使用<code>std::shared_lock</code>来进行互斥量管理。若超过实现定义最大数量的共享所有者已经以读模式对同一互斥量上锁，则<code>lock_shared()</code>会阻塞，直到共享所有者的数量减少，所有者的最大数量保证至少为10000。</p>
+<ul>
+<li>try_lock_shared</li>
+</ul>
+<p>尝试共享性锁定互斥量，相当于读模式上锁，若锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>unlock_shared</li>
+</ul>
+<p>解锁共享性互斥量。解锁的前提必须是上过共享锁，否则会引发未定义行为错误。一般也不直接调用<code>std::unlock_shared</code>，而是用<code>std::shared_lock</code>来进行互斥量管理。</p>
+</li>
+</ul>
+<h3 id="stdshared_timed_mutex">std::shared_timed_mutex</h3>
+<p>从C++14开始提供了<code>std::shared_timed_mutex</code>来实现带有延时锁定、定时锁定等效果的读写锁。这个类的本质也是一个可共享互斥量，与<code>std::timed_mutex</code>一样提供类似的同步互斥语义，可以保护共享数据不被多个线程同时修改。可以理解为在<code>std::shared_mutex</code>的基础上加上<code>std::timed_mutex</code>的特性。</p>
+<p><code>std::shared_timed_mutex</code>定义在标准库头文件<code>&lt;shared_mutex&gt;</code>中，声明原型为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">class</span> <span class="nc">shared_timed_mutex</span><span class="p">;</span>
+</code></pre></div><p><code>std::shared_timed_mutex</code>只有默认构造函数，没有拷贝构造函数，也没有赋值操作。</p>
+<p><code>std::shared_timed_mutex</code>的成员函数如下：</p>
+<ul>
+<li>
+<p>排他性锁</p>
+<ul>
+<li>lock</li>
+</ul>
+<p>排他性锁定互斥量，相当于写模式上锁，若锁定失败则阻塞。已经获得互斥量所有权（不管是排他锁还是共享锁）的线程调用<code>lock()</code>，会引发未定义行为错误。一般不直接使用<code>std::shared_timed_mutex::lock</code>，而是使用<code>std::unique_lock</code>或<code>std::lock_guard</code>来进行互斥量管理。</p>
+<ul>
+<li>try_lock</li>
+</ul>
+<p>尝试排他性锁定互斥量，相当于写模式上锁，若锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>try_lock_for</li>
+</ul>
+<p>尝试排他性锁定互斥量，相当于写模式上锁，若在指定时间长度内锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>try_lock_until</li>
+</ul>
+<p>尝试排他性锁定互斥量，相当于写模式上锁，若到达指定时间点锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>unlock</li>
+</ul>
+<p>解锁排他性互斥量。解锁的前提必须是上过排他锁，否则会引发未定义行为错误。一般也不直接调用<code>std::shared_timed_mutex::unlock</code>，而是用<code>std::unique_lock</code>或<code>std::lock_guard</code>来进行互斥量管理。</p>
+</li>
+<li>
+<p>共享性锁</p>
+<ul>
+<li>lock_shared</li>
+</ul>
+<p>共享性锁定互斥量，相当于读模式上锁，若锁定失败则阻塞。已经获得互斥量所有权（不管是排他锁还是共享锁）的线程调用<code>lock_shared()</code>，会引发未定义行为错误。一般不直接使用<code>std::shared_shared_mutex::lock_shared</code>，而是使用<code>std::shared_lock</code>来进行互斥量管理。若超过实现定义最大数量的共享所有者已经以读模式对同一互斥量上锁，则<code>lock_shared()</code>会阻塞，直到共享所有者的数量减少，所有者的最大数量保证至少为10000。</p>
+<ul>
+<li>try_lock_shared</li>
+</ul>
+<p>尝试共享性锁定互斥量，相当于读模式上锁，若锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>try_lock_shared_for</li>
+</ul>
+<p>尝试共享性锁定互斥量，相当于读模式上锁，若在指定时间长度内锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>try_lock_shared_until</li>
+</ul>
+<p>尝试共享性锁定互斥量，相当于读模式上锁，若到达指定时间点锁定失败不阻塞，直接返回布尔结果。</p>
+<ul>
+<li>unlock_shared</li>
+</ul>
+<p>解锁共享性互斥量。解锁的前提必须是上过共享锁，否则会引发未定义行为错误。一般也不直接调用<code>std::unlock_shared</code>，而是用<code>std::shared_lock</code>来进行互斥量管理。</p>
+</li>
+</ul>
+<h3 id="stdshared_lock">std::shared_lock</h3>
+<p>为了使<code>std::shared_mutex</code>和<code>std::shared_timed_mutex</code>使用起来更加方便安全，从C++14开始，标准库提供了<code>std::shared_lock</code>来管理这两种共享互斥量，就如同使用<code>std::unique_lock</code>或<code>std::lock_guard</code>来管理独占互斥量<code>std::mutex</code>和<code>std::timed_mutex</code>一样。</p>
+<p><code>std::shared_lock</code>是一个模板类，定义在标准库头文件<code>&lt;shared_mutex&gt;</code>中，声明原型为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Mutex</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">class</span> <span class="nc">shared_lock</span><span class="p">;</span>
+</code></pre></div><p><code>std::shared_lock</code>是通用的共享互斥量包装器，支持延迟锁定、定时锁定和锁所有权的转移。</p>
+<p><code>std::shared_lock</code>支持移动语义，但不支持复制语义，即提供了移动构造函数和移动赋值操作符，而不提供拷贝构造函数和拷贝赋值操作符。</p>
+<p><code>std::shared_lock</code>关联的共享互斥量只要支持可锁定（Lockable）要求，<code>std::shared_lock</code>就支持可锁定要求；关联的共享互斥量只要支持可共享定时锁定（SharedTimeLocable）要求，<code>std::shared_lock</code>就支持可共享定时锁定。</p>
+<blockquote>
+<p>可锁定要求，Lockable，指可锁定类型的对象<code>m</code>提供<code>m.try_lock()</code>表达式。</p>
+<ul>
+<li><code>m.try_lock()</code>，尝试为当前执行代理（线程、进程、任务）获取锁而不阻塞，若抛异常则不获得锁。成功获得锁返回<code>true</code>，失败返回<code>false</code>。</li>
+</ul>
+<p>可共享定时锁定要求，SharedTimeLockable，指可共享定时锁定类型的对象<code>m</code>提供<code>m.try_lock_for(rel_time)</code>和<code>m.try_lock_until(abs_time)</code>表达式。</p>
+<ul>
+<li><code>m.try_lock_for(rel_time)</code>，阻塞提供的时长<code>rel_time</code>，或者直到<code>m</code>获得锁。成功获得锁返回<code>true</code>，失败返回<code>false</code>。</li>
+<li><code>m.try_lock_until(abs_time)</code>，阻塞直指定时间点<code>abs_time</code>，或者直到<code>m</code>获得锁。成功获得锁返回<code>true</code>，失败返回<code>false</code>。</li>
+</ul>
+</blockquote>
+<p><code>std::shared_lock</code>会以共享模式上锁关联的共享互斥量，而<code>std::unique_lock</code>则是以排他性模式上锁。</p>
+<p><code>std::shared_lock</code>的成员函数如下：</p>
+<ul>
+<li>
+<p>共享性锁</p>
+<ul>
+<li>lock</li>
+</ul>
+<p>以共享模式锁定互斥量，若锁定失败则阻塞。等价于调用<code>mutex()-&gt;lock_shared()</code>。</p>
+<ul>
+<li>try_lock</li>
+</ul>
+<p>以共享模式锁定互斥量，若锁定失败不阻塞，直接返回布尔结果。等价于调用<code>mutex()-&gt;try_lock_shared()</code>。</p>
+<p>若无关联互斥量，或互斥量已上锁，则抛出<code>std::system_error</code>异常。</p>
+<ul>
+<li>try_lock_for</li>
+</ul>
+<p>以共享模式锁定互斥量，若在指定时间长度内锁定失败不阻塞，直接返回布尔结果。等价于调用<code>mutex()-&gt;try_lock_shared_for(timeout_duration)</code>。</p>
+<p>若无关联互斥量，则抛出错误码为<code>std::errc::operation_not_permitted</code>的<code>std::system_error</code>异常；若互斥量已上锁，则抛出错误码为<code>std::errc::resource_deadlock_would_occur</code>的<code>std::system_error</code>异常。</p>
+<p>若互斥量不支持可共享定时锁定要求，则引发未定义行为错误。</p>
+<ul>
+<li>try_lock_until</li>
+</ul>
+<p>以共享模式锁定互斥量，若到达指定时间点锁定失败不阻塞，直接返回布尔结果。等价于调用<code>mutex()-&gt;try_lock_shared_until(timeout_time)</code>。</p>
+<p>若无关联互斥量，则抛出错误码为<code>std::errc::operation_not_permitted</code>的<code>std::system_error</code>异常；若互斥量已上锁，则抛出错误码为<code>std::errc::resource_deadlock_would_occur</code>的<code>std::system_error</code>异常。</p>
+<p>若互斥量不支持可共享定时锁定要求，则引发未定义行为错误。</p>
+<ul>
+<li>unlock</li>
+</ul>
+<p>解锁共享性互斥量。解锁的前提必须是上过共享锁，否则会引发未定义行为错误。等价于调用<code>mutex()-&gt;unlock_shared()</code>。</p>
+<p>若无关联互斥，则抛出错误码为<code>std::errc::operation_not_permitted</code>的<code>std::system_error</code>异常。</p>
+</li>
+<li>
+<p>修改器</p>
+<ul>
+<li>swap</li>
+</ul>
+<p>与另一<code>std::shared_lock</code>交换数据成员。</p>
+<ul>
+<li>release</li>
+</ul>
+<p>解除关联的互斥量，但不解锁。返回关联互斥量的指针，若无关联互斥量则返回空指针<code>nullptr</code>。</p>
+</li>
+<li>
+<p>观察器</p>
+<ul>
+<li>mutex</li>
+</ul>
+<p>返回关联的互斥量指针，若无关联互斥量则返回空指针<code>nullptr</code>。</p>
+<ul>
+<li>owns_lock</li>
+</ul>
+<p>检查<code>*this</code>是否拥有已上锁的互斥量。等价于调用<code>operator bool</code>。</p>
+<ul>
+<li>operator bool</li>
+</ul>
+<p>等价于调用<code>owns_lock()</code>。</p>
+</li>
+</ul>
+<h2 id="使用示例">使用示例</h2>
 
     
     <section>
       
-        <a href="https://zhxilin.github.io/archives/">
-          <span>Prev Post: 『』</span>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/">
+          <span>Prev Post: 『C&#43;&#43;14模板的改进』</span>
         </a>
     </section>
     <section>
@@ -210,9 +428,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>
@@ -224,9 +439,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>

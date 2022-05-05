@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;读写锁</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/</link>
+      <pubDate>Thu, 05 May 2022 14:33:59 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/</guid>
+      <description>&lt;p&gt;读写锁是并发编程中的一项重要的技术，相较于互斥锁（要么锁住要么不加锁），读写锁可以在更细的粒度上提高并发性能。现代C++提供了&lt;code&gt;std::shared_mutex&lt;/code&gt;和&lt;code&gt;std::shared_timed_mutex&lt;/code&gt;两种共享互斥量，以及用来管理这类共享互斥量的&lt;code&gt;std::shared_lock&lt;/code&gt;。本节内容对现代C++中的读写锁进行详细介绍。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;14模板的改进</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/</link>
       <pubDate>Thu, 05 May 2022 10:22:44 +0800</pubDate>

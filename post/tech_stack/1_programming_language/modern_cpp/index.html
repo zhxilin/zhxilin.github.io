@@ -114,6 +114,33 @@
   <div class = 'excerpt'>
     <div class = 'excerpt_header'>
       <h3 class = 'post_link'>
+        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/'>C&#43;&#43;读写锁</a>
+      </h3>
+      <div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    May 5, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
+</div>
+
+    </div>
+      <div class = 'excerpt_footer'>
+        <div>
+          <p class = 'pale'><p>读写锁是并发编程中的一项重要的技术，相较于互斥锁（要么锁住要么不加锁），读写锁可以在更细的粒度上提高并发性能。现代C++提供了<code>std::shared_mutex</code>和<code>std::shared_timed_mutex</code>两种共享互斥量，以及用来管理这类共享互斥量的<code>std::shared_lock</code>。本节内容对现代C++中的读写锁进行详细介绍。</p></p>
+          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/' class='excerpt_more button'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+      
+<li class = 'post_item'>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_header'>
+      <h3 class = 'post_link'>
         <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/'>C&#43;&#43;14模板的改进</a>
       </h3>
       <div class = 'post_meta'>
@@ -360,33 +387,6 @@
     </div>
   </li>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/'>C&#43;&#43;闭包</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 26, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'><p>闭包，closure，一般是指带有状态的函数，这里的状态指的是调用环境的上下文。一个函数带上了状态，就是闭包。那么闭包就需要有捕获并持有外部作用域变量的能力，闭包状态的捆绑发生在运行时。在C++中，闭包的实现方式包括仿函数、<code>std::bind()</code>绑定器以及lambda表达式。仿函数在以前的文章<a href="/post/tech_stack/1_programming_language/modern_cpp/language_base/functor">《C++仿函数》</a>中以前介绍过了，本文将重点讨论另外两种闭包实现类型的用法和原理。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/closure/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
     <li>
 <ul class="pagination">
   <li class="page-item">
@@ -430,11 +430,11 @@
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhance/" class="nav-link">C&#43;&#43;14 auto关键字的改进</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>
       </li>
     
     </ul>
@@ -443,6 +443,9 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
+      </li>
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>
@@ -462,9 +465,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/auto/" class="nav-link">C&#43;&#43; auto关键字</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/user_defined_literal/" class="nav-link">C&#43;&#43;用户定义字面量</a>
-      </li>
     </ul> 
     
     <div>
@@ -472,12 +472,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>37</span>
+          <span class='button_tally'>38</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>37</span>
+          <span class='button_tally'>38</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -494,7 +494,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>30</span>
+          <span class='button_tally'>31</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -580,7 +580,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=30>C&#43;&#43;<span class='button_tally'>30</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=31>C&#43;&#43;<span class='button_tally'>31</span>
             </a>
             
             

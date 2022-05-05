@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;14模板的改进</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/</link>
+      <pubDate>Thu, 05 May 2022 10:22:44 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/</guid>
+      <description>&lt;p&gt;C++14引入了变量模板的新形式，在语法上等价于一个没有参数但是有返回值的模板函数。变量模板在语法上更加清晰简便，仅仅是一个语法糖。本节内容就介绍一下变量模板特性。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;14 auto关键字的改进</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhance/</link>
       <pubDate>Mon, 02 May 2022 16:17:28 +0800</pubDate>

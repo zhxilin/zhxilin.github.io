@@ -163,7 +163,7 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">200 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">700 Words | Read in about 3 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
@@ -176,7 +176,13 @@
         <li><a href="#stdshared_lock">std::shared_lock</a></li>
       </ul>
     </li>
-    <li><a href="#使用示例">使用示例</a></li>
+    <li><a href="#使用示例">使用示例</a>
+      <ul>
+        <li><a href="#case1-测试排他性锁">case1: 测试排他性锁</a></li>
+        <li><a href="#case2-使用shared_lock和unique_lock管理共享互斥量">case2: 使用shared_lock和unique_lock管理共享互斥量</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
   </ul>
 </nav>
     <p>读写锁是并发编程中的一项重要的技术，相较于互斥锁（要么锁住要么不加锁），读写锁可以在更细的粒度上提高并发性能。现代C++提供了<code>std::shared_mutex</code>和<code>std::shared_timed_mutex</code>两种共享互斥量，以及用来管理这类共享互斥量的<code>std::shared_lock</code>。本节内容对现代C++中的读写锁进行详细介绍。</p>
@@ -341,7 +347,7 @@
 <li><code>m.try_lock_until(abs_time)</code>，阻塞直指定时间点<code>abs_time</code>，或者直到<code>m</code>获得锁。成功获得锁返回<code>true</code>，失败返回<code>false</code>。</li>
 </ul>
 </blockquote>
-<p><code>std::shared_lock</code>会以共享模式上锁关联的共享互斥量，而<code>std::unique_lock</code>则是以排他性模式上锁。</p>
+<p><code>std::shared_lock</code>会以共享模式上锁关联的共享互斥量，而<code>std::unique_lock</code>则是以排他性模式上锁。所以经常由这二者搭配实现读写锁。</p>
 <p><code>std::shared_lock</code>的成员函数如下：</p>
 <ul>
 <li>
@@ -401,6 +407,166 @@
 </li>
 </ul>
 <h2 id="使用示例">使用示例</h2>
+<h3 id="case1-测试排他性锁">case1: 测试排他性锁</h3>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="ln"> 3</span><span class="cp">#include</span> <span class="cpf">&lt;shared_mutex&gt;</span><span class="cp">
+</span><span class="ln"> 4</span><span class="cp">#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+</span><span class="ln"> 5</span><span class="cp"></span>
+<span class="ln"> 6</span><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln"> 7</span><span class="n">std</span><span class="o">::</span><span class="n">shared_mutex</span> <span class="n">mtx</span><span class="p">;</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="kt">void</span> <span class="nf">incr</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">10</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="n">mtx</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+<span class="ln">12</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;: &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">++</span><span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">13</span>        <span class="n">mtx</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+<span class="ln">14</span>        <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+<span class="ln">15</span>    <span class="p">}</span>
+<span class="ln">16</span><span class="p">}</span>
+<span class="ln">17</span>
+<span class="ln">18</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">19</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t1</span><span class="p">(</span><span class="n">incr</span><span class="p">);</span>
+<span class="ln">20</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">t2</span><span class="p">(</span><span class="n">incr</span><span class="p">);</span>
+<span class="ln">21</span>    <span class="n">t1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">22</span>    <span class="n">t2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">23</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">24</span><span class="p">}</span>
+</code></pre></div><p>运行结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>140170984482560: <span class="m">1</span>
+<span class="ln">2</span>140170976089856: <span class="m">2</span>
+<span class="ln">3</span>140170984482560: <span class="m">3</span>
+<span class="ln">4</span>140170976089856: <span class="m">4</span>
+<span class="ln">5</span>140170984482560: <span class="m">5</span>
+<span class="ln">6</span>140170976089856: <span class="m">6</span>
+</code></pre></div><p>从运行结果表明两个线程交替输出，即交替获得排他性锁，同一时间只能由一个线程修改<code>num</code>。</p>
+<h3 id="case2-使用shared_lock和unique_lock管理共享互斥量">case2: 使用shared_lock和unique_lock管理共享互斥量</h3>
+<p><code>std::shared_lock</code>经常和<code>std::unique_lock</code>打配合。只有在没有写锁的情况下，<code>std::shared_lock</code>才能获得锁；只有在没有读锁的情况下，<code>std::unique_lock</code>才能获得写锁。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;shared_mutex&gt;</span><span class="cp">
+</span><span class="ln"> 3</span><span class="cp">#include</span> <span class="cpf">&lt;thread&gt;</span><span class="cp">
+</span><span class="ln"> 4</span><span class="cp">#include</span> <span class="cpf">&lt;chrono&gt;</span><span class="cp">
+</span><span class="ln"> 5</span><span class="cp"></span>
+<span class="ln"> 6</span><span class="kt">void</span> <span class="nf">test_shared_lock</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 7</span>    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="n">std</span><span class="o">::</span><span class="n">shared_mutex</span> <span class="n">mtx</span><span class="p">;</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>    <span class="k">auto</span> <span class="n">reading</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln">11</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">12</span>            <span class="n">std</span><span class="o">::</span><span class="n">shared_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_mutex</span><span class="o">&gt;</span> <span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span>
+<span class="ln">13</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; reading: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">14</span>        <span class="p">}</span>
+<span class="ln">15</span>    <span class="p">};</span>
+<span class="ln">16</span>
+<span class="ln">17</span>    <span class="k">auto</span> <span class="n">writing</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln">18</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">19</span>            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_mutex</span><span class="o">&gt;</span> <span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span>
+<span class="ln">20</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; writing: &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">++</span><span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">21</span>        <span class="p">}</span>
+<span class="ln">22</span>    <span class="p">};</span>
+<span class="ln">23</span>
+<span class="ln">24</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">r1</span><span class="p">(</span><span class="n">reading</span><span class="p">);</span>
+<span class="ln">25</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">w1</span><span class="p">(</span><span class="n">writing</span><span class="p">);</span>
+<span class="ln">26</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">r2</span><span class="p">(</span><span class="n">reading</span><span class="p">);</span>
+<span class="ln">27</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">w2</span><span class="p">(</span><span class="n">writing</span><span class="p">);</span>
+<span class="ln">28</span>
+<span class="ln">29</span>    <span class="n">r1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">30</span>    <span class="n">w1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">31</span>    <span class="n">r2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">32</span>    <span class="n">w2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">33</span><span class="p">}</span>
+<span class="ln">34</span>
+<span class="ln">35</span><span class="kt">void</span> <span class="nf">test_shared_lock_for</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">36</span>    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">37</span>    <span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span> <span class="n">mtx</span><span class="p">;</span>
+<span class="ln">38</span>
+<span class="ln">39</span>    <span class="k">auto</span> <span class="n">reading</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln">40</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">41</span>            <span class="n">std</span><span class="o">::</span><span class="n">shared_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span><span class="o">&gt;</span> <span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="ln">42</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; reading: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">43</span>        <span class="p">}</span>
+<span class="ln">44</span>    <span class="p">};</span>
+<span class="ln">45</span>
+<span class="ln">46</span>    <span class="k">auto</span> <span class="n">writing</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln">47</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">48</span>            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span><span class="o">&gt;</span> <span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="ln">49</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; writing: &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">++</span><span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">50</span>        <span class="p">}</span>
+<span class="ln">51</span>    <span class="p">};</span>
+<span class="ln">52</span>
+<span class="ln">53</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">r1</span><span class="p">(</span><span class="n">reading</span><span class="p">);</span>
+<span class="ln">54</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">w1</span><span class="p">(</span><span class="n">writing</span><span class="p">);</span>
+<span class="ln">55</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">r2</span><span class="p">(</span><span class="n">reading</span><span class="p">);</span>
+<span class="ln">56</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">w2</span><span class="p">(</span><span class="n">writing</span><span class="p">);</span>
+<span class="ln">57</span>
+<span class="ln">58</span>    <span class="n">r1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">59</span>    <span class="n">w1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">60</span>    <span class="n">r2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">61</span>    <span class="n">w2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">62</span><span class="p">}</span>
+<span class="ln">63</span>
+<span class="ln">64</span><span class="kt">void</span> <span class="nf">test_shared_lock_until</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">65</span>    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">66</span>    <span class="n">std</span><span class="o">::</span><span class="n">shared_time_mutex</span> <span class="n">mtx</span><span class="p">;</span>
+<span class="ln">67</span>
+<span class="ln">68</span>    <span class="k">auto</span> <span class="n">reading</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln">69</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">70</span>            <span class="n">std</span><span class="o">::</span><span class="n">shared_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span><span class="o">&gt;</span> <span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">)));</span>
+<span class="ln">71</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; reading: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">72</span>        <span class="p">}</span>
+<span class="ln">73</span>    <span class="p">};</span>
+<span class="ln">74</span>
+<span class="ln">75</span>    <span class="k">auto</span> <span class="n">writing</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">]()</span> <span class="p">{</span>
+<span class="ln">76</span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">77</span>            <span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span><span class="o">&gt;</span> <span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">time_point</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">high_resolution_clock</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">)));</span>
+<span class="ln">78</span>            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">get_id</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; writing: &#34;</span> <span class="o">&lt;&lt;</span> <span class="o">++</span><span class="n">num</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">79</span>        <span class="p">}</span>
+<span class="ln">80</span>    <span class="p">};</span>
+<span class="ln">81</span>
+<span class="ln">82</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">r1</span><span class="p">(</span><span class="n">reading</span><span class="p">);</span>
+<span class="ln">83</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">w1</span><span class="p">(</span><span class="n">writing</span><span class="p">);</span>
+<span class="ln">84</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">r2</span><span class="p">(</span><span class="n">reading</span><span class="p">);</span>
+<span class="ln">85</span>    <span class="n">std</span><span class="o">::</span><span class="kr">thread</span> <span class="n">w2</span><span class="p">(</span><span class="n">writing</span><span class="p">);</span>
+<span class="ln">86</span>
+<span class="ln">87</span>    <span class="n">r1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">88</span>    <span class="n">w1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">89</span>    <span class="n">r2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">90</span>    <span class="n">w2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="ln">91</span><span class="p">}</span>
+<span class="ln">92</span>
+<span class="ln">93</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">94</span>    <span class="n">test_shared_lock</span><span class="p">();</span>
+<span class="ln">95</span>    <span class="c1">//test_shared_lock_for();
+</span><span class="ln">96</span><span class="c1"></span>    <span class="c1">//test_shared_lock_until();
+</span><span class="ln">97</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">98</span><span class="p">}</span>
+</code></pre></div><p>可能的输出结果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln"> 1</span><span class="m">140044434528000</span> reading: <span class="m">0</span>
+<span class="ln"> 2</span><span class="m">140044426135296</span> writing: <span class="m">1</span>
+<span class="ln"> 3</span><span class="m">140044434528000</span> reading: <span class="m">1</span>
+<span class="ln"> 4</span><span class="m">140044434528000140044417742592</span> reading:  reading: <span class="m">11</span>
+<span class="ln"> 5</span>
+<span class="ln"> 6</span><span class="m">140044409349888</span> writing: <span class="m">2</span>
+<span class="ln"> 7</span><span class="m">140044417742592</span> reading: <span class="m">2</span>
+<span class="ln"> 8</span><span class="m">140044409349888</span> writing: <span class="m">3</span>
+<span class="ln"> 9</span><span class="m">140044417742592</span> reading: <span class="m">3</span>
+<span class="ln">10</span><span class="m">140044409349888</span> writing: <span class="m">4</span>
+<span class="ln">11</span><span class="m">140044426135296</span> writing: <span class="m">5</span>
+<span class="ln">12</span><span class="m">140044426135296</span> writing: <span class="m">6</span>
+</code></pre></div><p>从结果可以看出，reading的输出结果可能混在一起，表明了同一时间可以有多个读线程同时获得读锁并输出了读取结果，而writing的输出表明同一时间只能一个写线程独占锁。</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>
+<p>读写锁又称为共享-独占锁。写锁是独占的，其余加锁行为都会阻塞；读锁是共享的，多个线程可同时获得读锁，但加写锁会阻塞。</p>
+</li>
+<li>
+<p>现代C++提供了<code>std::shared_mutex</code>和<code>std::shared_timed_mutex</code>两种共享互斥量，又提供了<code>std::shared_lock</code>和<code>std::unique_lock</code>共同管理这类互斥量来实现读写锁。</p>
+</li>
+<li>
+<p><code>std::shared_lock</code>只是对共享互斥量的一种包装器，提供了更加安全方便的调用操作。</p>
+</li>
+</ul>
+<p>现代C++的并发编程中还有更多锁机制和线程同步技术，本文内容仅是这一大话题的一小模块。更多C++并发编程的内容我将在<a href="/post/tech_stack/1_programming_language/summary#c%E5%B9%B6%E5%8F%91">后续专门的章节</a>全面展开。</p>
 
     
     <section>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-figures="">
-  <head>  <title>Tags | ZHXILIN&#39;S BLOG</title>
+<html lang="en" data-figures="true" class="page">
+  <head>  <title>C&#43;&#43;14 exchange | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="">
+<meta name="description" content="C&#43;&#43;14开始新增了`std::exchange`函数，基于移动语义对资源进行转移，省去了拷贝的消耗。新增的这个函数名表面上看起来是“交换”，但实际上并不是两者进行交换，而是将后者转移给前者，后者没有变化。本节内容介绍`std::exchange`和`std::swap`实现上的区别。">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "Tags" />
-<meta property = "og:url" content = "https://zhxilin.github.io/tags/" />
-<meta property = "og:title" content = "Tags" />
-<meta property = "og:description" content = "" />
+<meta name = "twitter:title" content = "C&#43;&#43;14 exchange" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" />
+<meta property = "og:title" content = "C&#43;&#43;14 exchange" />
+<meta property = "og:description" content = "C&#43;&#43;14开始新增了`std::exchange`函数，基于移动语义对资源进行转移，省去了拷贝的消耗。新增的这个函数名表面上看起来是“交换”，但实际上并不是两者进行交换，而是将后者转移给前者，后者没有变化。本节内容介绍`std::exchange`和`std::swap`实现上的区别。" />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/tags/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -46,8 +46,7 @@
   
   
     
-  
-  <body data-code="7" data-lines="false" id="documentTop">
+  <body data-code="40" data-lines="true" id="documentTop">
 
 <header class = 'nav_header' >
   <nav class = 'nav'>
@@ -105,234 +104,242 @@
 </header>
 
     <main>
-
-<div class='grid-inverse wrap content'>
-  <ul class='posts' id = 'posts'>
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/algorigthm/'>Algorigthm</a>
-      </h3>
-      <div class = 'post_meta'>
+  
+<div class = 'grid-inverse wrap content'>
+  <article class='post_content'>
+    <h1 class='post_title'>C&#43;&#43;14 exchange</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 8, 2022</span>
+    May 6, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
 </div>
 
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/algorigthm/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class='post_share'>
+  Share on:
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b14%20exchange&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fexchange%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fexchange.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#weibo"></use>
+    </svg>
+  </a>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/data-structure/'>Data Structure</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 8, 2022</span>
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fexchange%2f&sharesource=qzone&title=C%2b%2b14%20exchange" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#qq"></use>
+    </svg>
+  </a>
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fexchange%2f&sharesource=qzone&title=C%2b%2b14%20exchange" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#qzone"></use>
+    </svg>
+  </a>
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b14%20exchange&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fexchange%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#twitter"></use>
+    </svg>
+  </a>
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fexchange%2f&t=C%2b%2b14%20exchange" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <svg class="icon">
+      <use xlink:href="#facebook"></use>
+    </svg>
+  </a>
+  <script>
+    function shareViaLinkedin() {
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+    }
+  </script>
+  <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
+    <svg class="icon">
+      <use xlink:href="#linkedin"></use>
+    </svg>
+  </a>
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" title="Copy Link" class="link link_yank">
+    <svg class="icon">
+      <use xlink:href="#yank"></use>
+    </svg>
+  </a>
 </div>
 
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/data-structure/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/linux/'>Linux</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Sep 28, 2021</span>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/linux/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/web-sequrity/'>Web Sequrity</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Sep 28, 2021</span>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/web-sequrity/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/gitlab/'>Gitlab</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Sep 8, 2021</span>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/gitlab/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/wsl2/'>WSL2</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Jul 20, 2021</span>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/wsl2/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/algorithm/'>Algorithm</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Aug 5, 2020</span>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/algorithm/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/tags/index/'>index</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Aug 5, 2020</span>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'></p>
-          <a href='https://zhxilin.github.io/tags/index/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-    <li>
-<ul class="pagination">
-  <li class="page-item">
-    <a href="/tags/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/tags/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a class="page-link" href="/tags/">1</a>
-  </li>
-  <li class="page-item active">
-    <a class="page-link" href="/tags/page/2/">2</a>
-  </li>
-  <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-  </li>
-  <li class="page-item">
-    <a href="/tags/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-  </li>
+    
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    
+    <h2>Overview</h2>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#stdexchange">std::exchange</a>
+      <ul>
+        <li><a href="#stdexchange声明原型">std::exchange声明原型</a></li>
+        <li><a href="#stdexchange源码解析">std::exchange源码解析</a></li>
+        <li><a href="#示例代码">示例代码</a></li>
+      </ul>
+    </li>
+    <li><a href="#stdswap">std::swap</a>
+      <ul>
+        <li><a href="#stdswap声明原型">std::swap声明原型</a></li>
+        <li><a href="#stdswap源码解析">std::swap源码解析</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    <p>C++14开始新增了<code>std::exchange</code>函数，基于移动语义对资源进行转移，省去了拷贝的消耗。新增的这个函数名表面上看起来是“交换”，但实际上并不是两者进行交换，而是将后者转移给前者，后者没有变化。本节内容介绍<code>std::exchange</code>和<code>std::swap</code>实现上的区别。</p>
+<blockquote>
+<p>本系列文章将包括以下领域：</p>
+<ul>
+<li><a href="/post/tech_stack/1_programming_language/summary">编程语言</a></li>
+<li><a href="/post/tech_stack/2_ds_algorithm/summary">数据结构与算法</a></li>
+<li><a href="/post/tech_stack/3_os/summary">操作系统</a></li>
+<li><a href="/post/tech_stack/4_networks/summary">网络</a></li>
+<li><a href="/post/tech_stack/5_database/summary">数据库</a></li>
+<li><a href="/post/tech_stack/6_compile_principle/summary">编译原理</a></li>
+<li><a href="/post/tech_stack/7_distributed_architecture/summary">分布式架构</a></li>
+<li><a href="/post/tech_stack/8_software_engineering/summary">软件工程</a></li>
+<li><a href="/post/tech_stack/9_application_technology/summary">应用技术</a></li>
+</ul>
+</blockquote>
+<p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
+<h2 id="stdexchange">std::exchange</h2>
+<p><code>std::exchange</code>虽然名为交换，但不是真正意义上的交换。更多的是实现将其中一个元素的资源转移给另一个元素，而进行转移的元素保持不变。</p>
+<h3 id="stdexchange声明原型">std::exchange声明原型</h3>
+<p>C++14开始新增<code>std::exchange</code>，定义在标准库头文件<code>&lt;utility&gt;</code>中，声明原型为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//C++14声明原型
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span> <span class="o">=</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="n">T</span> <span class="n">exchange</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="n">U</span><span class="o">&amp;&amp;</span> <span class="n">new_value</span><span class="p">);</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span><span class="c1">//C++20声明原型
+</span><span class="ln"> 6</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span> <span class="o">=</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 7</span><span class="k">constexpr</span> <span class="n">T</span> <span class="n">exchange</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="n">U</span><span class="o">&amp;&amp;</span> <span class="n">new_value</span><span class="p">);</span>
+<span class="ln"> 8</span>
+<span class="ln"> 9</span><span class="c1">//C++23声明原型
+</span><span class="ln">10</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">U</span> <span class="o">=</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln">11</span><span class="k">constexpr</span> <span class="n">T</span> <span class="n">exchange</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="n">U</span><span class="o">&amp;&amp;</span> <span class="n">new_value</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span>
+<span class="ln">12</span>    <span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_move_constructible_v</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;&amp;</span>
+<span class="ln">13</span>    <span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_assignable_v</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">U</span><span class="o">&gt;</span>
+<span class="ln">14</span><span class="p">);</span>
+</code></pre></div><p>这个函数使用<code>new_value</code>替换<code>obj</code>的值，并返回<code>obj</code>的原值。</p>
+<p>注意，经过这个函数操作后，<code>obj</code>的值变化了，但是<code>new_value</code>的值并没有变化。</p>
+<p>另外类型<code>T</code>必须支持移动构造，且支持从类型<code>U</code>移动赋值到类型<code>T</code>的对象上。</p>
+<h3 id="stdexchange源码解析">std::exchange源码解析</h3>
+<p>接下来看一下g++源码的实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//&lt;utility&gt;
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Up</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="n">_Tp</span> <span class="n">exchange</span><span class="p">(</span><span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__obj</span><span class="p">,</span> <span class="n">_Up</span><span class="o">&amp;&amp;</span> <span class="n">__new_val</span><span class="p">)</span>
+<span class="ln"> 4</span><span class="p">{</span>
+<span class="ln"> 5</span>    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">__exchange</span><span class="p">(</span><span class="n">__obj</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;</span><span class="p">(</span><span class="n">__new_val</span><span class="p">));</span>
+<span class="ln"> 6</span><span class="p">}</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c1">//&lt;move.h&gt;
+</span><span class="ln"> 9</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="p">,</span> <span class="k">typename</span> <span class="n">_Up</span> <span class="o">=</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln">10</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="n">_Tp</span> <span class="n">__exchange</span><span class="p">(</span><span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__obj</span><span class="p">,</span> <span class="n">_Up</span><span class="o">&amp;&amp;</span> <span class="n">__new_val</span><span class="p">)</span>
+<span class="ln">11</span><span class="p">{</span>
+<span class="ln">12</span>    <span class="n">_Tp</span> <span class="n">__old_val</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">__obj</span><span class="p">);</span>
+<span class="ln">13</span>    <span class="n">__obj</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">forward</span><span class="o">&lt;</span><span class="n">_Up</span><span class="o">&gt;</span><span class="p">(</span><span class="n">__new_val</span><span class="p">);</span>
+<span class="ln">14</span>    <span class="k">return</span> <span class="n">__old_val</span><span class="p">;</span>
+<span class="ln">15</span><span class="p">}</span>
+</code></pre></div><p>形参<code>__new_val</code>通过<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward">完美转发</a>传递到内部函数<code>std::__exchange</code>中，内部实现就是把<code>__obj</code>对象移到赋值给一个临时变量，然后自身使用<code>__new_val</code>进行赋值，最后返回临时变量。返回临时变量的过程会进行<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo">NRVO</a>返回值优化。</p>
+<h3 id="示例代码">示例代码</h3>
+<ul>
+<li><code>std::exchange</code>可以用来实现移动构造函数和移动赋值操作符</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">struct</span> <span class="nc">A</span>
+<span class="ln"> 2</span><span class="p">{</span>
+<span class="ln"> 3</span>    <span class="kt">int</span> <span class="n">foo</span><span class="p">;</span>
+<span class="ln"> 4</span>
+<span class="ln"> 5</span>    <span class="c1">//利用exchange返回的是other.foo的原值，用原值初始化foo，同时other.foo的值被重置
+</span><span class="ln"> 6</span><span class="c1"></span>    <span class="n">A</span><span class="p">(</span><span class="n">A</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">)</span>
+<span class="ln"> 7</span>        <span class="o">:</span> <span class="n">foo</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exchange</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">foo</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="ln"> 8</span>    <span class="p">{</span> <span class="p">}</span>
+<span class="ln"> 9</span>
+<span class="ln">10</span>    <span class="n">A</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">A</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">)</span>
+<span class="ln">11</span>    <span class="p">{</span>
+<span class="ln">12</span>        <span class="c1">//利用exchange返回的是other.foo的原值，用原值赋值给foo，同时other.foo的值被重置
+</span><span class="ln">13</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">!=</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
+<span class="ln">14</span>            <span class="n">foo</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">exchange</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">foo</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="ln">15</span>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="ln">16</span>    <span class="p">}</span>
+<span class="ln">17</span><span class="p">};</span>
+</code></pre></div><ul>
+<li>其他例子</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span><span class="ln"> 3</span><span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp">
+</span><span class="ln"> 4</span><span class="cp"></span>
+<span class="ln"> 5</span><span class="kt">void</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;f()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln"> 6</span>
+<span class="ln"> 7</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln"> 8</span>    <span class="c1">//利用exchange来初始化vector
+</span><span class="ln"> 9</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="n">std</span><span class="o">::</span><span class="n">exchange</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">});</span>
+<span class="ln">11</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">n</span> <span class="p">:</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">12</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="p">;</span>
+<span class="ln">13</span>    <span class="p">}</span>
+<span class="ln">14</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//1, 2, 3, 4,
+</span><span class="ln">15</span><span class="c1"></span>
+<span class="ln">16</span>    <span class="c1">//exchange也可作用于函数指针
+</span><span class="ln">17</span><span class="c1"></span>    <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)();</span>
+<span class="ln">18</span>    <span class="n">std</span><span class="o">::</span><span class="n">exchange</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span> <span class="c1">//等价于std::exchange(func, static_cast&lt;void(*)()&gt;(f));
+</span><span class="ln">19</span><span class="c1"></span>    <span class="n">func</span><span class="p">();</span> <span class="c1">//f()
+</span><span class="ln">20</span><span class="c1"></span>
+<span class="ln">21</span>    <span class="c1">//exchange实现斐波那契数列
+</span><span class="ln">22</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">exchange</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">))</span>
+<span class="ln">23</span>    <span class="p">{</span>
+<span class="ln">24</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;, &#34;</span><span class="p">;</span>
+<span class="ln">25</span>    <span class="p">}</span>
+<span class="ln">26</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//1, 1, 2, 3, 5, 8,
+</span><span class="ln">27</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">28</span><span class="p">}</span>
+</code></pre></div><h2 id="stdswap">std::swap</h2>
+<p><code>std::swap</code>是实现两个元素互换的函数，是真正意义上的交换，交换完之后两个元素都发生了改变。</p>
+<h3 id="stdswap声明原型">std::swap声明原型</h3>
+<p><code>std::swap</code>，定义在标准库头文件<code>&lt;utility&gt;</code>中，声明原型为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//C++11-C++20前的声明原型
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span>
+<span class="ln"> 4</span>    <span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_move_constructible</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&amp;&amp;</span>
+<span class="ln"> 5</span>    <span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_move_assignable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span>
+<span class="ln"> 6</span><span class="p">);</span>
+<span class="ln"> 7</span>
+<span class="ln"> 8</span><span class="c1">//C++20的声明原型
+</span><span class="ln"> 9</span><span class="c1"></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="ln">10</span><span class="k">constexpr</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">(</span>
+<span class="ln">11</span>    <span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_move_constructible</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&amp;&amp;</span>
+<span class="ln">12</span>    <span class="n">std</span><span class="o">::</span><span class="n">is_nothrow_move_assignable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span>
+<span class="ln">13</span><span class="p">);</span>
+</code></pre></div><h3 id="stdswap源码解析">std::swap源码解析</h3>
+<p>接下来看一下g++源码的实现：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//&lt;utility&gt; -&gt; &lt;move.h&gt;
+</span><span class="ln">2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">_Tp</span><span class="o">&gt;</span>
+<span class="ln">3</span><span class="k">constexpr</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="n">swap</span><span class="p">(</span><span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__a</span><span class="p">,</span> <span class="n">_Tp</span><span class="o">&amp;</span> <span class="n">__b</span><span class="p">)</span>
+<span class="ln">4</span><span class="p">{</span>
+<span class="ln">5</span>    <span class="n">_Tp</span> <span class="n">__tmp</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">__a</span><span class="p">);</span>
+<span class="ln">6</span>    <span class="n">__a</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">__b</span><span class="p">);</span>
+<span class="ln">7</span>    <span class="n">__b</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">__tmp</span><span class="p">);</span>
+<span class="ln">8</span><span class="p">}</span>
+</code></pre></div><h2 id="总结">总结</h2>
+<ul>
+<li>
+<p><code>std::exchange()</code>使用新值替换旧值，并返回旧值，新值不变，仅是资源的转移，而不是的交换。</p>
+</li>
+<li>
+<p><code>std::swap()</code>才是真正的交换，两个元素的值进行了互换。</p>
+</li>
 </ul>
 
+    
+    <section>
+      
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/">
+          <span>Prev Post: 『C&#43;&#43;读写锁』</span>
+        </a>
+    </section>
+    <section>
+      
+    </section>
 
-    </li>
-  </ul>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <h2>zhxilin</h2>
@@ -347,9 +354,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" class="nav-link">C&#43;&#43;14 exchange</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
@@ -361,9 +365,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" class="nav-link">C&#43;&#43;14 exchange</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
@@ -571,9 +572,34 @@
   </section>
 </aside>
 
+  
+  <div>
+    
+<div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'f880ac099c00cd07e6d9',
+    clientSecret: 'acd35ec4c29fb17d9cf9d946cc72c87c93ec2858',
+    repo: 'zhxilin.github.io',
+    owner: 'zhxilin',
+    admin: ['zhxilin'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+  </div>
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

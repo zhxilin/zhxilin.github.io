@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;14更多新特性</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/</link>
+      <pubDate>Fri, 06 May 2022 19:23:17 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/</guid>
+      <description>&lt;p&gt;C++14其实新增的特性不算太多，都是一些对C++11的一些优化和补充。大部分的新特性在前几篇文章&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhanc&#34;&gt;《C++auto关键字改进》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance&#34;&gt;《C++14模板的改进》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock&#34;&gt;《C++读写锁》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange&#34;&gt;《C++14 exchange》&lt;/a&gt;中都有介绍，剩下的新特性在这篇文章中集中介绍。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;14 exchange</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/</link>
       <pubDate>Fri, 06 May 2022 15:18:41 +0800</pubDate>

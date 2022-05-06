@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>C&#43;&#43;14模板的改进 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>C&#43;&#43;14更多新特性 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,13 +14,13 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="C&#43;&#43;14引入了变量模板的新形式，在语法上等价于一个没有参数但是有返回值的模板函数。变量模板在语法上更加清晰简便，仅仅是一个语法糖。本节内容就介绍一下变量模板特性。">
+<meta name="description" content="Article description.">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "C&#43;&#43;14模板的改进" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" />
-<meta property = "og:title" content = "C&#43;&#43;14模板的改进" />
-<meta property = "og:description" content = "C&#43;&#43;14引入了变量模板的新形式，在语法上等价于一个没有参数但是有返回值的模板函数。变量模板在语法上更加清晰简便，仅仅是一个语法糖。本节内容就介绍一下变量模板特性。" />
+<meta name = "twitter:title" content = "C&#43;&#43;14更多新特性" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" />
+<meta property = "og:title" content = "C&#43;&#43;14更多新特性" />
+<meta property = "og:description" content = "Article description." />
 <meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -107,47 +107,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>C&#43;&#43;14模板的改进</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43;14更多新特性</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    May 5, 2022</span>
+    May 6, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b14%e6%a8%a1%e6%9d%bf%e7%9a%84%e6%94%b9%e8%bf%9b&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2ftemplate_enhance%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2ftemplate_enhance.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b14%e6%9b%b4%e5%a4%9a%e6%96%b0%e7%89%b9%e6%80%a7&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fmore_cpp14%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fmore_cpp14.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2ftemplate_enhance%2f&sharesource=qzone&title=C%2b%2b14%e6%a8%a1%e6%9d%bf%e7%9a%84%e6%94%b9%e8%bf%9b" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fmore_cpp14%2f&sharesource=qzone&title=C%2b%2b14%e6%9b%b4%e5%a4%9a%e6%96%b0%e7%89%b9%e6%80%a7" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2ftemplate_enhance%2f&sharesource=qzone&title=C%2b%2b14%e6%a8%a1%e6%9d%bf%e7%9a%84%e6%94%b9%e8%bf%9b" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fmore_cpp14%2f&sharesource=qzone&title=C%2b%2b14%e6%9b%b4%e5%a4%9a%e6%96%b0%e7%89%b9%e6%80%a7" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=C%2b%2b14%e6%a8%a1%e6%9d%bf%e7%9a%84%e6%94%b9%e8%bf%9b&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2ftemplate_enhance%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b14%e6%9b%b4%e5%a4%9a%e6%96%b0%e7%89%b9%e6%80%a7&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fmore_cpp14%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2ftemplate_enhance%2f&t=C%2b%2b14%e6%a8%a1%e6%9d%bf%e7%9a%84%e6%94%b9%e8%bf%9b" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp14%2fmore_cpp14%2f&t=C%2b%2b14%e6%9b%b4%e5%a4%9a%e6%96%b0%e7%89%b9%e6%80%a7" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -155,7 +155,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -163,11 +163,20 @@
 </div>
 
     
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">100 Words | Read in about 1 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
-    <nav id="TableOfContents"></nav>
-    <p>C++14引入了变量模板的新形式，在语法上等价于一个没有参数但是有返回值的模板函数。变量模板在语法上更加清晰简便，仅仅是一个语法糖。本节内容就介绍一下变量模板特性。</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#constexpr的改进">constexpr的改进</a></li>
+    <li><a href="#deprecated标记">[[deprecated]标记</a></li>
+    <li><a href="#二进制字面量和整型字面量分隔符">二进制字面量和整型字面量分隔符</a></li>
+    <li><a href="#stdmake_unique">std::make_unique</a></li>
+    <li><a href="#stdinteger_sequence">std::integer_sequence</a></li>
+    <li><a href="#stdquoted">std::quoted</a></li>
+  </ul>
+</nav>
+    <p>C++14其实新增的特性不算太多，都是一些对C++11的一些优化和补充。大部分的新特性在前几篇文章<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhanc">《C++auto关键字改进》</a>、<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance">《C++14模板的改进》</a>、<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock">《C++读写锁》</a>、<a href="/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange">《C++14 exchange》</a>中都有介绍，剩下的新特性在这篇文章中集中介绍。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
@@ -183,37 +192,104 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
-<p>在C++14之前，我们可以使用模板函数来返回一个变量值：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="ln">2</span><span class="k">constexpr</span> <span class="n">T</span> <span class="n">pi</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln">3</span>    <span class="k">return</span> <span class="nf">T</span><span class="p">(</span><span class="mf">3.1415926535897932385</span><span class="p">);</span>
+<h2 id="constexpr的改进">constexpr的改进</h2>
+<p>C++11中<code>constexpr</code>关键字修饰函数时，所有逻辑必须在一个<code>return</code>语句中完成，比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//C++11
+</span><span class="ln">2</span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="nf">factorial</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="k">return</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
 <span class="ln">4</span><span class="p">}</span>
-</code></pre></div><p>到C++14，可以直接用变量模板来定义常量：</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
-</span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp">
+</code></pre></div><p>而在C++14中，<code>constexpr</code>关键字修饰函数不再要求所有逻辑必须在一个<code>return</code>语句中完成，可以使用局部变量和循环等：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//C++11不支持，C++14支持
+</span><span class="ln">2</span><span class="c1"></span><span class="k">constexpr</span> <span class="kt">int</span> <span class="nf">factorial</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">3</span>    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">4</span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<span class="ln">5</span>        <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+<span class="ln">6</span>    <span class="p">}</span>
+<span class="ln">7</span>    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="ln">8</span><span class="p">}</span>
+</code></pre></div><h2 id="deprecated标记">[[deprecated]标记</h2>
+<p>C++14中新增了<code>deprecated</code>标记，用来修饰类、结构体、变量、函数等。当程序中使用到了被其修饰的代码时，编译时会产生警告，提示开发者该标记修饰的内容将来可能会被丢弃，尽量不要使用：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="ln">2</span><span class="cp"></span>
+<span class="ln">3</span><span class="kt">void</span> <span class="na">[[deprecated]]</span> <span class="n">f</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;f()&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="ln">4</span>
+<span class="ln">5</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">6</span>    <span class="n">f</span><span class="p">();</span>
+<span class="ln">7</span><span class="p">}</span>
+</code></pre></div><p>编译结果会产生警告：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="ln">1</span>main.cpp:3:6: warning: attribute ignored <span class="o">[</span>-Wattributes<span class="o">]</span>
+<span class="ln">2</span>    <span class="m">3</span> <span class="p">|</span> void <span class="o">[[</span>deprecated<span class="o">]]</span> f<span class="o">()</span> <span class="o">{</span> std::cout &lt;&lt; <span class="s2">&#34;f()&#34;</span> &lt;&lt; std::endl<span class="p">;</span> <span class="o">}</span>
+</code></pre></div><h2 id="二进制字面量和整型字面量分隔符">二进制字面量和整型字面量分隔符</h2>
+<p>C++14引入了二进制字面量和整型字面量的分隔符，可以提高代码可读性：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mb">0b0001&#39;1001&#39;0001</span><span class="p">;</span>
+<span class="ln">2</span><span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">3.141</span><span class="err">&#39;</span><span class="mi">5926&#39;5358&#39;9793&#39;2385</span><span class="p">;</span>
+</code></pre></div><h2 id="stdmake_unique">std::make_unique</h2>
+<p>在智能指针构建方面，C++11提供了<code>std::make_shared</code>，却没有提供<code>std::make_unique</code>。C++14就把这个遗漏补上了：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">A</span> <span class="p">{</span> <span class="p">};</span>
+<span class="ln">2</span><span class="k">auto</span> <span class="n">ptr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">();</span>
+</code></pre></div><h2 id="stdinteger_sequence">std::integer_sequence</h2>
+<p>C++14提供了类模板<code>std::integer_sequence</code>，定义为标准库头文件<code>&lt;utility&gt;</code>中，声明原型为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="n">T</span><span class="p">...</span> <span class="n">Ints</span> <span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">struct</span> <span class="nc">integer_sequence</span><span class="p">;</span>
+</code></pre></div><p>用来表示一个编译时的整数序列。用作函数模板的实参时，能推导参数包<code>Ints</code>并将其用于包展开。</p>
+<p>C++14还提供了几个别名模板作为辅助函数：</p>
+<ul>
+<li>std::index_sequence</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">...</span> <span class="n">Ints</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">using</span> <span class="n">index_sequence</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">integer_sequence</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">,</span> <span class="n">Ints</span><span class="p">...</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>std::make_integer_sequence</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="n">T</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">using</span> <span class="n">make_integer_sequence</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">integer_sequence</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="cm">/* a sequence 0, 1, 2, ..., N-1 */</span> <span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>std::make_index_sequence</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">using</span> <span class="n">make_index_sequence</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_integer_sequence</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>std::index_sequence_for</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="err">... </span><span class="nc">T</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">using</span> <span class="n">index_sequence_for</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">...(</span><span class="n">T</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="ln"> 2</span><span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp">
 </span><span class="ln"> 3</span><span class="cp"></span>
-<span class="ln"> 4</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
-<span class="ln"> 5</span><span class="k">constexpr</span> <span class="n">T</span> <span class="n">pi</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="mf">3.1415926535897932385</span><span class="p">);</span>
-<span class="ln"> 6</span>
-<span class="ln"> 7</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-<span class="ln"> 8</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pi</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//3
-</span><span class="ln"> 9</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">pi</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//3.141592741
-</span><span class="ln">10</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">pi</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//3.141592654
-</span><span class="ln">11</span><span class="c1"></span><span class="p">}</span>
+<span class="ln"> 4</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">...</span> <span class="n">ints</span><span class="o">&gt;</span>
+<span class="ln"> 5</span><span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">integer_sequence</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">ints</span><span class="p">...</span><span class="o">&gt;</span> <span class="n">seq</span><span class="p">)</span>
+<span class="ln"> 6</span><span class="p">{</span>
+<span class="ln"> 7</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;sequence size is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">seq</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;: &#34;</span><span class="p">;</span>
+<span class="ln"> 8</span>    <span class="p">((</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ints</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">),...);</span> <span class="c1">//C++17折叠表达式
+</span><span class="ln"> 9</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">10</span><span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">13</span>    <span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">integer_sequence</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span><span class="p">{});</span> <span class="c1">//sequence size is 5: 0 1 2 3 4
+</span><span class="ln">14</span><span class="c1"></span>    <span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_integer_sequence</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">5</span><span class="o">&gt;</span><span class="p">{});</span> <span class="c1">//sequence size is 5: 0 1 2 3 4
+</span><span class="ln">15</span><span class="c1"></span>    <span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_index_sequence</span><span class="o">&lt;</span><span class="mi">5</span><span class="o">&gt;</span><span class="p">{});</span> <span class="c1">//sequence size is 5: 0 1 2 3 4
+</span><span class="ln">16</span><span class="c1"></span>    <span class="n">print</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">index_sequence_for</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="kt">char</span><span class="p">,</span> <span class="kt">double</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">{});</span> <span class="c1">//sequence size is 5: 0 1 2 3 4
+</span><span class="ln">17</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">18</span><span class="p">}</span>
+</code></pre></div><h2 id="stdquoted">std::quoted</h2>
+<p>C++14引入<code>std::quoted</code>用于给字符串添加双引号：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">2</span>    <span class="n">string</span> <span class="n">foo</span> <span class="o">=</span> <span class="s">&#34;hello world&#34;</span><span class="p">;</span>
+<span class="ln">3</span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">foo</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//hello world
+</span><span class="ln">4</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">quoted</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//&#34;hello world&#34;
+</span><span class="ln">5</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">6</span><span class="p">}</span>
 </code></pre></div>
 
     
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhance/">
-          <span>Prev Post: 『C&#43;&#43;14 auto关键字的改进』</span>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/">
+          <span>Prev Post: 『C&#43;&#43;14 exchange』</span>
         </a>
     </section>
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/">
-          <span>Next Post: 『C&#43;&#43;读写锁』</span>
-        </a>
     </section>
 
   </article>
@@ -231,9 +307,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" class="nav-link">C&#43;&#43;14更多新特性</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" class="nav-link">C&#43;&#43;14 exchange</a>
@@ -247,13 +320,13 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" class="nav-link">C&#43;&#43;14更多新特性</a>
-      </li>
-      <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" class="nav-link">C&#43;&#43;14 exchange</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
+      </li>
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/auto_enhance/" class="nav-link">C&#43;&#43;14 auto关键字的改进</a>

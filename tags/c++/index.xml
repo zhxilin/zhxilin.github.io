@@ -6,7 +6,7 @@
     <description>Recent content in C&#43;&#43; on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 06 May 2022 19:23:17 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 May 2022 11:10:44 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;17类模板参数推导</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/</link>
+      <pubDate>Sat, 07 May 2022 11:10:44 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/</guid>
+      <description>&lt;p&gt;在C++17之前，没有默认值的类模板参数总是需要显式将所有实参传递给类模板，而从C++17开始对于显示指定模板实参的限制已经取消。换言之，只要构造函数能推导出所有没有默认值的模板参数时，就可以省略模板实参的定义。本节内容将详细介绍C++17利用构造函数进行模板参数推导的过程。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-figures="true" class="page">
-  <head>  <title>C&#43;&#43;内存对齐 | ZHXILIN&#39;S BLOG</title>
+  <head>  <title>C&#43;&#43;17类模板参数推导 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
   <meta name="generator" content="Hugo 0.75.0-DEV" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
@@ -14,14 +14,14 @@
 </script>
 <meta property = "og:locale" content = "en_US" />
 <meta property="og:type" content="article">
-<meta name="description" content="C&#43;&#43;内存对齐memory alignment">
+<meta name="description" content="在C&#43;&#43;17之前，没有默认值的类模板参数总是需要显式将所有实参传递给类模板，而从C&#43;&#43;17开始对于显示指定模板实参的限制已经取消。换言之，只要构造函数能推导出所有没有默认值的模板参数时，就可以省略模板实参的定义。本节内容将详细介绍C&#43;&#43;17利用构造函数进行模板参数推导的过程。">
 <meta name = "twitter:card" content = "summary" />
 <meta name = "twitter:creator" content = "@zhxilin">
-<meta name = "twitter:title" content = "C&#43;&#43;内存对齐" />
-<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/" />
-<meta property = "og:title" content = "C&#43;&#43;内存对齐" />
-<meta property = "og:description" content = "C&#43;&#43;内存对齐memory alignment" />
-<meta property = "og:image" content = "https://zhxilin.github.io/images/memory_alignment_case1.png" />
+<meta name = "twitter:title" content = "C&#43;&#43;17类模板参数推导" />
+<meta property = "og:url" content = "https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/" />
+<meta property = "og:title" content = "C&#43;&#43;17类模板参数推导" />
+<meta property = "og:description" content = "在C&#43;&#43;17之前，没有默认值的类模板参数总是需要显式将所有实参传递给类模板，而从C&#43;&#43;17开始对于显示指定模板实参的限制已经取消。换言之，只要构造函数能推导出所有没有默认值的模板参数时，就可以省略模板实参的定义。本节内容将详细介绍C&#43;&#43;17利用构造函数进行模板参数推导的过程。" />
+<meta property = "og:image" content = "https://zhxilin.github.io/images/thumbnail.png" />
 <link rel='apple-touch-icon' sizes='180x180' href='https://zhxilin.github.io/icons/apple-touch-icon.png'>
 <link rel='icon' type='image/png' sizes='32x32' href='https://zhxilin.github.io/icons/favicon-32x32.png'>
 <link rel='icon' type='image/png' sizes='16x16' href='https://zhxilin.github.io/icons/favicon-16x16.png'>
@@ -31,7 +31,7 @@
 <meta name="msapplication-TileColor" content="#002538">
 <meta name="theme-color" content="#002538">
 
-  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/'>
+  <link rel='canonical' href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/'>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     
 
@@ -107,47 +107,47 @@
   
 <div class = 'grid-inverse wrap content'>
   <article class='post_content'>
-    <h1 class='post_title'>C&#43;&#43;内存对齐</h1><div class = 'post_meta'>
+    <h1 class='post_title'>C&#43;&#43;17类模板参数推导</h1><div class = 'post_meta'>
   <svg class="icon">
     <use xlink:href="#calendar"></use>
   </svg>
   <span class="post_date">
-    Apr 18, 2022</span>
+    May 7, 2022</span>
   <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
   </a>
 </div>
 
     <div class='post_share'>
   Share on:
-  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
+  <a href="https://service.weibo.com/share/share.php?appkey=&title=C%2b%2b17%e7%b1%bb%e6%a8%a1%e6%9d%bf%e5%8f%82%e6%95%b0%e6%8e%a8%e5%af%bc&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp17%2fclass_template_argument_deduction%2f&pic=Page%28%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp17%2fclass_template_argument_deduction.md%29&searchPic=true&style=simple" class="weibo" title="Share on Weibo" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#weibo"></use>
     </svg>
   </a>
   
-  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&sharesource=qzone&title=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
+  <a href="http://connect.qq.com/widget/shareqq/index.html?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp17%2fclass_template_argument_deduction%2f&sharesource=qzone&title=C%2b%2b17%e7%b1%bb%e6%a8%a1%e6%9d%bf%e5%8f%82%e6%95%b0%e6%8e%a8%e5%af%bc" class="qq" title="Share on QQ" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qq"></use>
     </svg>
   </a>
-  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&sharesource=qzone&title=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
+  <a href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp17%2fclass_template_argument_deduction%2f&sharesource=qzone&title=C%2b%2b17%e7%b1%bb%e6%a8%a1%e6%9d%bf%e5%8f%82%e6%95%b0%e6%8e%a8%e5%af%bc" class="qzone" title="Share on QZone" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#qzone"></use>
     </svg>
   </a>
-  <a href="https://twitter.com/intent/tweet?text=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+  <a href="https://twitter.com/intent/tweet?text=C%2b%2b17%e7%b1%bb%e6%a8%a1%e6%9d%bf%e5%8f%82%e6%95%b0%e6%8e%a8%e5%af%bc&url=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp17%2fclass_template_argument_deduction%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#twitter"></use>
     </svg>
   </a>
-  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2flanguage_base%2fmemory_alignment%2f&t=C%2b%2b%e5%86%85%e5%ad%98%e5%af%b9%e9%bd%90" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+  <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fzhxilin.github.io%2fpost%2ftech_stack%2f1_programming_language%2fmodern_cpp%2fcpp17%2fclass_template_argument_deduction%2f&t=C%2b%2b17%e7%b1%bb%e6%a8%a1%e6%9d%bf%e5%8f%82%e6%95%b0%e6%8e%a8%e5%af%bc" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
     <svg class="icon">
       <use xlink:href="#facebook"></use>
     </svg>
   </a>
   <script>
     function shareViaLinkedin() {
-      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
+      window.open('http://www.linkedin.com/shareArticle?mini=true&url='+encodeURIComponent("https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/"), '', 'left=0,top=0,width=650,height=420,personalbar=0,toolbar=0,scrollbars=0,resizable=0');
     }
   </script>
   <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow" onclick="shareViaLinkedin()">
@@ -155,7 +155,7 @@
       <use xlink:href="#linkedin"></use>
     </svg>
   </a>
-  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/memory_alignment/" title="Copy Link" class="link link_yank">
+  <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/" title="Copy Link" class="link link_yank">
     <svg class="icon">
       <use xlink:href="#yank"></use>
     </svg>
@@ -163,30 +163,22 @@
 </div>
 
     
-    <img src = '/images/memory_alignment_case1.png' class="image_featured">
-    
-    <h5 id="wc" style="font-size: 1rem;text-align: left;">300 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
+    <h5 id="wc" style="font-size: 1rem;text-align: left;">400 Words | Read in about 2 Min | View times <span id="busuanzi_value_page_pv"></span></h5>
     
     <h2>Overview</h2>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#什么是内存对齐">什么是内存对齐</a></li>
-    <li><a href="#为什么要内存对齐">为什么要内存对齐</a></li>
-    <li><a href="#内存对齐规则">内存对齐规则</a>
+    <li><a href="#引子">引子</a></li>
+    <li><a href="#构造函数模板参数类型推导">构造函数模板参数类型推导</a>
       <ul>
-        <li><a href="#case-1">case 1</a></li>
-        <li><a href="#case-2">case 2</a></li>
-        <li><a href="#case-3">case 3</a></li>
-        <li><a href="#case-4">case 4</a></li>
-        <li><a href="#case-5">case 5</a></li>
-        <li><a href="#case-6">case 6</a></li>
-        <li><a href="#case-7">case 7</a></li>
+        <li><a href="#字符串字面量的ctad">字符串字面量的CTAD</a></li>
+        <li><a href="#推导指引">推导指引</a></li>
       </ul>
     </li>
-    <li><a href="#延伸">延伸</a></li>
+    <li><a href="#总结">总结</a></li>
   </ul>
 </nav>
-    <p>现代计算机的处理器为了高效地处理数据的存取，会以内存存取粒度为单位进行。为了让数据在内容中能够以内存存取粒度为单位进行排列，就需要内存对齐技术。本节内容将介绍内存对齐的意义和内存对齐规则。</p>
+    <p>在C++17之前，没有默认值的类模板参数总是需要显式将所有实参传递给类模板，而从C++17开始对于显示指定模板实参的限制已经取消。换言之，只要构造函数能推导出所有没有默认值的模板参数时，就可以省略模板实参的定义。本节内容将详细介绍C++17利用构造函数进行模板参数推导的过程。</p>
 <blockquote>
 <p>本系列文章将包括以下领域：</p>
 <ul>
@@ -202,203 +194,169 @@
 </ul>
 </blockquote>
 <p>本章其他内容请见 <a href="/post/tech_stack/1_programming_language/modern_cpp/">《现代C++》</a></p>
-<p>我们在<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/bit_field">《位域》</a>这篇文章中提到过位域的对齐规则，本质上也属于内存对齐的一种情形。位域的对齐是对小于一个字节的数据进行压缩，是以位数为单位进行的；而本文所要讲述的内存对齐，是针对超过一个字节的数据类型进行压缩，是以字节为单位进行的。</p>
-<h2 id="什么是内存对齐">什么是内存对齐</h2>
-<p>操作系统有64位和32位之分。64位操作系统意味着CPU有更强的寻址能力。理论上讲，性能会比32位操作系统提升1倍。</p>
-<p>程序中的数据类型的字节数大小，其实和操作系统是多少位没有关系，而是由编译器决定的。数据类型占用的字节数取决于编译时选择的编译器是64位还是32位。在不同位数的编译器下基本数据类型的字节数大小如下：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>32位编译器（单位：字节）</th>
-<th>64位编译器（单位：字节）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>char</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>char*</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>short</td>
-<td>2</td>
-<td>2</td>
-</tr>
-<tr>
-<td>int</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>int*</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>unsigned int</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>float</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>double</td>
-<td>8</td>
-<td>8</td>
-</tr>
-<tr>
-<td>long</td>
-<td>4</td>
-<td>8</td>
-</tr>
-<tr>
-<td>long</td>
-<td>8</td>
-<td>8</td>
-</tr>
-<tr>
-<td>unsigned long</td>
-<td>4</td>
-<td>8</td>
-</tr>
-</tbody>
-</table>
-<p>可以看出，主要差别在指针和<code>long</code>的大小：32位指针大小是4，64位指针大小是8；32位<code>long</code>大小是4，64位<code>long</code>大小是8。</p>
-<p>为了保证每个对象拥有彼此独立的内存地址，C++空类的内存大小为1字节，而非空类的大小与类中非静态成员变量和虚函数表的多少有关。其中，类中非静态成员变量的大小则与编译器的位数以及内存对齐的设置有关。<strong>类中的成员变量在内存中并不一定是连续的，它是按照编译器的设置，按照内存块来存储的，这个内存块大小的取值，就是内存对齐。</strong></p>
-<h2 id="为什么要内存对齐">为什么要内存对齐</h2>
-<ul>
-<li>平台原因</li>
-</ul>
-<p>不是所有的CPU都能访问任意地址上的任意数据的，有些CPU只能在某些地址处取某些特定类型的数据，否则抛出硬件异常。</p>
-<ul>
-<li>性能原因</li>
-</ul>
-<p>数据结构应该尽可能地在自然边界上对齐，如果为了访问未对齐的内存，处理器需要作两次内存访问，而对齐的内存访问仅需要一次访问。CPU处理器把内存当作一块一块去读取，块的大小可以是2、4、8、16字节大小，这个大小称为内存存取粒度。假设当前处理器的内存存取粒度为4，对于一个<code>int</code>变量（大小4字节），分两种情况讨论：</p>
-<ul>
-<li>数据从第0字节开始存放（已内存对齐）</li>
-</ul>
-<p>CPU只需要访存一次，就可以把4字节数据读完，然后存入寄存器。</p>
-<ul>
-<li>数据从第1字节开始存放（没有内存对齐）</li>
-</ul>
-<p>数据不处于自然边界上，CPU需要分两次访存，第一次先访问[0, 3]字节进入寄存器，第二次访问[4, 7]字节进入寄存器，然后剔除第0、5、6、7字节，仅留第1、2、3、4字节数据进入寄存器。对于未内存对齐的数据，显然大大降低了CPU的处理性能。这种未对齐的情况有些CPU甚至直接开摆。</p>
-<h2 id="内存对齐规则">内存对齐规则</h2>
-<p>不同特定平台上的编译器都有自己的默认对齐系数。</p>
-<p>C/C++中，可以通过预编译代码修改对齐系数：</p>
-<p>用预编译命令<code>#pragma pack(n)</code>用来指定对齐系数，单位字节。<code>n</code>的取值范围为<code>1, 2, 4, 8, 16</code>。gcc默认对齐系数是<code>4</code>，msvc默认对齐系数是<code>8</code>。</p>
-<p>用预编译命令<code>#pragma pack()</code>用来取消自定义的对齐系数，恢复为默认值。</p>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//#pragma pack(4) //默认对齐系数是4
-</span><span class="ln">2</span><span class="c1"></span><span class="cp">#pragma pack(1) </span><span class="c1">//修改对齐系数为1
-</span><span class="ln">3</span><span class="c1"></span>
-<span class="ln">4</span><span class="p">...</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="cp">#pragma pack() </span><span class="c1">//取消自定义的对齐系数，恢复为默认值4
-</span></code></pre></div><p>假设在一个结构体中，最大数据类型长度为<code>m</code>，编译器对齐系数是<code>n</code>，则<code>min(m, n)</code>叫做对齐单位<code>s</code>。所以当设置的对齐系数<code>n</code>大于类中最大数据类型长度，该设置是不起作用的。当<code>n</code>等于<code>1</code>时，整个类的大小为所有成员长度之和。</p>
-<p>了解了以上概念后，我们来看具体的内存对齐规则：</p>
+<h2 id="引子">引子</h2>
+<p>我们以下面这个模板类作为引入：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln">2</span><span class="k">class</span> <span class="nc">Stack</span> <span class="p">{</span>
+<span class="ln">3</span><span class="k">public</span><span class="o">:</span>
+<span class="ln">4</span>    <span class="n">Stack</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">//默认构造函数，由编译器自动生成
+</span><span class="ln">5</span><span class="c1"></span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">//拷贝构造函数
+</span><span class="ln">6</span><span class="c1"></span>    <span class="c1">//...
+</span><span class="ln">7</span><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+<span class="ln">8</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m_cont</span><span class="p">;</span>
+<span class="ln">9</span><span class="p">};</span>
+</code></pre></div><p>在C++17以前，我们面对这个模板类进行实例化时，必须显式指定模板参数类型：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//C++17之前
+</span><span class="ln">2</span><span class="c1"></span><span class="n">Stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s1</span><span class="p">;</span>
+<span class="ln">3</span><span class="n">Stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span> <span class="c1">//拷贝构造
+</span><span class="ln">4</span><span class="c1"></span>
+<span class="ln">5</span><span class="c1">//C++17之后
+</span><span class="ln">6</span><span class="c1"></span><span class="n">Stack</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s1</span><span class="p">;</span> <span class="c1">//拷贝构造，省略模板实参
+</span></code></pre></div><p>从C++17开始，模板类进行实例化时，对于没有默认值的模板参数，只要构造函数能推导出模板类型，那么模板实参的定义就可以省略。</p>
+<h2 id="构造函数模板参数类型推导">构造函数模板参数类型推导</h2>
+<p>类模板参数推导，Class Template Argument Deduction，简称CTAD，是指通过实例化时构造函数的参数来推导出整个类模板的模板参数类型。</p>
+<p>我们在这个模板类中再增加一个构造函数，给定一些初始元素的参数，就可以支持类型的推导：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="k">class</span> <span class="nc">Stack</span> <span class="p">{</span>
+<span class="ln"> 3</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 4</span>    <span class="n">Stack</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">//默认构造函数，由编译器自动生成
+</span><span class="ln"> 5</span><span class="c1"></span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span> <span class="c1">//拷贝构造函数
+</span><span class="ln"> 6</span><span class="c1"></span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">elem</span><span class="p">)</span> <span class="c1">//通过一个元素初始化容器
+</span><span class="ln"> 7</span><span class="c1"></span>        <span class="o">:</span> <span class="n">m_cont</span><span class="p">({</span><span class="n">elem</span><span class="p">})</span> <span class="c1">//初始化列表
+</span><span class="ln"> 8</span><span class="c1"></span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>    <span class="c1">//...
+</span><span class="ln">12</span><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+<span class="ln">13</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m_cont</span><span class="p">;</span>
+<span class="ln">14</span><span class="p">};</span>
+</code></pre></div><p>这样我们就可以通过下面的定义语句来初始化一个栈对象:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="c1">//C++17
+</span><span class="ln">2</span><span class="c1"></span><span class="n">Stack</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//推导为Stack&lt;int&gt;
+</span></code></pre></div><p>通过使用整数0来初始化，调用的是第3个构造函数，模板参数类型<code>T</code>就会被推导为<code>int</code>，这样就实例化了一个<code>Stack&lt;int&gt;</code>。</p>
+<p>注意此时的<code>default</code>构造函数是不可以省略的，因为一旦定义了自定义的构造函数（第3个），编译器就不会自动生成默认构造函数了，所以需要显式定义<code>default</code>构造函数。</p>
+<p>由于<code>vector</code>没有直接接收单个参数的构造函数，所以这里需要使用初始化列表来初始化<code>m_cont</code>。</p>
+<h3 id="字符串字面量的ctad">字符串字面量的CTAD</h3>
+<p>还是上面这个例子，我们还可以使用字符串字面量来初始化栈对象：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="c1">//C++17
+</span><span class="ln"> 2</span><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 3</span><span class="k">class</span> <span class="nc">Stack</span> <span class="p">{</span>
+<span class="ln"> 4</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 5</span>    <span class="n">Stack</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 6</span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 7</span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">elem</span><span class="p">)</span>
+<span class="ln"> 8</span>        <span class="c1">//: m_cont({elem}) //为了演示字符串字面量的推导暂时注释掉
+</span><span class="ln"> 9</span><span class="c1"></span>    <span class="p">{</span>
+<span class="ln">10</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">11</span>    <span class="p">}</span>
+<span class="ln">12</span>    <span class="c1">//...
+</span><span class="ln">13</span><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+<span class="ln">14</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m_cont</span><span class="p">;</span>
+<span class="ln">15</span><span class="p">};</span>
+<span class="ln">16</span>
+<span class="ln">17</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">18</span>    <span class="n">Stack</span> <span class="n">s</span><span class="p">{</span><span class="s">&#34;zhxilin&#34;</span><span class="p">};</span> <span class="c1">//A8_c，即const char[8]
+</span><span class="ln">19</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">20</span><span class="p">}</span>
+</code></pre></div><p>上面这个例子会推导为<code>Stack&lt;const char[8]&gt;</code>。这似乎与我们的预期不一致，我们预期是能推导为原始指针类型，而不是原始数组类型，即推导为<code>Stack&lt;const char*&gt;</code>而不是<code>Stack&lt;const char[8]&gt;</code>。</p>
+<p>原因是这个例子调用的是构造函数<code>Stack&lt;const T&amp; elem&gt;</code>，通过引用传递模板类型<code>T</code>实参，该实参的类型不会进行退化（decay）。退化是指原始数组类型转换成相应的原始指针类型的机制。字符串字面量是数组类型<code>const char[]</code>，当使用引用传递数组时，会推导为数组引用，而不会退化为指针<code>const char*</code>。</p>
+<p>解决这个问题的办法是把引用传参改为按值传参。按值传递模板类型<code>T</code>的实参时，该实参类型会退化：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="k">class</span> <span class="nc">Stack</span> <span class="p">{</span>
+<span class="ln"> 3</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 4</span>    <span class="n">Stack</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 5</span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 6</span>    <span class="n">Stack</span><span class="p">(</span><span class="n">T</span> <span class="n">elem</span><span class="p">)</span> <span class="c1">//按值传递
+</span><span class="ln"> 7</span><span class="c1"></span>        <span class="o">:</span> <span class="n">m_cont</span><span class="p">({</span><span class="n">elem</span><span class="p">})</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>    <span class="c1">//...
+</span><span class="ln">12</span><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+<span class="ln">13</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m_cont</span><span class="p">;</span>
+<span class="ln">14</span><span class="p">};</span>
+<span class="ln">15</span>
+<span class="ln">16</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">17</span>    <span class="n">Stack</span> <span class="n">s</span><span class="p">{</span><span class="s">&#34;zhxilin&#34;</span><span class="p">};</span> <span class="c1">//PKc，即const char*
+</span><span class="ln">18</span><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">19</span><span class="p">}</span>
+</code></pre></div><p>这样改造之后，<code>s</code>的类型将推导为<code>Stack&lt;const char*&gt;</code>了。</p>
+<p>上述改造后的构造函数还会存在拷贝的情况，我们可以进一步优化，使用移动语义：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="k">class</span> <span class="nc">Stack</span> <span class="p">{</span>
+<span class="ln"> 3</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 4</span>    <span class="n">Stack</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 5</span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 6</span>    <span class="n">Stack</span><span class="p">(</span><span class="n">T</span> <span class="n">elem</span><span class="p">)</span>
+<span class="ln"> 7</span>        <span class="o">:</span> <span class="n">m_cont</span><span class="p">({</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">elem</span><span class="p">)})</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>    <span class="c1">//...
+</span><span class="ln">12</span><span class="c1"></span><span class="k">private</span><span class="o">:</span>
+<span class="ln">13</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m_cont</span><span class="p">;</span>
+<span class="ln">14</span><span class="p">};</span>
+</code></pre></div><h3 id="推导指引">推导指引</h3>
+<p>上面这个问题除了定义按值传递的构造函数外，还可以通过推导指引（Deduction Guides）的方式，定向将一些类型推导成目标类型。我们可以定义一个推导指引，禁止自动推导为原始指针<code>const char*</code>，而是指向性地推导为<code>std::string</code>，这样只要传递的模板参数类型是字符串字面量或C风格字符串，就都会推导为<code>std::string</code>类型。</p>
+<p>推导指引的语法是带尾随返回类型的函数声明的语法，但它以类模板名作为函数名：</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="n">explicit说明符</span><span class="p">(</span><span class="err">可选</span><span class="p">)</span> <span class="err">模板名</span> <span class="p">(</span><span class="err">形参声明子句</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="err">简单模板标识</span><span class="p">;</span>
+</code></pre></div><p>推导指引必须指名一个类模板，且必须在类模板的同一语义作用域中，而且对于成员类模板必须拥有同样的访问，但推导指引不会成为该作用域的成员。</p>
+<p>推导指引不是函数且没有函数体。推导指引不会被名字查找所找到，并且除了在推导类模板实参时与其他推导指引之间的重载决议之外不会参与重载决议。</p>
+<p>不能在同一翻译单元中为同一类模板再次声明推导指引。</p>
+<p>推导指引不是必须也得是模板。</p>
+<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="ln"> 2</span><span class="k">class</span> <span class="nc">Stack</span> <span class="p">{</span>
+<span class="ln"> 3</span><span class="k">public</span><span class="o">:</span>
+<span class="ln"> 4</span>    <span class="n">Stack</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 5</span>    <span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+<span class="ln"> 6</span>    <span class="n">Stack</span><span class="p">(</span><span class="n">T</span> <span class="n">elem</span><span class="p">)</span>
+<span class="ln"> 7</span>        <span class="o">:</span> <span class="n">m_cont</span><span class="p">({</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">elem</span><span class="p">)})</span>
+<span class="ln"> 8</span>    <span class="p">{</span>
+<span class="ln"> 9</span>        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="ln">10</span>    <span class="p">}</span>
+<span class="ln">11</span>
+<span class="ln">12</span><span class="k">private</span><span class="o">:</span>
+<span class="ln">13</span>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">m_cont</span><span class="p">;</span>
+<span class="ln">14</span><span class="p">};</span>
+<span class="ln">15</span>
+<span class="ln">16</span><span class="c1">//推导指引
+</span><span class="ln">17</span><span class="c1"></span><span class="n">Stack</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">//&lt;--- 注意这一行
+</span><span class="ln">18</span><span class="c1"></span>
+<span class="ln">19</span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="ln">20</span>    <span class="n">Stack</span> <span class="n">s</span><span class="p">{</span><span class="s">&#34;zhxilin&#34;</span><span class="p">};</span> <span class="c1">//NSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE，即std::string
+</span><span class="ln">21</span><span class="c1"></span>    <span class="c1">//Stack s = &#34;zhxilin&#34;; //编译失败
+</span><span class="ln">22</span><span class="c1"></span>    <span class="n">Stack</span> <span class="n">s2</span><span class="p">{</span><span class="n">s</span><span class="p">};</span>
+<span class="ln">23</span>    <span class="n">Stack</span> <span class="n">s3</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+<span class="ln">24</span>    <span class="n">Stack</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>
+<span class="ln">25</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="ln">26</span><span class="p">}</span>
+</code></pre></div><p>其中<code>Stack(const char*) -&gt; Stack&lt;std::string&gt;;</code>这一句就是推导指引，指定构造函数参数遇到<code>const char*</code>时，把类型<code>T</code>强制推导为<code>std::string</code>类型。</p>
+<p>推导指引语句需要与模板类的定义位于相同的作用域中，一般紧跟在模板类的定义后面。在<code>-&gt;</code>之后的类型也叫作指导类型。</p>
+<p>注意<code>Stack s{&quot;zhxilin&quot;};</code>可以编译成功，但是<code>Stack s = &quot;zhxilin&quot;;</code>无法编译通过。这是因为后者是一个拷贝初始化语句，需要先将字符串字面量<code>const char*</code>隐式转换为一个<code>std::string</code>临时变量，再将<code>std::string</code>临时变量隐式转换为<code>Stack</code>。但是C++不支持超过1次隐式转换，因此解析失败，无法通过编译。</p>
+<p>当<code>s</code>的类型被推导为<code>Stack&lt;std::string&gt;</code>之后，<code>s2</code>、<code>s3</code>、<code>s4</code>的定义语句其实都是调用的拷贝构造函数，而不是第三个传递单元素的构造函数。</p>
+<h2 id="总结">总结</h2>
 <ul>
 <li>
-<p>每个成员的对齐规则：类中第一个成员的偏移量（offset）为<code>0</code>，以后每个成员（该成员的数据类型长度为<code>k</code>）相对于结构体首地址的offset为<code>min(k, s)</code>的整数倍。</p>
+<p>为了实例化一个类模板，需要知道但也不必显式指定每一个模板实参，所以C++17提供了类模板参数推导机制来实现。</p>
 </li>
 <li>
-<p>如果一个类里有结构体成员，则结构体成员要从其内部最宽基本类型成员的整数倍地址开始存储。</p>
+<p>利用传入构造函数的实参类型就可以进行类型推导。</p>
 </li>
 <li>
-<p>整体对齐规则：整个结构体的大小应是对齐单位<code>s</code>的整数倍。</p>
+<p>C++17还提供推导指引语法，可以将匹配成功的构造函数强制指定其推导的结果。</p>
 </li>
 </ul>
-<p>接下来我们通过一些例子来体会内存对齐规则。</p>
-<h3 id="case-1">case 1</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data1</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//8
-</span></code></pre></div><p><img src="/images/memory_alignment_case1.png" alt="内存对齐case1"></p>
-<h3 id="case-2">case 2</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data2</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
-</span></code></pre></div><p><img src="/images/memory_alignment_case2.png" alt="内存对齐case2"></p>
-<h3 id="case-3">case 3</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data3</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span>    <span class="kt">char</span> <span class="n">c</span><span class="p">;</span>
-<span class="ln">5</span><span class="p">};</span>
-<span class="ln">6</span>
-<span class="ln">7</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//12
-</span></code></pre></div><p><img src="/images/memory_alignment_case3.png" alt="内存对齐case3"></p>
-<h3 id="case-4">case 4</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data4</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">char</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span>    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
-<span class="ln">5</span><span class="p">};</span>
-<span class="ln">6</span>
-<span class="ln">7</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//8
-</span></code></pre></div><p><img src="/images/memory_alignment_case4.png" alt="内存对齐case4"></p>
-<h3 id="case-5">case 5</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln"> 1</span><span class="k">struct</span> <span class="nc">BigData</span> <span class="p">{</span>
-<span class="ln"> 2</span>    <span class="kt">char</span> <span class="n">array</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
-<span class="ln"> 3</span><span class="p">};</span>
-<span class="ln"> 4</span>
-<span class="ln"> 5</span><span class="k">struct</span> <span class="nc">Data5</span> <span class="p">{</span>
-<span class="ln"> 6</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln"> 7</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln"> 8</span>    <span class="kt">double</span> <span class="n">c</span><span class="p">;</span>
-<span class="ln"> 9</span><span class="p">};</span>
-<span class="ln">10</span>
-<span class="ln">11</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data5</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
-</span></code></pre></div><p><img src="/images/memory_alignment_case5.png" alt="内存对齐case5"></p>
-<h3 id="case-6">case 6</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data6</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data6</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
-</span></code></pre></div><p><img src="/images/memory_alignment_case6.png" alt="内存对齐case6"></p>
-<h3 id="case-7">case 7</h3>
-<div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data7</span> <span class="p">{</span>
-<span class="ln">2</span>    <span class="n">BigData</span> <span class="n">a</span><span class="p">;</span>
-<span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
-<span class="ln">4</span><span class="p">};</span>
-<span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data7</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
-</span></code></pre></div><p><img src="/images/memory_alignment_case7.png" alt="内存对齐case7"></p>
-<h2 id="延伸">延伸</h2>
-<p>C++不允许一个对象的大小为<code>0</code>，不同对象的地址不能具有相同的地址。</p>
-<p>这是因为<code>new</code>需要分配不同的内存地址，不能分配内存大小为<code>0</code>的空间，避免除以<code>sizeof(T)</code>引发除零异常。</p>
-<p>所以一个没有数据成员的空类，编译器会为其分配1字节的内存空间，即空类的大小为<code>1</code>。</p>
-<p>空基类被继承后，如果派生类有自己的数据成员，那么空基类这1个字节不会添加到派生类中。</p>
-<p>关于<code>new</code>操作，可以阅读一下之前的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/new">《new表达式、operator new和placement new》</a></p>
-<p>关于对象内存模型，可以阅读一下之前的文章<a href="/post/tech_stack/1_programming_language/modern_c++/language_base/object_memory_layout">《对象内存模型》</a></p>
+<p>更多关于C++17 CTAD的内容，可以参考<a href="https://en.cppreference.com/w/cpp/language/class_template_argument_deduction">cppreference</a>。</p>
 
     
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/bit_field/">
-          <span>Prev Post: 『C&#43;&#43;位域』</span>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/">
+          <span>Prev Post: 『C&#43;&#43;14更多新特性』</span>
         </a>
     </section>
     <section>
       
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/smart_pointer/">
-          <span>Next Post: 『C&#43;&#43;智能指针』</span>
-        </a>
     </section>
 
   </article>
@@ -416,9 +374,6 @@
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
       </li>
     
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/" class="nav-link">C&#43;&#43;17类模板参数推导</a>
-      </li>
     
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" class="nav-link">C&#43;&#43;14更多新特性</a>
@@ -430,9 +385,6 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
-      </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/" class="nav-link">C&#43;&#43;17类模板参数推导</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" class="nav-link">C&#43;&#43;14更多新特性</a>

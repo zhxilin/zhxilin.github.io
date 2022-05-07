@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;17类模板参数推导</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/</link>
+      <pubDate>Sat, 07 May 2022 11:10:44 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction/</guid>
+      <description>&lt;p&gt;在C++17之前，没有默认值的类模板参数总是需要显式将所有实参传递给类模板，而从C++17开始对于显示指定模板实参的限制已经取消。换言之，只要构造函数能推导出所有没有默认值的模板参数时，就可以省略模板实参的定义。本节内容将详细介绍C++17利用构造函数进行模板参数推导的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;14更多新特性</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/</link>
       <pubDate>Fri, 06 May 2022 19:23:17 +0800</pubDate>

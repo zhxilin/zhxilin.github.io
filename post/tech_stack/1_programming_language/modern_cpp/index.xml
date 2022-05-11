@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;17 if/switch语句初始化</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init/</link>
+      <pubDate>Wed, 11 May 2022 11:09:53 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init/</guid>
+      <description>&lt;p&gt;C++17引入了&lt;code&gt;if&lt;/code&gt;/&lt;code&gt;switch&lt;/code&gt;语句初始化的新特性，既解决了变量命名问题，也可使声明变量的作用域缩小。这一新特性还可以作用于&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/structured_bindings&#34;&gt;结构化绑定&lt;/a&gt;。本节内容主要介绍&lt;code&gt;if&lt;/code&gt;/&lt;code&gt;switch&lt;/code&gt;语句初始化的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;17结构化绑定</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/structured_bindings/</link>
       <pubDate>Mon, 09 May 2022 11:25:31 +0800</pubDate>

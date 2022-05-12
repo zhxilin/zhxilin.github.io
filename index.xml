@@ -6,7 +6,7 @@
     <description>Recent content on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 11 May 2022 11:09:53 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 11 May 2022 15:31:35 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;17折叠表达式</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions/</link>
+      <pubDate>Wed, 11 May 2022 15:31:35 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions/</guid>
+      <description>&lt;p&gt;C++11引入了可变参数模板（variadic template），它可以接收任意数量的模板参数，但是参数包不能直接展开，需要通过递归或者逗号表达式的方式进行展开，写法非常繁琐。C++17对这个问题进行了优化，引入了折叠表达式的概念，用来简化对可变参数模板中参数包的展开过程。本节内容重点介绍折叠表达式的使用方法。&lt;/p&gt;</description>
     </item>
     
     <item>

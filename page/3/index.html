@@ -116,6 +116,33 @@
   <div class = 'excerpt'>
     <div class = 'excerpt_header'>
       <h3 class = 'post_link'>
+        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/'>C&#43;&#43;移动语义、万能引用、引用折叠、完美转发</a>
+      </h3>
+      <div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    Apr 22, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
+</div>
+
+    </div>
+      <div class = 'excerpt_footer'>
+        <div>
+          <p class = 'pale'><p>现代C++提供了移动语义相关的操作，通过移动语义可以将资源的所有权转移到新的对象上，从而避免数据拷贝带来的性能开销。移动语义实现了从一个对象到另一个对象的资源转移的过程。标准库为移动语义提供了辅助函数<code>std::move()</code>，用于执行一个无条件的对<code>rvalue</code>的转换，对于函数本身而言，并不移动任何内容，只是强制转化左值引用为右值引用，从而通过这个右值引用使用该值，以用于移动语义。与之类似的还有一个辅助函数<code>std::forward()</code>，它和<code>std::move()</code>类似，但只有在参数被一个<code>lvalue</code>初始化时，才会转换为<code>rvalue</code>。<code>std::forward()</code>还能将一组参数原封不动地传递给另一个函数，包括参数的属性（左值/右值和<code>const …</code></p></p>
+          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/move_forward/' class='excerpt_more button'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+      
+<li class = 'post_item'>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_header'>
+      <h3 class = 'post_link'>
         <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/null_nullptr/'>C&#43;&#43; NULL与nullptr</a>
       </h3>
       <div class = 'post_meta'>
@@ -377,33 +404,6 @@
     </div>
   </li>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/new/'>C&#43;&#43; new表达式、operator new和placement new</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 11, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'><p>C++中<code>new</code>关键字和<code>delete</code>关键字我们肯定都使用过，它们是对堆中的内存进行申请和释放的操作，这两个操作是不能被重载的。有的同学可能会被问到，如何实现自定义内存分配行为。搞懂这个问题之前，我们需要先了解<code>new</code>表达式、<code>operator new</code>和<code>placement new</code>之间的关系。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/new/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
     <li>
 <ul class="pagination">
   <li class="page-item">
@@ -453,11 +453,11 @@
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init/" class="nav-link">C&#43;&#43;17 if/switch语句初始化</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions/" class="nav-link">C&#43;&#43;17折叠表达式</a>
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/structured_bindings/" class="nav-link">C&#43;&#43;17结构化绑定</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init/" class="nav-link">C&#43;&#43;17 if/switch语句初始化</a>
       </li>
     
     </ul>
@@ -466,6 +466,9 @@
       
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/summary/" class="nav-link">服务端技术栈知识体系</a>
+      </li>
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions/" class="nav-link">C&#43;&#43;17折叠表达式</a>
       </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init/" class="nav-link">C&#43;&#43;17 if/switch语句初始化</a>
@@ -485,9 +488,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/read_write_lock/" class="nav-link">C&#43;&#43;读写锁</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/template_enhance/" class="nav-link">C&#43;&#43;14模板的改进</a>
-      </li>
     </ul> 
     
     <div>
@@ -495,12 +495,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>43</span>
+          <span class='button_tally'>44</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>43</span>
+          <span class='button_tally'>44</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -517,7 +517,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>36</span>
+          <span class='button_tally'>37</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -603,7 +603,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=36>C&#43;&#43;<span class='button_tally'>36</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=37>C&#43;&#43;<span class='button_tally'>37</span>
             </a>
             
             

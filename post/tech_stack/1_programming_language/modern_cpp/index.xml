@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;17 string_view的原理</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/</link>
+      <pubDate>Tue, 17 May 2022 14:46:00 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/</guid>
+      <description>&lt;p&gt;字符串操作是我们日常开发过程中最常见的一环。在C++中，我们会经常结合C风格字符串（字符串字面值、字符数组、字符串指针）、&lt;code&gt;std::string&lt;/code&gt;等方式来传递。而这些常见手段总会面临需要进行数据拷贝或者其他较为耗时的操作。C++17引入了&lt;code&gt;std::string_view&lt;/code&gt;来解决这些问题，非常类似于Golang中的切片。本节内容就着重介绍&lt;code&gt;std::string_view&lt;/code&gt;的原理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;17折叠表达式</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions/</link>
       <pubDate>Wed, 11 May 2022 15:31:35 +0800</pubDate>

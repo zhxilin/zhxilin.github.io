@@ -6,7 +6,7 @@
     <description>Recent content in C&#43;&#43; on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Wed, 11 May 2022 15:31:35 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 17 May 2022 14:46:00 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;17 string_view的原理</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/</link>
+      <pubDate>Tue, 17 May 2022 14:46:00 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/</guid>
+      <description>&lt;p&gt;字符串操作是我们日常开发过程中最常见的一环。在C++中，我们会经常结合C风格字符串（字符串字面值、字符数组、字符串指针）、&lt;code&gt;std::string&lt;/code&gt;等方式来传递。而这些常见手段总会面临需要进行数据拷贝或者其他较为耗时的操作。C++17引入了&lt;code&gt;std::string_view&lt;/code&gt;来解决这些问题，非常类似于Golang中的切片。本节内容就着重介绍&lt;code&gt;std::string_view&lt;/code&gt;的原理。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -2,7 +2,7 @@
 <html lang="en" data-figures="">
   <head>  <title>服务端技术栈知识体系 | ZHXILIN&#39;S BLOG</title>
   <meta charset='utf-8'>
-  <meta name="generator" content="Hugo 0.75.0-DEV" />
+  <meta name="generator" content="Hugo 0.74.3" />
   <meta name = 'viewport' content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
   <meta http-equiv = 'X-UA-Compatible' content = 'IE=edge'>
 <script async src="https://www.googletagmanager.com/gtag/js?id=XXXXXXXXXX"></script>
@@ -108,6 +108,34 @@
 
 <div class='grid-inverse wrap content'>
   <ul class='posts' id = 'posts'>
+      
+<li class = 'post_item'>
+  <div class = 'excerpt'>
+    <div class = 'excerpt_header'>
+      <h3 class = 'post_link'>
+        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/'>C&#43;&#43;复制消除与RVO/NRVO</a>
+      </h3>
+      <div class = 'post_meta'>
+  <svg class="icon">
+    <use xlink:href="#calendar"></use>
+  </svg>
+  <span class="post_date">
+    Apr 25, 2022</span>
+  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
+  </a>
+</div>
+
+    </div>
+      <div class = 'excerpt_footer'>
+        <div>
+          <p class = 'pale'><p>C++11标准明确提出了复制消除（copy elision）优化技术，复制消除要求编译器在满足一些特定条件时，省略类对象的拷贝和移动构造，以达到优化效果。复制消除主要发生在两种条件下，即函数参数是值语义以及函数返回值是值语义。而RVO和NRVO是函数返回值优化的两种技术，NRVO从C++11开始加入C++标准。</p>
+<p>本文我们将讨论的主题围绕函数返回值优化，先了解RVO和NRVO在不同的现代C++版本中，启用和关闭编译器优化之后各自的表现；接着我们将分析RVO和NRVO的实现原理；最后聊一下优化失效的情形。</p></p>
+          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp11/rvo_nrvo/' class='excerpt_more button'>Read More</a>
+        </div>
+      </div>
+    </div>
+  </li>
+  
       
 <li class = 'post_item'>
   <div class = 'excerpt'>
@@ -372,33 +400,6 @@
     </div>
   </li>
   
-      
-<li class = 'post_item'>
-  <div class = 'excerpt'>
-    <div class = 'excerpt_header'>
-      <h3 class = 'post_link'>
-        <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/volatile/'>C&#43;&#43; volatile的作用</a>
-      </h3>
-      <div class = 'post_meta'>
-  <svg class="icon">
-    <use xlink:href="#calendar"></use>
-  </svg>
-  <span class="post_date">
-    Apr 12, 2022</span>
-  <a href = 'https://zhxilin.github.io/tags/c&#43;&#43;' class = 'post_tag button button_translucent'>C&#43;&#43;
-  </a>
-</div>
-
-    </div>
-      <div class = 'excerpt_footer'>
-        <div>
-          <p class = 'pale'><p>C++中<code>volatile</code>和<code>const</code>对应，都是用来修饰变量的关键字。<code>volatile</code>关键字通常用来建立语言级别的<a href="https://zh.wikipedia.org/wiki/%E5%86%85%E5%AD%98%E5%B1%8F%E9%9A%9C">内存屏障（memory barrier）</a>。为什么要使用<code>volatile</code>？<code>volatile</code>关键字的含义是什么？<code>volatile</code>与多线程有什么关系？本节内容将一一解答。</p></p>
-          <a href='https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/language_base/volatile/' class='excerpt_more button'>Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-  
     <li>
 <ul class="pagination">
   <li class="page-item">
@@ -445,17 +446,20 @@
     
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/" class="nav-link">C&#43;&#43;17 string_view的原理</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/constexpr/" class="nav-link">C&#43;&#43;17 constexpr的改进</a>
       </li>
     
       <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions/" class="nav-link">C&#43;&#43;17折叠表达式</a>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/" class="nav-link">C&#43;&#43;17 string_view的原理</a>
       </li>
     
     </ul>
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       
+      <li>
+        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/constexpr/" class="nav-link">C&#43;&#43;17 constexpr的改进</a>
+      </li>
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view/" class="nav-link">C&#43;&#43;17 string_view的原理</a>
       </li>
@@ -474,9 +478,6 @@
       <li>
         <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/more_cpp14/" class="nav-link">C&#43;&#43;14更多新特性</a>
       </li>
-      <li>
-        <a href="https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp14/exchange/" class="nav-link">C&#43;&#43;14 exchange</a>
-      </li>
     </ul> 
     
     <div>
@@ -484,12 +485,12 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/categories/technology-stack/' class=" post_tag button button_translucent">
           TECHNOLOGY-STACK
-          <span class='button_tally'>45</span>
+          <span class='button_tally'>46</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/' class=" post_tag button button_translucent">
           服务端技术栈知识体系
-          <span class='button_tally'>45</span>
+          <span class='button_tally'>46</span>
         </a>
         
         <a href='https://zhxilin.github.io/categories/technology/' class=" post_tag button button_translucent">
@@ -506,7 +507,7 @@
       <nav class="tags_nav">
         <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent">
           C&#43;&#43;
-          <span class='button_tally'>38</span>
+          <span class='button_tally'>39</span>
         </a>
         
         <a href='https://zhxilin.github.io/tags/linux/' class=" post_tag button button_translucent">
@@ -592,7 +593,7 @@
             </a>
             
             
-            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=38>C&#43;&#43;<span class='button_tally'>38</span>
+            <a href='https://zhxilin.github.io/tags/c&#43;&#43;/' class=" post_tag button button_translucent" data-position=39>C&#43;&#43;<span class='button_tally'>39</span>
             </a>
             
             

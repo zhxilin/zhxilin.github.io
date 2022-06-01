@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>C&#43;&#43;17更多新特性</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/more_cpp17/</link>
+      <pubDate>Tue, 31 May 2022 15:58:59 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/more_cpp17/</guid>
+      <description>&lt;p&gt;C++17新增了不少新特性，重点部分我们在前几篇文章&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction&#34;&gt;《C++17类模板参数推导》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/structured_bindings&#34;&gt;《C++17结构化绑定》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init&#34;&gt;《C++17 if-switch语句初始化》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions&#34;&gt;《C++17折叠表达式》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view&#34;&gt;《C++17 string_view》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/constexpr&#34;&gt;《C++17 constexpr的改进》&lt;/a&gt;中都有介绍，剩下的新特性在这篇文章中集中介绍。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43;17 constexpr的改进</title>
       <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/constexpr/</link>
       <pubDate>Mon, 23 May 2022 18:48:09 +0800</pubDate>

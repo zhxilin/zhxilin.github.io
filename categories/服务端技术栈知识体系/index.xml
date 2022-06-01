@@ -6,7 +6,7 @@
     <description>Recent content in 服务端技术栈知识体系 on ZHXILIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Copyright © 2016–2020, zhxilin&#39;s blog; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 23 May 2022 18:48:09 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 31 May 2022 15:58:59 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxilin.github.io/categories/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB/index.xml" rel="self" type="application/rss+xml" />
     
@@ -20,6 +20,15 @@
       <description>&lt;p&gt;本人大学专业是软件工程（数字媒体技术），目前从事游戏服务端开发，在工作中也会经常面试候选人。结合大学计算机知识、工作经验和面试经历，本人总结了适合服务端开发的技术栈知识体系。&lt;/p&gt;
 &lt;p&gt;本系列文章的特点是重点解析知识背后的原理，而不止是停留在使用层面。我认为知其然而不知其所以然是不可取的，我们要在学习实践的过程中搞懂每一个技术点背后的细节，才能称得上掌握了这项技术。本系列文章希望能帮助愿意在计算机编程领域挖掘背后原理的同学，同时也不断激励我继续深入学习。&lt;/p&gt;
 &lt;p&gt;阅读本系列文章适合具备一定计算机编程基础的同学。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;17更多新特性</title>
+      <link>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/more_cpp17/</link>
+      <pubDate>Tue, 31 May 2022 15:58:59 +0800</pubDate>
+      
+      <guid>https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/more_cpp17/</guid>
+      <description>&lt;p&gt;C++17新增了不少新特性，重点部分我们在前几篇文章&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/class_template_argument_deduction&#34;&gt;《C++17类模板参数推导》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/structured_bindings&#34;&gt;《C++17结构化绑定》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/if_switch_init&#34;&gt;《C++17 if-switch语句初始化》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/fold_expressions&#34;&gt;《C++17折叠表达式》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/string_view&#34;&gt;《C++17 string_view》&lt;/a&gt;、&lt;a href=&#34;https://zhxilin.github.io/post/tech_stack/1_programming_language/modern_cpp/cpp17/constexpr&#34;&gt;《C++17 constexpr的改进》&lt;/a&gt;中都有介绍，剩下的新特性在这篇文章中集中介绍。&lt;/p&gt;</description>
     </item>
     
     <item>

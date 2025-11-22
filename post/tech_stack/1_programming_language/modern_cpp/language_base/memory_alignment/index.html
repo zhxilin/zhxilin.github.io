@@ -315,7 +315,7 @@
 <p>整体对齐规则：整个结构体的大小应是对齐单位<code>s</code>的整数倍。</p>
 </li>
 </ul>
-<p>接下来我们通过一些例子来体会内存对齐规则。</p>
+<p>接下来我们通过一些例子来体会内存对齐规（以gcc编译器对齐系数<code>4</code>为分析环境）。</p>
 <h3 id="case-1">case 1</h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data1</span> <span class="p">{</span>
 <span class="ln">2</span>    <span class="kt">char</span> <span class="n">a</span><span class="p">;</span>
@@ -330,7 +330,7 @@
 <span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
 <span class="ln">4</span><span class="p">};</span>
 <span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//16
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//12
 </span></code></pre></div><p><img src="/images/memory_alignment_case2.png" alt="内存对齐case2"></p>
 <h3 id="case-3">case 3</h3>
 <div class="highlight"><pre class="chroma"><code class="language-cpp" data-lang="cpp"><span class="ln">1</span><span class="k">struct</span> <span class="nc">Data3</span> <span class="p">{</span>
@@ -377,7 +377,7 @@
 <span class="ln">3</span>    <span class="kt">double</span> <span class="n">b</span><span class="p">;</span>
 <span class="ln">4</span><span class="p">};</span>
 <span class="ln">5</span>
-<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data7</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//24
+<span class="ln">6</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Data7</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//20
 </span></code></pre></div><p><img src="/images/memory_alignment_case7.png" alt="内存对齐case7"></p>
 <h2 id="延伸">延伸</h2>
 <p>C++不允许一个对象的大小为<code>0</code>，不同对象的地址不能具有相同的地址。</p>
